@@ -1,0 +1,31 @@
+.searchBar {
+  position: relative;
+  width: 70vw;
+  height: 3rem;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background-color: salmon;
+}
+
+.input-search {
+  /* margin: 20px; */
+  width: 60vw;
+  height: 3rem;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.input-search:focus {
+  outline: none;
+}
+
+.search-button {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  height: 100%;
+  font-size: 1.5rem;
+}
