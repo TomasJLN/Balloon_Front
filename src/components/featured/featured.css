@@ -1,0 +1,9 @@
+.card-deck {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: hidden;
+  gap: 20px;
+  padding: 0;
+  margin: 15px 0;
+}
