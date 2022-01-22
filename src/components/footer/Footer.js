@@ -1,7 +1,20 @@
 import React from 'react';
 import './footer.css';
+import { useState } from "react";
 
 const Footer = () => {
+
+  const [input, setInput] = useState("");
+  const inputHandle = (e) => {
+    setInput(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if(input){
+      console.log(input);
+    }
+  }
   return (
       <footer className="footer">
         <section className="newsletter">
@@ -40,7 +53,6 @@ const Footer = () => {
               </li>
             </ul>
             </section>
-      
       </footer>
   );
 };
