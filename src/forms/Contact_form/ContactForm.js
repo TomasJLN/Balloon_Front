@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import './ContactForm.css';
-import '../../pages/Contact/Contact.css';
+import '../../pages/contact/Contact.css';
 
 const ContactForm = () => {
   return (
@@ -31,9 +31,9 @@ const ContactForm = () => {
 
           <label>Tipo de consulta:</label>
           <Field name="tipo_consulta" as="select">
-            <option value="consulta1">Tipo de consulta 1</option>
-            <option value="consulta2">Tipo de consulta 2</option>
-            <option value="consulta3">Tipo de consulta 3</option>
+            <option value="consulta1">consulta1</option>
+            <option value="consulta2">consulta2</option>
+            <option value="consulta3">consulta3</option>
           </Field>
           <ErrorMessage name="tipo_consulta" />
           <label>Mensaje:</label>
