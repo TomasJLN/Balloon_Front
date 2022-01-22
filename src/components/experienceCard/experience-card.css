@@ -1,57 +1,74 @@
 .card {
-  display: flex;
-  flex-direction: column;
   border-radius: 10px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  max-width: 280px;
-  /* width: calc(50% - 15px); */
-  width: 160px;
-  height: 300px;
+  box-shadow: 2px 3px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   cursor: pointer;
+  background-color: chartreuse;
+  width: 95%;
+  max-width: 360px;
+  display: flex;
+  min-height: 200px;
 }
 
 .card-thumbnail {
-  width: 100%;
+  border-radius: 10px;
+  margin: 10px;
   overflow: hidden;
-  height: 100px;
+  min-width: 120px;
+  max-width: 120px;
+  height: 120px;
   object-fit: cover;
+  align-self: center;
 }
 
 .card-details {
-  padding: 5%;
-  position: relative;
-  height: 190px;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  gap: 12px;
+  margin: 6px 8px;
+  padding-left: 4px;
 }
 
 .card-title {
-  color: grey;
-  font-size: 1.1rem;
-  height: 50px;
-}
-
-.card-description {
-  font-size: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  min-height: 45%;
+  font-size: 0.9rem;
 }
 
 .card-location {
-  font-size: 0.9rem;
-  position: absolute;
-  bottom: 70px;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
 }
 
 .card-rating {
+  font-size: 0.9rem;
   margin: 0;
-  position: absolute;
-  bottom: 40px;
+  display: inline-block;
 }
 
 .card-price {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   position: absolute;
-  bottom: 0;
-  right: 5%;
+  bottom: 0px;
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.icon-search {
+  margin-right: 10px;
+}
+
+.card:hover {
+  background: rgba(128, 255, 0, 0.479);
+  transition: all 660ms ease-in-out;
 }
