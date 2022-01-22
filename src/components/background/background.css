@@ -1,8 +1,8 @@
 .background {
   margin: 0;
   display: flex;
-  flex-direcction: column;
-  min-height: 100vh;
+  flex-direction: column;
+  height: 250px;
   background-image: url('../../../public/imgs/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
