@@ -15,22 +15,29 @@ h2 {
   padding: 1rem;
 }
 
+
 .newsletter{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-};
-
-form {
-  border: 2px solid black;
 }
 
 
-ul li{
- 
-  margin: 2rem;
+ul{
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li {
+  
+  padding-top: 1rem;
+  margin: 1rem;
   list-style-type: none;
+
 }
 
 

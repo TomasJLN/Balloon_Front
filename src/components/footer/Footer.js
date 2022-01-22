@@ -5,39 +5,66 @@ import { useState } from "react";
 const Footer = () => {
 
   const [input, setInput] = useState("");
+  const [checkbox, setCheckbox] = useState("");
+
+  //Función que se encargará de introducir el correo
+
   const inputHandle = (e) => {
     setInput(e.target.value);
   };
 
-  const submitHandler = (e) => {
+  //Función que se encargará de validar el correo y
+  //enviar el formulario a la bbdd
+
+  const HandleSubmit = (e) => {
     e.preventDefault();
+
     if(input){
       console.log(input);
+      //añadir a la base de datos.
+      setInput("");
     }
   }
+
+  const inputCheckbox = (e) => {
+    setCheckbox(e.target.value);
+  }
+
+
   return (
       <footer className="footer">
         <section className="newsletter">
-            <form className="sendEmail">
+
+            <form className="sendEmail" 
+                  onSubmit={HandleSubmit}>
+
               <h2>NEWSLETTER</h2>
               <input 
-              type="text" 
-              id="email" 
-              name="email" 
-              placeholder="Email"></input>
+                  type="text" 
+                  id="email" 
+                  value={input} 
+                  onChange={inputHandle} 
+                  placeholder="example@gmail.com"></input>
+
               <button 
-              className="enviar" 
-              type="submit">Enviar</button>
+                className="enviar" 
+                type="submit">Enviar</button>
+
             </form>
-            <form className="condition">
+
+            <form className="condition" onCheckbox={HandleSubmit}>
             <input 
-            type="checkbox" 
-            id="politica" 
-            name="politica"></input>
-              <label for="politica">He leído y acepto la política de privacidad</label>
-            </form>
+                type="checkbox" 
+                id="politica"
+                onChange={inputCheckbox}
+                value={checkbox}></input>
+
+            <label for="politica">He leído y acepto la política de privacidad</label>
+            </form>    
         </section>
+
         <section className="links">
+
             <ul>
               <li>
                 <a href="" target="blank">Condiciones de Uso</a>
@@ -52,6 +79,7 @@ const Footer = () => {
                 <a href="" target="blank">FAQ</a>
               </li>
             </ul>
+
             </section>
       </footer>
   );
