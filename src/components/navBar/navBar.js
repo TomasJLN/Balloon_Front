@@ -10,7 +10,11 @@ const NavBar = ({ setShowNavBar }) => {
             INICIO
           </Link>
         </li>
-        <li>MI CUENTA</li>
+        <li>
+          <Link to="/account" onClick={(s) => setShowNavBar(!s)}>
+            MI CUENTA
+          </Link>
+        </li>
         {/* <li>CATEGORIAS</li>
             <ul>
                 <li>AVENTURAS</li>
