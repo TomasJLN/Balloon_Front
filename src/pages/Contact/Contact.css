@@ -1,0 +1,33 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  color: rgb(88, 88, 88);
+  background-color: rgb(197, 197, 197);
+  width: 60vw;
+  justify-self: center;
+
+  margin: auto;
+
+  box-sizing: border-box;
+  height: 500px;
+  padding: 20px;
+  width: 100%;
+}
+
+button {
+  background-color: #000;
+  color: #fff;
+  border-radius: 30px;
+  max-width: 350px;
+  margin: auto;
+  padding: 1rem 3rem;
+}
+
+input {
+  padding: 5px;
+  font-size: 18px;
+}
+
+label {
+  text-transform: uppercase;
+}
