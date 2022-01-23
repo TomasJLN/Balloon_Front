@@ -1,8 +1,10 @@
 import React from 'react';
+import { FaSearchLocation } from 'react-icons/fa';
 import './experience-card.css';
 
 export const ExperienceCard = ({ cat }) => {
-  const url = `https://www.google.es/maps/@${cat.coords},19z`;
+  const coords = cat.coords.replace(/\s+/g, '');
+  const url = `https://www.google.es/maps/@${coords},19z`;
   return (
     <div className="card">
       <img
@@ -12,7 +14,6 @@ export const ExperienceCard = ({ cat }) => {
       />
       <div className="card-details">
         <h2 className="card-title">{cat.title}</h2>
-        <p className="card-description">{cat.description}</p>
         {
           <p>
             <a
@@ -21,11 +22,14 @@ export const ExperienceCard = ({ cat }) => {
               rel="noreferrer noopener"
               className="card-location"
             >
-              UBICACION
+              <FaSearchLocation className="icon-search" />
+              UBICACIóN
             </a>
           </p>
         }
-        <span className="card-rating">🌟🌟🌟🌟🌟</span>
+        <p>
+          <span className="card-rating">🌟🌟🌟🌟</span>
+        </p>
         <p className="card-price">{cat.price} €</p>
       </div>
     </div>

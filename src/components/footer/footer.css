@@ -1,11 +1,88 @@
-#main_header {
+.footer {
+  max-width: 100vw;
+  padding: 1em 0;
+  margin-top: auto;
+  color: black;
+  background-color: salmon;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
   align-items: center;
-  font-size: 3rem;
-  min-height: 80px;
+  overflow: hidden;
+  font-size: 0.8rem;
 }
 
-span {
-  margin-left: 6px;
+h2 {
+  text-align: center;
+  padding: 1rem;
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.links {
+  font-size: 0.6rem;
+  max-width: 100vw;
+}
+
+.links ul li {
+  list-style-type: none;
+}
+
+.links ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.links li {
+  padding-top: 1rem;
+  margin: 1rem;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+#email {
+  border-radius: 30px;
+  height: 3rem;
+  padding: 1rem;
+  border: 2px solid slategray;
+}
+
+.enviar {
+  border-radius: 30px;
+  /* font-size: 1rem; */
+  height: 3rem;
+  width: 5rem;
+  border: 2px solid slategray;
+}
+
+#politica {
+  height: 20px;
+  width: 20px;
+  margin-top: 1rem;
+  margin-right: 10px;
+}
+
+label {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a:visited {
+  color: darkslateblue;
+}
+
+a:link {
+  color: black;
+}
+
+a:hover {
+  font-weight: bold;
 }
