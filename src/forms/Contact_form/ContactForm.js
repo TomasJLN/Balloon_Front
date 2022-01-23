@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 /* import * as Yup from 'yup'; */
 import './ContactForm.css';
-import '../../pages/contact/Contact.css';
+import '../../pages/Contact/Contact.css';
 
 const validateName = (value) => {
   let error;
