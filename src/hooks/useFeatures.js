@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import fetcher from '../helpers/fetcher';
 
-export const useCategories = () => {
-  const [categories, setCategories] = useState([]);
+export const useFeatures = () => {
+  const [features, setFeatures] = useState([]);
 
   useEffect(() => {
     //fetcher(elSetDeUseState, ruta-de-la-petición-sin-http://localhost:4000/, {objeto con las opcionesdelfetchpara los post y demás})
-    fetcher(setCategories, 'filters/featured', {});
+    fetcher(setFeatures, 'filters/featured', {});
   }, []);
 
-  return categories;
+  return features;
 };
