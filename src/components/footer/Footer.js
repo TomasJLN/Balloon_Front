@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './footer.css';
+import { useState } from "react";
 
 const Footer = () => {
+
   const [input, setInput] = useState('');
   const [checkbox, setCheckbox] = useState(false);
 
