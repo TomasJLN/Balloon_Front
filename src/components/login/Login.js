@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import fetcher from '../../helpers/fetcher';
@@ -16,9 +16,8 @@ const Login = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
+    console.log('el token es ', token);
   };
-
-  console.log(token);
 
   if (token && token !== '') {
     return <Navigate to="/" />;

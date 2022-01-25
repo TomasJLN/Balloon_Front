@@ -1,19 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaBars, FaUser } from 'react-icons/fa';
 import { GiBalloonDog } from 'react-icons/gi';
 import './header.css';
 import { useState } from 'react';
 import NavBar from '../navBar/navBar';
 import { TokenContext } from '../../contexts/TokenContext';
-import { useGetUserProfile } from '../../hooks/useGetUserProfile';
+import { Avatar } from '../avatar/Avatar';
+import fetcher from '../../helpers/fetcher';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
   const [token, setToken] = useContext(TokenContext);
 
-  const userData = useGetUserProfile();
+  console.log(token);
 
-  console.log(userData);
+  const [usuario, setUsuario] = useState({});
+
+  useEffect(() => {
+    if (token)
+      fetcher(setUsuario, 'user', {
+        headers: {
+          Authorization: token,
+        },
+      });
+  }, [token, setUsuario]);
 
   return (
     <header id="main_header">
@@ -27,11 +37,9 @@ export const Header = () => {
       </nav>
       <GiBalloonDog />
       <div>
-        <FaUser />
+        <Avatar email={usuario} />
       </div>
-      <p style={{ fontSize: '0.7rem' }}>
-        {token ? 'Habemus token' : 'No logueado'}
-      </p>
+      {/* <p style={{ fontSize: '0.7rem' }}>{token}</p> */}
     </header>
   );
 };
