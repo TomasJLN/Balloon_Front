@@ -5,5 +5,10 @@
 }
 
 .img_notfound {
+  margin: 15px;
   width: 60%;
+}
+
+.volver-inicio {
+  margin: 15px;
 }

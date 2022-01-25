@@ -1,14 +1,14 @@
 import React from 'react';
-import { useCategories } from '../../hooks/useCategories';
+import { useFeatured } from '../../hooks/useFeatured';
 import { ExperienceCard } from '../experienceCard/ExperienceCard';
 import './featured.css';
 
 const Featured = () => {
-  const categories = useCategories();
+  const featured = useFeatured();
 
   return (
     <div className="card-deck">
-      {categories.map((cat) => (
+      {featured.map((cat) => (
         <ExperienceCard key={cat.id} cat={cat} />
       ))}
     </div>

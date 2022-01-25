@@ -1,0 +1,36 @@
+.login-form {
+  background-color: wheat;
+  margin: 12px 6px;
+}
+
+.login-form h1 {
+  padding: 20px;
+  margin: 16px;
+  overflow: auto;
+  font-size: 0.5rem;
+  background-color: yellowgreen;
+}
+
+.mail-field,
+.password-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.login-form label {
+  width: 130px;
+  text-align: right;
+  padding-right: 12px;
+}
+
+.btn-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
