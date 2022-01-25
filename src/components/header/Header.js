@@ -37,7 +37,7 @@ export const Header = () => {
       </nav>
       <GiBalloonDog />
       <div>
-        <Avatar email={usuario} />
+        <Avatar usuario={usuario} />
       </div>
       {/* <p style={{ fontSize: '0.7rem' }}>{token}</p> */}
     </header>

@@ -19,9 +19,9 @@ const Login = () => {
     console.log('el token es ', token);
   };
 
-  if (token && token !== '') {
-    return <Navigate to="/" />;
-  }
+  // if (token && token !== '') {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <form onSubmit={handleLogin} className="login-form">
