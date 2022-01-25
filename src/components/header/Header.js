@@ -6,14 +6,16 @@ import { useState } from 'react';
 import NavBar from '../navBar/navBar';
 
 export const Header = () => {
-  const [showNavBar, setShowNavBar] = useState(false)
+  const [showNavBar, setShowNavBar] = useState(false);
   return (
     <header id="main_header">
       <nav>
-        {showNavBar && <NavBar/>}
-        <FaBars onClick={()=>{
-        setShowNavBar(!showNavBar)
-      }}/>
+        {showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
+        <FaBars
+          onClick={() => {
+            setShowNavBar(!showNavBar);
+          }}
+        />
       </nav>
       <GiBalloonDog />
       <div>
