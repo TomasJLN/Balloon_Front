@@ -1,6 +1,9 @@
 const fetcher = async (setState, path, args) => {
   try {
-    const resp = await fetch(`http://localhost:4000/${path}`, args);
+    const resp = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/${path}`,
+      args
+    );
     const { status, data } = await resp.json();
     console.log(path, args);
     console.log(data);

@@ -7,7 +7,7 @@ export const Avatar = ({ usuario }) => {
     <div>
       {usuario.email ? (
         <img
-          src={`http://localhost:4000/uploads/${usuario.avatar}`}
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${usuario.avatar}`}
           alt={usuario.admin}
           className="card-thumbnail"
         />
