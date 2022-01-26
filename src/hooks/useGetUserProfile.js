@@ -6,7 +6,7 @@ export const useGetUserProfile = (token) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    //fetcher(elSetDeUseState, ruta-de-la-petición-sin-http://localhost:4000/, {objeto con las opcionesdelfetchpara los post y demás})
+    //fetcher(elSetDeUseState, ruta-de-la-petición-sin-${process.env.REACT_APP_BACKEND_URL}/, {objeto con las opcionesdelfetchpara los post y demás})
     fetcher(setUser, 'user', {
       headers: {
         Authorization: token,

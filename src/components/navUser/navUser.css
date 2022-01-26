@@ -1,0 +1,18 @@
+.nav-user {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 65px;
+  right: 20px;
+  z-index: 100;
+  background-color: black;
+  opacity: 80%;
+}
+.nav-user li {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  padding: 0.5rem;
+}

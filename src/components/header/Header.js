@@ -7,14 +7,15 @@ import NavBar from '../navBar/navBar';
 import { TokenContext } from '../../contexts/TokenContext';
 import { Avatar } from '../avatar/Avatar';
 import fetcher from '../../helpers/fetcher';
+import NavUser from '../navUser/NavUser';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
+  const [userMenu, setUserMenu] = useState(false);
   const [token, setToken] = useContext(TokenContext);
-
-  console.log(token);
-
   const [usuario, setUsuario] = useState({});
+
+  console.log('el token ' + token);
 
   useEffect(() => {
     if (token)
@@ -23,7 +24,7 @@ export const Header = () => {
           Authorization: token,
         },
       });
-  }, [token, setUsuario]);
+  }, [token]);
 
   return (
     <header id="main_header">
@@ -36,10 +37,11 @@ export const Header = () => {
         />
       </nav>
       <GiBalloonDog />
+
       <div>
-        <Avatar usuario={usuario} />
+        {userMenu && <NavUser setUserMenu={setUserMenu} />}
+        <Avatar usuario={usuario} setUserMenu={setUserMenu} />
       </div>
-      {/* <p style={{ fontSize: '0.7rem' }}>{token}</p> */}
     </header>
   );
 };

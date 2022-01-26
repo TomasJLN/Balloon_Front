@@ -1,18 +1,23 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
+import './avatar.css';
 
-export const Avatar = ({ usuario }) => {
-  console.log(usuario.email);
+export const Avatar = ({ usuario, setUserMenu }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    setUserMenu((s) => !s);
+  };
+
   return (
-    <div>
+    <div onClick={handleClick}>
       {usuario.email ? (
         <img
-          src={`http://localhost:4000/uploads/${usuario.avatar}`}
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${usuario.avatar}`}
           alt={usuario.admin}
-          className="card-thumbnail"
+          className="user-avatar"
         />
       ) : (
-        <FaUser />
+        <FaUser className="user-avatar" />
       )}
     </div>
   );
