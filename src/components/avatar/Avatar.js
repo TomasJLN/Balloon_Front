@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
+import './avatar.css';
 
 export const Avatar = ({ usuario }) => {
   console.log(usuario.email);
@@ -9,10 +10,10 @@ export const Avatar = ({ usuario }) => {
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${usuario.avatar}`}
           alt={usuario.admin}
-          className="card-thumbnail"
+          className="user-avatar"
         />
       ) : (
-        <FaUser />
+        <FaUser className="user-avatar" />
       )}
     </div>
   );
