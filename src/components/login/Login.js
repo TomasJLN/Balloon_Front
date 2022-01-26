@@ -43,6 +43,7 @@ const Login = () => {
           type="password"
           id="password-login"
           name="password-login"
+          autoComplete="off"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
