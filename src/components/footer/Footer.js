@@ -1,55 +1,57 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './footer.css';
 
 const Footer = () => {
   const [input, setInput] = useState('');
   const [checkbox, setCheckbox] = useState(false);
 
-  //Función que se encargará de introducir el correo
-
-  const inputHandle = (e) => {
-    setInput(e.target.value);
-  };
-
-  //Función que se encargará de validar el correo y
-  //enviar el formulario a la bbdd
-
-  const HandleSubmit = (e) => {
+  const createNewsletter = async (e) => {
     e.preventDefault();
 
-    if (input) {
-      console.log(input);
-      //añadir a la base de datos.
-      setInput('');
-    }
-  };
+    const res = await fetch("http://localhost:4000/newsletter", {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email, active}),
+    });
 
-  const inputCheckbox = (e) => {
-    setCheckbox(!checkbox);
-    console.log(checkbox);
-  };
+  if(res.ok){
+    alert("Gracias por unirte a nuestras newsletter");
+  }else{
+    alert("Hubo un error al crear la newsletter. Inténtelo de nuevo");
+  }
+};
+
+
   return (
     <footer className="footer">
       <section className="newsletter">
-        <form className="sendEmail" onSubmit={HandleSubmit}>
+        <form className="sendEmail" onSubmit={createNewsletter}>
           <h2>NEWSLETTER</h2>
           <input
             type="text"
             id="email"
             value={input}
-            onChange={inputHandle}
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
             placeholder="example@gmail.com"
           ></input>
           <button className="enviar" type="submit">
             Enviar
           </button>
         </form>
+
         <form className="condition">
           <input
             type="checkbox"
             id="politica"
-            onChange={inputCheckbox}
             value={checkbox}
+            onChange={(e) => {
+              setCheckbox(e.target.value);
+            }}
+            
           ></input>
 
           <label htmlFor="politica">
