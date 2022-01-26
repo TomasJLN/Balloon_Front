@@ -8,7 +8,7 @@ export const ExperienceCard = ({ cat }) => {
   return (
     <div className="card">
       <img
-        src={`http://localhost:4000/uploads/${cat.photo}`}
+        src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`}
         alt={cat.title}
         className="card-thumbnail"
       />
