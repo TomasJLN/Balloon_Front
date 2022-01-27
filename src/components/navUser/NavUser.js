@@ -23,7 +23,6 @@ const NavUser = ({ setUserMenu }) => {
   const handleLogout = () => {
     sessionStorage.setItem('token', JSON.stringify(''));
     setToken('');
-    console.log(token + 'bribriblibli');
     navigate('/');
     window.location.reload(false);
   };
