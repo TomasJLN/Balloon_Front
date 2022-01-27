@@ -1,0 +1,12 @@
+.register-form {
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.register-form label {
+  width: 120px;
+  background-color: blue;
+}

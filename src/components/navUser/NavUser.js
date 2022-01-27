@@ -39,13 +39,16 @@ const NavUser = ({ setUserMenu }) => {
       <ul>
         <li onClick={handleLogout}>Log out</li>
         <li>
-          <Link to="/">Profile</Link>
+          <Link to="/">Perfil</Link>
         </li>
         <li>
           <Link to="/account">Log in</Link>
         </li>
         <li>
-          <Link to="/contact-form">Register</Link>
+          <Link to="/register">Registro</Link>
+        </li>
+        <li>
+          <Link to="/contact-form">Contactar</Link>
         </li>
       </ul>
     </div>
