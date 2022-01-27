@@ -1,100 +1,64 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import fetcher from '../../helpers/fetcher';
 import './footer.css';
 
 const Footer = () => {
-  const [input, setInput] = useState('');
+  const [email, setEmail] = useState('');
   const [checkbox, setCheckbox] = useState(false);
 
-
-  //Expresión regular para correo.
-  
-  const email = {
-    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
-  };
-
-  //Función que crea una nueva newsletter.
+  useEffect(() => {
+    console.log(email);
+  }, [email]);
 
   const createNewsletter = async (e) => {
     e.preventDefault();
+    console.log('al mandar al fetch ' + { email });
 
-    const res = await fetch("http://localhost:4000/newsletter", {
-      method: "POST",
-      headers:{
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({email}),
+    await fetcher(setEmail, 'newsletter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(email),
     });
-
-    console.log(res);
-
-  if(res.ok){
-    alert("Gracias por unirte a nuestras newsletter");
-  }else{
-    alert("Hubo un error al crear la newsletter. Inténtelo de nuevo");
-  }
-};
-
-//Función que elimina una newsletter
-
-const deleteNewsletter = async (e) => {
-  e.preventDefault();
-
-  const res = await fetch("http://localhost:4000/newsletter", {
-    method: "DELETE",
-    headers:{
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({email}),
-  });
-
-if(res.ok){
-  alert("El correo asociado a la newsletter se eliminó");
-}else{
-  alert("Hubo un error al eliminar la newsletter. Inténtelo de nuevo");
-}
-};
+  };
 
   return (
     <footer className="footer">
       <section className="newsletter">
         <form className="sendEmail" onSubmit={createNewsletter}>
-          
           <h2>NEWSLETTER</h2>
-          
-          <input
-            type="text"
-            id="email"
-            name="email"
-            regularPhrase={email.email}
-            value={input}
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-            placeholder="example@gmail.com"
-            error="El email debe contener un símbolo '@' y la terminación '.com'"
-          ></input>
-         
-          <button className="enviar" type="submit">Enviar
-          </button>
-        </form>
-        <form className="condition" onSubmit={createNewsletter}>
-          <input
-            type="checkbox"
-            id="politica"
-            name="politica"
-            value={checkbox}
-            onChange={(e) => {
-              setCheckbox(e.target.checked);
-            }} 
-            error="Debes aceptar los términos y condiciones marcando la casilla de validación"
-          ></input>
-            
-            <label htmlFor="politica">
+          <div>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              placeholder="example@gmail.com"
+            ></input>
+
+            <button className="enviar" type="submit">
+              Enviar
+            </button>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="politica"
+              name="politica"
+              value={checkbox}
+              onChange={(e) => {
+                setCheckbox(!checkbox);
+                console.log(checkbox);
+              }}
+            ></input>
+          </div>
+          <label htmlFor="politica">
             He leído y acepto la política de privacidad
           </label>
         </form>
-     
-     </section>
+      </section>
 
       <section className="links">
         <ul>
