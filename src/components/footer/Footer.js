@@ -3,23 +3,26 @@ import fetcher from '../../helpers/fetcher';
 import './footer.css';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
+  const [mail, setMail] = useState({ email: '' });
   const [checkbox, setCheckbox] = useState(false);
-
-  useEffect(() => {
-    console.log(email);
-  }, [email]);
+  const [result, setResult] = useState([]);
 
   const createNewsletter = async (e) => {
     e.preventDefault();
-    console.log('al mandar al fetch ' + { email });
 
-    await fetcher(setEmail, 'newsletter', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(email),
-    });
+    if (checkbox) {
+      await fetcher(setResult, 'newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mail),
+      });
+      alert(result);
+    } else {
+      alert('Debes aceptar la política de privacidad, coño!!');
+    }
   };
+
+  const aviso = result.includes('no puede quedar') ? true : false;
 
   return (
     <footer className="footer">
@@ -31,12 +34,13 @@ const Footer = () => {
               type="text"
               id="email"
               name="email"
-              value={email}
+              value={mail.email}
               onChange={(e) => {
-                setEmail(e.target.value);
+                setMail({ email: e.target.value });
               }}
               placeholder="example@gmail.com"
             ></input>
+            {aviso && <div>Correo mal</div>}
 
             <button className="enviar" type="submit">
               Enviar
