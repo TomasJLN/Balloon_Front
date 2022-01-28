@@ -16,7 +16,7 @@ const Footer = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mail),
       });
-      alert(result);
+      prompt(result);
     } else {
       alert('Debes aceptar la política de privacidad, coño!!');
     }
