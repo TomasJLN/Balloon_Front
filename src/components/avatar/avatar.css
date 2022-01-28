@@ -1,7 +1,9 @@
 .user-avatar {
   display: flex;
-  height: 1em;
+  max-height: 1em;
+  max-width: 1em;
   margin-right: 4px;
   border-radius: 20%;
   object-position: center;
+  object-fit: fit;
 }

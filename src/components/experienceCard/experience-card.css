@@ -40,7 +40,8 @@
 }
 
 .card-location {
-  display: flex;
+  display: inline-block;
+  width: auto;
   align-items: center;
   font-size: 0.8rem;
 }

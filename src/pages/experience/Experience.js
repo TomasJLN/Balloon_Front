@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
 import './experience.css';
@@ -21,17 +21,26 @@ const Experience = () => {
 
   let infoExperience = [];
   infoExperience.push({ title: 'Condiciones', content: conditions });
-  infoExperience.push({ title: 'Normativas', content: conditions });
+  infoExperience.push({ title: 'Normativas', content: normatives });
 
-  console.log(infoExperience);
+  const navigate = useNavigate();
+
   return (
     <div className="single-card">
       <h1>{title}</h1>
-      <img
-        src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
-        alt={title}
-        className="exp-picture"
-      />
+      {photo ? (
+        <img
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
+          alt={title}
+          className="exp-picture"
+        />
+      ) : (
+        <img
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+          alt={title}
+          className="exp-picture"
+        />
+      )}
       <h2 id="precio">{price} €</h2>
       <p>{description}</p>
       <div className="ratin-comprar">
@@ -42,6 +51,17 @@ const Experience = () => {
         {infoExperience.map(({ title, content }) => (
           <Accordion key={title} title={title} content={content} />
         ))}
+      </div>
+      <div className="back-div">
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(-1);
+            console.log('un click');
+          }}
+        >
+          ↩️ back
+        </button>
       </div>
     </div>
   );

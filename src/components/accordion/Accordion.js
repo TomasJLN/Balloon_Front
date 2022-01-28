@@ -4,8 +4,6 @@ import './accordion.css';
 const Accordion = ({ title, content }) => {
   const [isActive, setIsActive] = useState(false);
 
-  console.log(title, content, isActive);
-
   return (
     <div className="accordion-item">
       <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
@@ -18,5 +16,3 @@ const Accordion = ({ title, content }) => {
 };
 
 export default Accordion;
-{
-}

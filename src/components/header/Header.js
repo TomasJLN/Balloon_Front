@@ -8,6 +8,7 @@ import { Avatar } from '../avatar/Avatar';
 import fetcher from '../../helpers/fetcher';
 import NavUser from '../navUser/NavUser';
 import './header.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -15,6 +16,8 @@ export const Header = () => {
   const [token, setToken] = useContext(TokenContext);
   const [usuario, setUsuario] = useState({});
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token && token !== '')
@@ -35,7 +38,7 @@ export const Header = () => {
           }}
         />
       </nav>
-      <GiBalloonDog />
+      <GiBalloonDog onClick={() => navigate('/')} />
       <div>
         {userMenu && <NavUser setUserMenu={setUserMenu} />}
         <Avatar usuario={usuario} setUserMenu={setUserMenu} />

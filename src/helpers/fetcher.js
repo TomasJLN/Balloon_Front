@@ -5,7 +5,6 @@ const fetcher = async (setState, setError, path, args) => {
       args
     );
     const { status, message, data } = await resp.json();
-    console.log(status);
     if (status === 'ok') {
       setState(data);
     } else {
