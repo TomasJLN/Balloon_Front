@@ -1,25 +1,24 @@
 import React, { useContext, useEffect } from 'react';
 import { FaBars, FaUser } from 'react-icons/fa';
 import { GiBalloonDog } from 'react-icons/gi';
-import './header.css';
 import { useState } from 'react';
 import NavBar from '../navBar/navBar';
 import { TokenContext } from '../../contexts/TokenContext';
 import { Avatar } from '../avatar/Avatar';
 import fetcher from '../../helpers/fetcher';
 import NavUser from '../navUser/NavUser';
+import './header.css';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [token, setToken] = useContext(TokenContext);
   const [usuario, setUsuario] = useState({});
-
-  console.log('el token ' + token);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (token)
-      fetcher(setUsuario, 'user', {
+    if (token && token !== '')
+      fetcher(setUsuario, setError, 'user', {
         headers: {
           Authorization: token,
         },
@@ -37,7 +36,6 @@ export const Header = () => {
         />
       </nav>
       <GiBalloonDog />
-
       <div>
         {userMenu && <NavUser setUserMenu={setUserMenu} />}
         <Avatar usuario={usuario} setUserMenu={setUserMenu} />

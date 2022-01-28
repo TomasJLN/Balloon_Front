@@ -1,0 +1,13 @@
+.accordion-title {
+  display: flex;
+  justify-content: left;
+  cursor: pointer;
+}
+
+.accordion-title {
+  padding: 0.5rem 0.2rem;
+}
+
+.accordion-content {
+  padding: 0.5rem 1rem;
+}

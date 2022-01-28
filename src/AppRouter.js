@@ -7,6 +7,7 @@ import { NotFound } from './components/notfound/NotFound';
 import Register from './components/register/Register';
 import { TokenContextProvider } from './contexts/TokenContext';
 import ContactForm from './forms/Contact_form/ContactForm';
+import Experience from './pages/experience/Experience';
 import Home from './pages/home/Home';
 
 export const AppRouter = () => {
@@ -19,6 +20,7 @@ export const AppRouter = () => {
           <Route exact path="/contact-form" element={<ContactForm />} />
           <Route exact path="/account" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/experience/:id" element={<Experience />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

@@ -10,10 +10,11 @@ const Register = () => {
     password: '',
     passwordRepeat: '',
   });
+  const [error, setError] = useState(null);
 
   const register = async (e) => {
     e.preventDefault();
-    await fetcher(setNewUser, 'user', {
+    await fetcher(setNewUser, setError, 'user', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUser),

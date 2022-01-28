@@ -8,14 +8,14 @@ export const Avatar = ({ usuario, setUserMenu }) => {
     setUserMenu((s) => !s);
   };
 
-  let laputaimagen = `na.png`;
-  usuario.avatar ? (laputaimagen = usuario.avatar) : (laputaimagen = `na.png`);
+  let imagenAvatar = `NA.png`;
+  usuario.avatar ? (imagenAvatar = usuario.avatar) : (imagenAvatar = `NA.png`);
 
   return (
     <div onClick={handleClick}>
       {usuario.email ? (
         <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${laputaimagen}`}
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
           alt={usuario.admin}
           className="user-avatar"
         />

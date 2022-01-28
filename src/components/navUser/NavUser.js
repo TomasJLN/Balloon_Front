@@ -36,16 +36,22 @@ const NavUser = ({ setUserMenu }) => {
       }}
     >
       <ul>
-        <li onClick={handleLogout}>Log out</li>
-        <li>
-          <Link to="/">Perfil</Link>
-        </li>
-        <li>
-          <Link to="/account">Log in</Link>
-        </li>
-        <li>
-          <Link to="/register">Registro</Link>
-        </li>
+        {token && (
+          <li>
+            <Link to="/">Perfil</Link>
+          </li>
+        )}
+        {token && <li onClick={handleLogout}>Log out</li>}
+        {!token && (
+          <li>
+            <Link to="/account">Log in</Link>
+          </li>
+        )}
+        {!token && (
+          <li>
+            <Link to="/register">Registro</Link>
+          </li>
+        )}
         <li>
           <Link to="/contact-form">Contactar</Link>
         </li>

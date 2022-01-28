@@ -1,20 +1,18 @@
-const fetcher = async (setState, path, args) => {
+const fetcher = async (setState, setError, path, args) => {
   try {
     const resp = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/${path}`,
       args
     );
-    const { status, data } = await resp.json();
-    console.log(path, args);
-    console.log(data);
+    const { status, message, data } = await resp.json();
+    console.log(status);
     if (status === 'ok') {
       setState(data);
     } else {
-      setState([]);
-      console.log(data);
+      setError(message);
+      console.log(message);
     }
   } catch (error) {
-    setState([]);
     console.log('Todo mal');
   }
 };

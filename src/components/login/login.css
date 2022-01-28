@@ -34,3 +34,12 @@
   background-color: black;
   color: white;
 }
+
+.show-error {
+  height: 2.5rem;
+  font-size: 0.8rem;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
