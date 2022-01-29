@@ -1,19 +1,35 @@
 import React from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
 import './experience-card.css';
+import { useNavigate } from 'react-router-dom';
 
-export const ExperienceCard = ({ cat }) => {
-  const coords = cat.coords.replace(/\s+/g, '');
+export const ExperienceCard = ({ exp }) => {
+  const coords = exp.coords.replace(/\s+/g, '');
   const url = `https://www.google.es/maps/@${coords},19z`;
+  const navigate = useNavigate();
+
   return (
-    <div className="card">
-      <img
-        src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`}
-        alt={cat.title}
-        className="card-thumbnail"
-      />
+    <div
+      className="card"
+      onClick={() => {
+        navigate(`/experience/${exp.id}`);
+      }}
+    >
+      {exp.photo ? (
+        <img
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`}
+          alt={exp.title}
+          className="card-thumbnail"
+        />
+      ) : (
+        <img
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+          alt={exp.title}
+          className="card-thumbnail"
+        />
+      )}
       <div className="card-details">
-        <h2 className="card-title">{cat.title}</h2>
+        <h2 className="card-title">{exp.title}</h2>
         {
           <p>
             <a
@@ -23,14 +39,14 @@ export const ExperienceCard = ({ cat }) => {
               className="card-location"
             >
               <FaSearchLocation className="icon-search" />
-              UBICACIóN
+              {exp.location}
             </a>
           </p>
         }
         <p>
           <span className="card-rating">🌟🌟🌟🌟</span>
         </p>
-        <p className="card-price">{cat.price} €</p>
+        <p className="card-price">{exp.price} €</p>
       </div>
     </div>
   );

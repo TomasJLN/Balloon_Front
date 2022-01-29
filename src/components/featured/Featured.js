@@ -8,8 +8,8 @@ const Featured = () => {
 
   return (
     <div className="card-deck">
-      {featured.map((cat) => (
-        <ExperienceCard key={cat.id} cat={cat} />
+      {featured.map((exp) => (
+        <ExperienceCard key={exp.id} exp={exp} />
       ))}
     </div>
   );

@@ -4,7 +4,7 @@
   height: 200px;
   z-index: 2;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background: url('../../../public/imgs/bg.png');
   background-size: cover;
@@ -31,11 +31,11 @@
 }
 
 .search-button {
+  padding: 6px;
   border: none;
   color: white;
   background-color: transparent;
   position: absolute;
-  padding-left: 10px;
   height: 2rem;
   font-size: 1.2rem;
 }

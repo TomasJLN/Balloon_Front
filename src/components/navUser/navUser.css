@@ -1,0 +1,25 @@
+.nav-user {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 65px;
+  right: 20px;
+  z-index: 100;
+  background-color: black;
+  opacity: 80%;
+}
+.nav-user ul li {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.nav-user a {
+  color: white;
+}
+
+.nav-user a:hover {
+  color: rgb(237, 245, 191);
+}

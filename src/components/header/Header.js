@@ -1,29 +1,32 @@
 import React, { useContext, useEffect } from 'react';
 import { FaBars, FaUser } from 'react-icons/fa';
 import { GiBalloonDog } from 'react-icons/gi';
-import './header.css';
 import { useState } from 'react';
 import NavBar from '../navBar/navBar';
 import { TokenContext } from '../../contexts/TokenContext';
 import { Avatar } from '../avatar/Avatar';
 import fetcher from '../../helpers/fetcher';
+import NavUser from '../navUser/NavUser';
+import './header.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
+  const [userMenu, setUserMenu] = useState(false);
   const [token, setToken] = useContext(TokenContext);
-
-  console.log(token);
-
   const [usuario, setUsuario] = useState({});
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (token)
-      fetcher(setUsuario, 'user', {
+    if (token && token !== '')
+      fetcher(setUsuario, setError, 'user', {
         headers: {
           Authorization: token,
         },
       });
-  }, [token, setUsuario]);
+  }, [token]);
 
   return (
     <header id="main_header">
@@ -35,11 +38,11 @@ export const Header = () => {
           }}
         />
       </nav>
-      <GiBalloonDog />
+      <GiBalloonDog onClick={() => navigate('/')} />
       <div>
-        <Avatar usuario={usuario} />
+        {userMenu && <NavUser setUserMenu={setUserMenu} />}
+        <Avatar usuario={usuario} setUserMenu={setUserMenu} />
       </div>
-      {/* <p style={{ fontSize: '0.7rem' }}>{token}</p> */}
     </header>
   );
 };
