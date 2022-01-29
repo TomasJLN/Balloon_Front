@@ -1,0 +1,23 @@
+label {
+    text-transform: none;
+}
+
+.registerForm {
+    display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 1rem;
+}
+
+.registerForm input {
+    padding: 0.8rem;
+    margin: 0.5rem;
+}
+
+.registerForm label {
+    font-weight: bold;
+}
+
+.registerbtn {
+  margin-top: ;
+}

@@ -7,6 +7,8 @@ import { NotFound } from './components/notfound/NotFound';
 import { TokenContextProvider } from './contexts/TokenContext';
 import ContactForm from './forms/Contact_form/ContactForm';
 import Home from './pages/home/Home';
+import Register from './components/register/Register'
+
 
 export const AppRouter = () => {
   return (
@@ -17,7 +19,9 @@ export const AppRouter = () => {
           <Route exact path="/" element={<Featured />} />
           <Route exact path="/contact-form" element={<ContactForm />} />
           <Route exact path="/account" element={<Login />} />
+          <Route exact path="/register" element={<Register/>}/>
           <Route path="*" element={<NotFound />} />
+          
         </Routes>
         <Footer />
       </TokenContextProvider>
