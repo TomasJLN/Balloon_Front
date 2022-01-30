@@ -1,38 +1,23 @@
-<<<<<<< HEAD
 label {
-    text-transform: none;
+  text-transform: none;
 }
 
 .registerForm {
-    display: flex;
-   flex-direction: column;
-   align-items: center;
-   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 }
 
 .registerForm input {
-    padding: 0.8rem;
-    margin: 0.5rem;
+  padding: 0.8rem;
+  margin: 0.5rem;
 }
 
 .registerForm label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-.registerbtn {
+/* .registerbtn {
   margin-top: ;
-}
-=======
-.register-form {
-  background-color: bisque;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.register-form label {
-  width: 120px;
-  background-color: blue;
-}
->>>>>>> 4d027e201c738f7ead30241cf25ce9a2ab861ae8
+} */
