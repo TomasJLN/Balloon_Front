@@ -12,7 +12,7 @@ const fetcher = async (setState, setError, path, args) => {
       console.log(message);
     }
   } catch (error) {
-    console.log('Todo mal');
+    console.log('Todo mal, parece que no iniciaste el backend....');
   }
 };
 export default fetcher;

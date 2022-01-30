@@ -12,7 +12,7 @@ export const ExperienceCard = ({ exp }) => {
     <div
       className="card"
       onClick={() => {
-        navigate(`/experience/${exp.id}`);
+        navigate(`/experience/${exp.ID}`);
       }}
     >
       {exp.photo ? (

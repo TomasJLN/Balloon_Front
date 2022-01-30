@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import fetcher from '../helpers/fetcher';
 
-export const useFeatured = () => {
+export const useFeatured = (experience = '') => {
+  console.log('el path es ', experience);
+
   const [features, setFeatures] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    //fetcher(elSetDeUseState, ruta-de-la-petición-sin-${process.env.REACT_APP_BACKEND_URL}/, {objeto con las opcionesdelfetchpara los post y demás})
-    fetcher(setFeatures, setError, 'filters/featured', {});
-  }, []);
+    fetcher(setFeatures, setError, `allFilter${experience}`, {});
+  }, [experience]);
+
+  console.log(features);
 
   return features;
 };
