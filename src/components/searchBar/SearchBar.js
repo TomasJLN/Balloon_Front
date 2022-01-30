@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
@@ -7,20 +7,21 @@ import './searchBar.css';
 const SearchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log('mostramos el location ', location);
-  const { q } = queryString.parse(location.search);
 
-  // console.log('El inicio del valor ', experience);
+  let { q } = queryString.parse(location.search);
 
-  const [search, setSearch] = useState({ experience: q });
+  const [search, setSearch] = useState(q ? q : '');
 
-  // console.log(search);
+  useEffect(() => {
+    if (location.pathname === '/') resetInput();
+  }, [location.pathname]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(q);
-    navigate(`/allFilter?experience=${search.experience}`);
+    navigate(`/allFilter?experience=${search}`);
   };
+
+  const resetInput = () => setSearch('');
 
   return (
     <div className="searchBar">
@@ -28,10 +29,10 @@ const SearchBar = () => {
         <input
           className="input-search"
           type="text"
-          value={search.experience}
           name="searchText"
+          value={search}
           onChange={(e) => {
-            setSearch({ experience: e.target.value });
+            setSearch(e.target.value);
           }}
           autoComplete="off"
           placeholder="Buscar...."

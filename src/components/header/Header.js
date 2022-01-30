@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { FaBars, FaUser } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 import { GiBalloonDog } from 'react-icons/gi';
 import { useState } from 'react';
 import NavBar from '../navBar/navBar';

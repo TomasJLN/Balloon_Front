@@ -1,7 +1,4 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ExperienceResults from './components/experienceResults/ExperienceResults';
-import Featured from './components/featured/Featured';
 import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
 import { NotFound } from './components/notfound/NotFound';
