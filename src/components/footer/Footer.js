@@ -16,9 +16,9 @@ const Footer = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mail),
       });
-      prompt(result);
+      alert(result);
     } else {
-      alert('Debes aceptar la política de privacidad, coño!!');
+      alert('Debes aceptar la política de privacidad');
     }
   };
 
@@ -46,6 +46,10 @@ const Footer = () => {
               Enviar
             </button>
           </div>
+          <div>
+          <p>{aviso}</p>
+          </div>
+         
           <div>
             <input
               type="checkbox"
