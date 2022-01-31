@@ -10,6 +10,7 @@ const Footer = () => {
   const createNewsletter = async (e) => {
     e.preventDefault();
 
+
     if (checkbox) {
       await fetcher(setResult, 'newsletter', {
         method: 'POST',
@@ -40,14 +41,11 @@ const Footer = () => {
               }}
               placeholder="example@gmail.com"
             ></input>
-            {aviso && <div>Correo mal</div>}
+            {aviso && <div>Inserte el correo correctamente</div>}
 
             <button className="enviar" type="submit">
               Enviar
             </button>
-          </div>
-          <div>
-          <p>{aviso}</p>
           </div>
          
           <div>
@@ -65,6 +63,8 @@ const Footer = () => {
           <label htmlFor="politica">
             He leído y acepto la política de privacidad
           </label>
+          {aviso && <div>Debes aceptar la política de privacidad</div>}
+
         </form>
       </section>
 
