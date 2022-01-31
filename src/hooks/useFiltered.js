@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fetcher from '../helpers/fetcher';
 
 export const useFiltered = (experience = '') => {
   const [filtered, setFiltered] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetcher(setFiltered, setError, `allFilter${experience}`, {});
+    fetcher(setFiltered, setError, setLoading, `allFilter${experience}`, {});
   }, [experience]);
 
-  console.log(filtered);
-
-  return filtered;
+  return { filtered, loading };
 };

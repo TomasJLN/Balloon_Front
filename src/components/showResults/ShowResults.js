@@ -11,13 +11,24 @@ const ShowResults = () => {
 
   const query = q;
 
-  const filtered = useFiltered(query);
+  const { filtered, loading } = useFiltered(query);
+
+  console.log('los filtrados ', filtered);
+
   return (
-    <div className="card-deck">
-      {filtered.map((exp) => (
-        <ExperienceCard key={exp.ID} exp={exp} />
-      ))}
-    </div>
+    <>
+      {loading ? (
+        <h1 className="loading fade_in">Loading...</h1>
+      ) : (
+        <div className="card-deck">
+          {filtered.length > 0 ? (
+            filtered.map((exp) => <ExperienceCard key={exp.ID} exp={exp} />)
+          ) : (
+            <h1 className="info fade_in">No se encontraron resultados</h1>
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

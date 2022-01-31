@@ -6,6 +6,8 @@ import './featured.css';
 const Featured = () => {
   const featured = useFiltered();
 
+  console.log('todo', featured);
+
   return (
     <div className="card-deck">
       {featured.map((exp) => (

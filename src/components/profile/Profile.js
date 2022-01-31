@@ -8,10 +8,11 @@ export const Profile = () => {
   const [token, setToken] = useContext(TokenContext);
   const [usuario, setUsuario] = useState({});
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (token && token !== '')
-      fetcher(setUsuario, setError, 'user', {
+      fetcher(setUsuario, setError, setLoading, 'user', {
         headers: {
           Authorization: token,
         },
@@ -21,16 +22,22 @@ export const Profile = () => {
   console.log(usuario);
 
   return (
-    <div>
-      <h1>El Perfil</h1>
-      <hr />
-      <form>
+    <>
+      {loading ? (
+        <h1>loading...</h1>
+      ) : (
         <div>
-          <h3>Nombre:</h3>
-          <p>{usuario.name}</p>
+          <h1>El Perfil</h1>
+          <hr />
+          <form>
+            <div>
+              <h3>Nombre:</h3>
+              <p>{usuario.name}</p>
+            </div>
+          </form>
+          {/* <h5>{usuario}</h5> */}
         </div>
-      </form>
-      {/* <h5>{usuario}</h5> */}
-    </div>
+      )}
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './footer.css';
 
 const Footer = () => {
@@ -60,24 +61,22 @@ const Footer = () => {
       <section className="links">
         <ul>
           <li>
-            <a href="" target="blank">
+            <Link to="/infoPage" target="blank">
               Condiciones de Uso
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="" target="blank">
+            <Link to="/infoPage" target="blank">
               Política de privacidad
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="" target="blank">
-              Contacto
-            </a>
+            <Link to="/contact-form">Contacto</Link>
           </li>
           <li>
-            <a href="" target="blank">
+            <Link to="/infoPage" target="blank">
               FAQ
-            </a>
+            </Link>
           </li>
         </ul>
       </section>

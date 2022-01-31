@@ -16,12 +16,13 @@ export const Header = () => {
   const [token, setToken] = useContext(TokenContext);
   const [usuario, setUsuario] = useState({});
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (token && token !== '')
-      fetcher(setUsuario, setError, 'user', {
+      fetcher(setUsuario, setError, setLoading, 'user', {
         headers: {
           Authorization: token,
         },
@@ -29,20 +30,26 @@ export const Header = () => {
   }, [token]);
 
   return (
-    <header id="main_header">
-      <nav>
-        {showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
-        <FaBars
-          onClick={() => {
-            setShowNavBar(!showNavBar);
-          }}
-        />
-      </nav>
-      <GiBalloonDog onClick={() => navigate('/')} />
-      <div>
-        {userMenu && <NavUser setUserMenu={setUserMenu} />}
-        <Avatar usuario={usuario} setUserMenu={setUserMenu} />
-      </div>
-    </header>
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <header id="main_header">
+          <nav>
+            {showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
+            <FaBars
+              onClick={() => {
+                setShowNavBar(!showNavBar);
+              }}
+            />
+          </nav>
+          <GiBalloonDog onClick={() => navigate('/')} />
+          <div>
+            {userMenu && <NavUser setUserMenu={setUserMenu} />}
+            <Avatar usuario={usuario} setUserMenu={setUserMenu} />
+          </div>
+        </header>
+      )}
+    </>
   );
 };
