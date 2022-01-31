@@ -38,7 +38,7 @@ const NavUser = ({ setUserMenu }) => {
       <ul>
         {token && (
           <li>
-            <Link to="/">Perfil</Link>
+            <Link to="/profile">Perfil</Link>
           </li>
         )}
         {token && <li onClick={handleLogout}>Log out</li>}
