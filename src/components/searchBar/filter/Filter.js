@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, setNestedObjectValues } from 'formik';
 import { useState, useEffect } from 'react';
 import { useCategories2 } from '../../../hooks/useCategories2';
 import { useLocation } from '../../../hooks/useLocation';
@@ -8,7 +8,7 @@ import DateSearch from '../datesearch/DateSearch';
 const Filter = () => {
   const categories = useCategories2();
   const locations = useLocation();
-  const [value, onChange] = useState();
+  const [value, setValue] = useState();
 
   let filteredLocations = locations.filter(
     (ele, ind) =>
@@ -18,7 +18,7 @@ const Filter = () => {
   useEffect(() => {
     const ele = document.querySelector('.buble');
     if (ele) {
-      ele.style.left = `${Number(value / 4)}px`;
+      ele.style.left = `${Number(value / 2)}px`;
     }
   });
 
@@ -28,13 +28,14 @@ const Filter = () => {
         initialValues={{
           categoryfilter: '',
           locationfilter: '',
+          pricefilter: '',
         }}
         onSubmit={async (values) => {
           const response = await fetch(
-            `http://localhost:4000/allFilter?category=${values.categoryfilter}&location=${values.locationfilter}`
+            `http://localhost:4000/allFilter?end_price=${values.pricefilter}&category=${values.categoryfilter}&location=${values.locationfilter}`
           );
           const data = await response.json();
-          console.log(values, data.data);
+          console.log(values.pricefilter, values, data.data);
         }}
 
         /*  ValidationSchema={ContactFormSchema} */
@@ -102,15 +103,11 @@ const Filter = () => {
             >
               <p>Precio:</p>
               <Field
+                name="pricefilter"
                 type="range"
                 min="50"
                 max="800"
                 step="150"
-                value={value}
-                onChange={({ target: { value: radius } }) => {
-                  onChange(radius);
-                  console.log(value);
-                }}
               />
               <div>Hasta {value}€</div>
             </div>
