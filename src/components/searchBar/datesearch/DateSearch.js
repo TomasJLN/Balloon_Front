@@ -2,7 +2,6 @@ import DatePicker, { DateObject } from 'react-multi-date-picker';
 import Footer from 'react-multi-date-picker/plugins/range_picker_footer';
 import 'react-multi-date-picker/styles/layouts/mobile.css';
 import { useState } from 'react';
-import './DateSearch.css';
 
 const DateSearch = () => {
   const months = [

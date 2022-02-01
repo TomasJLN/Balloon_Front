@@ -1,20 +1,26 @@
 import { Formik, Form, Field } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCategories2 } from '../../../hooks/useCategories2';
 import { useLocation } from '../../../hooks/useLocation';
-import DateSearch from '../datesearch/DateSearch';
 
-import PriceSlider from './PriceSlider';
+import DateSearch from '../datesearch/DateSearch';
 
 const Filter = () => {
   const categories = useCategories2();
   const locations = useLocation();
-  const [value, setValue] = useState('');
+  const [value, onChange] = useState();
 
   let filteredLocations = locations.filter(
     (ele, ind) =>
       ind === locations.findIndex((elem) => elem.location === ele.location)
   );
+
+  useEffect(() => {
+    const ele = document.querySelector('.buble');
+    if (ele) {
+      ele.style.left = `${Number(value / 4)}px`;
+    }
+  });
 
   return (
     <div>
@@ -22,14 +28,13 @@ const Filter = () => {
         initialValues={{
           categoryfilter: '',
           locationfilter: '',
-          pricefilter: value,
         }}
         onSubmit={async (values) => {
           const response = await fetch(
             `http://localhost:4000/allFilter?category=${values.categoryfilter}&location=${values.locationfilter}`
           );
           const data = await response.json();
-          console.log(data.data);
+          console.log(values, data.data);
         }}
 
         /*  ValidationSchema={ContactFormSchema} */
@@ -40,8 +45,11 @@ const Filter = () => {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              padding: '10px 15px',
               Width: '390px',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: 'white',
+              backgroundColor: 'black',
             }}
           >
             <div
@@ -50,10 +58,13 @@ const Filter = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
               }}
             >
-              <p>Por categoría:</p>
+              <p>Categoría:</p>
               <Field name="categoryfilter" as="select">
+                <option value="">Selecciona una opción</option>
                 {categories.map((cat) => (
                   <option key={cat.id} cat={cat}>
                     {cat.title}
@@ -67,10 +78,13 @@ const Filter = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
               }}
             >
-              <p>Por Localización:</p>
+              <p>Localización:</p>
               <Field name="locationfilter" as="select">
+                <option value="">Selecciona una opción</option>
                 {filteredLocations.map((loc, index) => (
                   <option key={index}>{loc.location}</option>
                 ))}
@@ -82,21 +96,51 @@ const Filter = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
               }}
             >
-              <p>Por Precio:</p>
-              <PriceSlider name="pricefilter" />
+              <p>Precio:</p>
+              <Field
+                type="range"
+                min="50"
+                max="800"
+                step="150"
+                value={value}
+                onChange={({ target: { value: radius } }) => {
+                  onChange(radius);
+                  console.log(value);
+                }}
+              />
+              <div>Hasta {value}€</div>
             </div>
-            <div className="datefilter">
+            <div
+              className="datefilter"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
+              }}
+            >
               <DateSearch />
             </div>
-            <button
-              className="button enviar"
-              type="submit"
-              style={{ padding: '10px 2px' }}
-            >
-              filtro
-            </button>
+            <div className="buttonfilter">
+              <button
+                className="enviar"
+                type="submit"
+                style={{
+                  borderRadius: '30px',
+                  cursor: 'pointer',
+                  height: '3rem',
+                  width: '5rem',
+                  border: '2px solid slategray',
+                }}
+              >
+                filtrar
+              </button>
+            </div>
           </Form>
         )}
       </Formik>
