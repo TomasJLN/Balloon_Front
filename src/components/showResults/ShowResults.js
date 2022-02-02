@@ -29,15 +29,12 @@ const ShowResults = () => {
 
   useEffect(() => {
     if (filtered.length > 0 && lastIndex >= filtered.length) {
-      console.log(lastIndex, filtered.length);
       setBtnMore(false);
     }
   }, [filtered, lastIndex]);
 
   const handleLoadMore = () => {
     if (lastIndex > filtered.length) {
-      console.clear();
-      console.log('maximo alcanzado');
       setBtnMore(false);
     } else {
       setBtnMore(true);
@@ -60,7 +57,11 @@ const ShowResults = () => {
               <h1 className="info fade_in">No se encontraron resultados</h1>
             )}
           </div>
-          {btnMore && <button onClick={handleLoadMore}>Más...</button>}
+          {btnMore && (
+            <button onClick={handleLoadMore} className="show-more">
+              Cargar más...
+            </button>
+          )}
         </>
       )}
     </>
