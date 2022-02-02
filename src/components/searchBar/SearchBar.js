@@ -8,9 +8,11 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  let { q } = queryString.parse(location.search);
+  let { experience } = queryString.parse(location.search);
 
-  const [search, setSearch] = useState(q ? q : '');
+  console.log(experience);
+
+  const [toSearch, setToSearch] = useState(experience ? experience : '');
 
   useEffect(() => {
     if (location.pathname === '/') resetInput();
@@ -18,10 +20,10 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/allFilter?experience=${search}`);
+    navigate(`/allFilter?experience=${toSearch}`);
   };
 
-  const resetInput = () => setSearch('');
+  const resetInput = () => setToSearch('');
 
   return (
     <div className="searchBar">
@@ -30,9 +32,9 @@ const SearchBar = () => {
           className="input-search"
           type="text"
           name="searchText"
-          value={search}
+          value={toSearch}
           onChange={(e) => {
-            setSearch(e.target.value);
+            setToSearch(e.target.value);
           }}
           autoComplete="off"
           placeholder="Buscar...."
