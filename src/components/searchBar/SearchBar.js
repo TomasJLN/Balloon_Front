@@ -4,15 +4,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import './searchBar.css';
 import Filter from './filter/Filter';
-import DateSearch from './datesearch/DateSearch';
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  let { q } = queryString.parse(location.search);
+  let { experience } = queryString.parse(location.search);
 
-  const [search, setSearch] = useState(q ? q : '');
+  const [search, setSearch] = useState(experience ? experience : '');
 
   useEffect(() => {
     if (location.pathname === '/') resetInput();
@@ -44,9 +43,9 @@ const SearchBar = () => {
             <FaSearch />
           </button>
         </form>
-      </div>
-      <div className="filter">
-        <Filter />
+        <div className="filter">
+          <Filter />
+        </div>
       </div>
     </>
   );

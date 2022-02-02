@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import fetcher from '../helpers/oldFetcher';
 
-export const useLocation = () => {
+export const useLocations = () => {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {

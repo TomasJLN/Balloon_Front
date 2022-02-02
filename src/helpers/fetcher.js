@@ -1,6 +1,7 @@
 const fetcher = async (setState, setError, setLoading, path, args) => {
   try {
     setLoading(true);
+    console.log(`${process.env.TEXT}`);
     const resp = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/${path}`,
       args

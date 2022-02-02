@@ -1,26 +1,46 @@
-import { Formik, Form, Field, setNestedObjectValues } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { useState, useEffect } from 'react';
 import { useCategories2 } from '../../../hooks/useCategories2';
-import { useLocation } from '../../../hooks/useLocation';
-
+import { useLocations } from '../../../hooks/useLocations';
 import DateSearch from '../datesearch/DateSearch';
+import queryString from 'query-string';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Filter = () => {
   const categories = useCategories2();
-  const locations = useLocation();
-  const [value, setValue] = useState();
+  const locations = useLocations();
+  /* const [value, setValue] = useState(); */
+  const navigate = useNavigate();
+  const location = useLocation();
+  let { experience } = queryString.parse(location.search);
+  experience = experience ? experience : '';
+  const [searchCat, setSearchCat] = useState('');
+  const [searchLoc, setSearchLoc] = useState('');
+  const [searchPrice, setSearchPrice] = useState(1);
+
+  console.log(experience);
+
+  const handleSubmit = (e) => {
+    navigate(
+      `/allFilter?experience=${experience}&end_price=${searchPrice}&category=${searchCat}&location=${searchLoc}`
+    );
+  };
+
+  const deleteSearch = (e) => {
+    navigate(`/`);
+  };
 
   let filteredLocations = locations.filter(
     (ele, ind) =>
       ind === locations.findIndex((elem) => elem.location === ele.location)
   );
 
-  useEffect(() => {
+  /*  useEffect(() => {
     const ele = document.querySelector('.buble');
     if (ele) {
-      ele.style.left = `${Number(value / 2)}px`;
+      ele.style.left = `${Number(value / 4)}px`;
     }
-  });
+  }); */
 
   return (
     <div>
@@ -29,28 +49,24 @@ const Filter = () => {
           categoryfilter: '',
           locationfilter: '',
           pricefilter: '',
+          rate: '',
         }}
-        onSubmit={async (values) => {
-          const response = await fetch(
-            `http://localhost:4000/allFilter?end_price=${values.pricefilter}&category=${values.categoryfilter}&location=${values.locationfilter}`
-          );
-          const data = await response.json();
-          console.log(values.pricefilter, values, data.data);
-        }}
+        onSubmit={handleSubmit}
 
         /*  ValidationSchema={ContactFormSchema} */
       >
-        {({ errors, touched, validateField, validateForm }) => (
+        {({ values }) => (
           <Form
             className="Filter"
             style={{
               display: 'flex',
-              justifyContent: 'center',
+              /*  backgroundColor: 'black', */
               Width: '390px',
+              position: 'relative',
+              zIndex: '1',
               justifyContent: 'center',
               alignItems: 'center',
               color: 'white',
-              backgroundColor: 'black',
             }}
           >
             <div
@@ -64,7 +80,15 @@ const Filter = () => {
               }}
             >
               <p>Categoría:</p>
-              <Field name="categoryfilter" as="select">
+              <Field
+                value={searchCat}
+                onChange={(e) => {
+                  setSearchCat(e.target.value);
+                  console.log(searchCat);
+                }}
+                name="categoryfilter"
+                as="select"
+              >
                 <option value="">Selecciona una opción</option>
                 {categories.map((cat) => (
                   <option key={cat.id} cat={cat}>
@@ -84,7 +108,15 @@ const Filter = () => {
               }}
             >
               <p>Localización:</p>
-              <Field name="locationfilter" as="select">
+              <Field
+                value={searchLoc}
+                onChange={(e) => {
+                  setSearchLoc(e.target.value);
+                  console.log(searchLoc);
+                }}
+                name="locationfilter"
+                as="select"
+              >
                 <option value="">Selecciona una opción</option>
                 {filteredLocations.map((loc, index) => (
                   <option key={index}>{loc.location}</option>
@@ -103,14 +135,44 @@ const Filter = () => {
             >
               <p>Precio:</p>
               <Field
+                value={searchPrice}
+                onChange={(e) => {
+                  setSearchPrice(e.target.value);
+                  console.log(searchPrice);
+                }}
                 name="pricefilter"
                 type="range"
+                start="50"
                 min="50"
                 max="800"
                 step="150"
               />
-              <div>Hasta {value}€</div>
+              <div>Hasta {searchPrice}€</div>
             </div>
+            <div
+              className="rate-filter"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
+              }}
+            >
+              <p>Valoración:</p>
+              <label>
+                <Field type="radio" name="rate" value="1estrella" />★
+              </label>
+              <label>
+                <Field type="radio" name="rate" value="3estrellas" />
+                ★★★
+              </label>
+              <label>
+                <Field type="radio" name="rate" value="5estrellas" />
+                ★★★★★
+              </label>
+            </div>
+            <div>{values.rate}</div>
             <div
               className="datefilter"
               style={{
