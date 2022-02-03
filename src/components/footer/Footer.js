@@ -7,25 +7,33 @@ const Footer = () => {
   const [mail, setMail] = useState({ email: '' });
   const [checkbox, setCheckbox] = useState(false);
   const [result, setResult] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    error && alert(error);
+    //
+  }, [error, setError]);
+
+  useEffect(() => {
+    setError(null);
+  }, []);
 
   const createNewsletter = async (e) => {
     e.preventDefault();
-
-
     if (checkbox) {
-      await fetcher(setResult, 'newsletter', {
+      await fetcher(setResult, setError, setLoading, 'newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(mail),
       });
-      alert(result);
     } else {
       alert('Debes aceptar la política de privacidad');
     }
   };
 
-  const aviso = result.includes('no puede quedar') ? true : false;
-
+  const aviso = error ? true : false;
+  console.log(aviso);
   return (
     <footer className="footer">
       <section className="newsletter">
@@ -48,7 +56,7 @@ const Footer = () => {
               Enviar
             </button>
           </div>
-         
+
           <div>
             <input
               type="checkbox"
@@ -57,7 +65,6 @@ const Footer = () => {
               value={checkbox}
               onChange={(e) => {
                 setCheckbox(!checkbox);
-                console.log(checkbox);
               }}
             ></input>
           </div>
@@ -65,7 +72,6 @@ const Footer = () => {
             He leído y acepto la política de privacidad
           </label>
           {aviso && <div>Debes aceptar la política de privacidad</div>}
-
         </form>
       </section>
 
