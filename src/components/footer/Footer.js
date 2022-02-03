@@ -1,63 +1,74 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import fetcher from '../../helpers/fetcher';
 import { Link } from 'react-router-dom';
 import './footer.css';
 
 const Footer = () => {
-  const [input, setInput] = useState('');
+  const [mail, setMail] = useState({ email: '' });
   const [checkbox, setCheckbox] = useState(false);
+  const [result, setResult] = useState([]);
 
-  //Función que se encargará de introducir el correo
-
-  const inputHandle = (e) => {
-    setInput(e.target.value);
-  };
-
-  //Función que se encargará de validar el correo y
-  //enviar el formulario a la bbdd
-
-  const HandleSubmit = (e) => {
+  const createNewsletter = async (e) => {
     e.preventDefault();
 
-    if (input) {
-      console.log(input);
-      //añadir a la base de datos.
-      setInput('');
+
+    if (checkbox) {
+      await fetcher(setResult, 'newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mail),
+      });
+      alert(result);
+    } else {
+      alert('Debes aceptar la política de privacidad');
     }
   };
 
-  const inputCheckbox = (e) => {
-    setCheckbox(!checkbox);
-    console.log(checkbox);
-  };
+  const aviso = result.includes('no puede quedar') ? true : false;
+
   return (
     <footer className="footer">
       <section className="newsletter">
-        <form className="sendEmail" onSubmit={HandleSubmit}>
+        <form className="sendEmail" onSubmit={createNewsletter}>
           <h2>NEWSLETTER</h2>
-          <input
-            type="text"
-            id="email"
-            value={input}
-            onChange={inputHandle}
-            placeholder="example@gmail.com"
-          ></input>
-          <button className="enviar" type="submit">
-            Enviar
-          </button>
-        </form>
-        <form className="condition">
-          <input
-            type="checkbox"
-            id="politica"
-            onChange={inputCheckbox}
-            value={checkbox}
-          ></input>
+          <div>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={mail.email}
+              onChange={(e) => {
+                setMail({ email: e.target.value });
+              }}
+              placeholder="example@gmail.com"
+            ></input>
+            {aviso && <div>Inserte el correo correctamente</div>}
 
+            <button className="enviar" type="submit">
+              Enviar
+            </button>
+          </div>
+         
+          <div>
+            <input
+              type="checkbox"
+              id="politica"
+              name="politica"
+              value={checkbox}
+              onChange={(e) => {
+                setCheckbox(!checkbox);
+                console.log(checkbox);
+              }}
+            ></input>
+          </div>
           <label htmlFor="politica">
             He leído y acepto la política de privacidad
           </label>
+          {aviso && <div>Debes aceptar la política de privacidad</div>}
+
         </form>
       </section>
+
       <section className="links">
         <ul>
           <li>
