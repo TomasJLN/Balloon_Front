@@ -43,7 +43,7 @@ export const Header = () => {
               }}
             />
           </nav>
-          <GiBalloonDog> onClick={() => navigate('/')}</GiBalloonDog>
+          <GiBalloonDog onClick={() => navigate('/')} />
           <div>
             {userMenu && <NavUser setUserMenu={setUserMenu} />}
             <Avatar usuario={usuario} setUserMenu={setUserMenu} />

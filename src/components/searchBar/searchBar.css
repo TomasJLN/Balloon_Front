@@ -50,3 +50,11 @@
   height: 2rem;
   font-size: 1.2rem;
 }
+
+.Filter {
+  display: flex;
+  flex-direction: column;
+  color: rebeccapurple;
+  width: 90vw;
+  margin: 10px 0;
+}

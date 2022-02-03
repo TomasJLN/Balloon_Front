@@ -28,13 +28,7 @@ const NavUser = ({ setUserMenu }) => {
   };
 
   return (
-    <div
-      ref={ref}
-      className="nav-user"
-      onClick={(e) => {
-        setUserMenu((s) => !s);
-      }}
-    >
+    <div ref={ref} className="nav-user">
       <ul>
         {token && (
           <li>

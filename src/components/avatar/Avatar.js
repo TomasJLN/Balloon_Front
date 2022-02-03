@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaUser } from 'react-icons/fa';
 import './avatar.css';
 
 export const Avatar = ({ usuario, setUserMenu }) => {
   const handleClick = (e) => {
     e.preventDefault();
-    setUserMenu((s) => !s);
+    setUserMenu((m) => !m);
   };
 
   let imagenAvatar = `NA.png`;

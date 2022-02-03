@@ -36,7 +36,7 @@ const SearchBar = () => {
             name="searchText"
             value={toSearch}
             onChange={(e) => {
-              setSearch(e.target.value);
+              setToSearch(e.target.value);
             }}
             autoComplete="off"
             placeholder="Buscar...."

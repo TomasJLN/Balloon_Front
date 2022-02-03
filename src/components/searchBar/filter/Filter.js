@@ -1,10 +1,11 @@
 import { Formik, Form, Field } from 'formik';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useCategories2 } from '../../../hooks/useCategories2';
 import { useLocations } from '../../../hooks/useLocations';
 import DateSearch from '../datesearch/DateSearch';
 import queryString from 'query-string';
 import { useNavigate, useLocation } from 'react-router-dom';
+import '../searchBar.css';
 
 const Filter = () => {
   const categories = useCategories2();
@@ -16,14 +17,22 @@ const Filter = () => {
   experience = experience ? experience : '';
   const [searchCat, setSearchCat] = useState('');
   const [searchLoc, setSearchLoc] = useState('');
-  const [searchPrice, setSearchPrice] = useState(1);
+  const [searchPrice, setSearchPrice] = useState(100);
 
   console.log(experience);
 
   const handleSubmit = (e) => {
-    navigate(
-      `/allFilter?experience=${experience}&end_price=${searchPrice}&category=${searchCat}&location=${searchLoc}`
-    );
+    let query = `/allFilter?experience=${experience}`;
+    query += searchPrice ? `&end_price=${searchPrice}` : '';
+    query += searchCat ? `&category=${searchCat}` : '';
+    query += searchLoc ? `&location=${searchLoc}` : '';
+
+    console.log(query);
+    navigate(query);
+
+    // navigate(
+    //   `/allFilter?experience=${experience}&end_price=${searchPrice}&category=${searchCat}&location=${searchLoc}`
+    // );
   };
 
   const deleteSearch = (e) => {
@@ -61,7 +70,7 @@ const Filter = () => {
             style={{
               display: 'flex',
               /*  backgroundColor: 'black', */
-              Width: '390px',
+              // Width: '390px',
               position: 'relative',
               zIndex: '1',
               justifyContent: 'center',
@@ -149,7 +158,7 @@ const Filter = () => {
               />
               <div>Hasta {searchPrice}€</div>
             </div>
-            <div
+            {/* <div
               className="rate-filter"
               style={{
                 display: 'flex',
@@ -172,7 +181,7 @@ const Filter = () => {
                 ★★★★★
               </label>
             </div>
-            <div>{values.rate}</div>
+            <div>{values.rate}</div> */}
             <div
               className="datefilter"
               style={{
