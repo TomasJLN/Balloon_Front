@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import fetcher from '../helpers/fetcher';
+import fetcher from '../helpers/oldFetcher';
 
 export const useCategories2 = () => {
   const [categories, setCategories] = useState([]);

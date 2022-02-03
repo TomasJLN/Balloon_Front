@@ -1,15 +1,18 @@
 import React from 'react';
-import { useFeatures } from '../../hooks/useFeatures';
+
+import { useFiltered } from '../../hooks/useFiltered';
 import { ExperienceCard } from '../experienceCard/ExperienceCard';
 import './featured.css';
 
 const Featured = () => {
-  const featured = useFeatures();
+const featured = useFiltered();
+
+console.log('todo', featured);
 
   return (
     <div className="card-deck">
-      {featured.map((cat) => (
-        <ExperienceCard key={cat.id} cat={cat} />
+      {featured.map((exp) => (
+        <ExperienceCard key={exp.id} exp={exp} />
       ))}
     </div>
   );
