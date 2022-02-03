@@ -1,0 +1,210 @@
+import { Formik, Form, Field } from 'formik';
+import { useState, useEffect } from 'react';
+import { useCategories2 } from '../../../hooks/useCategories2';
+import { useLocations } from '../../../hooks/useLocations';
+import DateSearch from '../datesearch/DateSearch';
+import queryString from 'query-string';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+const Filter = () => {
+  const categories = useCategories2();
+  const locations = useLocations();
+  /* const [value, setValue] = useState(); */
+  const navigate = useNavigate();
+  const location = useLocation();
+  let { experience } = queryString.parse(location.search);
+  experience = experience ? experience : '';
+  const [searchCat, setSearchCat] = useState('');
+  const [searchLoc, setSearchLoc] = useState('');
+  const [searchPrice, setSearchPrice] = useState(1);
+
+  console.log(experience);
+
+  const handleSubmit = (e) => {
+    navigate(
+      `/allFilter?experience=${experience}&end_price=${searchPrice}&category=${searchCat}&location=${searchLoc}`
+    );
+  };
+
+  const deleteSearch = (e) => {
+    navigate(`/`);
+  };
+
+  let filteredLocations = locations.filter(
+    (ele, ind) =>
+      ind === locations.findIndex((elem) => elem.location === ele.location)
+  );
+
+  /*  useEffect(() => {
+    const ele = document.querySelector('.buble');
+    if (ele) {
+      ele.style.left = `${Number(value / 4)}px`;
+    }
+  }); */
+
+  return (
+    <div>
+      <Formik
+        initialValues={{
+          categoryfilter: '',
+          locationfilter: '',
+          pricefilter: '',
+          rate: '',
+        }}
+        onSubmit={handleSubmit}
+
+        /*  ValidationSchema={ContactFormSchema} */
+      >
+        {({ values }) => (
+          <Form
+            className="Filter"
+            style={{
+              display: 'flex',
+              /*  backgroundColor: 'black', */
+              Width: '390px',
+              position: 'relative',
+              zIndex: '1',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: 'white',
+            }}
+          >
+            <div
+              className="category-filter"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
+              }}
+            >
+              <p>Categoría:</p>
+              <Field
+                value={searchCat}
+                onChange={(e) => {
+                  setSearchCat(e.target.value);
+                  console.log(searchCat);
+                }}
+                name="categoryfilter"
+                as="select"
+              >
+                <option value="">Selecciona una opción</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} cat={cat}>
+                    {cat.title}
+                  </option>
+                ))}
+              </Field>
+            </div>
+            <div
+              className="location-filter"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
+              }}
+            >
+              <p>Localización:</p>
+              <Field
+                value={searchLoc}
+                onChange={(e) => {
+                  setSearchLoc(e.target.value);
+                  console.log(searchLoc);
+                }}
+                name="locationfilter"
+                as="select"
+              >
+                <option value="">Selecciona una opción</option>
+                {filteredLocations.map((loc, index) => (
+                  <option key={index}>{loc.location}</option>
+                ))}
+              </Field>
+            </div>
+            <div
+              className="price-filter"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
+              }}
+            >
+              <p>Precio:</p>
+              <Field
+                value={searchPrice}
+                onChange={(e) => {
+                  setSearchPrice(e.target.value);
+                  console.log(searchPrice);
+                }}
+                name="pricefilter"
+                type="range"
+                start="50"
+                min="50"
+                max="800"
+                step="150"
+              />
+              <div>Hasta {searchPrice}€</div>
+            </div>
+            <div
+              className="rate-filter"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
+              }}
+            >
+              <p>Valoración:</p>
+              <label>
+                <Field type="radio" name="rate" value="1estrella" />★
+              </label>
+              <label>
+                <Field type="radio" name="rate" value="3estrellas" />
+                ★★★
+              </label>
+              <label>
+                <Field type="radio" name="rate" value="5estrellas" />
+                ★★★★★
+              </label>
+            </div>
+            <div>{values.rate}</div>
+            <div
+              className="datefilter"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '10px 15px',
+                justifyContent: 'center',
+                marginLeft: '1rem',
+              }}
+            >
+              <DateSearch />
+            </div>
+            <div className="buttonfilter">
+              <button
+                className="enviar"
+                type="submit"
+                style={{
+                  borderRadius: '30px',
+                  cursor: 'pointer',
+                  height: '3rem',
+                  width: '5rem',
+                  border: '2px solid slategray',
+                }}
+              >
+                filtrar
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
+
+export default Filter;
