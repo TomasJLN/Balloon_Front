@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import fetcher from '../helpers/fetcher';
 
 export const useFiltered = (experience = '') => {
