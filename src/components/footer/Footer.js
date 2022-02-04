@@ -31,6 +31,8 @@ const Footer = () => {
     } else {
       alert('Debes aceptar la política de privacidad');
     }
+    setCheckbox(false);
+    setMail({ email: '' });
   };
 
   const aviso = error ? true : false;
@@ -67,7 +69,7 @@ const Footer = () => {
                 id="politica"
                 name="politica"
                 value={checkbox}
-                onChange={(e) => {
+                onClick={(e) => {
                   setCheckbox(!checkbox);
                 }}
               ></input>
