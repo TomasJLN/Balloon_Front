@@ -29,7 +29,7 @@ const NavUser = ({ setUserMenu, usuario }) => {
   };
 
   return (
-    <div ref={ref} className="nav-user">
+    <div ref={ref} className="nav-user" onClick={(e) => setUserMenu((s) => !s)}>
       <ul>
         {token && role === 'admin' && (
           <li>
