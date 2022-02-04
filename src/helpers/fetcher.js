@@ -12,7 +12,7 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
       console.log(data);
     } else {
       setError(message);
-      console.log('mensaje error con respuesta', message);
+      console.log('mensaje error con respuesta ->', message);
     }
   } catch (error) {
     setError('Algo salió muy mal!');

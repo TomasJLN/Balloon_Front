@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
+import fetcher from '../../helpers/fetcher';
 import './register.css';
-import { useState } from 'react';
 
 const Register = () => {
   const [newUser, setNewUser] = useState({
@@ -19,15 +20,17 @@ const Register = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, surename, email, password, passwordRepeat }),
+      body: JSON.stringify(newUser),
     });
-
-    if (res.ok) {
-      alert('te has registrado correctamente');
-    } else {
-      console.log('error', res);
-    }
   };
+
+  useEffect(() => {
+    if (error) alert(error);
+    console.log(error);
+    return () => {
+      setError(null);
+    };
+  }, [error]);
 
   return (
     <section>
@@ -37,50 +40,45 @@ const Register = () => {
         <input
           type="text"
           placeholder="Nombre"
-          value={name}
           onChange={(e) => {
-                setNewUser({ ...newUser, name: e.target.value });
-              }}
+            setNewUser({ ...newUser, name: e.target.value });
+          }}
         ></input>
 
         <label>Apellidos:</label>
         <input
           type="text"
           placeholder="Apellidos"
-          value={surname}
           onChange={(e) => {
-                setNewUser({ ...newUser, surname: e.target.value });
-              }}
+            setNewUser({ ...newUser, surname: e.target.value });
+          }}
         ></input>
 
         <label>Correo electrónico:</label>
         <input
           type="email"
           placeholder="Correo electrónico"
-          value={email}
           onChange={(e) => {
-                setNewUser({ ...newUser, email: e.target.value });
-              }}
+            setNewUser({ ...newUser, email: e.target.value });
+          }}
         ></input>
 
         <label>Contraseña:</label>
         <input
           type="password"
           placeholder="Contraseña"
-          value={password}
           onChange={(e) => {
-                setNewUser({ ...newUser, password: e.target.value });
-              }}
+            setNewUser({ ...newUser, password: e.target.value });
+          }}
         ></input>
 
         <label>Repite la contraseña:</label>
         <input
           type="password"
           placeholder="Misma contraseña"
-          value={passwordRepeat}
           onChange={(e) => {
-                setNewUser({ ...newUser, passwordRepeat: e.target.value });
-              }}
+            setNewUser({ ...newUser, passwordRepeat: e.target.value });
+          }}
         ></input>
 
         <button className="registerbtn" type="submit">
