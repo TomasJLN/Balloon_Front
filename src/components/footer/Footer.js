@@ -6,21 +6,22 @@ import './footer.css';
 const Footer = () => {
   const [mail, setMail] = useState({ email: '' });
   const [checkbox, setCheckbox] = useState(false);
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     error && alert(error);
-    //
   }, [error, setError]);
 
   useEffect(() => {
-    setError(null);
-  }, []);
+    result && alert(result);
+  }, [result, setResult]);
 
   const createNewsletter = async (e) => {
     e.preventDefault();
+    setResult(null);
+    setError(null);
     if (checkbox) {
       await fetcher(setResult, setError, setLoading, 'newsletter', {
         method: 'POST',
@@ -30,10 +31,20 @@ const Footer = () => {
     } else {
       alert('Debes aceptar la política de privacidad');
     }
+    setMail({ email: '' });
+    resetCheck();
+  };
+
+  const handleCheck = (e) => {
+    setCheckbox(!checkbox);
+  };
+
+  const resetCheck = () => {
+    setCheckbox(false);
   };
 
   const aviso = error ? true : false;
-  console.log(aviso);
+
   return (
     <footer className="footer">
       <section className="newsletter">
@@ -50,28 +61,28 @@ const Footer = () => {
               }}
               placeholder="example@gmail.com"
             ></input>
-            {aviso && <div>Inserte el correo correctamente</div>}
 
             <button className="enviar" type="submit">
               Enviar
             </button>
           </div>
+          {/* {aviso && (
+            <div style={{ color: 'red' }}>Inserte el correo correctamente</div>
+          )} */}
 
-          <div>
-            <input
-              type="checkbox"
-              id="politica"
-              name="politica"
-              value={checkbox}
-              onChange={(e) => {
-                setCheckbox(!checkbox);
-              }}
-            ></input>
+          <div className="privacidad">
+            <label htmlFor="politica">
+              <input
+                type="checkbox"
+                id="politica"
+                name="politica"
+                onClick={handleCheck}
+                checked={checkbox}
+                onChange={(e) => setCheckbox(e.target.checked)}
+              ></input>
+              He leído y acepto la política de privacidad
+            </label>
           </div>
-          <label htmlFor="politica">
-            He leído y acepto la política de privacidad
-          </label>
-          {aviso && <div>Debes aceptar la política de privacidad</div>}
         </form>
       </section>
 

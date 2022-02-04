@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import './navUser.css';
 
-const NavUser = ({ setUserMenu }) => {
+const NavUser = ({ setUserMenu, usuario }) => {
   const [token, setToken] = useContext(TokenContext);
   const ref = useRef(null);
   const navigate = useNavigate();
+  const { role } = usuario;
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -30,6 +31,11 @@ const NavUser = ({ setUserMenu }) => {
   return (
     <div ref={ref} className="nav-user">
       <ul>
+        {token && role === 'admin' && (
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        )}
         {token && (
           <li>
             <Link to="/profile">Perfil</Link>

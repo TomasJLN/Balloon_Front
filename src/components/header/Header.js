@@ -7,8 +7,8 @@ import { TokenContext } from '../../contexts/TokenContext';
 import { Avatar } from '../avatar/Avatar';
 import fetcher from '../../helpers/fetcher';
 import NavUser from '../navUser/NavUser';
-import './header.css';
 import { useNavigate } from 'react-router-dom';
+import './header.css';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
@@ -45,7 +45,9 @@ export const Header = () => {
           </nav>
           <GiBalloonDog onClick={() => navigate('/')} />
           <div>
-            {userMenu && <NavUser setUserMenu={setUserMenu} />}
+            {userMenu && (
+              <NavUser setUserMenu={setUserMenu} usuario={usuario} />
+            )}
             <Avatar usuario={usuario} setUserMenu={setUserMenu} />
           </div>
         </header>

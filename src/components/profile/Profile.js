@@ -33,6 +33,10 @@ export const Profile = () => {
             <div>
               <h3>Nombre:</h3>
               <p>{usuario.name}</p>
+              <p>{usuario.surname}</p>
+              <p>{usuario.email}</p>
+              <p>{usuario.role}</p>
+              <p>{usuario.avatar}</p>
             </div>
           </form>
           {/* <h5>{usuario}</h5> */}
