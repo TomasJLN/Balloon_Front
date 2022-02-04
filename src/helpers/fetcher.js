@@ -16,7 +16,7 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
     }
   } catch (error) {
     setError('Algo salió muy mal!');
-    console.log('mensaje error sin respuesta', error);
+    console.log('mensaje error sin respuesta ->', error);
     console.log('Todo mal, parece que no iniciaste el backend....');
   }
   setLoading(false);
