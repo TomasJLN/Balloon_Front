@@ -1,12 +1,10 @@
-const fetcher = async (setState, setError, setLoading, path, args) => {
+const fetcher = async (setState, setError, path, args) => {
   try {
-    setLoading(true);
     const resp = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/${path}`,
       args
     );
     const { status, message, data } = await resp.json();
-
     if (status === 'ok') {
       setState(data);
       console.log(data);
@@ -19,6 +17,5 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
     console.log('mensaje error sin respuesta', error);
     console.log('Todo mal, parece que no iniciaste el backend....');
   }
-  setLoading(false);
 };
 export default fetcher;

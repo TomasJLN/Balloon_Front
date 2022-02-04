@@ -2,15 +2,19 @@ import './register.css';
 import { useState } from 'react';
 
 const Register = () => {
-  const [name, setName] = useState('');
-  const [surename, setSurename] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const [newUser, setNewUser] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    passwordRepeat: '',
+  });
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const register = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:4000/user', {
+    await fetcher(setNewUser, setError, setLoading, 'user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,18 +39,18 @@ const Register = () => {
           placeholder="Nombre"
           value={name}
           onChange={(e) => {
-            setName(e.target.value);
-          }}
+                setNewUser({ ...newUser, name: e.target.value });
+              }}
         ></input>
 
         <label>Apellidos:</label>
         <input
           type="text"
           placeholder="Apellidos"
-          value={surename}
+          value={surname}
           onChange={(e) => {
-            setSurename(e.target.value);
-          }}
+                setNewUser({ ...newUser, surname: e.target.value });
+              }}
         ></input>
 
         <label>Correo electrónico:</label>
@@ -55,8 +59,8 @@ const Register = () => {
           placeholder="Correo electrónico"
           value={email}
           onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+                setNewUser({ ...newUser, email: e.target.value });
+              }}
         ></input>
 
         <label>Contraseña:</label>
@@ -65,8 +69,8 @@ const Register = () => {
           placeholder="Contraseña"
           value={password}
           onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+                setNewUser({ ...newUser, password: e.target.value });
+              }}
         ></input>
 
         <label>Repite la contraseña:</label>
@@ -75,8 +79,8 @@ const Register = () => {
           placeholder="Misma contraseña"
           value={passwordRepeat}
           onChange={(e) => {
-            setPasswordRepeat(e.target.value);
-          }}
+                setNewUser({ ...newUser, passwordRepeat: e.target.value });
+              }}
         ></input>
 
         <button className="registerbtn" type="submit">

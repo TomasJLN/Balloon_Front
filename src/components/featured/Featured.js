@@ -1,10 +1,13 @@
 import React from 'react';
-import { useFeatured } from '../../hooks/useFeatured';
+
+import { useFiltered } from '../../hooks/useFiltered';
 import { ExperienceCard } from '../experienceCard/ExperienceCard';
 import './featured.css';
 
 const Featured = () => {
-  const featured = useFeatured();
+const featured = useFiltered();
+
+console.log('todo', featured);
 
   return (
     <div className="card-deck">

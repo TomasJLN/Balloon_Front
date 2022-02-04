@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import './navUser.css';
@@ -28,17 +28,11 @@ const NavUser = ({ setUserMenu }) => {
   };
 
   return (
-    <div
-      ref={ref}
-      className="nav-user"
-      onClick={(e) => {
-        setUserMenu((s) => !s);
-      }}
-    >
+    <div ref={ref} className="nav-user">
       <ul>
         {token && (
           <li>
-            <Link to="/">Perfil</Link>
+            <Link to="/profile">Perfil</Link>
           </li>
         )}
         {token && <li onClick={handleLogout}>Log out</li>}
