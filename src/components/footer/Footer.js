@@ -31,8 +31,16 @@ const Footer = () => {
     } else {
       alert('Debes aceptar la política de privacidad');
     }
-    setCheckbox(false);
     setMail({ email: '' });
+    resetCheck();
+  };
+
+  const handleCheck = (e) => {
+    setCheckbox(!checkbox);
+  };
+
+  const resetCheck = () => {
+    setCheckbox(false);
   };
 
   const aviso = error ? true : false;
@@ -58,9 +66,9 @@ const Footer = () => {
               Enviar
             </button>
           </div>
-          {aviso && (
+          {/* {aviso && (
             <div style={{ color: 'red' }}>Inserte el correo correctamente</div>
-          )}
+          )} */}
 
           <div className="privacidad">
             <label htmlFor="politica">
@@ -68,10 +76,9 @@ const Footer = () => {
                 type="checkbox"
                 id="politica"
                 name="politica"
-                value={checkbox}
-                onClick={(e) => {
-                  setCheckbox(!checkbox);
-                }}
+                onClick={handleCheck}
+                checked={checkbox}
+                onChange={(e) => setCheckbox(e.target.checked)}
               ></input>
               He leído y acepto la política de privacidad
             </label>
