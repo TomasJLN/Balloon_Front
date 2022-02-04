@@ -14,3 +14,7 @@ li {
   padding: 1rem;
   color: white;
 }
+
+.navbar a {
+  color: white;
+}

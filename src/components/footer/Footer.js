@@ -1,83 +1,99 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import fetcher from '../../helpers/fetcher';
+import { Link } from 'react-router-dom';
 import './footer.css';
 
 const Footer = () => {
-  const [input, setInput] = useState('');
+  const [mail, setMail] = useState({ email: '' });
   const [checkbox, setCheckbox] = useState(false);
+  const [result, setResult] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  //Función que se encargará de introducir el correo
+  useEffect(() => {
+    error && alert(error);
+    //
+  }, [error, setError]);
 
-  const inputHandle = (e) => {
-    setInput(e.target.value);
-  };
+  useEffect(() => {
+    setError(null);
+  }, []);
 
-  //Función que se encargará de validar el correo y
-  //enviar el formulario a la bbdd
-
-  const HandleSubmit = (e) => {
+  const createNewsletter = async (e) => {
     e.preventDefault();
-
-    if (input) {
-      console.log(input);
-      //añadir a la base de datos.
-      setInput('');
+    if (checkbox) {
+      await fetcher(setResult, setError, setLoading, 'newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mail),
+      });
+    } else {
+      alert('Debes aceptar la política de privacidad');
     }
   };
 
-  const inputCheckbox = (e) => {
-    setCheckbox(!checkbox);
-    console.log(checkbox);
-  };
+  const aviso = error ? true : false;
+  console.log(aviso);
   return (
     <footer className="footer">
       <section className="newsletter">
-        <form className="sendEmail" onSubmit={HandleSubmit}>
+        <form className="sendEmail" onSubmit={createNewsletter}>
           <h2>NEWSLETTER</h2>
-          <input
-            type="text"
-            id="email"
-            value={input}
-            onChange={inputHandle}
-            placeholder="example@gmail.com"
-          ></input>
-          <button className="enviar" type="submit">
-            Enviar
-          </button>
-        </form>
-        <form className="condition">
-          <input
-            type="checkbox"
-            id="politica"
-            onChange={inputCheckbox}
-            value={checkbox}
-          ></input>
+          <div>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value={mail.email}
+              onChange={(e) => {
+                setMail({ email: e.target.value });
+              }}
+              placeholder="example@gmail.com"
+            ></input>
+            {aviso && <div>Inserte el correo correctamente</div>}
 
+            <button className="enviar" type="submit">
+              Enviar
+            </button>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              id="politica"
+              name="politica"
+              value={checkbox}
+              onChange={(e) => {
+                setCheckbox(!checkbox);
+              }}
+            ></input>
+          </div>
           <label htmlFor="politica">
             He leído y acepto la política de privacidad
           </label>
+          {aviso && <div>Debes aceptar la política de privacidad</div>}
         </form>
       </section>
+
       <section className="links">
         <ul>
           <li>
-            <a href="" target="blank">
+            <Link to="/infoPage" target="blank">
               Condiciones de Uso
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="" target="blank">
+            <Link to="/infoPage" target="blank">
               Política de privacidad
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="" target="blank">
-              Contacto
-            </a>
+            <Link to="/contact-form">Contacto</Link>
           </li>
           <li>
-            <a href="" target="blank">
+            <Link to="/infoPage" target="blank">
               FAQ
-            </a>
+            </Link>
           </li>
         </ul>
       </section>
