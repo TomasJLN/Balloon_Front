@@ -10,7 +10,6 @@ import '../searchBar.css';
 const Filter = () => {
   const categories = useCategories2();
   const locations = useLocations();
-  /* const [value, setValue] = useState(); */
   const navigate = useNavigate();
   const location = useLocation();
   let { experience } = queryString.parse(location.search);
@@ -21,18 +20,23 @@ const Filter = () => {
 
   console.log(experience);
 
-  const handleSubmit = (e) => {
-    let query = `/allFilter?experience=${experience}`;
-    query += searchPrice ? `&end_price=${searchPrice}` : '';
-    query += searchCat ? `&category=${searchCat}` : '';
-    query += searchLoc ? `&location=${searchLoc}` : '';
+  const trySubmit = (e) => {
+    setSearchCat(e.target.value);
+    console.log('target', e.target.value);
 
-    console.log(query);
-    navigate(query);
+    setTimeout(() => {
+      const handleSubmit = (e) => {
+        let query = `/allFilter?experience=${experience}`;
+        query += searchPrice ? `&end_price=${searchPrice}` : '';
+        query += searchCat ? `&category=${searchCat}` : '';
+        query += searchLoc ? `&location=${searchLoc}` : '';
 
-    // navigate(
-    //   `/allFilter?experience=${experience}&end_price=${searchPrice}&category=${searchCat}&location=${searchLoc}`
-    // );
+        console.log('query', query);
+        navigate(query);
+      };
+
+      handleSubmit();
+    }, 1000);
   };
 
   const deleteSearch = (e) => {
@@ -44,13 +48,6 @@ const Filter = () => {
       ind === locations.findIndex((elem) => elem.location === ele.location)
   );
 
-  /*  useEffect(() => {
-    const ele = document.querySelector('.buble');
-    if (ele) {
-      ele.style.left = `${Number(value / 4)}px`;
-    }
-  }); */
-
   return (
     <div>
       <Formik
@@ -60,17 +57,14 @@ const Filter = () => {
           pricefilter: '',
           rate: '',
         }}
-        onSubmit={handleSubmit}
-
-        /*  ValidationSchema={ContactFormSchema} */
+        onChange={setSearchCat}
       >
         {({ values }) => (
           <Form
             className="Filter"
             style={{
               display: 'flex',
-              /*  backgroundColor: 'black', */
-              // Width: '390px',
+
               position: 'relative',
               zIndex: '1',
               justifyContent: 'center',
@@ -91,10 +85,7 @@ const Filter = () => {
               <p>Categoría:</p>
               <Field
                 value={searchCat}
-                onChange={(e) => {
-                  setSearchCat(e.target.value);
-                  console.log(searchCat);
-                }}
+                onChange={trySubmit}
                 name="categoryfilter"
                 as="select"
               >

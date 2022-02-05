@@ -29,7 +29,7 @@ const SearchBar = () => {
   return (
     <>
       <div className="searchBar">
-        <form className="search-form" onSubmit={handleSubmit}>
+        <form className="search-form" onChange={handleSubmit}>
           <input
             className="input-search"
             type="text"
