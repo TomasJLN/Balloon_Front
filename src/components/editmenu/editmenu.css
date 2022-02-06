@@ -1,0 +1,29 @@
+
+.editmenu{
+
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color:coral;
+    color: white;
+}
+
+.editmenu li {
+    
+    border-bottom: 1px solid black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    list-style-type: none;
+    color: white;
+    padding: 1rem;
+    max-width: 200px;
+    height: 100px;
+    opacity: 1;
+    
+}
+    
+    
+    
