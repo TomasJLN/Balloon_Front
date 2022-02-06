@@ -11,3 +11,9 @@
   display: flex;
   justify-content: space-around;
 }
+
+#link-create-cat {
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+}

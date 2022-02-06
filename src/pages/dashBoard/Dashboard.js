@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BtnDashboard } from '../../components/btnDashboard/BtnDashboard';
+import { TokenContext } from '../../contexts/TokenContext';
+import fetcher from '../../helpers/fetcher';
 import './dashboard.css';
 
 export const Dashboard = () => {
@@ -15,6 +17,8 @@ export const Dashboard = () => {
       route: 'adminExperience',
     },
   ];
+
+  const [token, setToken] = useContext(TokenContext);
 
   return (
     <div>

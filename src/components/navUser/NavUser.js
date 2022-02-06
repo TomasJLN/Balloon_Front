@@ -12,6 +12,7 @@ const NavUser = ({ setUserMenu, usuario }) => {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
+        e.stopPropagation();
         setUserMenu((s) => !s);
       }
     };

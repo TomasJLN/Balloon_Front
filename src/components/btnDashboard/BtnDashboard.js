@@ -11,7 +11,6 @@ export const BtnDashboard = ({ title, route }) => {
         className="big-button"
         onClick={() => {
           navigate(`/dashboard/${route}`);
-          console.log(`/dashboard/${route}`);
         }}
       >
         {title}

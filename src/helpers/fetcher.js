@@ -9,6 +9,7 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
 
     if (status === 'ok') {
       setState(data);
+      setError(null);
       console.log(data);
     } else {
       setError(message);

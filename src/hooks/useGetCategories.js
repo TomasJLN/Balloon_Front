@@ -7,6 +7,7 @@ export const useGetCategories = (category = '') => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetcher(
       setCategories,
       setError,

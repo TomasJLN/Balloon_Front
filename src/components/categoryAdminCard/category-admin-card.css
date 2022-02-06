@@ -13,18 +13,21 @@
   min-height: 240px;
   margin: 20px auto;
 }
-
+.card-figure-category {
+  overflow: hidden;
+  width: 100%;
+  height: 140px;
+}
 .card-thumbnail-category {
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px auto;
   overflow: hidden;
-  width: 80;
+  width: 100%;
   height: 140px;
   object-fit: cover;
-  align-self: center;
 }
 .title-card-category {
-  width: 80%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
