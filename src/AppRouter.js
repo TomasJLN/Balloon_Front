@@ -11,6 +11,7 @@ import { TokenContextProvider } from './contexts/TokenContext';
 import ContactForm from './forms/Contact_form/ContactForm';
 import Experience from './pages/experience/Experience';
 import Home from './pages/home/Home';
+import Editprofile from './pages/editprofile/Editprofile';
 
 export const AppRouter = () => {
   return (
@@ -24,6 +25,7 @@ export const AppRouter = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/experience/:id" element={<Experience />} />
+          <Route path="/editprofile" element={<Editprofile />} />
           <Route
             path="/experienceReserve/:id"
             element={<ExperienceReserve />}
@@ -37,3 +39,5 @@ export const AppRouter = () => {
     </Router>
   );
 };
+
+

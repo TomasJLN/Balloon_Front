@@ -1,0 +1,29 @@
+
+.editemail {
+margin: 50px;
+border: 1px solid white;
+}
+.editemail h2 {
+font-size: 1rem;
+overflow: auto;
+text-align: center;
+}
+
+.editemail input{
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: rgb(221, 208, 208);
+}
+
+.editemail label {
+text-transform:inherit;
+text-align: center;
+}
+
+.editemail button{
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 2rem;;
+}
