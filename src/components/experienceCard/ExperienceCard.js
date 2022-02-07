@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
-import './experience-card.css';
 import { useNavigate } from 'react-router-dom';
+import './experience-card.css';
 
 export const ExperienceCard = ({ exp }) => {
   const coords = exp.coords.replace(/\s+/g, '');

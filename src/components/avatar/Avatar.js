@@ -11,8 +11,6 @@ export const Avatar = ({ usuario, setUserMenu }) => {
   let imagenAvatar = `NA.png`;
   usuario.avatar ? (imagenAvatar = usuario.avatar) : (imagenAvatar = `NA.png`);
 
-  console.log('click en el keko');
-
   return (
     <div onClick={handleClick}>
       {usuario.email ? (

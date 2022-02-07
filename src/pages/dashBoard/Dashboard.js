@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { BtnDashboard } from '../../components/btnDashboard/BtnDashboard';
-import { TokenContext } from '../../contexts/TokenContext';
-import fetcher from '../../helpers/fetcher';
+import { UserContext } from '../../contexts/UserContext';
 import './dashboard.css';
 
 export const Dashboard = () => {
@@ -18,14 +17,18 @@ export const Dashboard = () => {
     },
   ];
 
-  const [token, setToken] = useContext(TokenContext);
+  const [usuario, setUsuario] = useContext(UserContext);
 
-  return (
+  return usuario.role === 'admin' ? (
     <div>
       <h1 id="title-dashboard">Dashboard</h1>
       {actions.map((a) => (
         <BtnDashboard key={a.id} title={a.title} route={a.route} />
       ))}
+    </div>
+  ) : (
+    <div className="not-allowed">
+      <h1>No tienes acceso a la zona de Administración</h1>
     </div>
   );
 };

@@ -23,3 +23,23 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
   setLoading(false);
 };
 export default fetcher;
+
+export const miniFetcher = async (path, args) => {
+  let res = [];
+  try {
+    const resp = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/${path}`,
+      args
+    );
+    const { status, message, data } = await resp.json();
+
+    if (status === 'ok') {
+      res = data;
+    } else {
+      console.log('mensaje error con respuesta ->', message);
+    }
+  } catch (error) {
+    console.log('mensaje error sin respuesta ->', error);
+  }
+  return res;
+};
