@@ -1,0 +1,33 @@
+.edit-cat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  margin: 25px 0;
+  text-align: center;
+}
+
+#edit-cat-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#edit-cat-name {
+  width: 80%;
+  height: 4rem;
+  font-size: 1.5rem;
+}
+#edit-cat-description {
+  width: 100%;
+  height: 6rem;
+  word-break: normal;
+}
+
+.edit-sect-activar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

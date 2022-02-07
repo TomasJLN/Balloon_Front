@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import './avatar.css';
 
@@ -10,6 +10,8 @@ export const Avatar = ({ usuario, setUserMenu }) => {
 
   let imagenAvatar = `NA.png`;
   usuario.avatar ? (imagenAvatar = usuario.avatar) : (imagenAvatar = `NA.png`);
+
+  console.log('click en el keko');
 
   return (
     <div onClick={handleClick}>

@@ -21,7 +21,6 @@ export const AppRouter = () => {
         <Route path="contact-form" element={<ContactForm />} />
         <Route path="account" element={<Login />} />
         <Route path="register" element={<Register />} />
-        {/* <Route path="dashboard" element={<DashboardRouter />} /> */}
         <Route path="profile" element={<Profile />} />
         <Route path="experience/:id" element={<Experience />} />
         <Route path="experienceReserve/:id" element={<ExperienceReserve />} />

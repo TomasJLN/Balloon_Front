@@ -29,6 +29,10 @@ export const Header = () => {
       });
   }, [token]);
 
+  useEffect(() => {
+    console.log('valor de userMenu: ', userMenu);
+  }, [setUserMenu, userMenu]);
+
   return (
     <>
       {loading ? (

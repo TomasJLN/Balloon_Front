@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
+import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import fetcher from '../../helpers/fetcher';
 import './category-admin-card.css';
 
@@ -12,6 +14,7 @@ export const CategoryAdminCard = ({ cat }) => {
   const [result, setResult] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetcher(setResult, setError, setLoading, `category/${cat.id}`, {
@@ -33,7 +36,10 @@ export const CategoryAdminCard = ({ cat }) => {
         <span>Categoría: {cat.title}</span>
       </div>
       <figure className="card-figure-category">
-        {cat.photo ? (
+        {cat.photo &&
+        checkIfFileExists(
+          `${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`
+        ) ? (
           <img
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`}
             alt={cat.title}
@@ -62,7 +68,14 @@ export const CategoryAdminCard = ({ cat }) => {
         >
           Borrar
         </button>
-        <button className="btn-category-option">Editar</button>
+        <button
+          className="btn-category-option"
+          onClick={() =>
+            navigate(`/dashboard/adminCategory/editCategory/${cat.id}`)
+          }
+        >
+          Editar
+        </button>
         {active && (
           <button
             className="btn-category-option"
