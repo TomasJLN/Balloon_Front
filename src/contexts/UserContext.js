@@ -9,12 +9,14 @@ export const UserContextProvider = ({ children }) => {
   const [usuario, setUsuario] = useState({});
 
   useEffect(() => {
-    const getUser = async () => {
-      setUsuario(
-        await miniFetcher('user', { headers: { Authorization: token } })
-      );
-    };
-    getUser();
+    if (token && token !== '') {
+      const getUser = async () => {
+        setUsuario(
+          await miniFetcher('user', { headers: { Authorization: token } })
+        );
+      };
+      getUser();
+    }
   }, [token]);
 
   return (

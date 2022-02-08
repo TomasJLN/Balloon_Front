@@ -18,11 +18,13 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
   } catch (error) {
     setError('Algo salió muy mal!');
     console.log('mensaje error sin respuesta ->', error);
-    console.log('Todo mal, parece que no iniciaste el backend....');
+    console.log('Todo mal, no iniciaste el backend o no tienes el .env....');
   }
   setLoading(false);
 };
 export default fetcher;
+
+// ****************************************************************** //
 
 export const miniFetcher = async (path, args) => {
   let res = [];

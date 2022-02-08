@@ -11,7 +11,7 @@ const SearchBar = () => {
 
   let { experience } = queryString.parse(location.search);
 
-  console.log(experience);
+  experience && console.log(experience);
 
   const [toSearch, setToSearch] = useState(experience ? experience : '');
 

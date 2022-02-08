@@ -7,7 +7,7 @@ import './login.css';
 
 const Login = () => {
   const [token, setToken] = useContext(TokenContext);
-  const [user, setUser] = useContext(UserContext);
+  const [usuario, setUsuario] = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -16,8 +16,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    token && !error && user.role !== 'admin' && navigate('/');
-  }, [token, error, navigate, user.role]);
+    token && !error && usuario.role === 'admin' && navigate('/dashboard');
+    token && !error && usuario.role === 'user' && navigate('/');
+  }, [token, error, navigate, usuario.role]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,7 +37,6 @@ const Login = () => {
       ) : (
         <div>
           <form onSubmit={handleLogin} className="login-form">
-            <h1>pepe {user.role}</h1>
             <div className="mail-field">
               <label htmlFor="email-login">email:</label>
               <input

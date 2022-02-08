@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { GiBalloonDog } from 'react-icons/gi';
 import { useState } from 'react';
@@ -9,11 +9,13 @@ import fetcher from '../../helpers/fetcher';
 import NavUser from '../navUser/NavUser';
 import { useNavigate } from 'react-router-dom';
 import './header.css';
+import { UserContext } from '../../contexts/UserContext';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [token, setToken] = useContext(TokenContext);
+  const [user, setUser] = useContext(UserContext);
   const [usuario, setUsuario] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,8 +32,9 @@ export const Header = () => {
   }, [token]);
 
   useEffect(() => {
-    console.log('valor de userMenu: ', userMenu);
-  }, [setUserMenu, userMenu]);
+    setUser(usuario);
+    console.log(usuario);
+  }, [usuario, setUser]);
 
   return (
     <>
