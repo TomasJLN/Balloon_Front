@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Accordion from '../accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
@@ -80,6 +80,7 @@ const Booking = () => {
 
   const handleNewBooking = (e) => {
     e.preventDefault();
+    setResult('');
     const createBooking = async () => {
       await fetcher(setResult, setError, setLoading, 'booking', {
         method: 'POST',
@@ -101,6 +102,8 @@ const Booking = () => {
     usuario.role === 'user' && createBooking();
     usuario.role === 'admin' &&
       alert('Un administrador no puede\nhacer reservas...');
+    console.log('result del booking: ', result.length);
+    result.length > 1 && navigate(`/bookingDetail/${result}`);
   };
 
   useEffect(() => {
