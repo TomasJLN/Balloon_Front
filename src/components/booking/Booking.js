@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import Accordion from '../../components/accordion/Accordion';
+import Accordion from '../accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
-import { getTomorrow } from '../../helpers/getTomorrow';
 import fetcher from '../../helpers/fetcher';
-import './experience-reserve.css';
+import { TokenContext } from '../../contexts/TokenContext';
+import DatePicker, { DateObject } from 'react-multi-date-picker';
+import 'react-multi-date-picker/styles/layouts/mobile.css';
+import { UserContext } from '../../contexts/UserContext';
 
-const Experience = () => {
+import './booking.css';
+
+const Booking = () => {
   const { id } = useParams();
   const {
     category,
@@ -24,12 +28,16 @@ const Experience = () => {
   } = useExperience(id);
 
   const [numTickets, setNumTickets] = useState(1);
-  const [bookingDate, setBookingDate] = useState(getTomorrow());
+  const [bookingDate, setBookingDate] = useState(
+    new DateObject().add(1, 'days')
+  );
   const [places, setPlaces] = useState([]);
+  const [result, setResult] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useContext(TokenContext);
+  const [usuario, setUsuario] = useContext(UserContext);
 
-  console.log(id, bookingDate);
   let maxFreePlaces = 10;
 
   useEffect(() => {
@@ -70,14 +78,47 @@ const Experience = () => {
     }
   };
 
+  const handleNewBooking = (e) => {
+    e.preventDefault();
+    const createBooking = async () => {
+      await fetcher(setResult, setError, setLoading, 'booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          dateExperience:
+            typeof bookingDate === 'string'
+              ? bookingDate
+              : bookingDate.format(),
+          quantity: numTickets,
+          idExperience: id,
+        }),
+      });
+    };
+    !usuario.role && navigate('/account');
+    usuario.role === 'user' && createBooking();
+    usuario.role === 'admin' &&
+      alert('Un administrador no puede\nhacer reservas...');
+  };
+
+  useEffect(() => {
+    if (error !== null) alert('el error -> ', error);
+    return () => {
+      setError(null);
+    };
+  }, [error]);
+
   return (
     <>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
         <div className="reserved-card">
+          <h1> ESTO YA ES LA RESERVA</h1>
           <div className="test">
-            <div>
+            <div className="photo-thumbnail">
               {photo ? (
                 <img
                   src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
@@ -94,46 +135,55 @@ const Experience = () => {
             </div>
             <div className="title-description">
               <h1>{title}</h1>
-              <p>{description}</p>
+              <p className="description-text">{description}</p>
             </div>
           </div>
           <hr />
           <form>
-            <div>
+            <div id="select-date">
               <label htmlFor="date">Escoger Fecha</label>
-              <input
-                type="text"
-                name="date"
-                id="date"
+              <DatePicker
                 value={bookingDate}
-                placeholder="Escoger fecha"
-                onChange={(e) => {
-                  setBookingDate(e.target.value);
-                }}
+                onChange={setBookingDate}
+                editable={false}
+                minDate={new DateObject().add(1, 'days')}
               />
             </div>
-            <div>
+            <div id="select-quantity">
               <label htmlFor="quantity">Cantidad</label>
-              <button type="button" onClick={handleSubtractTicket}>
+              <button
+                type="button"
+                className="button-quantity"
+                onClick={handleSubtractTicket}
+              >
                 -
               </button>
               <input
                 type="text"
                 name="quantity"
                 id="quantity"
+                className="input-quantity"
                 value={numTickets}
                 onChange={handleTicket}
               />
-              <button type="button" onClick={handleAddTicket}>
+              <button
+                type="button"
+                className="button-quantity"
+                onClick={handleAddTicket}
+              >
                 +
               </button>
+              {<h5>Máximo disponible de: {maxFreePlaces}</h5>}
             </div>
           </form>
 
-          <h2 id="precio">{price} €</h2>
+          <h2 className="precio">Precio: {price} €</h2>
+          <h1 className="precio">Total: {(price * numTickets).toFixed(2)} €</h1>
           <div className="ratin-comprar">
             <p>🌟🌟🌟🌟🌟</p>
-            <button className="btn-comprar">Comprar</button>
+            <button className="btn-comprar" onClick={handleNewBooking}>
+              RESERVAR
+            </button>
           </div>
           <div className="accordion-section">
             {infoExperience.map(({ title, content }) => (
@@ -157,4 +207,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Booking;

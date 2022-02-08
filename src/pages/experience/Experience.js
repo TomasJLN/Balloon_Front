@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
 import './experience.css';
@@ -45,7 +45,15 @@ const Experience = () => {
       <p>{description}</p>
       <div className="ratin-comprar">
         <p>🌟🌟🌟🌟🌟</p>
-        <button className="btn-comprar">Comprar</button>
+        <button
+          className="btn-comprar"
+          onClick={(e) => {
+            console.log(`/booking/${id}`);
+            navigate(`/booking/${id}`);
+          }}
+        >
+          Comprar
+        </button>
       </div>
       <div className="accordion-section">
         {infoExperience.map(({ title, content }) => (
@@ -57,7 +65,6 @@ const Experience = () => {
           className="btn-back"
           onClick={() => {
             navigate(-1);
-            console.log('un click');
           }}
         >
           ↩️ back
