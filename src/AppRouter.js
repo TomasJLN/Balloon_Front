@@ -13,27 +13,27 @@ import Experience from './pages/experience/Experience';
 import Home from './pages/home/Home';
 
 export const AppRouter = () => {
-	return (
-		<Router>
-			<TokenContextProvider>
-				<Home />
-				<Routes>
-					<Route path='/' element={<ShowResults />} />
-					<Route path='/contact-form' element={<ContactForm />} />
-					<Route path='/account' element={<Login />} />
-					<Route path='/register' element={<Register />} />
-					<Route path='/profile' element={<Profile />} />
-					<Route path='/experience/:id' element={<Experience />} />
-					<Route
-						path='/experienceReserve/:id'
-						element={<ExperienceReserve />}
-					/>
-					<Route path='/allFilter' element={<ShowResults />} />
-					<Route path='/error' element={<ErrorPage />} />
-					<Route path='*' element={<NotFound />} />
-				</Routes>
-				<Footer />
-			</TokenContextProvider>
-		</Router>
-	);
+  return (
+    <Router>
+      <TokenContextProvider>
+        <Home />
+        <Routes>
+          <Route path="/" element={<ShowResults />} />
+          <Route path="/contact-form" element={<ContactForm />} />
+          <Route path="/account" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/experience/:id" element={<Experience />} />
+          <Route
+            path="/experienceReserve/:id"
+            element={<ExperienceReserve />}
+          />
+          <Route path="/allFilter" element={<ShowResults />} />
+          <Route path="/error" element={<ErrorPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </TokenContextProvider>
+    </Router>
+  );
 };

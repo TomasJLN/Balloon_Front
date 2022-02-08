@@ -26,3 +26,33 @@
   border: none;
   font-size: 1.2rem;
 }
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 50vh;
+}
+
+.balloon_spinner {
+  height: 230px;
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border-left-color: rgb(0, 0, 0);
+
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

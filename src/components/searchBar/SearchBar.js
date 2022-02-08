@@ -6,52 +6,62 @@ import './searchBar.css';
 import Filter from './filter/Filter';
 
 const SearchBar = () => {
-	const navigate = useNavigate();
-	const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-	console.log(location);
-	console.log(navigate);
+  console.log(location);
+  console.log(navigate);
 
-	let { experience } = queryString.parse(location.search);
+  let { experience } = queryString.parse(location.search);
 
-	console.log(experience);
+  console.log(experience);
 
-	const [toSearch, setToSearch] = useState(experience ? experience : '');
+  const [toSearch, setToSearch] = useState(experience ? experience : '');
+  const [submitted, setSubmitted] = useState(false);
 
-	useEffect(() => {
-		if (location.pathname === '/') resetInput();
-	}, [location.pathname]);
+  useEffect(() => {
+    if (location.pathname === '/') resetInput();
+  }, [location.pathname]);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		navigate(`/allFilter?experience=${toSearch}`);
-	};
+  /* const handleChange = (e) => {
+    navigate(`/allFilter?experience=${toSearch}`);
+    setSubmitted(true);
+  }; */
 
-	const resetInput = () => setToSearch('');
-	console.log('to search =>', toSearch);
-	return (
-		<>
-			<div className='searchBar'>
-				<form className='search-form' onChange={handleSubmit}>
-					<input
-						className='input-search'
-						type='text'
-						name='searchText'
-						value={toSearch}
-						onChange={(e) => {
-							setToSearch(e.target.value);
-						}}
-						autoComplete='off'
-						placeholder='Buscar....'
-					/>
-					<button className='search-button' type='submit'>
-						<FaSearch />
-					</button>
-				</form>
-				<div className='filter'>{toSearch ? <Filter /> : null}</div>
-			</div>
-		</>
-	);
+  const handleSubmit = (e) => {
+    setSubmitted(true);
+    navigate(`/allFilter?experience=${toSearch}`);
+    e.preventDefault();
+  };
+
+  const resetInput = () => {
+    setToSearch('');
+    setSubmitted(false);
+  };
+  console.log('to search =>', toSearch);
+  return (
+    <>
+      <div className="searchBar">
+        <form className="search-form" onSubmit={handleSubmit}>
+          <input
+            className="input-search"
+            type="text"
+            name="searchText"
+            value={toSearch}
+            onChange={(e) => {
+              setToSearch(e.target.value);
+            }}
+            autoComplete="off"
+            placeholder="Buscar...."
+          />
+          <button className="search-button" type="submit">
+            <FaSearch />
+          </button>
+        </form>
+        <div className="filter">{submitted && <Filter />}</div>
+      </div>
+    </>
+  );
 };
 
 export default SearchBar;

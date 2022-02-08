@@ -45,7 +45,9 @@ const ShowResults = () => {
   return (
     <>
       {loading ? (
-        <h1 className="loading fade_in">Loading...</h1>
+        <div className="spinner-container">
+          <div className="balloon_spinner"></div>
+        </div>
       ) : (
         <>
           <div className="card-deck">
