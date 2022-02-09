@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
+import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import { useExperience } from '../../hooks/useExperience';
 import './experience.css';
 
@@ -28,7 +29,10 @@ const Experience = () => {
   return (
     <div className="single-card">
       <h1>{title}</h1>
-      {photo ? (
+      {photo &&
+      checkIfFileExists(
+        `${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`
+      ) ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
           alt={title}

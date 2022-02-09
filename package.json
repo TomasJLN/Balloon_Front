@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "formik": "^2.2.9",
     "history": "^5.2.0",
+    "moment": "^2.29.1",
     "nw-react-slider": "^2.0.1",
     "query-string": "^7.1.0",
     "rc-slider": "^9.7.5",

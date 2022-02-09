@@ -10,5 +10,7 @@ export const getDateFormat = () => {
     '-' +
     tempDate.setDate(date.getDate() + 1);
 
+  console.log(getDate);
+
   return getDate;
 };

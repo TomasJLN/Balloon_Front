@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import fetcher from '../helpers/fetcher';
 
-export const useBookingDetails = (ticket, token) => {
-  const [bookingDetail, setBookingDetail] = useState({});
+export const useUserBookings = (ticket, token) => {
+  const [otherBookings, setOtherBookings] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetcher(setBookingDetail, setError, setLoading, `booking/view/${ticket}`, {
+    fetcher(setOtherBookings, setError, setLoading, `booking/view`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -16,5 +16,7 @@ export const useBookingDetails = (ticket, token) => {
     });
   }, [ticket, token]);
 
-  return bookingDetail[0];
+  console.log(otherBookings);
+
+  return otherBookings;
 };
