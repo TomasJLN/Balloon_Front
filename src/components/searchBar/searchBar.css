@@ -1,7 +1,7 @@
 .searchBar {
   position: relative;
   width: 100vw;
-  height: 500px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,7 +66,36 @@
   margin: 10px 0;
 }
 
+.filter-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+.button-toggle {
+  padding: 10px 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 @media (min-width: 820px) {
+  .Filter {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 390px) {
+  .searchBar {
+    height: 200px;
+  }
+
+  .search-form {
+    width: 75%;
+
+    z-index: 2;
+  }
+
   .Filter {
     flex-direction: row;
   }

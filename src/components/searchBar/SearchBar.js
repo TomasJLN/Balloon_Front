@@ -58,7 +58,21 @@ const SearchBar = () => {
             <FaSearch />
           </button>
         </form>
-        <div className="filter">{submitted && <Filter />}</div>
+      </div>
+      <div className="filter">
+        {submitted && <Filter />}
+        <div className="filter-toggle">
+          {submitted && (
+            <button
+              className="button-toggle"
+              onClick={(e) => {
+                setSubmitted(!submitted);
+              }}
+            >
+              Cerrar filtro
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

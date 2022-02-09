@@ -46,6 +46,7 @@ const ShowResults = () => {
     <>
       {loading ? (
         <div className="spinner-container">
+          <h1>Cargando...</h1>
           <div className="balloon_spinner"></div>
         </div>
       ) : (

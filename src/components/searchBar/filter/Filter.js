@@ -21,14 +21,15 @@ const Filter = () => {
   experience = experience ? experience : '';
   const [searchCat, setSearchCat] = useState('');
   const [searchLoc, setSearchLoc] = useState('');
-  const [searchStartPrice, setSearchStartPrice] = useState('0');
-  const [searchEndPrice, setSearchEndPrice] = useState('0');
+  const [searchStartPrice, setSearchStartPrice] = useState('50');
+  const [searchEndPrice, setSearchEndPrice] = useState('250');
   const [searchDate, setSearchDate] = useState('');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
-    query += searchStartPrice ? `&start_price=${searchStartPrice}` : 0;
-    query += searchEndPrice ? `&end_price=${searchEndPrice}` : 0;
+    query += searchStartPrice ? `&start_price=${searchStartPrice}` : '';
+    query += searchEndPrice ? `&end_price=${searchEndPrice}` : '';
     query += searchCat ? `&category=${searchCat}` : '';
     query += searchLoc ? `&location=${searchLoc}` : '';
     navigate(query);
@@ -65,31 +66,8 @@ const Filter = () => {
         }}
       >
         {({ values }) => (
-          <Form
-            onSubmit={handleSubmit}
-            className="Filter"
-            style={{
-              display: 'flex',
-
-              position: 'relative',
-              zIndex: '1',
-              justifyContent: 'center',
-              alignItems: 'center',
-              color: 'white',
-            }}
-          >
-            <div
-              className="category-filter"
-              style={{
-                fontSize: '2rem',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-                width: '100%',
-              }}
-            >
+          <Form onSubmit={handleSubmit} className="Filter">
+            <div className="category-filter">
               <Field
                 className="select"
                 value={searchCat}
@@ -110,17 +88,7 @@ const Filter = () => {
                 ))}
               </Field>
             </div>
-            <div
-              className="location-filter"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-                width: '100%',
-              }}
-            >
+            <div className="location-filter">
               <Field
                 className="select"
                 value={searchLoc}
@@ -141,30 +109,13 @@ const Filter = () => {
                 ))}
               </Field>
             </div>
-            <div
-              className="price-filter"
-              style={{
-                display: 'flex',
-                width: '100%',
-                padding: '10px 15px',
-                justifyContent: 'space-evenly',
-                marginLeft: '1rem',
-                fontSize: '19px',
-                alignContent: 'center',
-              }}
-            >
-              <div
-                className="startPrice"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  width: '100%',
-                  alignItems: 'center',
-                  minHeight: '65px',
-                }}
-              >
-                {' '}
-                <p className="slider-text">Precio mínimo</p>
+            <div className="price-filter">
+              <div className="start-price">
+                {searchStartPrice == 0 ? (
+                  <p>Precio mínimo</p>
+                ) : (
+                  `Desde ${searchStartPrice} €`
+                )}
                 <Field
                   className="slider"
                   value={searchStartPrice}
@@ -179,22 +130,14 @@ const Filter = () => {
                   max={1000}
                   step={50}
                 />
-                {searchStartPrice == 0 ? '' : `Desde ${searchStartPrice} €`}
               </div>
 
-              <div
-                className="endPrice"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  width: '100%',
-                  marginLeft: '1rem',
-                  alignItems: 'center',
-                  minHeight: '65px',
-                }}
-              >
-                {' '}
-                <p className="slider-text">Precio máximo</p>
+              <div className="end-price">
+                {searchEndPrice == 0 ? (
+                  <p>Precio máximo</p>
+                ) : (
+                  `Hasta ${searchEndPrice} €`
+                )}
                 <Field
                   className="slider"
                   value={searchEndPrice}
@@ -209,7 +152,6 @@ const Filter = () => {
                   max={1000}
                   step={50}
                 />
-                {searchEndPrice == 0 ? '' : `Hasta ${searchEndPrice} €`}
               </div>
             </div>
             {/* <div
@@ -236,30 +178,15 @@ const Filter = () => {
               </label>
             </div>
             <div>{values.rate}</div> */}
-            <div
-              className="datefilter"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-                width: '100%',
-              }}
-            >
-              <div
-                className="DateSearch"
-                style={{
-                  display: 'flex',
-
-                  padding: '10px 15px',
-                  justifyContent: 'center',
-                  marginLeft: '1rem',
-                }}
-              >
+            {/*  <div className="datefilter">
+              <div className="DateSearch">
                 {' '}
                 <FaCalendarAlt
-                  style={{ fontSize: '24px', marginRight: '5px' }}
+                  style={{
+                    color: 'black',
+                    fontSize: '24px',
+                    marginRight: '5px',
+                  }}
                 />
                 <DatePicker
                   placeholder="Rango de fecha"
@@ -274,28 +201,7 @@ const Filter = () => {
                   animations={[opacity()]}
                 />
               </div>
-            </div>
-            <div className="buttonfilter">
-              <button
-                className="enviar"
-                type="submit"
-                style={{
-                  borderRadius: '30px',
-                  cursor: 'pointer',
-                  height: '3rem',
-
-                  border: '2px solid slategray',
-                  color: 'black',
-                  fontSize: '1.5rem',
-                  fontWeight: '600',
-                  textDecoration: 'uppercase',
-                  padding: '10px 25px',
-                  textAlign: 'center',
-                }}
-              >
-                filtrar
-              </button>
-            </div>
+            </div> */}
           </Form>
         )}
       </Formik>
