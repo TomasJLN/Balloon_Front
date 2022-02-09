@@ -11,11 +11,12 @@ const ShowResults = () => {
 
   const [lastIndex, setLastIndex] = useState(expByPage);
 
-  const [btnMore, setBtnMore] = useState(true);
+  const [btnMore, setBtnMore] = useState(false);
 
   const q = location.search;
 
   let query = q;
+
   query.length < 1 ? (query = '?experience=&featured=1') : (query = q);
 
   const { filtered, loading } = useFiltered(query);

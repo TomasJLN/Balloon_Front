@@ -23,9 +23,11 @@
 }
 
 .search-form {
-  width: 100%;
+  width: 90%;
   max-width: 700px;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
 }
 
 .input-search {
@@ -47,7 +49,7 @@
   border: none;
   color: white;
   background-color: transparent;
-  position: absolute;
+  /* position: absolute; */
   height: 2rem;
   font-size: 1.4rem;
   cursor: pointer;
