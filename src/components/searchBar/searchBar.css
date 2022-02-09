@@ -1,7 +1,7 @@
 .searchBar {
   position: relative;
   width: 100vw;
-  height: 400px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,18 +23,19 @@
 }
 
 .search-form {
-  width: 70vw;
+  width: 100%;
   max-width: 700px;
   z-index: 2;
 }
 
 .input-search {
-  border: none;
-  padding-left: 10px;
   width: 100%;
-  height: 2rem;
+  color: white;
+  padding: 5px 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.5rem;
   border: none;
-  font-size: 1.2rem;
+  letter-spacing: 2px;
 }
 
 .input-search:focus {
@@ -48,7 +49,13 @@
   background-color: transparent;
   position: absolute;
   height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-button:hover {
+  transform: scale(1.4);
 }
 
 .Filter {
@@ -57,4 +64,39 @@
   color: rebeccapurple;
   width: 90vw;
   margin: 10px 0;
+}
+
+.filter-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+.button-toggle {
+  padding: 10px 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 820px) {
+  .Filter {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 390px) {
+  .searchBar {
+    height: 200px;
+  }
+
+  .search-form {
+    width: 75%;
+
+    z-index: 2;
+  }
+
+  .Filter {
+    flex-direction: row;
+  }
 }
