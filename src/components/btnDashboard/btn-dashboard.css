@@ -1,0 +1,19 @@
+.dashboard-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
+
+.big-button {
+  margin: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1.5;
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+  height: 120px;
+  width: 60vw;
+}

@@ -1,9 +1,9 @@
 .nav-user {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   top: 65px;
-  right: 20px;
+  right: 4px;
   z-index: 100;
   background-color: black;
   opacity: 80%;

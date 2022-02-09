@@ -27,7 +27,8 @@
 
 .footer .links {
   font-size: 0.6rem;
-  max-width: 100vw;
+  max-width: 90vw;
+  overflow: hidden;
 }
 
 .footer .links ul li {
@@ -42,8 +43,8 @@
 }
 
 .footer .links li {
-  padding-top: 1rem;
-  margin: 1rem;
+  padding-top: 0.5rem;
+  margin: 0.5rem;
   font-size: 0.6rem;
   text-align: center;
 }
@@ -85,4 +86,20 @@
 
 .footer a:hover {
   font-weight: bold;
+}
+
+.newsletter .sendEmail {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sendEmail .privacidad {
+  width: 90vw;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

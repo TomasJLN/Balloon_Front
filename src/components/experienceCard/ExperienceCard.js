@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
-import './experience-card.css';
 import { useNavigate } from 'react-router-dom';
+import { checkIfFileExists } from '../../helpers/checkIfFileExists';
+import './experience-card.css';
 
 export const ExperienceCard = ({ exp }) => {
   const coords = exp.coords.replace(/\s+/g, '');
@@ -15,7 +16,10 @@ export const ExperienceCard = ({ exp }) => {
         navigate(`/experience/${exp.ID}`);
       }}
     >
-      {exp.photo ? (
+      {exp.photo &&
+      checkIfFileExists(
+        `${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`
+      ) ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`}
           alt={exp.title}

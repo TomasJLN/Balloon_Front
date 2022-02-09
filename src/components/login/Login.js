@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
+import { UserContext } from '../../contexts/UserContext';
 import fetcher from '../../helpers/fetcher';
 import './login.css';
 
 const Login = () => {
   const [token, setToken] = useContext(TokenContext);
+  const [usuario, setUsuario] = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -14,8 +16,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token && !error) navigate('/');
-  }, [token, error, navigate]);
+    token && !error && usuario.role === 'admin' && navigate('/dashboard');
+    token && !error && usuario.role === 'user' && navigate('/');
+  }, [token, error, navigate, usuario.role]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,7 +37,6 @@ const Login = () => {
       ) : (
         <div>
           <form onSubmit={handleLogin} className="login-form">
-            <h1>{token}</h1>
             <div className="mail-field">
               <label htmlFor="email-login">email:</label>
               <input

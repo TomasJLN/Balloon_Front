@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import fetcher from '../../helpers/fetcher';
 import './register.css';
 
@@ -17,81 +17,75 @@ const Register = () => {
     e.preventDefault();
     await fetcher(setNewUser, setError, setLoading, 'user', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(newUser),
     });
-    console.log('enviamos los datos al registro');
   };
 
+  useEffect(() => {
+    if (error) alert(error);
+    console.log(error);
+    return () => {
+      setError(null);
+    };
+  }, [error]);
+
   return (
-    <>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <form onSubmit={register} className="register-form">
-          <div className="name-field">
-            <label htmlFor="reg-name">Nombre:</label>
-            <input
-              type="text"
-              id="reg-name"
-              name="reg-name"
-              onChange={(e) => {
-                setNewUser({ ...newUser, name: e.target.value });
-              }}
-            />
-          </div>
-          <div className="surname-field">
-            <label htmlFor="surname-name">Apellidos:</label>
-            <input
-              type="text"
-              id="reg-surname"
-              name="reg-surname"
-              onChange={(e) => {
-                setNewUser({ ...newUser, surname: e.target.value });
-              }}
-            />
-          </div>
-          <div className="mail-field">
-            <label htmlFor="reg-mail">Email:</label>
-            <input
-              type="text"
-              id="reg-mail"
-              name="reg-mail"
-              onChange={(e) => {
-                setNewUser({ ...newUser, email: e.target.value });
-              }}
-            />
-          </div>
-          <br />
-          <div className="password-field">
-            <label htmlFor="reg-password">Contraseña:</label>
-            <input
-              type="password"
-              id="reg-password"
-              name="reg-password"
-              autoComplete="off"
-              onChange={(e) => {
-                setNewUser({ ...newUser, password: e.target.value });
-              }}
-            />
-          </div>
-          <div className="passwordR-field">
-            <label htmlFor="reg-passwordR">Repetir Contraseña:</label>
-            <input
-              type="password"
-              id="reg-passwordR"
-              name="reg-passwordR"
-              autoComplete="off"
-              onChange={(e) => {
-                setNewUser({ ...newUser, passwordRepeat: e.target.value });
-              }}
-            />
-          </div>
-          <br />
-          <input type="submit" value="Login" className="btn-login" />
-        </form>
-      )}
-    </>
+    <section>
+      <h2>Crear nuevo usuario</h2>
+      <form className="registerForm" onSubmit={register}>
+        <label>Nombre:</label>
+        <input
+          type="text"
+          placeholder="Nombre"
+          onChange={(e) => {
+            setNewUser({ ...newUser, name: e.target.value });
+          }}
+        ></input>
+
+        <label>Apellidos:</label>
+        <input
+          type="text"
+          placeholder="Apellidos"
+          onChange={(e) => {
+            setNewUser({ ...newUser, surname: e.target.value });
+          }}
+        ></input>
+
+        <label>Correo electrónico:</label>
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          onChange={(e) => {
+            setNewUser({ ...newUser, email: e.target.value });
+          }}
+        ></input>
+
+        <label>Contraseña:</label>
+        <input
+          type="password"
+          placeholder="Contraseña"
+          onChange={(e) => {
+            setNewUser({ ...newUser, password: e.target.value });
+          }}
+        ></input>
+
+        <label>Repite la contraseña:</label>
+        <input
+          type="password"
+          placeholder="Misma contraseña"
+          onChange={(e) => {
+            setNewUser({ ...newUser, passwordRepeat: e.target.value });
+          }}
+        ></input>
+
+        <button className="registerbtn" type="submit">
+          REGISTRARSE
+        </button>
+      </form>
+    </section>
   );
 };
 

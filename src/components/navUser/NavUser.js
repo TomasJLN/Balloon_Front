@@ -1,16 +1,18 @@
 import { useContext, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import './navUser.css';
 
-const NavUser = ({ setUserMenu }) => {
+const NavUser = ({ setUserMenu, usuario }) => {
   const [token, setToken] = useContext(TokenContext);
   const ref = useRef(null);
   const navigate = useNavigate();
+  const { role } = usuario;
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
+        e.stopPropagation();
         setUserMenu((s) => !s);
       }
     };
@@ -28,8 +30,13 @@ const NavUser = ({ setUserMenu }) => {
   };
 
   return (
-    <div ref={ref} className="nav-user">
+    <div ref={ref} className="nav-user" onClick={(e) => setUserMenu((s) => !s)}>
       <ul>
+        {token && role === 'admin' && (
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        )}
         {token && (
           <li>
             <Link to="/profile">Perfil</Link>
