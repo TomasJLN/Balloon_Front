@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fetcher from '../../helpers/fetcher';
 import './register.css';
 
@@ -10,12 +11,15 @@ const Register = () => {
     password: '',
     passwordRepeat: '',
   });
+  const [state, setState] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const register = async (e) => {
     e.preventDefault();
-    await fetcher(setNewUser, setError, setLoading, 'user', {
+    setState(null);
+    await fetcher(setState, setError, setLoading, 'user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,6 +35,14 @@ const Register = () => {
       setError(null);
     };
   }, [error]);
+
+  useEffect(() => {
+    if (state && state.includes('Registro completado')) {
+      alert(state);
+      navigate('/account');
+    }
+    console.log(state);
+  }, [state, navigate]);
 
   return (
     <section>

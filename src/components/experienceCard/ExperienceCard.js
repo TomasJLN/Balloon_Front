@@ -16,10 +16,7 @@ export const ExperienceCard = ({ exp }) => {
         navigate(`/experience/${exp.ID}`);
       }}
     >
-      {exp.photo &&
-      checkIfFileExists(
-        `${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`
-      ) ? (
+      {exp.photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`}
           alt={exp.title}
