@@ -24,7 +24,7 @@ const DateSearch = () => {
     new DateObject().add(1, 'days'),
     new DateObject().add(7, 'days'),
   ]);
-  console.log('date start', date[0].format(), 'date end', date[1].format());
+  // console.log('date start', date[0].format(), 'date end', date[1].format());
   return (
     <div className="DateSearch">
       <p>Rango de fechas:</p>

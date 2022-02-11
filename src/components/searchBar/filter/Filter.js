@@ -19,7 +19,7 @@ const Filter = () => {
   const [searchLoc, setSearchLoc] = useState('');
   const [searchPrice, setSearchPrice] = useState(100);
 
-  console.log(experience);
+  // console.log(experience);
 
   const handleSubmit = (e) => {
     let query = `/allFilter?experience=${experience}`;
@@ -27,7 +27,7 @@ const Filter = () => {
     query += searchCat ? `&category=${searchCat}` : '';
     query += searchLoc ? `&location=${searchLoc}` : '';
 
-    console.log(query);
+    // console.log(query);
     navigate(query);
 
     // navigate(
