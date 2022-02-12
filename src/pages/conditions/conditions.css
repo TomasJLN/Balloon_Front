@@ -1,0 +1,12 @@
+div.conditions-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+div.conditions-container p {
+	color: rgb(0, 0, 0);
+	line-height: 1;
+	padding: 3rem;
+}
