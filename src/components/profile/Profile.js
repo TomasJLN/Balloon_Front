@@ -22,8 +22,9 @@ export const Profile = () => {
     setError(null);
     const file = e.target.files[0];
     const url = `${process.env.REACT_APP_BACKEND_URL}/user/avatar`;
+    const key = 'avatar';
     if (file) {
-      const resp = await fileUpload(url, setError, file, token);
+      const resp = await fileUpload(url, key, setError, file, token);
       setNewAvatar(resp.data);
     }
     setLoading(false);

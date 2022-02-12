@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CategoryAdminCard } from '../../components/categoryAdminCard/CategoryAdminCard.js';
-import { useGetCategories } from '../../hooks/useGetCategories.js';
-import './admin-category.css';
+import { ExperienceAdminCard } from '../../components/experienceAdminCard/ExperienceAdminCard.js';
+import { useFiltered } from '../../hooks/useFiltered.js';
+import './admin-experience.css';
 
-export const AdminCategory = () => {
+export const AdminExperience = () => {
   const [toSearch, setToSearch] = useState('');
 
-  const { categories, loading, error } = useGetCategories(toSearch);
+  const { filtered, loading } = useFiltered(`?experience=${toSearch}`);
 
   const ref = useRef(null);
 
@@ -16,20 +16,20 @@ export const AdminCategory = () => {
     setToSearch(ref.current.value);
   };
 
-  useEffect(() => {
-    error && alert(error);
-  }, [error]);
+  // useEffect(() => {
+  //   error && alert(error);
+  // }, [error]);
 
   return (
     <div>
-      <h1 id="title-admin-cat">GESTOR de Categorías</h1>
+      <h1 id="title-admin-cat">GESTOR de Experiencias</h1>
       <form onSubmit={handleSubmit} id="category-form">
         <div className="input-search">
-          <label htmlFor="findCat">Buscar Categoría</label>
+          <label htmlFor="findCat">Buscar Experiencia</label>
           <input
             type="text"
             ref={ref}
-            caption="Búsqueda por ID / Categoría"
+            caption="Búsqueda por Título / Descripción"
             onChange={handleSubmit}
             value={toSearch}
           />
@@ -39,19 +39,19 @@ export const AdminCategory = () => {
             to="/dashboard/adminCategory/createCategory"
             id="link-create-cat"
           >
-            crear categoría
+            crear experiencia
           </Link>
         </div>
       </form>
-      {categories.length < 1 ? (
+      {filtered.length < 1 ? (
         <div className="error-info fade_in">No hay resultados a mostrar</div>
       ) : (
         <div className="form-wrap">
           <hr />
-          {categories.map((cat) => (
-            <CategoryAdminCard
-              key={cat.id}
-              cat={cat}
+          {filtered.map((exp) => (
+            <ExperienceAdminCard
+              key={exp.ID}
+              exp={exp}
               setToSearch={setToSearch}
             />
           ))}

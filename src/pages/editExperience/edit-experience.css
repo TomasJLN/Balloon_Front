@@ -1,4 +1,4 @@
-.edit-cat-form {
+.edit-exp-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -15,20 +15,20 @@
   flex-grow: 1;
 }
 
-#edit-cat-title {
+#edit-exp-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
 }
 
-#edit-cat-name {
+#edit-exp-name {
   width: 80%;
-  height: 4rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  word-break: break-word;
   border: none;
 }
-#edit-cat-description {
+#edit-exp-description {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -36,7 +36,7 @@
   word-break: normal;
 }
 
-#edit-cat-description > textarea {
+#edit-exp-description > textarea {
   width: 100%;
   margin: 0 10px;
   border: none;
@@ -48,17 +48,17 @@
   justify-content: center;
 }
 
-.photo-figure-category {
+.photo-figure-experience {
   display: flex;
   justify-content: center;
 }
-.photo-category {
+.photo-experience {
   border-radius: 10px;
   max-height: 200px;
 }
 
-.btn-update-category {
-  margin: 3rem 0 0;
+.btn-update-experience {
+  margin: 1rem 0 0;
   height: 2.5rem;
   background-color: black;
   color: white;

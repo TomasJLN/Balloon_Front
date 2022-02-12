@@ -2,19 +2,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import fetcher from '../../helpers/fetcher';
-import './category-admin-card.css';
+import './experience-admin-card.css';
 
-export const CategoryAdminCard = ({ cat, setToSearch }) => {
+export const ExperienceAdminCard = ({ exp, setToSearch }) => {
   const [token, setToken] = useContext(TokenContext);
-  const [active, setActive] = useState(cat.active === 1 ? true : false);
+  const [active, setActive] = useState(exp.active === 1 ? true : false);
   const [result, setResult] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Trae los resultados de las categorias
+  // Trae los resultados de las experiencias
   useEffect(() => {
-    fetcher(setResult, setError, setLoading, `category/${cat.id}`, {
+    fetcher(setResult, setError, setLoading, `experience/${exp.ID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
         active: active ? '1' : '0',
       }),
     });
-  }, [active, cat.id, token]);
+  }, [active, exp.ID, token]);
 
   // Un alert en cuanto el estado de error cambie de null
   useEffect(() => {
@@ -34,20 +34,20 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
   return (
     <div className="card-category fade_in">
       <div className="title-card-category">
-        <span>ID: {cat.id}</span>
-        <span>Categoría: {cat.title}</span>
+        <span>ID: {exp.ID}</span>
+        <span>Categoría: {exp.title}</span>
       </div>
       <figure className="card-figure-category">
-        {cat.photo ? (
+        {exp.photo ? (
           <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`}
-            alt={cat.title}
+            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`}
+            alt={exp.title}
             className="card-thumbnail-category"
           />
         ) : (
           <img
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-            alt={cat.title}
+            alt={exp.title}
             className="card-thumbnail-category"
           />
         )}
@@ -62,7 +62,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
               setResult,
               setError,
               setLoading,
-              `category/${cat.id}`,
+              `experience/${exp.ID}`,
               {
                 method: 'DELETE',
                 headers: {
@@ -78,7 +78,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
         <button
           className="btn-category-option"
           onClick={() =>
-            navigate(`/dashboard/adminCategory/editCategory/${cat.id}`)
+            navigate(`/dashboard/adminExperience/editExperience/${exp.ID}`)
           }
         >
           Editar

@@ -16,6 +16,7 @@ const ShowResults = () => {
   const q = location.search;
 
   let query = q;
+
   query.length < 1 ? (query = '?experience=&featured=1') : (query = q);
 
   const { filtered, loading } = useFiltered(query);

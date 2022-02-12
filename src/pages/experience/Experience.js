@@ -1,12 +1,11 @@
 import React from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
-import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import { useExperience } from '../../hooks/useExperience';
 import './experience.css';
 
 const Experience = () => {
-  const { id } = useParams();
+  const { ID } = useParams();
   const {
     category,
     title,
@@ -18,7 +17,7 @@ const Experience = () => {
     endDate,
     conditions,
     normatives,
-  } = useExperience(id);
+  } = useExperience(ID);
 
   let infoExperience = [];
   infoExperience.push({ title: 'Condiciones', content: conditions });
@@ -29,10 +28,7 @@ const Experience = () => {
   return (
     <div className="single-card">
       <h1>{title}</h1>
-      {photo &&
-      checkIfFileExists(
-        `${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`
-      ) ? (
+      {photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
           alt={title}
@@ -52,8 +48,8 @@ const Experience = () => {
         <button
           className="btn-comprar"
           onClick={(e) => {
-            console.log(`/booking/${id}`);
-            navigate(`/booking/${id}`);
+            console.log(`/booking/${ID}`);
+            navigate(`/booking/${ID}`);
           }}
         >
           Comprar

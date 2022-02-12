@@ -6,6 +6,8 @@ import { EditCategory } from '../pages/editCategory/EditCategory';
 import { NotFound } from '../components/notfound/NotFound';
 import { UserContext } from '../contexts/UserContext';
 import { useContext } from 'react';
+import { AdminExperience } from '../pages/dashboardExperience/AdminExperience';
+import { EditExperience } from '../pages/editExperience/EditExperience';
 
 export const DashboardRoute = () => {
   const [user, setUser] = useContext(UserContext);
@@ -26,7 +28,14 @@ export const DashboardRoute = () => {
             path="dashboard/adminCategory/editCategory/:id"
             element={<EditCategory />}
           />
-          <Route path="dashboard/adminExperience" element={<AdminCategory />} />
+          <Route
+            path="dashboard/adminExperience"
+            element={<AdminExperience />}
+          />
+          <Route
+            path="dashboard/adminExperience/editExperience/:ID"
+            element={<EditExperience />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       ) : (

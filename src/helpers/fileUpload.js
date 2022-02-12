@@ -1,6 +1,6 @@
-export const fileUpload = async (url, setError, file, token) => {
+export const fileUpload = async (url, key, setError, file, token) => {
   const formData = new FormData();
-  formData.append('avatar', file);
+  formData.append(key, file);
   try {
     const resp = await fetch(url, {
       method: 'PUT',
