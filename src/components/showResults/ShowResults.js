@@ -11,7 +11,7 @@ const ShowResults = () => {
 
   const [lastIndex, setLastIndex] = useState(expByPage);
 
-  const [btnMore, setBtnMore] = useState(true);
+  const [btnMore, setBtnMore] = useState(false);
 
   const q = location.search;
 
@@ -46,7 +46,10 @@ const ShowResults = () => {
   return (
     <>
       {loading ? (
-        <h1 className="loading fade_in">Loading...</h1>
+        <div className="spinner-container">
+          <h1>Cargando...</h1>
+          <div className="balloon_spinner"></div>
+        </div>
       ) : (
         <>
           <div className="card-deck">
