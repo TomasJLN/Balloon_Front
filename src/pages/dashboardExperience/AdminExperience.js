@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ExperienceAdminCard } from '../../components/experienceAdminCard/ExperienceAdminCard.js';
 import { useFiltered } from '../../hooks/useFiltered.js';
 import './admin-experience.css';
@@ -10,6 +10,7 @@ export const AdminExperience = () => {
   const { filtered, loading } = useFiltered(`?experience=${toSearch}`);
 
   const ref = useRef(null);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +23,9 @@ export const AdminExperience = () => {
 
   return (
     <div>
-      <h1 id="title-admin-cat">GESTOR de Experiencias</h1>
+      <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
+        GESTOR de Experiencias
+      </h1>
       <form onSubmit={handleSubmit} id="category-form">
         <div className="input-search">
           <label htmlFor="findCat">Buscar Experiencia</label>
@@ -36,7 +39,7 @@ export const AdminExperience = () => {
         </div>
         <div>
           <Link
-            to="/dashboard/adminCategory/createCategory"
+            to="/dashboard/adminExperience/createExperience"
             id="link-create-cat"
           >
             crear experiencia

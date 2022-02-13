@@ -14,13 +14,13 @@ export const EditCategory = () => {
   const [photoCat, setPhotoCat] = useState(null);
   const [result, setResult] = useState('null');
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [token, setToken] = useContext(TokenContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
   console.log('param de la categoria ', id);
-  const { cat } = useAdminCat(id, token);
+  const { cat } = useAdminCat(id, token, setLoading, setError);
 
   useEffect(() => {
     if (Object.keys(cat).length > 0) {
@@ -85,85 +85,89 @@ export const EditCategory = () => {
 
   return (
     <>
-      <section>
-        {error && <h1>{error}</h1>}
-        <div className="title-back">
-          <h1 className="title">Editar CATEGORIA</h1>
-          <div className="back-div">
-            <button
-              className="btn-back"
-              onClick={() => {
-                navigate(-1);
-              }}
-            >
-              ↩️ back
-            </button>
-          </div>
-        </div>
-        <br />
-
-        <hr />
-        <form onSubmit={handleUpdateCategory} className="edit-cat-form">
-          <div id="edit-cat-title">
-            <input
-              type="text"
-              id="edit-cat-name"
-              name="category"
-              value={nameCategory}
-              onChange={(e) => {
-                setNameCategory(e.target.value);
-              }}
-              placeholder="Nombre categoría"
-            />
-            <div className="edit-sect-activar">
-              <p>Activar</p>
-              <Switch checked={activeCat} onChange={handleActiveChange} />
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <section>
+          {error && <h1>{error}</h1>}
+          <div className="title-back">
+            <h1 className="title">Editar CATEGORIA</h1>
+            <div className="back-div">
+              <button
+                className="btn-back"
+                onClick={() => {
+                  navigate(-1);
+                }}
+              >
+                ↩️ back
+              </button>
             </div>
           </div>
-          <div id="edit-cat-description">
-            <textarea
-              type="text"
-              name="description"
-              value={descriptionCategory}
-              onChange={(e) => {
-                setDescriptionCategory(e.target.value);
-              }}
-              placeholder="Descripcion categoría"
-            />
-          </div>
-
           <br />
-          {!error && <p className="title-center">Imagen de la categoría</p>}
 
-          <figure className="photo-figure-category">
-            {photoCat ? (
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoCat}`}
-                alt={cat.title}
-                className="photo-category"
-                onClick={handlePictureClick}
+          <hr />
+          <form onSubmit={handleUpdateCategory} className="edit-cat-form">
+            <div id="edit-cat-title">
+              <input
+                type="text"
+                id="edit-cat-name"
+                name="category"
+                value={nameCategory}
+                onChange={(e) => {
+                  setNameCategory(e.target.value);
+                }}
+                placeholder="Nombre categoría"
               />
-            ) : (
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-                alt={cat.title}
-                onClick={handlePictureClick}
-                className="photo-category"
+              <div className="edit-sect-activar">
+                <p>Activar</p>
+                <Switch checked={activeCat} onChange={handleActiveChange} />
+              </div>
+            </div>
+            <div id="edit-cat-description">
+              <textarea
+                type="text"
+                name="description"
+                value={descriptionCategory}
+                onChange={(e) => {
+                  setDescriptionCategory(e.target.value);
+                }}
+                placeholder="Descripcion categoría"
               />
-            )}
-          </figure>
+            </div>
 
-          <input
-            type="file"
-            id="fileSelector"
-            style={{ display: 'none' }}
-            onChange={handlePictureChange}
-          />
-          <button type="submit" className="btn-update-category">
-            Actualizar Categoría
-          </button>
-        </form>
-      </section>
+            <br />
+            {!error && <p className="title-center">Imagen de la categoría</p>}
+
+            <figure className="photo-figure-category">
+              {photoCat ? (
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoCat}`}
+                  alt={cat.title}
+                  className="photo-category"
+                  onClick={handlePictureClick}
+                />
+              ) : (
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+                  alt={cat.title}
+                  onClick={handlePictureClick}
+                  className="photo-category"
+                />
+              )}
+            </figure>
+
+            <input
+              type="file"
+              id="fileSelector"
+              style={{ display: 'none' }}
+              onChange={handlePictureChange}
+            />
+            <button type="submit" className="btn-update-category">
+              Actualizar Categoría
+            </button>
+          </form>
+        </section>
+      )}
     </>
   );
 };

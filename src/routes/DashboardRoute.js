@@ -8,6 +8,7 @@ import { UserContext } from '../contexts/UserContext';
 import { useContext } from 'react';
 import { AdminExperience } from '../pages/dashboardExperience/AdminExperience';
 import { EditExperience } from '../pages/editExperience/EditExperience';
+import { CreateExperience } from '../pages/createExperience/CreateExperience';
 
 export const DashboardRoute = () => {
   const [user, setUser] = useContext(UserContext);
@@ -31,6 +32,10 @@ export const DashboardRoute = () => {
           <Route
             path="dashboard/adminExperience"
             element={<AdminExperience />}
+          />
+          <Route
+            path="dashboard/adminExperience/createExperience"
+            element={<CreateExperience />}
           />
           <Route
             path="dashboard/adminExperience/editExperience/:ID"

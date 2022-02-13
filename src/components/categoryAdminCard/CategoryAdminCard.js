@@ -14,6 +14,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 
   // Trae los resultados de las categorias
   useEffect(() => {
+    setLoading(true);
     fetcher(setResult, setError, setLoading, `category/${cat.id}`, {
       method: 'PUT',
       headers: {
@@ -85,7 +86,8 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
         </button>
         {active && (
           <button
-            className="btn-category-option"
+            className="btn-category-option btn-active"
+            id="btn-desactive"
             onClick={() => {
               setActive(!active);
             }}
@@ -96,6 +98,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
         {!active && (
           <button
             className="btn-category-option"
+            id="btn-active"
             onClick={(e) => {
               setActive(!active);
             }}

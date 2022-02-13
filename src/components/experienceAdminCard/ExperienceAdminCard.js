@@ -86,6 +86,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
         {active && (
           <button
             className="btn-category-option"
+            id="btn-desactive"
             onClick={() => {
               setActive(!active);
             }}
@@ -96,6 +97,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
         {!active && (
           <button
             className="btn-category-option"
+            id="btn-active"
             onClick={(e) => {
               setActive(!active);
             }}
