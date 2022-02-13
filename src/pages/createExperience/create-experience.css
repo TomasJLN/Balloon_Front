@@ -1,0 +1,14 @@
+.group-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#edit-exp-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#edit-exp-name {
+  width: 100%;
+}

@@ -14,8 +14,6 @@ const SearchBar = () => {
 
   let { experience } = queryString.parse(location.search);
 
-  experience && console.log(experience);
-
   const [toSearch, setToSearch] = useState(experience ? experience : '');
   const [submitted, setSubmitted] = useState(false);
 

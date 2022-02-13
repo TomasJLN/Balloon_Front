@@ -26,12 +26,14 @@ const Filter = () => {
   const [searchDate, setSearchDate] = useState('');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+
   useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
     query += searchStartPrice ? `&start_price=${searchStartPrice}` : '';
     query += searchEndPrice ? `&end_price=${searchEndPrice}` : '';
     query += searchCat ? `&category=${searchCat}` : '';
     query += searchLoc ? `&location=${searchLoc}` : '';
+
     navigate(query);
   }, [searchCat, searchLoc, searchStartPrice, searchEndPrice]);
 

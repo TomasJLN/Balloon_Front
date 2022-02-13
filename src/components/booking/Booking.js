@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Accordion from '../accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
@@ -102,9 +102,11 @@ const Booking = () => {
     usuario.role === 'user' && createBooking();
     usuario.role === 'admin' &&
       alert('Un administrador no puede\nhacer reservas...');
-    console.log('result del booking: ', result.length);
-    result.length > 1 && navigate(`/bookingDetail/${result}`);
   };
+
+  useEffect(() => {
+    result.length > 1 && navigate(`/bookingDetail/${result}`);
+  }, [result, setResult, navigate]);
 
   useEffect(() => {
     if (error !== null) alert('el error -> ', error);

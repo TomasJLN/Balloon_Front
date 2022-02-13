@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import './experience-card.css';
 
 export const ExperienceCard = ({ exp }) => {
@@ -20,10 +19,10 @@ export const ExperienceCard = ({ exp }) => {
     <div
       className="card fade_in"
       onClick={() => {
-        navigate(`/experience/${exp.ID}`);
+        navigate(`/experience/${exp.id}`);
       }}
     >
-      {exp?.photo ? (
+      {exp.photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`}
           alt={exp.title}

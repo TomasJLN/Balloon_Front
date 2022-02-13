@@ -1,8 +1,7 @@
 import moment from 'moment';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
-import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import { miniFetcher } from '../../helpers/fetcher';
 import { useBookingDetails } from '../../hooks/useBookingDetails';
 import { useBookingQRs } from '../../hooks/useBookingQRs';
@@ -13,18 +12,11 @@ import './booking-details.css';
 export const BookingDetails = () => {
   const { ticket } = useParams();
   const [token, setToken] = useContext(TokenContext);
-  const [detail, setDetail] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [cancelStatus, setCancelStatus] = useState(null);
 
   const exDetails = useBookingDetails(ticket, token);
   const QRs = useBookingQRs(ticket, token);
   const othersBookings = useUserBookings(ticket, token);
-
-  console.log(exDetails);
-  console.log(QRs);
-  console.log(othersBookings);
 
   const handleCancelBooking = (e, ticket) => {
     e.preventDefault();
@@ -45,20 +37,10 @@ export const BookingDetails = () => {
     setCancelStatus(null);
   }, [cancelStatus]);
 
-  console.log(
-    '----> ',
-    checkIfFileExists(
-      `${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo}`
-    )
-  );
-
   return (
     <div>
       <h1>Su compra de realizó satisfactoriamente</h1>
-      {exDetails?.photo &&
-      checkIfFileExists(
-        `${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo}`
-      ) ? (
+      {exDetails?.photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails.photo}`}
           alt={exDetails?.title}
@@ -105,7 +87,7 @@ export const BookingDetails = () => {
           {/* Pasar a componente */}
           {othersBookings.map((oq) => {
             return (
-              <div className="other-card">
+              <div key={oq.id} className="other-card">
                 <p className="btns-other-bookings">
                   {oq.ticket} {oq.title}
                 </p>

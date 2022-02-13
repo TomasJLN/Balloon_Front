@@ -55,7 +55,7 @@ const ShowResults = () => {
           <div className="card-deck">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (
-                <ExperienceCard key={exp.ID} exp={exp} />
+                <ExperienceCard key={exp.id} exp={exp} />
               ))
             ) : (
               <h1 className="info fade_in">No se encontraron resultados</h1>

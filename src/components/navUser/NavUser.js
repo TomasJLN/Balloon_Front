@@ -53,9 +53,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/register">Registro</Link>
           </li>
         )}
-        <li>
-          <Link to="/contact-form">Contactar</Link>
-        </li>
+        {role !== 'admin' && (
+          <li>
+            <Link to="/contact-form">Contactar</Link>
+          </li>
+        )}
       </ul>
     </div>
   );

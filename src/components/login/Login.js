@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
@@ -17,7 +17,7 @@ const Login = () => {
 
   useEffect(() => {
     token && !error && usuario.role === 'admin' && navigate('/dashboard');
-    token && !error && usuario.role === 'user' && navigate('/');
+    token && !error && usuario.role === 'user' && navigate(-1);
   }, [token, error, navigate, usuario.role]);
 
   const handleLogin = async (e) => {

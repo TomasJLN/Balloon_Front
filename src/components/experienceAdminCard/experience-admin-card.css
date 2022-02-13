@@ -48,11 +48,3 @@
   border: none;
   border-radius: 12px;
 }
-
-#btn-active {
-  background-color: green;
-}
-
-#btn-desactive {
-  background-color: red;
-}
