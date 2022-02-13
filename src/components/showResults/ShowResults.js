@@ -5,7 +5,7 @@ import { ExperienceCard } from '../experienceCard/ExperienceCard';
 import './show-results.css';
 
 const ShowResults = () => {
-  const expByPage = 10;
+  const expByPage = 6;
 
   const location = useLocation();
 
