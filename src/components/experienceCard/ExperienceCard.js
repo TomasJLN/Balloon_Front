@@ -8,13 +8,6 @@ export const ExperienceCard = ({ exp }) => {
   const url = `https://www.google.es/maps/@${coords},19z`;
   const navigate = useNavigate();
 
-  console.log(
-    checkIfFileExists(
-      `${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`
-    ),
-    `${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`
-  );
-
   return (
     <div
       className="card fade_in"
