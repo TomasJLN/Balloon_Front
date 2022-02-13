@@ -6,6 +6,8 @@ export const useBookingQRs = (ticket, token) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  //Hace falta una key para el listado aquí?
+
   useEffect(() => {
     fetcher(setBookingQRs, setError, setLoading, `booking/view/qr/${ticket}`, {
       method: 'GET',

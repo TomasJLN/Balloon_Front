@@ -87,7 +87,7 @@ export const BookingDetails = () => {
           {/* Pasar a componente */}
           {othersBookings.map((oq) => {
             return (
-              <div className="other-card">
+              <div key={oq.id} className="other-card">
                 <p className="btns-other-bookings">
                   {oq.ticket} {oq.title}
                 </p>

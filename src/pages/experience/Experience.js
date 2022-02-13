@@ -5,7 +5,10 @@ import { useExperience } from '../../hooks/useExperience';
 import './experience.css';
 
 const Experience = () => {
-  const { ID } = useParams();
+  const { id } = useParams();
+
+  console.log(useParams());
+
   const {
     category,
     title,
@@ -17,7 +20,7 @@ const Experience = () => {
     endDate,
     conditions,
     normatives,
-  } = useExperience(ID);
+  } = useExperience(id);
 
   let infoExperience = [];
   infoExperience.push({ title: 'Condiciones', content: conditions });
@@ -48,8 +51,8 @@ const Experience = () => {
         <button
           className="btn-comprar"
           onClick={(e) => {
-            console.log(`/booking/${ID}`);
-            navigate(`/booking/${ID}`);
+            console.log(`/booking/${id}`);
+            navigate(`/booking/${id}`);
           }}
         >
           Comprar
