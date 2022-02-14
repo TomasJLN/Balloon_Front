@@ -1,0 +1,22 @@
+.Editavatar div {
+    width: 5;
+    height: 6;
+    color: red;
+}
+
+.Editavatar h2{
+    font-size: 1rem;
+    overflow: auto;
+    text-align: center;
+    margin: 30px;
+
+}
+
+.Editavatar button{
+    border-radius: 30px;
+    height: 3rem;
+    width: 5rem;
+    color: white;
+    background-color: black;
+   
+}

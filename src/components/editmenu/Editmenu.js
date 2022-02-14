@@ -1,6 +1,5 @@
 import {NavLink} from "react-router-dom";
-import {FaUserCircle, FaUserCheck} from 'react-icons/fa';
-import {FaLock, FaCalendarAlt} from 'react-icons/fa';
+import {FaLock, FaCalendarAlt, FaUserCircle} from 'react-icons/fa';
 import './editmenu.css';
 
 
@@ -12,22 +11,21 @@ return (
 <section className="editmenu">
     <ul>
         <li>
+        <div><FaUserCircle/></div>
         <NavLink exact to="/editprofile" activeClassName="active">
-        Información personal
+        Cambiar mi foto
         </NavLink>
-        <FaUserCheck/>
         </li>
-        <li>
+        <li><div><FaLock/></div>
         <NavLink exact to="/editprofile" activeClassName="active"> 
-        Seguridad
+        Cambiar mis datos
         </NavLink>
-        <FaLock/>
         </li>
-        <li>
-        <NavLink exact to="/editprofile" activeClassName="editbooking">
+        <li><div><FaCalendarAlt/></div>
+        <NavLink exact to="/editprofile" activeClassName="Editbooking">
         Mis reservas
         </NavLink>
-        <FaCalendarAlt/>
+
         </li> 
     </ul>
 </section>

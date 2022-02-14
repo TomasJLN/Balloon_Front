@@ -1,54 +1,78 @@
 import React, {useState, useContext} from 'react';
+import {NavLink} from "react-router-dom";
 import fetcher from '../../helpers/fetcher';
 import {TokenContext} from '../../contexts/TokenContext';
 import './editpassword.css';
 
 const Editpassword = () => {
 
-        const [token, setToken] = useContext(TokenContext);
-        const [oldpassword, setOldpassword] = useState('');
-        const [newpassword, setNewPassword] = useState('');
+    const [token, setToken] = useContext(TokenContext);
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [password, setpassword] = useState('');
+    const [newpassword, setnewpassword] = useState('');
+   
+
+        const handlepassword = async(e) => {
+            e.preventDefault();
+            await fetcher('user/edit', {
+            method:'PUT',
+            headers: {
+            Authorization: token, },
+            body: JSON.stringify({name, surname, password, newpassword})
+            });
+        };
 
 
-        const editnumber = async(e) => {
-        e.preventDefault();
-        await fetcher('user/password', {
-        method:'PUT',
-        headers: {
-        Authorization: token, },
-        body: JSON.stringify({oldpassword, newpassword})
-        });
-    };
+return (
+    <section>
+        <form className="editpassword" onSubmit={Editpassword}>
 
+        <h2>Cambiar mis datos</h2>
+        <label htmlFor="name">Nombre*:</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            value={name}
+            onChange={handlepassword}
+        ></input>
+        <label htmlFor="surname">Apellidos*:</label>
+        <input
+            type="text"
+            id="surname"
+            name="surname"
+            required
+            value={surname}
+            onChange={handlepassword}
+        ></input>
+        <label htmlFor="password">Contraseña actual*:</label>
+        <input
+            type="email"
+            id="password"
+            name="password"
+            required
+            value={password}
+            onChange={handlepassword}
+        ></input>
+        <label htmlFor="newemail">Nueva contraseña*:</label>
+        <input
+            type="text"
+            id="newpassword"
+            name="newpassword"
+            required
+            value={newpassword}
+            onChange={handlepassword}
+        ></input>
 
-        return (
-        <section>
-            <form className="editpassword" onSubmit={Editpassword}>
-            <h2>Cambiar contraseña</h2>
-            <label htmlFor="oldpassword">Contraseña:</label>
-            <input
-                type="password"
-                id="oldpassword"
-                name="oldpassword"
-                value={oldpassword}
-                onChange={editnumber}
-            ></input>
-            <label htmlFor="newpassword">NuevaContraseña:</label>
-            <input
-                type="password"
-                id="newpassword"
-                name="newpassword"
-                value={newpassword}
-                onChange={editnumber}
-            ></input>
-                
-            <button className="actualizar" type="submit">
-            Actualizar
-            </button>
-            </form>
+        <button className="Guardar" type="submit">
+        Guardar
+        </button>
+        </form>
         </section>
 
-        );
-};
+);
+};        
                 
 export default Editpassword;

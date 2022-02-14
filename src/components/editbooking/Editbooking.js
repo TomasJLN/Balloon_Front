@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {NavLink} from "react-router-dom";
 import './editbooking.css';
 
 const Editbooking = () => {
@@ -8,7 +9,7 @@ return (
 
     <form className="editbooking">
         <h2 className="editbooking">Mis reservas</h2>
-
+        <div>Foto reserva</div>
 
         <button className="ver" type="submit">
         Ver

@@ -1,28 +1,36 @@
 
 .editmenu{
 
-    display: inline-block;
+  
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 100;
     background-color:coral;
     color: white;
+  
 }
 
 .editmenu li {
     
+    display: flex;
+    flex-wrap: wrap;
     border-bottom: 1px solid black;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     list-style-type: none;
     color: white;
-    padding: 1rem;
-    max-width: 200px;
+    padding: 2rem;
     height: 100px;
     opacity: 1;
     
+}
+
+.editmenu div {
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+    padding-right: 2rem;
 }
     
     

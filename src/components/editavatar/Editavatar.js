@@ -1,4 +1,6 @@
-import {useState, useContext} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import {NavLink} from "react-router-dom";
+import {FaUserCircle} from 'react-icons/fa';
 import fetcher from '../../helpers/fetcher';
 import {TokenContext} from '../../contexts/TokenContext';
 import './editavatar.css';
@@ -6,7 +8,7 @@ import './editavatar.css';
 const Editavatar = () => {
 
     const [token, setToken] = useContext(TokenContext);
-    const [avatar, setAvatar] = useState(avatar);
+    const [avatar, setAvatar] = useState('');
 
         const handlavatar = async(e) => {
             e.preventDefault();
@@ -18,13 +20,12 @@ const Editavatar = () => {
             });
         };
 
-
 return (
-<section>
-
-
+<section className="Editavatar">
+    <h2>Cambiar mi foto</h2>
+    <img src={FaUserCircle}/>
     <button className="Guardar" type="submit">
-        Cambiar Foto
+        Cambiar
     </button>
 
 </section>

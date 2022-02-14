@@ -1,0 +1,27 @@
+.editbooking button{
+    border-radius: 30px;
+    height: 3rem;
+    width: 5rem;
+    color: white;
+    background-color: black;
+   
+
+}
+
+.editbooking h2{
+
+font-size: 1rem;
+overflow: auto;
+text-align: center;
+margin-bottom: 20px;
+}
+
+.editbooking div{
+    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
