@@ -18,13 +18,9 @@ export const AdminCategory = () => {
     setToSearch(ref.current.value);
   };
 
-  // useEffect(() => {
-  //   error && alert(error);
-  // }, [error]);
-
-  // useEffect(() => {
-  //   console.log(toSearch);
-  // }, [setToSearch, toSearch]);
+  useEffect(() => {
+    error && alert(error);
+  }, [error]);
 
   return (
     <>

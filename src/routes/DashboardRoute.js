@@ -38,7 +38,7 @@ export const DashboardRoute = () => {
             element={<CreateExperience />}
           />
           <Route
-            path="dashboard/adminExperience/editExperience/:ID"
+            path="dashboard/adminExperience/editExperience/:id"
             element={<EditExperience />}
           />
           <Route path="*" element={<NotFound />} />

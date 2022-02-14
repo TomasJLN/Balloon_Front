@@ -16,7 +16,5 @@ export const useGetCategories = (category = '') => {
     );
   }, [category]);
 
-  console.log('salen las categorias', categories);
-
   return { categories, loading, error };
 };
