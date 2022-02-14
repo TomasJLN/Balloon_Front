@@ -7,12 +7,15 @@ import queryString from 'query-string';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../searchBar.css';
 import DatePicker, { Calendar, DateObject } from 'react-multi-date-picker';
+import { VscCalendar } from 'react-icons/vsc';
 import 'react-multi-date-picker/styles/layouts/mobile.css';
 import { FaCalendarAlt } from 'react-icons/fa';
 import 'react-multi-date-picker/styles/colors/purple.css';
 import opacity from 'react-element-popper/animations/opacity';
+import React, { useRef } from 'react';
 
 const Filter = () => {
+	const datePickerRef = useRef();
 	const categories = useCategories2();
 	const locations = useLocations();
 	const navigate = useNavigate();
@@ -184,16 +187,14 @@ const Filter = () => {
 
 						<div className='datefilter'>
 							<div className='DateSearch'>
-								{' '}
-								<FaCalendarAlt
+								{/*<FaCalendarAlt
 									style={{
 										color: 'black',
 										fontSize: '24px',
 										marginRight: '5px',
 									}}
-								/>
+								/>*/}
 								<DatePicker
-									placeholder='Rango de fecha'
 									className='date purple'
 									value={searchDate}
 									onChange={setSearchDate}
@@ -203,7 +204,13 @@ const Filter = () => {
 									hideOnScroll
 									inputClass='custom-input'
 									animations={[opacity()]}
+									ref={datePickerRef}
 								/>
+								<div>
+									<button onClick={() => datePickerRef.current.openCalendar()}>
+										<VscCalendar />
+									</button>
+								</div>
 							</div>
 						</div>
 					</Form>

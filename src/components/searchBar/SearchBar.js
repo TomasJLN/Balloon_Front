@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import './searchBar.css';
 import Filter from './filter/Filter';
+import DateSearch from './datesearch/DateSearch';
 
 const SearchBar = () => {
 	const navigate = useNavigate();
@@ -59,12 +60,12 @@ const SearchBar = () => {
 						<FaSearch />
 					</button>
 					<button className='calendar-button'>
-						<VscCalendar />
+						<DateSearch />
 					</button>
 				</form>
 			</div>
 			<div className='filter'>
-				{!submitted && <Filter />}
+				{submitted && <Filter />}
 				<div className='filter-toggle'>
 					{submitted && (
 						<button
