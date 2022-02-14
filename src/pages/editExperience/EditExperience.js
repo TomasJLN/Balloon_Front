@@ -10,6 +10,7 @@ import moment from 'moment';
 
 export const EditExperience = () => {
   const [expData, setExpData] = useState({
+    id: '',
     idCategory: '',
     title: '',
     description: '',
@@ -31,7 +32,6 @@ export const EditExperience = () => {
   const [token, setToken] = useContext(TokenContext);
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(useParams());
 
   const { experience } = useEditExperience(id, token);
 

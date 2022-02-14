@@ -1,13 +1,10 @@
-import React from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
 import './experience.css';
 
 const Experience = () => {
   const { id } = useParams();
-
-  console.log(useParams());
 
   const {
     category,
@@ -30,7 +27,7 @@ const Experience = () => {
 
   return (
     <div className="single-card">
-      <h1>{title}</h1>
+      <h1 className="title">{title}</h1>
       {photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
@@ -44,14 +41,14 @@ const Experience = () => {
           className="exp-picture"
         />
       )}
-      <h2 id="precio">{price} €</h2>
+      <p>🌟🌟🌟🌟🌟</p>
       <p>{description}</p>
+      <h2 id="precio">{price} €</h2>
+
       <div className="ratin-comprar">
-        <p>🌟🌟🌟🌟🌟</p>
         <button
           className="btn-comprar"
           onClick={(e) => {
-            console.log(`/booking/${id}`);
             navigate(`/booking/${id}`);
           }}
         >
