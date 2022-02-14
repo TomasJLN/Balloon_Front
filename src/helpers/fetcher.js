@@ -38,9 +38,11 @@ export const miniFetcher = async (path, args) => {
     if (status === 'ok') {
       res = data;
     } else {
+      res = message;
       console.log('mensaje error con respuesta ->', message);
     }
   } catch (error) {
+    res = error;
     console.log('mensaje error sin respuesta ->', error);
   }
   return res;

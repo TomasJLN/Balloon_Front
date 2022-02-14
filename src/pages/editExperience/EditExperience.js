@@ -115,51 +115,38 @@ export const EditExperience = () => {
   }, [result, navigate]);
 
   return (
-    <>
-      <section>
-        {error && <h1>{error}</h1>}
-        <div className="title-back">
-          <h1 className="title">Editar Experiencia</h1>
-          <div className="back-div">
-            <button
-              className="btn-back"
-              onClick={() => {
-                navigate(-1);
-              }}
-            >
-              ↩️ back
-            </button>
-          </div>
-        </div>
-        <br />
+    <section className="wrap-section">
+      {error && <h1>{error}</h1>}
+      <div className="title-back">
+        <h1 className="title">Editar Experiencia</h1>
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          ↩️ back
+        </button>
+      </div>
 
-        <hr />
-        <form onSubmit={handleUpdateCategory} className="edit-cat-form">
-          <div className="id-switch">
-            <div>
-              <label htmlFor="id-cat-exp">ID Categoría: </label>
-              <input
-                type="text"
-                id="id-cat-exp"
-                name="id-cat-exp"
-                value={expData.idCategory}
-                onChange={(e) => {
-                  setExpData({ ...expData, idCategory: e.target.value });
-                }}
-                placeholder="ID Categoría"
-              />
-            </div>
-            <div className="edit-sect-activar">
-              <p>Activar</p>
-              <Switch checked={expData.active} onChange={handleActiveChange} />
-              <p>Destacado</p>
-              <Switch
-                checked={expData.featured}
-                onChange={handleFeaturedChange}
-              />
-            </div>
-          </div>
-          <div className="edit-labelFor">
+      <hr />
+      <br />
+      <form onSubmit={handleUpdateCategory}>
+        <div className="input-text-field">
+          <label htmlFor="id-cat-exp">ID Categoría: </label>
+          <input
+            type="text"
+            id="id-cat-exp"
+            name="id-cat-exp"
+            value={expData.idCategory}
+            onChange={(e) => {
+              setExpData({ ...expData, idCategory: e.target.value });
+            }}
+            placeholder="ID Categoría"
+          />
+        </div>
+        <div className="double-field">
+          <div>
             <label htmlFor="edit-exp-name">Título: </label>
             <textarea
               type="text"
@@ -172,139 +159,153 @@ export const EditExperience = () => {
               placeholder="Nombre categoría"
             />
           </div>
-          <div className="edit-labelFor">
-            <label htmlFor="edit-exp-description">Descripción: </label>
-            <textarea
-              type="text"
-              id="edit-exp-description"
-              name="description"
-              value={expData.description}
-              onChange={(e) => {
-                setExpData({ ...expData, description: e.target.value });
-              }}
-              placeholder="Descripción de la experiencia"
+          <div className="edit-sect-activar">
+            <p>Activar</p>
+            <Switch checked={expData.active} onChange={handleActiveChange} />
+            <p>Destacado</p>
+            <Switch
+              checked={expData.featured}
+              onChange={handleFeaturedChange}
             />
           </div>
-          <div className="edit-labelFor-row">
-            <label htmlFor="edit-price-exp">Precio: </label>
-            <input
-              type="text"
-              id="edit-price-exp"
-              name="price"
-              value={expData.price}
-              onChange={(e) => {
-                setExpData({ ...expData, price: e.target.value });
-              }}
-              placeholder="Precio de la experiencia"
-            />
-          </div>
-          <div className="edit-labelFor-row">
-            <label htmlFor="edit-startDate-exp">Fecha Inicio: </label>
-            <input
-              type="text"
-              id="edit-startDate-exp"
-              name="starDate"
-              value={expData.startDate}
-              onChange={(e) => {
-                setExpData({ ...expData, startDate: e.target.value });
-              }}
-              placeholder="Fecha inicio experiencia"
-            />
-            <label htmlFor="edit-endDate-exp">Fecha Final: </label>
-            <input
-              type="text"
-              id="edit-endDate-exp"
-              name="endDate"
-              value={expData.endDate}
-              onChange={(e) => {
-                setExpData({ ...expData, endDate: e.target.value });
-              }}
-              placeholder="Fecha fin experiencia"
-            />
-          </div>
-          <div className="edit-labelFor">
-            <label htmlFor="edit-location-exp">Localización: </label>
-            <input
-              type="text"
-              id="edit-location-exp"
-              name="location"
-              value={expData.location}
-              onChange={(e) => {
-                setExpData({ ...expData, location: e.target.value });
-              }}
-              placeholder="Lugar de la experiencia"
-            />
-            <label htmlFor="edit-coords-exp">Coordenadas: </label>
-            <input
-              type="text"
-              id="edit-coords-exp"
-              name="coords"
-              value={expData.coords}
-              onChange={(e) => {
-                setExpData({ ...expData, coords: e.target.value });
-              }}
-              placeholder="Fecha inicio experiencia"
-            />
-          </div>
-          <div className="edit-labelFor">
-            <label htmlFor="edit-conditions-exp">Condiciones: </label>
-            <textarea
-              type="text"
-              id="edit-conditions-exp"
-              name="condiciones"
-              value={expData.conditions}
-              onChange={(e) => {
-                setExpData({ ...expData, conditions: e.target.value });
-              }}
-              placeholder="Condiciones de la experiencia"
-            />
-          </div>
-          <div className="edit-labelFor">
-            <label htmlFor="edit-normatives-exp">Normativas: </label>
-            <textarea
-              type="text"
-              id="edit-normatives-exp"
-              name="normatives"
-              value={expData.normatives}
-              onChange={(e) => {
-                setExpData({ ...expData, normatives: e.target.value });
-              }}
-              placeholder="Normativas de la experiencia"
-            />
-          </div>
-          {!error && <p className="title-center">Imagen de la categoría</p>}
+        </div>
 
-          <figure className="photo-figure-category">
-            {photoExp ? (
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp}`}
-                alt={expData.title}
-                className="photo-experience"
-                onClick={handlePictureClick}
-              />
-            ) : (
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-                alt={expData.title}
-                onClick={handlePictureClick}
-                className="photo-experience"
-              />
-            )}
-          </figure>
-
-          <input
-            type="file"
-            id="fileSelector"
-            style={{ display: 'none' }}
-            onChange={handlePictureChange}
+        <div>
+          <label htmlFor="edit-exp-description">Descripción: </label>
+          <textarea
+            type="text"
+            id="edit-exp-description"
+            name="description"
+            value={expData.description}
+            onChange={(e) => {
+              setExpData({ ...expData, description: e.target.value });
+            }}
+            placeholder="Descripción de la experiencia"
           />
-          <div className="btn-update-exp">
-            <button type="submit" className="btn-update-experience">
-              Actualizar Experiencia
-            </button>
-          </div>
-        </form>
-      </section>
-    </>
+        </div>
+        <div className="input-text-field">
+          <label htmlFor="edit-price-exp">Precio: </label>
+          <input
+            type="text"
+            id="edit-price-exp"
+            name="price"
+            value={expData.price}
+            onChange={(e) => {
+              setExpData({ ...expData, price: e.target.value });
+            }}
+            placeholder="Precio de la experiencia"
+          />
+        </div>
+        <div className="input-text-field-row">
+          <label htmlFor="edit-startDate-exp">Fecha Inicio: </label>
+          <input
+            type="text"
+            id="edit-startDate-exp"
+            name="starDate"
+            size="8"
+            value={expData.startDate}
+            onChange={(e) => {
+              setExpData({ ...expData, startDate: e.target.value });
+            }}
+            placeholder="Fecha inicio experiencia"
+          />
+          <label htmlFor="edit-endDate-exp">Fecha Final: </label>
+          <input
+            type="text"
+            id="edit-endDate-exp"
+            name="endDate"
+            size="8"
+            value={expData.endDate}
+            onChange={(e) => {
+              setExpData({ ...expData, endDate: e.target.value });
+            }}
+            placeholder="Fecha fin experiencia"
+          />
+        </div>
+        <div className="input-text-field">
+          <label htmlFor="edit-location-exp">Localización: </label>
+          <input
+            type="text"
+            id="edit-location-exp"
+            name="location"
+            value={expData.location}
+            onChange={(e) => {
+              setExpData({ ...expData, location: e.target.value });
+            }}
+            placeholder="Lugar de la experiencia"
+          />
+        </div>
+        <div className="input-text-field">
+          <label htmlFor="edit-coords-exp">Coordenadas: </label>
+          <input
+            type="text"
+            id="edit-coords-exp"
+            name="coords"
+            value={expData.coords}
+            onChange={(e) => {
+              setExpData({ ...expData, coords: e.target.value });
+            }}
+            placeholder="Fecha inicio experiencia"
+          />
+        </div>
+        <div className="textarea-input">
+          <label htmlFor="edit-conditions-exp">Condiciones: </label>
+          <textarea
+            type="text"
+            id="edit-conditions-exp"
+            name="condiciones"
+            value={expData.conditions}
+            onChange={(e) => {
+              setExpData({ ...expData, conditions: e.target.value });
+            }}
+            placeholder="Condiciones de la experiencia"
+          />
+        </div>
+        <div className="textarea-input">
+          <label htmlFor="edit-normatives-exp">Normativas: </label>
+          <textarea
+            type="text"
+            id="edit-normatives-exp"
+            name="normatives"
+            value={expData.normatives}
+            onChange={(e) => {
+              setExpData({ ...expData, normatives: e.target.value });
+            }}
+            placeholder="Normativas de la experiencia"
+          />
+        </div>
+        {!error && <p className="title-center">Imagen de la categoría</p>}
+
+        <figure className="photo-figure-category">
+          {photoExp ? (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp}`}
+              alt={expData.title}
+              className="photo-experience"
+              onClick={handlePictureClick}
+            />
+          ) : (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+              alt={expData.title}
+              onClick={handlePictureClick}
+              className="photo-experience"
+            />
+          )}
+        </figure>
+
+        <input
+          type="file"
+          id="fileSelector"
+          style={{ display: 'none' }}
+          onChange={handlePictureChange}
+        />
+        <div className="btn-update-exp">
+          <button type="submit" className="btn-update-experience">
+            Actualizar Experiencia
+          </button>
+        </div>
+      </form>
+    </section>
   );
 };

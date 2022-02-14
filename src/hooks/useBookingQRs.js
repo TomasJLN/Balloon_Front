@@ -18,7 +18,5 @@ export const useBookingQRs = (ticket, token) => {
     });
   }, [ticket, token]);
 
-  console.log(bookingQRs);
-
   return bookingQRs;
 };
