@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import './navUser.css';
 
@@ -42,7 +42,7 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/profile">Perfil</Link>
           </li>
         )}
-        {token && (
+        {token && role === 'user' && (
           <li>
             <Link to="/bookingDetail">Tus Reservas</Link>
           </li>

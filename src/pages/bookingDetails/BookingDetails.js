@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { OtherBooking } from '../../components/otherBooking/OtherBooking';
 import { QrTicket } from '../../components/qr_ticket/QrTicket';
 import { TokenContext } from '../../contexts/TokenContext';
-import { UserContext } from '../../contexts/UserContext';
 import { miniFetcher } from '../../helpers/fetcher';
 import { useBookingDetails } from '../../hooks/useBookingDetails';
 import { useBookingQRs } from '../../hooks/useBookingQRs';
@@ -32,6 +31,7 @@ export const BookingDetails = () => {
       );
     };
     cancelBooking();
+    navigate(`/bookingDetail`);
   };
 
   useEffect(() => {
@@ -42,16 +42,6 @@ export const BookingDetails = () => {
   return (
     <div>
       <h1 className="title-center">{exDetails?.title}</h1>
-      <div className="back-div">
-        <button
-          className="btn-back"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ↩️ back
-        </button>
-      </div>
       {exDetails?.photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails.photo}`}
@@ -81,8 +71,18 @@ export const BookingDetails = () => {
       <div className="qr-booking">
         <h2>Descargar ticket</h2>
         {QRs.map((q) => (
-          <QrTicket key={q.ticket} q={q} />
+          <QrTicket key={q.qrPicture} q={q} />
         ))}
+      </div>
+      <div className="back-div">
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(`/bookingDetail`);
+          }}
+        >
+          🎟️ Mis reservas
+        </button>
       </div>
       <hr />
       <div>
