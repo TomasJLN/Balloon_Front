@@ -7,7 +7,6 @@ export const useGetCategories = (category = '') => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     fetcher(
       setCategories,
       setError,
@@ -16,6 +15,8 @@ export const useGetCategories = (category = '') => {
       {}
     );
   }, [category]);
+
+  console.log('salen las categorias', categories);
 
   return { categories, loading, error };
 };

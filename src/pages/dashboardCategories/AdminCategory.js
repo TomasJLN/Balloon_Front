@@ -18,58 +18,56 @@ export const AdminCategory = () => {
     setToSearch(ref.current.value);
   };
 
-  useEffect(() => {
-    error && alert(error);
-  }, [error]);
+  // useEffect(() => {
+  //   error && alert(error);
+  // }, [error]);
+
+  // useEffect(() => {
+  //   console.log(toSearch);
+  // }, [setToSearch, toSearch]);
 
   return (
     <>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard/`)}>
-            GESTOR de Categorías
-          </h1>
-          <form onSubmit={handleSubmit} id="category-form">
-            <div className="input-search">
-              {/* <label htmlFor="findCat">Buscar Categoría</label> */}
-              <input
-                id="input-search-field"
-                type="text"
-                ref={ref}
-                onChange={handleSubmit}
-                value={toSearch}
-                placeholder="Búsqueda por ID / Categoría"
+      <div>
+        <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard/`)}>
+          GESTOR de Categorías
+        </h1>
+        <form onSubmit={handleSubmit} id="category-form">
+          <div className="input-search">
+            <label htmlFor="findCat">Buscar Categoría</label>
+            <input
+              // id="input-search-field"
+              type="text"
+              ref={ref}
+              onChange={handleSubmit}
+              value={toSearch}
+              placeholder="Búsqueda por ID / Categoría"
+            />
+          </div>
+          <div>
+            <Link
+              to="/dashboard/adminCategory/createCategory"
+              id="link-create-cat"
+            >
+              crear categoría
+            </Link>
+          </div>
+        </form>
+        {categories.length < 1 ? (
+          <div className="error-info fade_in">No hay resultados a mostrar</div>
+        ) : (
+          <div className="form-wrap">
+            <hr />
+            {categories.map((cat) => (
+              <CategoryAdminCard
+                key={cat.id}
+                cat={cat}
+                setToSearch={setToSearch}
               />
-            </div>
-            <div>
-              <Link
-                to="/dashboard/adminCategory/createCategory"
-                id="link-create-cat"
-              >
-                crear categoría
-              </Link>
-            </div>
-          </form>
-          {categories.length < 1 ? (
-            <div className="error-info fade_in">
-              No hay resultados a mostrar
-            </div>
-          ) : (
-            <div className="form-wrap">
-              <hr />
-              {categories.map((cat) => (
-                <CategoryAdminCard
-                  key={cat.id}
-                  cat={cat}
-                  setToSearch={setToSearch}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 };

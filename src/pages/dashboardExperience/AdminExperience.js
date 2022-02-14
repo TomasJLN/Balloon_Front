@@ -32,7 +32,7 @@ export const AdminExperience = () => {
           <input
             type="text"
             ref={ref}
-            caption="Búsqueda por Título / Descripción"
+            placeholder="Búsqueda por Título / Descripción"
             onChange={handleSubmit}
             value={toSearch}
           />
