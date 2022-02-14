@@ -14,7 +14,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 
   // Trae los resultados de las experiencias
   useEffect(() => {
-    fetcher(setResult, setError, setLoading, `experience/${exp.ID}`, {
+    fetcher(setResult, setError, setLoading, `experience/${exp.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
         active: active ? '1' : '0',
       }),
     });
-  }, [active, exp.ID, token]);
+  }, [active, exp.id, token]);
 
   // Un alert en cuanto el estado de error cambie de null
   useEffect(() => {
@@ -34,7 +34,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
   return (
     <div className="card-category fade_in">
       <div className="title-card-category">
-        <span>ID: {exp.ID}</span>
+        <span>ID: {exp.id}</span>
         <span>Categoría: {exp.title}</span>
       </div>
       <figure className="card-figure-category">
@@ -62,7 +62,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
               setResult,
               setError,
               setLoading,
-              `experience/${exp.ID}`,
+              `experience/${exp.id}`,
               {
                 method: 'DELETE',
                 headers: {
@@ -78,7 +78,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
         <button
           className="btn-category-option"
           onClick={() =>
-            navigate(`/dashboard/adminExperience/editExperience/${exp.ID}`)
+            navigate(`/dashboard/adminExperience/editExperience/${exp.id}`)
           }
         >
           Editar

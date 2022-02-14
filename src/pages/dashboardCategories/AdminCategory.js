@@ -33,13 +33,14 @@ export const AdminCategory = () => {
           </h1>
           <form onSubmit={handleSubmit} id="category-form">
             <div className="input-search">
-              <label htmlFor="findCat">Buscar Categoría</label>
+              {/* <label htmlFor="findCat">Buscar Categoría</label> */}
               <input
+                id="input-search-field"
                 type="text"
                 ref={ref}
-                caption="Búsqueda por ID / Categoría"
                 onChange={handleSubmit}
                 value={toSearch}
+                placeholder="Búsqueda por ID / Categoría"
               />
             </div>
             <div>
