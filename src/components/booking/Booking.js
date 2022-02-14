@@ -200,7 +200,6 @@ const Booking = () => {
               className="btn-back"
               onClick={() => {
                 navigate(-1);
-                console.log('un click');
               }}
             >
               ↩️ back

@@ -42,6 +42,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/profile">Perfil</Link>
           </li>
         )}
+        {token && (
+          <li>
+            <Link to="/bookingDetail">Tus Reservas</Link>
+          </li>
+        )}
         {token && <li onClick={handleLogout}>Log out</li>}
         {!token && (
           <li>
