@@ -5,6 +5,7 @@ import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
 import { miniFetcher } from '../../helpers/fetcher';
 import { useUserBookings } from '../../hooks/useUserBookings';
+import { toast } from 'react-toastify';
 
 export const BookingForUser = () => {
   const { ticket } = useParams();
@@ -27,7 +28,7 @@ export const BookingForUser = () => {
   };
 
   useEffect(() => {
-    cancelStatus && alert(cancelStatus);
+    cancelStatus && toast.success(cancelStatus);
     setCancelStatus(null);
   }, [cancelStatus]);
 

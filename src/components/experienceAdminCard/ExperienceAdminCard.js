@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import fetcher from '../../helpers/fetcher';
+import { toast } from 'react-toastify';
 import './experience-admin-card.css';
 
 export const ExperienceAdminCard = ({ exp, setToSearch }) => {
@@ -28,7 +29,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 
   // Un alert en cuanto el estado de error cambie de null
   useEffect(() => {
-    error && alert(error);
+    error && toast.error(error);
   }, [error]);
 
   return (

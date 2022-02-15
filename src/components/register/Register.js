@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import fetcher from '../../helpers/fetcher';
+import { toast } from 'react-toastify';
 import './register.css';
 
 const Register = () => {
@@ -29,7 +30,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (error) alert(error);
+    if (error) toast.error(error);
     return () => {
       setError(null);
     };
@@ -37,7 +38,7 @@ const Register = () => {
 
   useEffect(() => {
     if (state && state.includes('Registro completado')) {
-      alert(state);
+      toast.success(state);
       navigate('/account');
     }
   }, [state, navigate]);

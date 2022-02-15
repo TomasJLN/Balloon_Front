@@ -8,6 +8,7 @@ import { miniFetcher } from '../../helpers/fetcher';
 import { useBookingDetails } from '../../hooks/useBookingDetails';
 import { useBookingQRs } from '../../hooks/useBookingQRs';
 import { useUserBookings } from '../../hooks/useUserBookings';
+import { toast } from 'react-toastify';
 import './booking-details.css';
 
 export const BookingDetails = () => {
@@ -35,7 +36,7 @@ export const BookingDetails = () => {
   };
 
   useEffect(() => {
-    cancelStatus && alert(cancelStatus);
+    cancelStatus && toast.success(cancelStatus);
     setCancelStatus(null);
   }, [cancelStatus]);
 

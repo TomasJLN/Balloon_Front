@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CategoryAdminCard } from '../../components/categoryAdminCard/CategoryAdminCard.js';
 import { useGetCategories } from '../../hooks/useGetCategories.js';
+import { toast } from 'react-toastify';
 import './admin-category.css';
 
 export const AdminCategory = () => {
@@ -19,7 +20,7 @@ export const AdminCategory = () => {
   };
 
   useEffect(() => {
-    error && alert(error);
+    error && toast.error(error);
   }, [error]);
 
   return (

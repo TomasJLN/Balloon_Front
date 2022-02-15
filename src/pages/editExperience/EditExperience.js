@@ -7,6 +7,7 @@ import { fileUpload } from '../../helpers/fileUpload';
 import { useEditExperience } from '../../hooks/useEditExperience';
 import './edit-experience.css';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 
 export const EditExperience = () => {
   const [expData, setExpData] = useState({
@@ -106,7 +107,7 @@ export const EditExperience = () => {
   useEffect(() => {
     console.log('photoExp -> ', photoExp, !error);
     photoExp && !error && setExpData({ ...expData });
-    error && alert(error.message);
+    error && toast.error(error.message);
   }, [setPhotoExp, photoExp, error, setExpData]);
 
   useEffect(() => {

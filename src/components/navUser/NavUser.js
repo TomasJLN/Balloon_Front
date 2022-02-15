@@ -30,7 +30,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
   };
 
   return (
-    <div ref={ref} className="nav-user" onClick={(e) => setUserMenu((s) => !s)}>
+    <menu
+      ref={ref}
+      className="nav-user"
+      onClick={(e) => setUserMenu((s) => !s)}
+    >
       <ul>
         {token && role === 'admin' && (
           <li>
@@ -64,7 +68,7 @@ const NavUser = ({ setUserMenu, usuario }) => {
           </li>
         )}
       </ul>
-    </div>
+    </menu>
   );
 };
 
