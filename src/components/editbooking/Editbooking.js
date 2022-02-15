@@ -8,7 +8,7 @@ const Editbooking = () => {
 return (
     <section>
          <form className="editbooking">
-            <h2 className="editbooking">Mis reservas</h2>
+            <h2 id="reservas">Mis reservas</h2>
             <div>Foto reserva</div>
 
             <button className="ver" type="submit">

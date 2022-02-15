@@ -22,7 +22,7 @@ const Editavatar = () => {
 
 return (
 <section className="Editavatar">
-    <h2>Cambiar mi foto</h2>
+    <h2 id="foto">Cambiar mi foto</h2>
     <img src={FaUserCircle}/>
     <button className="Guardar" type="submit">
         Cambiar

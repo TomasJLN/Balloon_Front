@@ -9,8 +9,8 @@ const Editpassword = () => {
     const [token, setToken] = useContext(TokenContext);
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
-    const [password, setpassword] = useState('');
-    const [newpassword, setnewpassword] = useState('');
+    const [password, setPassword] = useState('');
+    const [newpassword, setNewpassword] = useState('');
     const [err, setErr] = useState(null);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const Editpassword = () => {
                 await fetcher(setErr, 'user/edit', {
                     method:'PUT',
                     headers: {
-                    Authorization: token, },
+                    Authorization: token, name },
                     body: JSON.stringify({name, surname, password, newpassword})
                     });
 
@@ -36,48 +36,42 @@ const Editpassword = () => {
 
 return (
     <section className="editpassword">
-        <form onSubmit={Editpassword}>
-            <h2>Cambiar mis datos</h2>
-            <label htmlFor="name">Nombre*:</label>
+        <form onSubmit={handlepassword}>
+            <h2 id="datos">Cambiar mis datos</h2>
+            <label htmlFor="name">Nombre:</label>
             <input
                 type="text"
                 id="name"
                 name="name"
-                required
                 value={name}
-                onChange={handlepassword}
+                onChange={(e) => setName(e.target.value)}
             ></input>
-            <label htmlFor="surname">Apellidos*:</label>
+            <label htmlFor="surname">Apellidos:</label>
             <input
                 type="text"
                 id="surname"
                 name="surname"
-                required
                 value={surname}
-                onChange={handlepassword}
+                onChange={(e) => setSurname(e.target.value)}
             ></input>
-            <label htmlFor="password">Contraseña actual*:</label>
+            <label htmlFor="password">Contraseña actual:</label>
             <input
-                type="email"
+                type="text"
                 id="password"
                 name="password"
-                required
                 value={password}
-                onChange={handlepassword}
+                onChange={(e) => setPassword(e.target.value)}
             ></input>
-            <label htmlFor="newemail">Nueva contraseña*:</label>
+            <label htmlFor="newemail">Nueva contraseña:</label>
             <input
                 type="text"
                 id="newpassword"
                 name="newpassword"
-                required
                 value={newpassword}
-                onChange={handlepassword}
+                onChange={(e) => setNewpassword(e.target.value)}
             ></input>
 
-            <button type="submit">
-            Guardar
-            </button>
+            <button type="submit">Guardar</button>
         </form>
     </section>
 
