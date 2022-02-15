@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
 import { fileUpload } from '../../helpers/fileUpload';
+import { toast } from 'react-toastify';
 import './profile.css';
 
 export const Profile = () => {
@@ -36,7 +37,7 @@ export const Profile = () => {
 
   useEffect(() => {
     newAvatar && !error && setUsuario({ ...usuario, avatar: newAvatar });
-    error && alert(error.message);
+    error && toast.error(error.message);
   }, [setNewAvatar, newAvatar, avatar, error]);
 
   return (

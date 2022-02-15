@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAdminCat } from '../../hooks/useAdminCat';
 import fetcher from '../../helpers/fetcher';
 import { fileUpload } from '../../helpers/fileUpload';
+import { toast } from 'react-toastify';
 import './edit-category.css';
 
 export const EditCategory = () => {
@@ -75,7 +76,7 @@ export const EditCategory = () => {
   useEffect(() => {
     console.log('photoCat -> ', photoCat, !error);
     photoCat && !error && setNameCategory(cat.title);
-    error && alert(error.message);
+    error && toast.error(error.message);
   }, [setPhotoCat, photoCat, error, cat.title]);
 
   useEffect(() => {

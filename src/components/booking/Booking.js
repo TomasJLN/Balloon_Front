@@ -6,10 +6,12 @@ import { useExperience } from '../../hooks/useExperience';
 import fetcher from '../../helpers/fetcher';
 import { TokenContext } from '../../contexts/TokenContext';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
-import 'react-multi-date-picker/styles/layouts/mobile.css';
 import { UserContext } from '../../contexts/UserContext';
+import { toast } from 'react-toastify';
+import 'react-multi-date-picker/styles/layouts/mobile.css';
 
 import './booking.css';
+import { GiToaster } from 'react-icons/gi';
 
 const Booking = () => {
   const { id } = useParams();
@@ -101,7 +103,7 @@ const Booking = () => {
     !usuario.role && navigate('/account');
     usuario.role === 'user' && createBooking();
     usuario.role === 'admin' &&
-      alert('Un administrador no puede\nhacer reservas...');
+      toast.error('Un administrador no puede\nhacer reservas...');
   };
 
   useEffect(() => {
@@ -109,7 +111,7 @@ const Booking = () => {
   }, [result, setResult, navigate]);
 
   useEffect(() => {
-    if (error !== null) alert('el error -> ', error);
+    if (error !== null) toast.error('algo salió mal... ', error);
     return () => {
       setError(null);
     };

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFiltered } from '../../hooks/useFiltered';
 import { ExperienceCard } from '../experienceCard/ExperienceCard';
 import './show-results.css';
 
 const ShowResults = () => {
+  //Experiencias mostradas por página
   const expByPage = 6;
 
   const location = useLocation();
@@ -14,6 +15,8 @@ const ShowResults = () => {
   const [btnMore, setBtnMore] = useState(false);
 
   const q = location.search;
+
+  console.log(q);
 
   let query = q;
 
@@ -47,8 +50,7 @@ const ShowResults = () => {
     <>
       {loading ? (
         <div className="spinner-container">
-          <h1>Cargando...</h1>
-          <div className="balloon_spinner"></div>
+          <h1>Loading...</h1>
         </div>
       ) : (
         <>

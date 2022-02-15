@@ -4,6 +4,7 @@ import fetcher from '../../helpers/fetcher';
 import { TokenContext } from '../../contexts/TokenContext';
 import { useNavigate } from 'react-router-dom';
 import { fileUpload } from '../../helpers/fileUpload';
+import { toast } from 'react-toastify';
 import './create-experience.css';
 
 export const CreateExperience = () => {
@@ -74,7 +75,7 @@ export const CreateExperience = () => {
   useEffect(() => {
     console.log('photoExp -> ', photoExp, !error);
     photoExp && !error && setExpData({ ...expData });
-    error && alert(error.message);
+    error && toast.error(error.message);
   }, [setPhotoExp, photoExp, error, setExpData]);
 
   useEffect(() => {

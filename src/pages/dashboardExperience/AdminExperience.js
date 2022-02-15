@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ExperienceAdminCard } from '../../components/experienceAdminCard/ExperienceAdminCard.js';
 import { useFiltered } from '../../hooks/useFiltered.js';
+import { toast } from 'react-toastify';
 import './admin-experience.css';
 
 export const AdminExperience = () => {
@@ -18,7 +19,7 @@ export const AdminExperience = () => {
   };
 
   // useEffect(() => {
-  //   error && alert(error);
+  //   error && toast.error(error);
   // }, [error]);
 
   return (
