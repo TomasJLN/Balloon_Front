@@ -20,16 +20,18 @@ const Editavatar = () => {
             });
         };
 
-return (
-<section className="Editavatar">
-    <h2 id="foto">Cambiar mi foto</h2>
-    <img src={FaUserCircle}/>
-    <button className="Guardar" type="submit">
-        Cambiar
-    </button>
+        let userimg = `user.png`;
 
-</section>
+        return (
+        <section className="Editavatar">
+            <h2 id="foto">Cambiar mi foto</h2>
+            <img src={userimg}/>
+            <button className="Guardar" type="submit">
+                Cambiar
+            </button>
 
-);
+        </section>
+
+    );
 };
 export default Editavatar;

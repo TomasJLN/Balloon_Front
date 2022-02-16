@@ -1,9 +1,12 @@
 .editbooking button{
+
     border-radius: 30px;
     height: 3rem;
     width: 5rem;
     color: white;
     background-color: black;
+    margin-left: 30px;
+    margin-bottom: 75px;
    
 
 }
@@ -16,12 +19,27 @@ text-align: center;
 margin-bottom: 20px;
 }
 
+.editbooking a{
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    font-size: 1rem;
+    margin-bottom: 20px;
+
+}
+
 .editbooking div{
     border: 1px solid black;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    margin-left: 75px;
+    margin-bottom: 25px;
+    width: 250px;
     height: 100px;
 }

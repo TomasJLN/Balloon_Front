@@ -10,7 +10,7 @@ return (
 <section className="editmenu">
     <ul>
         <li>
-            <div><FaUserCircle/></div>
+            <div id="back"><FaUserCircle/></div>
             <a href="#foto">Cambiar mi foto</a>
         </li>
         <li>

@@ -8,6 +8,7 @@
     align-items: center;
     background-color:coral;
     color: white;
+    position: sticky;
   
 }
 
@@ -23,6 +24,7 @@
     padding: 2rem;
     height: 100px;
     opacity: 1;
+   
     
 }
 
