@@ -38,3 +38,14 @@
   display: flex;
   flex-direction: row;
 }
+
+.picture-back {
+  display: flex;
+  align-items: flex-end;
+}
+
+.qr-booking {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -1,12 +1,20 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useGetReviews } from '../../hooks/useGetReviews';
+import { Rating } from 'react-simple-star-rating';
 import './experience-card.css';
 
 export const ExperienceCard = ({ exp }) => {
   const coords = exp.coords.replace(/\s+/g, '');
   const url = `https://www.google.es/maps/@${coords},19z`;
   const navigate = useNavigate();
+  const { reviews, error, loading } = useGetReviews(exp.id);
+  const [avgRatin, setAvgRatin] = useState(0);
+
+  useEffect(() => {
+    !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
+  }, [reviews]);
 
   return (
     <div
@@ -44,7 +52,15 @@ export const ExperienceCard = ({ exp }) => {
           </p>
         }
         <p>
-          <span className="card-rating">🌟🌟🌟🌟</span>
+          {avgRatin !== 0 && (
+            <Rating
+              ratingValue={avgRatin}
+              size="16px"
+              showTooltip
+              tooltipClassName="stars-count"
+              readonly={true}
+            />
+          )}
         </p>
         <p className="card-price">{exp.price} €</p>
       </div>

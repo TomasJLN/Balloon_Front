@@ -73,3 +73,7 @@ a {
   background: rgba(200, 200, 200, 0.479);
   transition: all 660ms ease-in-out;
 }
+
+.stars-count {
+  font-size: 12px;
+}

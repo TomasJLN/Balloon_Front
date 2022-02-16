@@ -32,7 +32,6 @@ export const BookingDetails = () => {
       );
     };
     cancelBooking();
-    navigate(`/bookingDetail`);
   };
 
   useEffect(() => {
@@ -41,26 +40,38 @@ export const BookingDetails = () => {
   }, [cancelStatus]);
 
   return (
-    <div>
+    <div className="wrap-content">
       <h1 className="title-center">{exDetails?.title}</h1>
-      {exDetails?.photo ? (
-        <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails.photo}`}
-          alt={exDetails?.title}
-          className="card-thumbnail"
-        />
-      ) : (
-        <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-          alt={exDetails?.title}
-          className="card-thumbnail"
-        />
-      )}
+      <div className="picture-back">
+        <figure className="photo-booking">
+          {exDetails?.photo ? (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails.photo}`}
+              alt={exDetails?.title}
+              className="card-img-booking"
+            />
+          ) : (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+              alt={exDetails?.title}
+              className="card-img-booking"
+            />
+          )}
+          <button
+            className="btn-back"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            ↩️ back
+          </button>
+        </figure>
+      </div>
       <div className="booking-details">
         <p>Ticket: {exDetails?.ticket}</p>
         <p>Descripción: {exDetails?.description}</p>
         <p>
-          Fecha experiencia:{' '}
+          Fecha experiencia:
           {moment(exDetails?.dateExperience).format('YYYY-MM-DD')}
         </p>
         <p>
@@ -69,13 +80,16 @@ export const BookingDetails = () => {
         </p>
       </div>
       <hr />
+      <h2>Descargar ticket</h2>
       <div className="qr-booking">
-        <h2>Descargar ticket</h2>
         {QRs.map((q) => (
           <QrTicket key={q.qrPicture} q={q} />
         ))}
       </div>
-      <div className="back-div">
+      <div className="back-div"></div>
+      <hr />
+      <div>
+        <h2> Otras reservas del usuario</h2>
         <button
           className="btn-back"
           onClick={() => {
@@ -84,10 +98,6 @@ export const BookingDetails = () => {
         >
           🎟️ Mis reservas
         </button>
-      </div>
-      <hr />
-      <div>
-        <h2> Otras reservas del usuario</h2>
         <div>
           {othersBookings.map((oq) => (
             <OtherBooking

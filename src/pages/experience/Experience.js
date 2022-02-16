@@ -1,7 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
+import { Rating } from 'react-simple-star-rating';
 import './experience.css';
+import { useGetReviews } from '../../hooks/useGetReviews';
+import { useEffect, useState } from 'react';
 
 const Experience = () => {
   const { id } = useParams();
@@ -24,6 +27,13 @@ const Experience = () => {
   infoExperience.push({ title: 'Normativas', content: normatives });
 
   const navigate = useNavigate();
+  const { reviews, error, loading } = useGetReviews(id);
+  const [avgRatin, setAvgRatin] = useState(0);
+
+  useEffect(() => {
+    !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
+    console.log(avgRatin);
+  }, [reviews]);
 
   return (
     <div className="single-card">
@@ -41,9 +51,33 @@ const Experience = () => {
           className="exp-picture"
         />
       )}
-      <p>🌟🌟🌟🌟🌟</p>
-      <p>{description}</p>
-      <h2 id="precio">{price} €</h2>
+      <div className="rating-back">
+        <p>
+          {' '}
+          {avgRatin !== 0 && (
+            <Rating
+              ratingValue={avgRatin}
+              size="16px"
+              showTooltip
+              tooltipClassName="stars-count"
+              readonly={true}
+            />
+          )}
+        </p>
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          ↩️ back
+        </button>
+      </div>
+      <div className="exp-description">
+        <p>Descripción: </p>
+        <p>{description}</p>
+      </div>
+      <h2 id="precio-exp">{price} €</h2>
 
       <div className="ratin-comprar">
         <button
@@ -59,16 +93,6 @@ const Experience = () => {
         {infoExperience.map(({ title, content }) => (
           <Accordion key={title} title={title} content={content} />
         ))}
-      </div>
-      <div className="back-div">
-        <button
-          className="btn-back"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ↩️ back
-        </button>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { OtherBooking } from '../../components/otherBooking/OtherBooking';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
 import { miniFetcher } from '../../helpers/fetcher';
 import { useUserBookings } from '../../hooks/useUserBookings';
 import { toast } from 'react-toastify';
+import { OtherBookingV2 } from '../../components/otherBookingV2/OtherBookingV2';
 
 export const BookingForUser = () => {
   const { ticket } = useParams();
@@ -33,17 +33,16 @@ export const BookingForUser = () => {
   }, [cancelStatus]);
 
   return (
-    <div>
-      <h1> Hola {usuario.name}! Tus reservas</h1>
-      <div>
-        {othersBookings.map((oq) => (
-          <OtherBooking
-            oq={oq}
-            key={oq.id}
-            handleCancelBooking={handleCancelBooking}
-          />
-        ))}
-      </div>
+    <div className="wrap-content">
+      <h1 className="title-center"> Hola {usuario.name}! Tus reservas</h1>
+
+      {othersBookings.map((oq) => (
+        <OtherBookingV2
+          oq={oq}
+          key={oq.id}
+          handleCancelBooking={handleCancelBooking}
+        />
+      ))}
     </div>
   );
 };
