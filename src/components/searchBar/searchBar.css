@@ -54,10 +54,22 @@
   font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  transform: translate(-50px, 1px);
+}
+
+.calendar-button {
+  border: none;
+  color: white;
+  background-color: transparent;
+
+  font-size: 2rem;
+  cursor: pointer;
+  transform: translate(-15px);
 }
 
 .search-button:hover {
   transform: scale(1.4);
+  transform: translate(-50px, 1px);
 }
 
 .Filter {
@@ -79,6 +91,10 @@
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.custom-input {
+  display: none;
 }
 
 @media (min-width: 820px) {

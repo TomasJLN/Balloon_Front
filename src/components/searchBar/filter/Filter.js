@@ -6,13 +6,10 @@ import './filter.css';
 import queryString from 'query-string';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../searchBar.css';
-import DatePicker, { Calendar, DateObject } from 'react-multi-date-picker';
-import 'react-multi-date-picker/styles/layouts/mobile.css';
-import { FaCalendarAlt } from 'react-icons/fa';
-import 'react-multi-date-picker/styles/colors/purple.css';
-import opacity from 'react-element-popper/animations/opacity';
+import React, { useRef } from 'react';
 
 const Filter = () => {
+  const datePickerRef = useRef();
   const categories = useCategories2();
   const locations = useLocations();
   const navigate = useNavigate();
@@ -21,9 +18,9 @@ const Filter = () => {
   experience = experience ? experience : '';
   const [searchCat, setSearchCat] = useState('');
   const [searchLoc, setSearchLoc] = useState('');
-  const [searchStartPrice, setSearchStartPrice] = useState('50');
-  const [searchEndPrice, setSearchEndPrice] = useState('250');
-  const [searchDate, setSearchDate] = useState('');
+  const [searchStartPrice, setSearchStartPrice] = useState('');
+  const [searchEndPrice, setSearchEndPrice] = useState('');
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
 
@@ -33,6 +30,7 @@ const Filter = () => {
     query += searchEndPrice ? `&end_price=${searchEndPrice}` : '';
     query += searchCat ? `&category=${searchCat}` : '';
     query += searchLoc ? `&location=${searchLoc}` : '';
+
 
     navigate(query);
   }, [searchCat, searchLoc, searchStartPrice, searchEndPrice]);
@@ -45,11 +43,8 @@ const Filter = () => {
 
     let query = `/allFilter?experience=${experience}`;
 
-    query += startDate ? `&startDate=${startDate}` : '';
-    query += endDate ? `&endDate=${endDate}` : '';
-    console.log('date values', searchDate);
     navigate(query);
-  };
+  }, [searchCat, searchLoc, searchStartPrice, searchEndPrice]);
 
   let filteredLocations = locations.filter(
     (ele, ind) =>
@@ -68,7 +63,7 @@ const Filter = () => {
         }}
       >
         {({ values }) => (
-          <Form onSubmit={handleSubmit} className="Filter">
+          <Form className="Filter">
             <div className="category-filter">
               <Field
                 className="select"
@@ -180,30 +175,6 @@ const Filter = () => {
               </label>
             </div>
             <div>{values.rate}</div> */}
-            {/*  <div className="datefilter">
-              <div className="DateSearch">
-                {' '}
-                <FaCalendarAlt
-                  style={{
-                    color: 'black',
-                    fontSize: '24px',
-                    marginRight: '5px',
-                  }}
-                />
-                <DatePicker
-                  placeholder="Rango de fecha"
-                  className="date purple"
-                  value={searchDate}
-                  onChange={setSearchDate}
-                  range
-                  minDate={4}
-                  maxDate={0}
-                  hideOnScroll
-                  inputClass="custom-input"
-                  animations={[opacity()]}
-                />
-              </div>
-            </div> */}
           </Form>
         )}
       </Formik>

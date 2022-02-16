@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { VscCalendar } from 'react-icons/vsc';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import './searchBar.css';
 import Filter from './filter/Filter';
+import DateSearch from './datesearch/DateSearch';
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -54,6 +56,9 @@ const SearchBar = () => {
           />
           <button className="search-button" type="submit">
             <FaSearch />
+          </button>
+          <button className="calendar-button">
+            <DateSearch />
           </button>
         </form>
       </div>
