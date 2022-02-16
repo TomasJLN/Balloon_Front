@@ -10,54 +10,51 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 
 const DateSearch = () => {
-	const datePickerRef = useRef();
-	const location = useLocation();
-	const navigate = useNavigate();
+  const datePickerRef = useRef();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-	let { experience } = queryString.parse(location.search);
-	experience = experience ? experience : '';
+  let { experience } = queryString.parse(location.search);
+  experience = experience ? experience : '';
 
-	const [searchDate, setSearchDate] = useState('');
-	const [searchDate2, setSearchDate2] = useState('');
+  const [searchDate, setSearchDate] = useState('');
 
-	useEffect(() => {
-		let query = `/allFilter?experience=${experience}`;
+  useEffect(() => {
+    let query = `/allFilter?experience=${experience}`;
 
-		query += searchDate ? `&startDate=${searchDate[0]}` : '';
-		query += searchDate2 ? `&endDate=${searchDate2[1]}` : '';
-		navigate(query);
-	}, [searchDate, searchDate2]);
+    query += searchDate ? `&startDate=${searchDate[0]}` : '';
+    query += searchDate ? `&endDate=${searchDate[1]}` : '';
+    navigate(query);
+  }, [searchDate, setSearchDate]);
 
-	return (
-		<div className='datefilter'>
-			<div className='DateSearch'>
-				{/*<FaCalendarAlt
+  return (
+    <>
+      {' '}
+      <form
+        onChange={console.log('changinggggg', searchDate[0], searchDate[1])}
+      >
+        {/*<FaCalendarAlt
 									style={{
 										color: 'black',
 										fontSize: '24px',
 										marginRight: '5px',
 									}}
 								/>*/}
-				<DatePicker
-					className='date purple'
-					value={searchDate}
-					onChange={setSearchDate}
-					range
-					minDate={4}
-					maxDate={0}
-					hideOnScroll
-					inputClass='custom-input'
-					animations={[opacity()]}
-					ref={datePickerRef}
-				/>
-				<div>
-					<button onClick={() => datePickerRef.current.openCalendar()}>
-						<VscCalendar />
-					</button>
-				</div>
-			</div>
-		</div>
-	);
+        <DatePicker
+          value={searchDate}
+          onChange={setSearchDate}
+          range
+          inputClass="custom-input"
+          ref={datePickerRef}
+        />
+
+        <VscCalendar
+          className="calendar-button"
+          onClick={() => datePickerRef.current.openCalendar()}
+        />
+      </form>
+    </>
+  );
 };
 
 export default DateSearch;
