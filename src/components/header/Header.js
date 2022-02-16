@@ -15,8 +15,7 @@ export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [token, setToken] = useContext(TokenContext);
-  const [user, setUser] = useContext(UserContext);
-  const [usuario, setUsuario] = useState({});
+  const [usuario, setUsuario] = useContext(UserContext);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -29,12 +28,7 @@ export const Header = () => {
           Authorization: token,
         },
       });
-  }, [token]);
-
-  useEffect(() => {
-    setUser(usuario);
-    console.log(usuario);
-  }, [usuario, setUser]);
+  }, [token, setUsuario]);
 
   return (
     <>

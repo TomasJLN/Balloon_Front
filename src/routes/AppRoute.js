@@ -3,6 +3,8 @@ import { TokenContextProvider } from '../contexts/TokenContext';
 import { UserContextProvider } from '../contexts/UserContext';
 import { Header } from '../components/header/Header';
 import { PublicRoute } from './PublicRoute';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AppRoute = () => {
   return (
@@ -15,6 +17,7 @@ export const AppRoute = () => {
           </Routes>
         </UserContextProvider>
       </TokenContextProvider>
+      <ToastContainer position="top-center" autoClose={4000} limit={3} />
     </Router>
   );
 };

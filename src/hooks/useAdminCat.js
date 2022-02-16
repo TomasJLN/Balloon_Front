@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import fetcher from '../helpers/fetcher';
 
-export const useAdminCat = (id, token) => {
+export const useAdminCat = (id, token, setLoading, setError) => {
   const [cat, setCat] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetcher(setCat, setError, setLoading, `category/${id}`, {
@@ -14,7 +12,7 @@ export const useAdminCat = (id, token) => {
         Authorization: token,
       },
     });
-  }, [id, token]);
+  }, [id, token, setLoading, setError]);
 
-  return { cat, loading, error };
+  return { cat };
 };

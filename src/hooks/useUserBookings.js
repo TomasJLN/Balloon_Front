@@ -16,7 +16,5 @@ export const useUserBookings = (ticket, token) => {
     });
   }, [ticket, token]);
 
-  console.log(otherBookings);
-
   return otherBookings;
 };

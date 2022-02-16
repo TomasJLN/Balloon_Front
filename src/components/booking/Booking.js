@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Accordion from '../accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
 import fetcher from '../../helpers/fetcher';
 import { TokenContext } from '../../contexts/TokenContext';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
-import 'react-multi-date-picker/styles/layouts/mobile.css';
 import { UserContext } from '../../contexts/UserContext';
+import { toast } from 'react-toastify';
+import 'react-multi-date-picker/styles/layouts/mobile.css';
 
 import './booking.css';
+import { GiToaster } from 'react-icons/gi';
 
 const Booking = () => {
   const { id } = useParams();
@@ -101,13 +103,15 @@ const Booking = () => {
     !usuario.role && navigate('/account');
     usuario.role === 'user' && createBooking();
     usuario.role === 'admin' &&
-      alert('Un administrador no puede\nhacer reservas...');
-    console.log('result del booking: ', result.length);
-    result.length > 1 && navigate(`/bookingDetail/${result}`);
+      toast.error('Un administrador no puede\nhacer reservas...');
   };
 
   useEffect(() => {
-    if (error !== null) alert('el error -> ', error);
+    result.length > 1 && navigate(`/bookingDetail/${result}`);
+  }, [result, setResult, navigate]);
+
+  useEffect(() => {
+    if (error !== null) toast.error('algo salió mal... ', error);
     return () => {
       setError(null);
     };
@@ -116,11 +120,11 @@ const Booking = () => {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <h1 className="spinner-container">Loading...</h1>
       ) : (
         <div className="reserved-card">
-          <h1> ESTO YA ES LA RESERVA</h1>
-          <div className="test">
+          <h1 className="title-center"> RESERVAR</h1>
+          <div className="experience-data">
             <div className="photo-thumbnail">
               {photo ? (
                 <img
@@ -142,67 +146,82 @@ const Booking = () => {
             </div>
           </div>
           <hr />
+          <div className="rating-back">
+            <p>🌟🌟🌟🌟🌟</p>
+            <button
+              className="btn-back"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              ↩️ back
+            </button>
+          </div>
           <form>
             <div id="select-date">
               <label htmlFor="date">Escoger Fecha</label>
               <DatePicker
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '120px',
+                  textAlign: 'center',
+                  fontSize: '1.1rem',
+                  border: 'none',
+                }}
                 value={bookingDate}
                 onChange={setBookingDate}
                 editable={false}
                 minDate={new DateObject().add(1, 'days')}
               />
             </div>
-            <div id="select-quantity">
-              <label htmlFor="quantity">Cantidad</label>
-              <button
-                type="button"
-                className="button-quantity"
-                onClick={handleSubtractTicket}
-              >
-                -
-              </button>
-              <input
-                type="text"
-                name="quantity"
-                id="quantity"
-                className="input-quantity"
-                value={numTickets}
-                onChange={handleTicket}
-              />
-              <button
-                type="button"
-                className="button-quantity"
-                onClick={handleAddTicket}
-              >
-                +
-              </button>
-              {<h5>Máximo disponible de: {maxFreePlaces}</h5>}
+            <div className="tickets-booking">
+              <div id="select-quantity">
+                <label htmlFor="quantity">Nº Tickets</label>
+                <button
+                  type="button"
+                  className="button-quantity"
+                  onClick={handleSubtractTicket}
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  name="quantity"
+                  id="quantity"
+                  className="input-quantity"
+                  value={numTickets}
+                  onChange={handleTicket}
+                />
+                <button
+                  type="button"
+                  className="button-quantity"
+                  onClick={handleAddTicket}
+                >
+                  +
+                </button>
+              </div>
+              {
+                <h5 style={{ textAlign: 'center' }}>
+                  Máximas plazas disponibles: {maxFreePlaces}
+                </h5>
+              }
             </div>
           </form>
 
-          <h2 className="precio">Precio: {price} €</h2>
-          <h1 className="precio">Total: {(price * numTickets).toFixed(2)} €</h1>
-          <div className="ratin-comprar">
-            <p>🌟🌟🌟🌟🌟</p>
-            <button className="btn-comprar" onClick={handleNewBooking}>
-              RESERVAR
-            </button>
-          </div>
+          <p className="precio-unidad">Precio: {price} €</p>
+          <p className="precio-total">
+            Total: {(price * numTickets).toFixed(2)} €
+          </p>
+
+          <button className="btn-comprar" onClick={handleNewBooking}>
+            RESERVAR
+          </button>
+
           <div className="accordion-section">
             {infoExperience.map(({ title, content }) => (
               <Accordion key={title} title={title} content={content} />
             ))}
-          </div>
-          <div className="back-div">
-            <button
-              className="btn-back"
-              onClick={() => {
-                navigate(-1);
-                console.log('un click');
-              }}
-            >
-              ↩️ back
-            </button>
           </div>
         </div>
       )}

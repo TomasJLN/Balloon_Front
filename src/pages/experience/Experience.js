@@ -1,12 +1,14 @@
-import React from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
-import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import { useExperience } from '../../hooks/useExperience';
+import { Rating } from 'react-simple-star-rating';
 import './experience.css';
+import { useGetReviews } from '../../hooks/useGetReviews';
+import { useEffect, useState } from 'react';
 
 const Experience = () => {
   const { id } = useParams();
+
   const {
     category,
     title,
@@ -25,14 +27,18 @@ const Experience = () => {
   infoExperience.push({ title: 'Normativas', content: normatives });
 
   const navigate = useNavigate();
+  const { reviews, error, loading } = useGetReviews(id);
+  const [avgRatin, setAvgRatin] = useState(0);
+
+  useEffect(() => {
+    !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
+    console.log(avgRatin);
+  }, [reviews]);
 
   return (
     <div className="single-card">
-      <h1>{title}</h1>
-      {photo &&
-      checkIfFileExists(
-        `${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`
-      ) ? (
+      <h1 className="title">{title}</h1>
+      {photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
           alt={title}
@@ -45,14 +51,38 @@ const Experience = () => {
           className="exp-picture"
         />
       )}
-      <h2 id="precio">{price} €</h2>
-      <p>{description}</p>
+      <div className="rating-back">
+        <p>
+          {' '}
+          {avgRatin !== 0 && (
+            <Rating
+              ratingValue={avgRatin}
+              size="16px"
+              showTooltip
+              tooltipClassName="stars-count"
+              readonly={true}
+            />
+          )}
+        </p>
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          ↩️ back
+        </button>
+      </div>
+      <div className="exp-description">
+        <p>Descripción: </p>
+        <p>{description}</p>
+      </div>
+      <h2 id="precio-exp">{price} €</h2>
+
       <div className="ratin-comprar">
-        <p>🌟🌟🌟🌟🌟</p>
         <button
           className="btn-comprar"
           onClick={(e) => {
-            console.log(`/booking/${id}`);
             navigate(`/booking/${id}`);
           }}
         >
@@ -63,16 +93,6 @@ const Experience = () => {
         {infoExperience.map(({ title, content }) => (
           <Accordion key={title} title={title} content={content} />
         ))}
-      </div>
-      <div className="back-div">
-        <button
-          className="btn-back"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ↩️ back
-        </button>
       </div>
     </div>
   );

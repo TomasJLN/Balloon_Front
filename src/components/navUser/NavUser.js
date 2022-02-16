@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import './navUser.css';
 
@@ -30,7 +30,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
   };
 
   return (
-    <div ref={ref} className="nav-user" onClick={(e) => setUserMenu((s) => !s)}>
+    <menu
+      ref={ref}
+      className="nav-user"
+      onClick={(e) => setUserMenu((s) => !s)}
+    >
       <ul>
         {token && role === 'admin' && (
           <li>
@@ -40,6 +44,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
         {token && (
           <li>
             <Link to="/profile">Perfil</Link>
+          </li>
+        )}
+        {token && role === 'user' && (
+          <li>
+            <Link to="/bookingDetail">Tus Reservas</Link>
           </li>
         )}
         {token && <li onClick={handleLogout}>Log out</li>}
@@ -53,11 +62,13 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/register">Registro</Link>
           </li>
         )}
-        <li>
-          <Link to="/contact-form">Contactar</Link>
-        </li>
+        {role !== 'admin' && (
+          <li>
+            <Link to="/contact-form">Contactar</Link>
+          </li>
+        )}
       </ul>
-    </div>
+    </menu>
   );
 };
 

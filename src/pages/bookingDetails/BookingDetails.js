@@ -1,34 +1,28 @@
 import moment from 'moment';
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { OtherBooking } from '../../components/otherBooking/OtherBooking';
+import { QrTicket } from '../../components/qr_ticket/QrTicket';
 import { TokenContext } from '../../contexts/TokenContext';
-import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import { miniFetcher } from '../../helpers/fetcher';
 import { useBookingDetails } from '../../hooks/useBookingDetails';
 import { useBookingQRs } from '../../hooks/useBookingQRs';
 import { useUserBookings } from '../../hooks/useUserBookings';
-
+import { toast } from 'react-toastify';
 import './booking-details.css';
 
 export const BookingDetails = () => {
   const { ticket } = useParams();
   const [token, setToken] = useContext(TokenContext);
-  const [detail, setDetail] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [cancelStatus, setCancelStatus] = useState(null);
 
   const exDetails = useBookingDetails(ticket, token);
   const QRs = useBookingQRs(ticket, token);
   const othersBookings = useUserBookings(ticket, token);
-
-  console.log(exDetails);
-  console.log(QRs);
-  console.log(othersBookings);
+  const navigate = useNavigate();
 
   const handleCancelBooking = (e, ticket) => {
     e.preventDefault();
-    console.log(ticket);
     const cancelBooking = async () => {
       setCancelStatus(
         await miniFetcher(`booking/${ticket}`, {
@@ -41,110 +35,77 @@ export const BookingDetails = () => {
   };
 
   useEffect(() => {
-    cancelStatus && alert(cancelStatus[0]);
+    cancelStatus && toast.success(cancelStatus);
     setCancelStatus(null);
   }, [cancelStatus]);
 
-  console.log(
-    '----> ',
-    checkIfFileExists(
-      `${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo}`
-    )
-  );
-
   return (
-    <div>
-      <h1>Su compra de realizó satisfactoriamente</h1>
-      {exDetails?.photo &&
-      checkIfFileExists(
-        `${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo}`
-      ) ? (
-        <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails.photo}`}
-          alt={exDetails?.title}
-          className="card-thumbnail"
-        />
-      ) : (
-        <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-          alt={exDetails?.title}
-          className="card-thumbnail"
-        />
-      )}
-      <div className="booking-details">
-        <p>{exDetails?.title}</p>
-        <p>{exDetails?.ticket}</p>
-        <p>{exDetails?.description}</p>
-        <p>{exDetails?.createdAt}</p>
-        <p>{exDetails?.dateExperience}</p>
-      </div>
-      <hr />
-      <div className="qr-booking">
-        <h2>Descargar ticket</h2>
-        {QRs.map((q) =>
-          q.qrPicture ? (
+    <div className="wrap-content">
+      <h1 className="title-center">{exDetails?.title}</h1>
+      <div className="picture-back">
+        <figure className="photo-booking">
+          {exDetails?.photo ? (
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${q.qrPicture}`}
-              alt={q.qrPicture?.title}
-              className="card-thumbnail"
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails.photo}`}
+              alt={exDetails?.title}
+              className="card-img-booking"
             />
           ) : (
             <img
               src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-              alt={q?.qrPicture}
-              className="card-thumbnail"
+              alt={exDetails?.title}
+              className="card-img-booking"
             />
-          )
-        )}
+          )}
+          <button
+            className="btn-back"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            ↩️ back
+          </button>
+        </figure>
       </div>
+      <div className="booking-details">
+        <p>Ticket: {exDetails?.ticket}</p>
+        <p>Descripción: {exDetails?.description}</p>
+        <p>
+          Fecha experiencia:
+          {moment(exDetails?.dateExperience).format('YYYY-MM-DD')}
+        </p>
+        <p>
+          Fecha de la reserva:{' '}
+          {moment(exDetails?.createdAt).format('YYYY-MM-DD')}
+        </p>
+      </div>
+      <hr />
+      <h2>Descargar ticket</h2>
+      <div className="qr-booking">
+        {QRs.map((q) => (
+          <QrTicket key={q.qrPicture} q={q} />
+        ))}
+      </div>
+      <div className="back-div"></div>
       <hr />
       <div>
         <h2> Otras reservas del usuario</h2>
-        <br />
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(`/bookingDetail`);
+          }}
+        >
+          🎟️ Mis reservas
+        </button>
         <div>
-          {/* Pasar a componente */}
-          {othersBookings.map((oq) => {
-            return (
-              <div className="other-card">
-                <p className="btns-other-bookings">
-                  {oq.ticket} {oq.title}
-                </p>
-                <div className="other-info">
-                  {oq.photo ? (
-                    <img
-                      src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${oq.photo}`}
-                      alt={oq?.title}
-                      className="card-thumbnail"
-                    />
-                  ) : (
-                    <img
-                      src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-                      alt={oq?.title}
-                      className="card-thumbnail"
-                    />
-                  )}
-                  <div className="btns-other-bookings">
-                    <button
-                      id={
-                        moment().format() > oq.dateExperience
-                          ? 'vota'
-                          : 'no-vota'
-                      }
-                      className="btn-other-bookings"
-                    >
-                      Valorar
-                    </button>
-                    <button
-                      className="btn-other-bookings"
-                      onClick={(e) => handleCancelBooking(e, oq.ticket)}
-                    >
-                      Cancelar
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {othersBookings.map((oq) => (
+            <OtherBooking
+              oq={oq}
+              key={oq.id}
+              handleCancelBooking={handleCancelBooking}
+            />
+          ))}
         </div>
       </div>
     </div>

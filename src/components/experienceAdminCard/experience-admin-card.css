@@ -1,0 +1,50 @@
+.card-category {
+  border-radius: 10px;
+  box-shadow: 2px 3px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  cursor: pointer;
+  background-color: chartreuse;
+  width: 80%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  min-height: 240px;
+  margin: 20px auto;
+}
+.card-figure-category {
+  overflow: hidden;
+  width: 100%;
+  height: 140px;
+}
+.card-thumbnail-category {
+  border-radius: 10px;
+  margin: 10px auto;
+  overflow: hidden;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.title-card-category {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto 6px;
+}
+
+.row-button-category {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-category-option {
+  width: 30%;
+  height: 2rem;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 12px;
+}

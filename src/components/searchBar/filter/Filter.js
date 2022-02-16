@@ -23,12 +23,25 @@ const Filter = () => {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+
   useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
     query += searchStartPrice ? `&start_price=${searchStartPrice}` : '';
     query += searchEndPrice ? `&end_price=${searchEndPrice}` : '';
     query += searchCat ? `&category=${searchCat}` : '';
     query += searchLoc ? `&location=${searchLoc}` : '';
+
+
+    navigate(query);
+  }, [searchCat, searchLoc, searchStartPrice, searchEndPrice]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let startDate = searchDate[0].format();
+    let endDate = searchDate[1].format();
+    console.log('startdate:', startDate, 'enddate:', endDate);
+
+    let query = `/allFilter?experience=${experience}`;
 
     navigate(query);
   }, [searchCat, searchLoc, searchStartPrice, searchEndPrice]);

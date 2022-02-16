@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
-import { checkIfFileExists } from '../../helpers/checkIfFileExists';
 import fetcher from '../../helpers/fetcher';
+import { toast } from 'react-toastify';
 import './category-admin-card.css';
 
-//TODO//
-//Al borrar categoría no se actualiza la lista de categorías//
-
-export const CategoryAdminCard = ({ cat }) => {
+export const CategoryAdminCard = ({ cat, setToSearch }) => {
   const [token, setToken] = useContext(TokenContext);
   const [active, setActive] = useState(cat.active === 1 ? true : false);
   const [result, setResult] = useState([]);
@@ -16,7 +13,9 @@ export const CategoryAdminCard = ({ cat }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Trae los resultados de las categorias
   useEffect(() => {
+    setLoading(true);
     fetcher(setResult, setError, setLoading, `category/${cat.id}`, {
       method: 'PUT',
       headers: {
@@ -29,17 +28,19 @@ export const CategoryAdminCard = ({ cat }) => {
     });
   }, [active, cat.id, token]);
 
+  // Un alert en cuanto el estado de error cambie de null
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+
   return (
-    <div className="card-category">
+    <div className="card-category fade_in">
       <div className="title-card-category">
         <span>ID: {cat.id}</span>
         <span>Categoría: {cat.title}</span>
       </div>
       <figure className="card-figure-category">
-        {cat.photo &&
-        checkIfFileExists(
-          `${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`
-        ) ? (
+        {cat.photo ? (
           <img
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`}
             alt={cat.title}
@@ -56,14 +57,22 @@ export const CategoryAdminCard = ({ cat }) => {
       <div className="row-button-category">
         <button
           className="btn-category-option"
-          onClick={(e) => {
+          onClick={async (e) => {
             e.preventDefault();
-            fetcher(setResult, setError, setLoading, `category/${cat.id}`, {
-              method: 'DELETE',
-              headers: {
-                Authorization: token,
-              },
-            });
+            setToSearch(' ');
+            await fetcher(
+              setResult,
+              setError,
+              setLoading,
+              `category/${cat.id}`,
+              {
+                method: 'DELETE',
+                headers: {
+                  Authorization: token,
+                },
+              }
+            );
+            setToSearch('');
           }}
         >
           Borrar
@@ -78,8 +87,11 @@ export const CategoryAdminCard = ({ cat }) => {
         </button>
         {active && (
           <button
-            className="btn-category-option"
-            onClick={() => setActive(!active)}
+            className="btn-category-option btn-active"
+            id="btn-desactive"
+            onClick={() => {
+              setActive(!active);
+            }}
           >
             Desactivar
           </button>
@@ -87,13 +99,15 @@ export const CategoryAdminCard = ({ cat }) => {
         {!active && (
           <button
             className="btn-category-option"
-            onClick={() => setActive(!active)}
+            id="btn-active"
+            onClick={(e) => {
+              setActive(!active);
+            }}
           >
             Activar
           </button>
         )}
       </div>
-      <h1>{result}</h1>
     </div>
   );
 };
