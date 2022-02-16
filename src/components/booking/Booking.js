@@ -120,11 +120,11 @@ const Booking = () => {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <h1 className="spinner-container">Loading...</h1>
       ) : (
         <div className="reserved-card">
-          <h1> ESTO YA ES LA RESERVA</h1>
-          <div className="test">
+          <h1 className="title-center"> RESERVAR</h1>
+          <div className="experience-data">
             <div className="photo-thumbnail">
               {photo ? (
                 <img
@@ -146,58 +146,8 @@ const Booking = () => {
             </div>
           </div>
           <hr />
-          <form>
-            <div id="select-date">
-              <label htmlFor="date">Escoger Fecha</label>
-              <DatePicker
-                value={bookingDate}
-                onChange={setBookingDate}
-                editable={false}
-                minDate={new DateObject().add(1, 'days')}
-              />
-            </div>
-            <div id="select-quantity">
-              <label htmlFor="quantity">Cantidad</label>
-              <button
-                type="button"
-                className="button-quantity"
-                onClick={handleSubtractTicket}
-              >
-                -
-              </button>
-              <input
-                type="text"
-                name="quantity"
-                id="quantity"
-                className="input-quantity"
-                value={numTickets}
-                onChange={handleTicket}
-              />
-              <button
-                type="button"
-                className="button-quantity"
-                onClick={handleAddTicket}
-              >
-                +
-              </button>
-              {<h5>Máximo disponible de: {maxFreePlaces}</h5>}
-            </div>
-          </form>
-
-          <h2 className="precio">Precio: {price} €</h2>
-          <h1 className="precio">Total: {(price * numTickets).toFixed(2)} €</h1>
-          <div className="ratin-comprar">
+          <div className="rating-back">
             <p>🌟🌟🌟🌟🌟</p>
-            <button className="btn-comprar" onClick={handleNewBooking}>
-              RESERVAR
-            </button>
-          </div>
-          <div className="accordion-section">
-            {infoExperience.map(({ title, content }) => (
-              <Accordion key={title} title={title} content={content} />
-            ))}
-          </div>
-          <div className="back-div">
             <button
               className="btn-back"
               onClick={() => {
@@ -206,6 +156,72 @@ const Booking = () => {
             >
               ↩️ back
             </button>
+          </div>
+          <form>
+            <div id="select-date">
+              <label htmlFor="date">Escoger Fecha</label>
+              <DatePicker
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '120px',
+                  textAlign: 'center',
+                  fontSize: '1.1rem',
+                  border: 'none',
+                }}
+                value={bookingDate}
+                onChange={setBookingDate}
+                editable={false}
+                minDate={new DateObject().add(1, 'days')}
+              />
+            </div>
+            <div className="tickets-booking">
+              <div id="select-quantity">
+                <label htmlFor="quantity">Nº Tickets</label>
+                <button
+                  type="button"
+                  className="button-quantity"
+                  onClick={handleSubtractTicket}
+                >
+                  -
+                </button>
+                <input
+                  type="text"
+                  name="quantity"
+                  id="quantity"
+                  className="input-quantity"
+                  value={numTickets}
+                  onChange={handleTicket}
+                />
+                <button
+                  type="button"
+                  className="button-quantity"
+                  onClick={handleAddTicket}
+                >
+                  +
+                </button>
+              </div>
+              {
+                <h5 style={{ textAlign: 'center' }}>
+                  Máximas plazas disponibles: {maxFreePlaces}
+                </h5>
+              }
+            </div>
+          </form>
+
+          <p className="precio-unidad">Precio: {price} €</p>
+          <p className="precio-total">
+            Total: {(price * numTickets).toFixed(2)} €
+          </p>
+
+          <button className="btn-comprar" onClick={handleNewBooking}>
+            RESERVAR
+          </button>
+
+          <div className="accordion-section">
+            {infoExperience.map(({ title, content }) => (
+              <Accordion key={title} title={title} content={content} />
+            ))}
           </div>
         </div>
       )}

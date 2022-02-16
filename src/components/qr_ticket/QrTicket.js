@@ -11,7 +11,7 @@ export const QrTicket = ({ q }) => {
         a.href = await downloadImage(
           `${process.env.REACT_APP_BACKEND_URL}/uploads/${q.qrPicture}`
         );
-        a.download = `${q.qrPicture}.png`;
+        a.download = `${q.qrPicture}`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

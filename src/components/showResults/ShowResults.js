@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFiltered } from '../../hooks/useFiltered';
 import { ExperienceCard } from '../experienceCard/ExperienceCard';
+import { toast } from 'react-toastify';
 import './show-results.css';
 
 const ShowResults = () => {
@@ -16,15 +17,17 @@ const ShowResults = () => {
 
   const q = location.search;
 
-  console.log(q);
-
   let query = q;
 
   query.length < 1 ? (query = '?experience=&featured=1') : (query = q);
 
-  const { filtered, loading } = useFiltered(query);
+  const { filtered, loading, error } = useFiltered(query);
 
   const pagFiltered = filtered.slice(0, lastIndex);
+
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   useEffect(() => {
     setLastIndex(expByPage);
@@ -38,7 +41,7 @@ const ShowResults = () => {
   }, [filtered, lastIndex]);
 
   const handleLoadMore = () => {
-    if (lastIndex > filtered.length) {
+    if (lastIndex >= filtered.length) {
       setBtnMore(false);
     } else {
       setBtnMore(true);

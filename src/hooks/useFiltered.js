@@ -10,5 +10,5 @@ export const useFiltered = (experience = '') => {
     fetcher(setFiltered, setError, setLoading, `allFilter${experience}`, {});
   }, [experience]);
 
-  return { filtered, loading };
+  return { filtered, loading, error };
 };
