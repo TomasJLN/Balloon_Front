@@ -21,15 +21,7 @@ margin-bottom: 20px;
 
 .editbooking a{
 
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
-    font-size: 1rem;
-    margin-bottom: 20px;
-
+   
 }
 
 .editbooking div{
