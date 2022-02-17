@@ -1,0 +1,22 @@
+#popup-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(193, 178, 209, 0.6);
+  width: 100vw;
+  height: 100vh;
+}
+
+#popup-fg {
+  background-color: whitesmoke;
+  width: 80%;
+  height: 30%;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 2px 8px black;
+}

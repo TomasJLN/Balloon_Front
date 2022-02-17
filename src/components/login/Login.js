@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
 import fetcher from '../../helpers/fetcher';
+import { Popup } from '../popup/Popup';
 import './login.css';
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigate = useNavigate();
 
@@ -73,8 +75,10 @@ const Login = () => {
             <Link to="/register">Crear una cuenta</Link>
           </div>
           <div className="link-to">
-            <Link to="/recoveryPassword">Recuperar contraseña</Link>
+            {/* <Link to="/recoveryPassword">Recuperar contraseña</Link> */}
+            <p onClick={() => setShowPopup(true)}>Recuperar contraseña</p>
           </div>
+          {showPopup && <Popup setShowPopup={setShowPopup} />}
         </div>
       )}
     </>
