@@ -6,8 +6,6 @@ export const useBookingDetails = (ticket, token) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  console.log(ticket);
-
   useEffect(() => {
     fetcher(setBookingDetail, setError, setLoading, `booking/view/${ticket}`, {
       method: 'GET',
