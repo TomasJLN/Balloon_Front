@@ -77,3 +77,11 @@ a {
 .stars-count {
   font-size: 12px;
 }
+
+.counter-reviews {
+  font-size: 0.8rem;
+}
+
+.stars-row {
+  display: flex;
+}

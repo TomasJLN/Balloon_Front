@@ -52,16 +52,17 @@ const Experience = () => {
         />
       )}
       <div className="rating-back">
-        <p>
-          {' '}
+        <p className="stars-row">
           {avgRatin !== 0 && (
-            <Rating
-              ratingValue={avgRatin}
-              size="16px"
-              showTooltip
-              tooltipClassName="stars-count"
-              readonly={true}
-            />
+            <>
+              <Rating
+                ratingValue={avgRatin}
+                size="16px"
+                tooltipClassName="stars-count"
+                readonly={true}
+              />{' '}
+              <span className="counter-reviews">({reviews.length})</span>
+            </>
           )}
         </p>
         <button
@@ -96,6 +97,10 @@ const Experience = () => {
       </div>
       <hr />
       {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
+      <hr />
+      <div>
+        <h1>Experiencias similades</h1>
+      </div>
     </div>
   );
 };
