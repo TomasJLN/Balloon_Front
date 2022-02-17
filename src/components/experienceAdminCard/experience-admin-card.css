@@ -3,7 +3,7 @@
   box-shadow: 2px 3px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   cursor: pointer;
-  background-color: chartreuse;
+  background-color: rgba(200, 200, 200, 0.671);
   width: 80%;
   max-width: 360px;
   display: flex;

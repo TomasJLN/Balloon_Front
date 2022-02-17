@@ -17,7 +17,7 @@ export const AppRoute = () => {
           </Routes>
         </UserContextProvider>
       </TokenContextProvider>
-      <ToastContainer position="top-center" autoClose={4000} limit={3} />
+      <ToastContainer position="top-center" autoClose={4000} limit={2} />
     </Router>
   );
 };
