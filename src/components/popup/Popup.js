@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fetcher from '../../helpers/fetcher';
 import './popup.css';
 
@@ -7,6 +8,7 @@ export const Popup = ({ setShowPopup }) => {
   const [result, setResult] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleRecoveryPassword = async (e) => {
     e.preventDefault();
@@ -20,10 +22,7 @@ export const Popup = ({ setShowPopup }) => {
   };
 
   useEffect(() => {
-    console.log(result);
-    !error &&
-      result.includes('comprueba tu email') &&
-      console.log('lo redirigimos');
+    !error && result.includes('comprueba tu email') && navigate('/recovery');
   }, [result]);
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export const Popup = ({ setShowPopup }) => {
     <section id="popup-bg" onClick={() => setShowPopup(false)}>
       <article id="popup-fg" onClick={(e) => e.stopPropagation()}>
         <h3>RECUPERAR CONTRASEÑA</h3>
-        <form onSubmit={handleRecoveryPassword}>
+        <form id="popup-form" onSubmit={handleRecoveryPassword}>
           <label htmlFor="email-recovery">Email</label>
           <input
             type="text"
@@ -43,7 +42,9 @@ export const Popup = ({ setShowPopup }) => {
               setEmailRecovery(e.target.value);
             }}
           />
-          <button type="submit">Recuperar</button>
+          <button type="submit" className="btn-booking">
+            Recuperar
+          </button>
         </form>
       </article>
     </section>

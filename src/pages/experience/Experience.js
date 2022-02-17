@@ -5,6 +5,7 @@ import { Rating } from 'react-simple-star-rating';
 import './experience.css';
 import { useGetReviews } from '../../hooks/useGetReviews';
 import { useEffect, useState } from 'react';
+import { Reviews } from '../../components/reviews/Reviews';
 
 const Experience = () => {
   const { id } = useParams();
@@ -32,7 +33,6 @@ const Experience = () => {
 
   useEffect(() => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
-    console.log(avgRatin);
   }, [reviews]);
 
   return (
@@ -94,6 +94,8 @@ const Experience = () => {
           <Accordion key={title} title={title} content={content} />
         ))}
       </div>
+      <hr />
+      {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
     </div>
   );
 };

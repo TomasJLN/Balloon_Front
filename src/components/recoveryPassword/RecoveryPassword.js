@@ -29,25 +29,28 @@ const RecoveryPassword = () => {
 
   return (
     <div>
-      <h1>Pantalla de recovery password</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="title-center">Recuperación contraseña</h1>
+      <form className="form-recovery" onSubmit={handleSubmit}>
         <label htmlFor="recoveryCode">Código de recuperación:</label>
         <input
           type="text"
           id="recoveryCode"
           onChange={(e) => setRecoveryCode(e.target.value)}
+          autoComplete="off"
         />
         <label htmlFor="newPassword">Nueva Contraseña:</label>
         <input
           type="password"
           id="newPassword"
           onChange={(e) => setNewPassword(e.target.value)}
+          autoComplete="off"
         />
-        <button type="submit" onClick={handleSubmit}>
+        <button type="submit" onClick={handleSubmit} className="btn-booking">
           Enviar
         </button>
       </form>
     </div>
   );
 };
+
 export default RecoveryPassword;

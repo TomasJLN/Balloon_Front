@@ -40,12 +40,14 @@ const Login = () => {
         <div>
           <form onSubmit={handleLogin} className="login-form">
             <div className="mail-field">
-              <label htmlFor="email-login">email:</label>
+              {/* <label htmlFor="email-login">email:</label> */}
               <input
                 type="text"
                 id="email-login"
                 value={email}
                 name="email-login"
+                placeholder="email"
+                size="40"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -54,13 +56,15 @@ const Login = () => {
             </div>
             <br />
             <div className="password-field">
-              <label htmlFor="password-login">Contraseña:</label>
+              {/* <label htmlFor="password-login">Contraseña:</label> */}
               <input
                 type="password"
                 id="password-login"
                 value={password}
                 name="password-login"
+                size="40"
                 autoComplete="off"
+                placeholder="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
