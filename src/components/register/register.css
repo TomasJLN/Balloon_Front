@@ -1,3 +1,48 @@
+/* 
+
+html {
+  background-color: lightseagreen;
+}
+
+h2 {
+  display: flex;
+justify-content: center;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.barrabuscadora{
+
+  display: flex;
+  justify-content: center;
+
+
+
+
+  
+}
+
+input{
+
+
+  width: 30rem;
+  height: 4rem;
+
+}
+
+button {
+  border: 0.5px solid black;
+  width: 6rem;
+  height: 4.3rem;
+  font-size: 1.5rem;
+} */
+.newUserCreate {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem
+
+
+}
+
 label {
   text-transform: none;
 }
@@ -16,8 +61,89 @@ label {
 
 .registerForm label {
   font-weight: bold;
+  align-items: center;
+  
 }
 
-/* .registerbtn {
-  margin-top: ;
+.registerbtn {
+  background-color: #000000;
+  color: white;
+  width: 10rem;
+  border-radius: 20px;
+  height: 3rem;
+  margin-bottom: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.registerbtn:hover {
+  box-shadow: 3px 8px 30px 3px rgba(119, 115, 115, 0.39);
+}
+/* #registerInputs:hover{
+ 
+
 } */
+
+.registerInputs {
+  width: 75%;
+  background-color: fff;
+  border-radius: 5px;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 40px 0 10px;
+  transition: .3s ease all;
+  border: 0.2px solid rgb(192, 188, 188);
+  cursor: pointer;
+
+}
+
+#inputContainer {
+  position: relative;
+  z-index: 90;
+}
+
+#registerInputs:focus {
+  border: 1px solid blue;
+  outline: none;
+  box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
+}
+
+.errorValidation {
+  font-weight:lighter;
+  font-size: 12px;
+  margin-bottom: 0;
+  color: red;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+
+}
+.FaCheckCircle {
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+  z-index: 100;
+  font-size: 16px;
+  opacity: 0;
+}
+
+.errMsn p {
+  
+  justify-content: center;
+  padding: 1rem;
+  display: none;
+}
+.errMsn {
+  width: 50%;
+ align-content: center;
+ background-color: rgb(110, 8, 8);
+ color: white;
+margin-bottom: 2rem;
+margin-top: 1rem;
+}
+
+.exitMsg {
+  font-size: 14px;
+  color: green;
+  display: none;
+
+} 
