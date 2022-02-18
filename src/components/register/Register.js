@@ -3,15 +3,20 @@ import fetcher from '../../helpers/fetcher';
 import './register.css';
 
 const Register = () => {
-  const [newUser, setNewUser] = useState({
+  const initialForm = {
+    
     name: '',
     surname: '',
     email: '',
     password: '',
     passwordRepeat: '',
-  });
+  };
+  const [newUser, setNewUser] = useState(initialForm);
+  
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [errorsFormulario, setErrorsFormulario] = useState({});
 
   const register = async (e) => {
     e.preventDefault();
@@ -23,7 +28,54 @@ const Register = () => {
       body: JSON.stringify(newUser),
     });
   };
+  const handleChange = (e) => {
+    const {name,value} = e.target;
+    setNewUser({
+        ...newUser,
+        [name]: value,
+    });
+  
+};
+const handleBlur = (e) => {
+    handleChange(e);
+    setErrorsFormulario(validationsForm(newUser));
 
+}
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setErrorsFormulario(validationsForm(newUser))
+}
+const validationsForm = (newUser) => {
+  let errorsFormulario = {};
+
+  if(!newUser.name.trim()){
+     errorsFormulario.name = "Debes introducir un nombre"
+     
+  }
+  if(!newUser.surname.trim()){
+       errorsFormulario.surname = "Debes introducir tus apellidos"
+    }
+  if(!newUser.email.trim()){ 
+          errorsFormulario.email = "Debes introducir tu email"
+  }
+  if(!newUser.password.trim()){
+
+          errorsFormulario.password = "Debes introducir una contraseña"
+   
+  }
+  if(!newUser.passwordRepeat.trim()){
+   
+          
+      errorsFormulario.passwordRepeat = "Debes introducir de nuevo la contraseña"
+   
+  }
+
+  if(newUser.password !== newUser.passwordRepeat )    {
+      errorsFormulario.password = "Las contraseñas deben coinicidir"
+  }
+
+  return errorsFormulario;
+}
   useEffect(() => {
     if (error) alert(error);
     console.log(error);
@@ -33,60 +85,125 @@ const Register = () => {
   }, [error]);
 
   return (
-    <section>
-      <h2>Crear nuevo usuario</h2>
-      <form className="registerForm" onSubmit={register}>
-        <label>Nombre:</label>
-        <input
-          type="text"
-          placeholder="Nombre"
-          onChange={(e) => {
-            setNewUser({ ...newUser, name: e.target.value });
-          }}
-        ></input>
+    <div>
+      <h2 className='newUserCreate'>Crear nuevo usuario</h2>
+      <form className="registerForm" onSubmit={handleSubmit}>
+      <div >
+        <label htmlFor='name'>Nombre:</label>
 
-        <label>Apellidos:</label>
         <input
+         className='registerInputs'
+         name='name'
           type="text"
-          placeholder="Apellidos"
-          onChange={(e) => {
-            setNewUser({ ...newUser, surname: e.target.value });
-          }}
-        ></input>
+          placeholder="Escribe tu nombre"
+          onChange={handleChange}
+          value={newUser.name}
+          onBlur={handleBlur}
+          required></input>
+             {errorsFormulario.name && 
+            <p className='errorValidation'>{errorsFormulario.name}</p>
+           }
+          </div>
 
-        <label>Correo electrónico:</label>
+
+          <div >
+        <label htmlFor='surname'>Apellidos:</label>
+
         <input
+         className='registerInputs'
+         name='surname'
+          type="text"
+          placeholder="Escribe tus apellidos"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={newUser.surname}
+
+          required></input>
+           {errorsFormulario.surname && 
+            <p className='errorValidation'>{errorsFormulario.surname}</p>
+           }
+         
+          </div>
+
+
+
+        <div>
+        <label htmlFor='email'>Correo electrónico:</label>
+        <input
+         className='registerInputs'
+         name='email'
           type="email"
-          placeholder="Correo electrónico"
-          onChange={(e) => {
-            setNewUser({ ...newUser, email: e.target.value });
-          }}
-        ></input>
+          placeholder="Escribe tu correo electrónico"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={newUser.email}
+          
+          required></input>
+          {errorsFormulario.email && 
+            <p className='errorValidation'>{errorsFormulario.email}</p>
+           }
+        </div>
 
-        <label>Contraseña:</label>
-        <input
-          type="password"
-          placeholder="Contraseña"
-          onChange={(e) => {
-            setNewUser({ ...newUser, password: e.target.value });
-          }}
-        ></input>
+        
+        
+        <div>
+        <label htmlFor='password'>Contraseña:</label>
 
-        <label>Repite la contraseña:</label>
         <input
+         className='registerInputs'
+          name='password'
           type="password"
-          placeholder="Misma contraseña"
-          onChange={(e) => {
-            setNewUser({ ...newUser, passwordRepeat: e.target.value });
-          }}
-        ></input>
+          placeholder="Escribe una contraseña"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={newUser.password}
+          required></input>
+           {errorsFormulario.password && 
+            <p className='errorValidation'>{errorsFormulario.password}</p>
+           }
+        </div>
+
+        
+        <div>
+        <label htmlFor='passwordRepeat'>Repite la contraseña:</label>
+        <input
+        className='registerInputs'
+        name='passwordRepeat'
+          type="password"
+          placeholder="Repite la contraseña"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={newUser.passwordRepeat}
+        required></input>
+           {errorsFormulario.passwordRepeat && 
+            <p className='errorValidation'>{errorsFormulario.passwordRepeat}</p>
+           }
+        </div>
+        
+
+        <div>
+          <label htmlFor='terminos'>
+            <input type="checkbox" name="terminos" id="terminos"/>
+            Acepto los términos y condiciones
+            </label>
+        </div>
+
+
+        <div className='errMsn'>
+          <p><b>Error:</b>Por favor, rellena el formulario correctamente.</p>
+        </div>
+
 
         <button className="registerbtn" type="submit">
           REGISTRARSE
         </button>
-      </form>
-    </section>
-  );
+
+        </form>
+
+  </div>
+
+
+  )
 };
 
 export default Register;
