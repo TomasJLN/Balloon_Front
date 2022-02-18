@@ -136,6 +136,7 @@ export const EditExperience = () => {
         <div className="input-text-field">
           <label htmlFor="id-cat-exp">ID Categoría: </label>
           <input
+          className='edit-experience'
             type="text"
             id="id-cat-exp"
             name="id-cat-exp"
@@ -200,6 +201,7 @@ export const EditExperience = () => {
         <div className="input-text-field-row">
           <label htmlFor="edit-startDate-exp">Fecha Inicio: </label>
           <input
+          className='edit-experience'
             type="text"
             id="edit-startDate-exp"
             name="starDate"
@@ -212,6 +214,7 @@ export const EditExperience = () => {
           />
           <label htmlFor="edit-endDate-exp">Fecha Final: </label>
           <input
+          className='edit-experience'
             type="text"
             id="edit-endDate-exp"
             name="endDate"
@@ -226,6 +229,7 @@ export const EditExperience = () => {
         <div className="input-text-field">
           <label htmlFor="edit-location-exp">Localización: </label>
           <input
+          className='edit-experience'
             type="text"
             id="edit-location-exp"
             name="location"
@@ -239,6 +243,7 @@ export const EditExperience = () => {
         <div className="input-text-field">
           <label htmlFor="edit-coords-exp">Coordenadas: </label>
           <input
+          className='edit-experience'
             type="text"
             id="edit-coords-exp"
             name="coords"

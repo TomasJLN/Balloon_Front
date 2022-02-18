@@ -11,8 +11,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
-  console.log(navigate);
+
 
   let { experience } = queryString.parse(location.search);
 
@@ -57,9 +56,9 @@ const SearchBar = () => {
           <button className="search-button" type="submit">
             <FaSearch />
           </button>
-          <button className="calendar-button">
+          <div className="calendar-button">
             <DateSearch />
-          </button>
+          </div>
         </form>
       </div>
       <div className="filter">
