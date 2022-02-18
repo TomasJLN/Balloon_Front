@@ -6,12 +6,13 @@ import './experience.css';
 import { useGetReviews } from '../../hooks/useGetReviews';
 import { useEffect, useState } from 'react';
 import { Reviews } from '../../components/reviews/Reviews';
+import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
 
 const Experience = () => {
   const { id } = useParams();
 
   const {
-    category,
+    idCategory,
     title,
     description,
     price,
@@ -99,7 +100,10 @@ const Experience = () => {
       {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
       <hr />
       <div>
-        <h1>Experiencias similades</h1>
+        <h1>Experiencias similades {idCategory}</h1>
+        <div className="nose">
+          <CarouselSimilar idCategory={idCategory} />
+        </div>
       </div>
     </div>
   );

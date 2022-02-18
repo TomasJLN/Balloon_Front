@@ -71,3 +71,7 @@
   flex-direction: column;
   gap: 6px;
 }
+
+.nose {
+  height: 500px;
+}
