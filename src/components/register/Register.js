@@ -80,13 +80,6 @@ const Register = () => {
     };
   }, [error]);
 
-  useEffect(() => {
-    if (state && state.includes('Registro completado')) {
-      toast.success(state);
-      navigate('/account');
-    }
-  }, [state, navigate]);
-
   return (
     <div>
       <h2 className="newUserCreate">Crear nuevo usuario</h2>
