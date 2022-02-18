@@ -31,7 +31,7 @@ const Filter = () => {
     query += searchLoc ? `&location=${searchLoc}` : '';
 
     navigate(query);
-  }, [searchCat, searchLoc, searchStartPrice, searchEndPrice]);
+  }, [searchCat, searchLoc, searchStartPrice, searchEndPrice, navigate, experience]);
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
