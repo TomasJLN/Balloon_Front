@@ -7,6 +7,7 @@ import { useGetReviews } from '../../hooks/useGetReviews';
 import { useEffect, useState } from 'react';
 import { Reviews } from '../../components/reviews/Reviews';
 import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
+import { FaSearchLocation } from 'react-icons/fa';
 
 const Experience = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const Experience = () => {
     conditions,
     normatives,
   } = useExperience(id);
+  const url = `https://www.google.es/maps/@${coords},19z`;
 
   let infoExperience = [];
   infoExperience.push({ title: 'Condiciones', content: conditions });
@@ -61,7 +63,7 @@ const Experience = () => {
                 size="16px"
                 tooltipClassName="stars-count"
                 readonly={true}
-              />{' '}
+              />
               <span className="counter-reviews">({reviews.length})</span>
             </>
           )}
@@ -78,6 +80,19 @@ const Experience = () => {
       <div className="exp-description">
         <p>Descripción: </p>
         <p>{description}</p>
+      </div>
+      <div>
+        <span>Localización: {location} </span>
+        <span>
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="card-location"
+          >
+            <FaSearchLocation className="icon-search" />
+          </a>
+        </span>
       </div>
       <h2 id="precio-exp">{price} €</h2>
 
@@ -101,7 +116,7 @@ const Experience = () => {
       <hr />
       <div>
         <h1>Experiencias similades {idCategory}</h1>
-        <div className="nose">
+        <div>
           <CarouselSimilar idCategory={idCategory} />
         </div>
       </div>

@@ -123,3 +123,22 @@
 .tickets-booking {
   margin: 12px 0;
 }
+
+.pay-method {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+.pay-option {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.pay-option input {
+  margin-right: 10px;
+}
+.pay-option label {
+  background-color: aqua;
+}
