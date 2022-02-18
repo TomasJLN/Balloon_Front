@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fetcher from '../../helpers/fetcher';
+import { toast } from 'react-toastify';
 import './register.css';
 
 const Register = () => {
@@ -11,9 +13,9 @@ const Register = () => {
     passwordRepeat: '',
   };
   const [newUser, setNewUser] = useState(initialForm);
-
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [errorsFormulario, setErrorsFormulario] = useState({});
   const [checkboxValidation, setCheckboxValidation] = useState(false);
@@ -72,12 +74,18 @@ const Register = () => {
     return errorsForm;
   };
   useEffect(() => {
-    if (error) alert(error);
-    console.log(error);
+    if (error) toast.error(error);
     return () => {
       setError(null);
     };
   }, [error]);
+
+  useEffect(() => {
+    if (state && state.includes('Registro completado')) {
+      toast.success(state);
+      navigate('/account');
+    }
+  }, [state, navigate]);
 
   return (
     <div>

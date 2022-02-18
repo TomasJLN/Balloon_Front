@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import fetcher from '../../helpers/fetcher';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './footer.css';
 
 const Footer = () => {
@@ -11,11 +12,11 @@ const Footer = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    error && alert(error);
+    error && toast.error(error);
   }, [error, setError]);
 
   useEffect(() => {
-    result && alert(result);
+    result && toast.info(result);
   }, [result, setResult]);
 
   const createNewsletter = async (e) => {
@@ -29,7 +30,7 @@ const Footer = () => {
         body: JSON.stringify(mail),
       });
     } else {
-      alert('Debes aceptar la política de privacidad');
+      toast.error('Debes aceptar la política de privacidad');
     }
     setMail({ email: '' });
     resetCheck();
@@ -89,22 +90,16 @@ const Footer = () => {
       <section className="links">
         <ul>
           <li>
-            <Link to="/infoPage" target="blank">
-              Condiciones de Uso
-            </Link>
+            <Link to="/conditions">Condiciones de Uso</Link>
           </li>
           <li>
-            <Link to="/infoPage" target="blank">
-              Política de privacidad
-            </Link>
+            <Link to="/privacity">Política de privacidad</Link>
           </li>
           <li>
             <Link to="/contact-form">Contacto</Link>
           </li>
           <li>
-            <Link to="/infoPage" target="blank">
-              FAQ
-            </Link>
+            <Link to="/faq">FAQ</Link>
           </li>
         </ul>
       </section>

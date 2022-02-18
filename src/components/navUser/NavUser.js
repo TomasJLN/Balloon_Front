@@ -12,6 +12,7 @@ const NavUser = ({ setUserMenu, usuario }) => {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
+        e.stopPropagation();
         setUserMenu((s) => !s);
       }
     };
@@ -29,7 +30,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
   };
 
   return (
-    <div ref={ref} className="nav-user">
+    <menu
+      ref={ref}
+      className="nav-user"
+      onClick={(e) => setUserMenu((s) => !s)}
+    >
       <ul>
         {token && role === 'admin' && (
           <li>
@@ -39,6 +44,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
         {token && (
           <li>
             <Link to="/profile">Perfil</Link>
+          </li>
+        )}
+        {token && role === 'user' && (
+          <li>
+            <Link to="/bookingDetail">Tus Reservas</Link>
           </li>
         )}
         {token && <li onClick={handleLogout}>Log out</li>}
@@ -52,11 +62,19 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/register">Registro</Link>
           </li>
         )}
-        <li>
-          <Link to="/contact-form">Contactar</Link>
-        </li>
+        {!token && (
+          <li>
+            <Link to="/recovery">Recuperar contraseña</Link>
+          </li>
+        )}
+
+        {role !== 'admin' && (
+          <li>
+            <Link to="/contact-form">Contactar</Link>
+          </li>
+        )}
       </ul>
-    </div>
+    </menu>
   );
 };
 

@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useFiltered } from '../../hooks/useFiltered';
 import { ExperienceCard } from '../experienceCard/ExperienceCard';
+import { toast } from 'react-toastify';
 import './show-results.css';
 
 const ShowResults = () => {
-  const expByPage = 10;
+  //Experiencias mostradas por página
+  const expByPage = 6;
 
   const location = useLocation();
 
   const [lastIndex, setLastIndex] = useState(expByPage);
 
-  const [btnMore, setBtnMore] = useState(true);
+  const [btnMore, setBtnMore] = useState(false);
 
   const q = location.search;
 
   let query = q;
+
   query.length < 1 ? (query = '?experience=&featured=1') : (query = q);
 
-  const { filtered, loading } = useFiltered(query);
+  const { filtered, loading, error } = useFiltered(query);
 
   const pagFiltered = filtered.slice(0, lastIndex);
+
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   useEffect(() => {
     setLastIndex(expByPage);
@@ -34,7 +41,7 @@ const ShowResults = () => {
   }, [filtered, lastIndex]);
 
   const handleLoadMore = () => {
-    if (lastIndex > filtered.length) {
+    if (lastIndex >= filtered.length) {
       setBtnMore(false);
     } else {
       setBtnMore(true);
@@ -45,13 +52,15 @@ const ShowResults = () => {
   return (
     <>
       {loading ? (
-        <h1 className="loading fade_in">Loading...</h1>
+        <div className="spinner-container">
+          <h1>Loading...</h1>
+        </div>
       ) : (
         <>
           <div className="card-deck">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (
-                <ExperienceCard key={exp.ID} exp={exp} />
+                <ExperienceCard key={exp.id} exp={exp} />
               ))
             ) : (
               <h1 className="info fade_in">No se encontraron resultados</h1>

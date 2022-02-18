@@ -1,13 +1,19 @@
-import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Accordion from '../../components/accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
+import { Rating } from 'react-simple-star-rating';
 import './experience.css';
+import { useGetReviews } from '../../hooks/useGetReviews';
+import { useEffect, useState } from 'react';
+import { Reviews } from '../../components/reviews/Reviews';
+import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
+import { FaSearchLocation } from 'react-icons/fa';
 
 const Experience = () => {
   const { id } = useParams();
+
   const {
-    category,
+    idCategory,
     title,
     description,
     price,
@@ -18,16 +24,23 @@ const Experience = () => {
     conditions,
     normatives,
   } = useExperience(id);
+  const url = `https://www.google.es/maps/@${coords},19z`;
 
   let infoExperience = [];
   infoExperience.push({ title: 'Condiciones', content: conditions });
   infoExperience.push({ title: 'Normativas', content: normatives });
 
   const navigate = useNavigate();
+  const { reviews, error, loading } = useGetReviews(id);
+  const [avgRatin, setAvgRatin] = useState(0);
+
+  useEffect(() => {
+    !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
+  }, [reviews]);
 
   return (
     <div className="single-card">
-      <h1>{title}</h1>
+      <h1 className="title">{title}</h1>
       {photo ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
@@ -41,27 +54,71 @@ const Experience = () => {
           className="exp-picture"
         />
       )}
-      <h2 id="precio">{price} €</h2>
-      <p>{description}</p>
+      <div className="rating-back">
+        <p className="stars-row">
+          {avgRatin !== 0 && (
+            <>
+              <Rating
+                ratingValue={avgRatin}
+                size="16px"
+                tooltipClassName="stars-count"
+                readonly={true}
+              />
+              <span className="counter-reviews">({reviews.length})</span>
+            </>
+          )}
+        </p>
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          ↩️ back
+        </button>
+      </div>
+      <div className="exp-description">
+        <p>Descripción: </p>
+        <p>{description}</p>
+      </div>
+      <div>
+        <span>Localización: {location} </span>
+        <span>
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="card-location"
+          >
+            <FaSearchLocation className="icon-search" />
+          </a>
+        </span>
+      </div>
+      <h2 id="precio-exp">{price} €</h2>
+
       <div className="ratin-comprar">
-        <p>🌟🌟🌟🌟🌟</p>
-        <button className="btn-comprar">Comprar</button>
+        <button
+          className="btn-comprar"
+          onClick={(e) => {
+            navigate(`/booking/${id}`);
+          }}
+        >
+          Comprar
+        </button>
       </div>
       <div className="accordion-section">
         {infoExperience.map(({ title, content }) => (
           <Accordion key={title} title={title} content={content} />
         ))}
       </div>
-      <div className="back-div">
-        <button
-          className="btn-back"
-          onClick={() => {
-            navigate(-1);
-            console.log('un click');
-          }}
-        >
-          ↩️ back
-        </button>
+      <hr />
+      {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
+      <hr />
+      <div>
+        <h1>Experiencias similades {idCategory}</h1>
+        <div>
+          <CarouselSimilar idCategory={idCategory} />
+        </div>
       </div>
     </div>
   );

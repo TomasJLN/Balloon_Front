@@ -1,10 +1,10 @@
 .nav-user {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   top: 65px;
-  right: 20px;
-  z-index: 100;
+  right: 4px;
+  z-index: 3;
   background-color: black;
   opacity: 80%;
 }
@@ -16,10 +16,11 @@
   padding: 0.5rem;
 }
 
-.nav-user a {
+menu a {
   color: white;
+  display: flex;
 }
 
-.nav-user a:hover {
+menu a:hover {
   color: rgb(237, 245, 191);
 }

@@ -1,18 +1,26 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { FaSearchLocation } from 'react-icons/fa';
-import './experience-card.css';
 import { useNavigate } from 'react-router-dom';
+import { useGetReviews } from '../../hooks/useGetReviews';
+import { Rating } from 'react-simple-star-rating';
+import './experience-card.css';
 
 export const ExperienceCard = ({ exp }) => {
   const coords = exp.coords.replace(/\s+/g, '');
   const url = `https://www.google.es/maps/@${coords},19z`;
   const navigate = useNavigate();
+  const { reviews, error, loading } = useGetReviews(exp.id);
+  const [avgRatin, setAvgRatin] = useState(0);
+
+  useEffect(() => {
+    !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
+  }, [reviews]);
 
   return (
     <div
       className="card fade_in"
       onClick={() => {
-        navigate(`/experience/${exp.ID}`);
+        navigate(`/experience/${exp.id}`);
       }}
     >
       {exp.photo ? (
@@ -43,8 +51,18 @@ export const ExperienceCard = ({ exp }) => {
             </a>
           </p>
         }
-        <p>
-          <span className="card-rating">🌟🌟🌟🌟</span>
+        <p className="stars-row">
+          {avgRatin !== 0 && (
+            <>
+              <Rating
+                ratingValue={avgRatin}
+                size="16px"
+                tooltipClassName="stars-count"
+                readonly={true}
+              />
+              <span className="counter-reviews">({reviews.length})</span>
+            </>
+          )}
         </p>
         <p className="card-price">{exp.price} €</p>
       </div>

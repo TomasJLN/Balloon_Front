@@ -22,6 +22,17 @@ body {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
+
+.title-center {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.wrap-content {
+  margin: 0 10px;
+}
+
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;

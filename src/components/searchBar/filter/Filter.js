@@ -1,55 +1,53 @@
 import { Formik, Form, Field } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCategories2 } from '../../../hooks/useCategories2';
 import { useLocations } from '../../../hooks/useLocations';
-import DateSearch from '../datesearch/DateSearch';
+import './filter.css';
 import queryString from 'query-string';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../searchBar.css';
+import React, { useRef } from 'react';
 
 const Filter = () => {
+  const datePickerRef = useRef();
   const categories = useCategories2();
   const locations = useLocations();
-  /* const [value, setValue] = useState(); */
   const navigate = useNavigate();
   const location = useLocation();
   let { experience } = queryString.parse(location.search);
   experience = experience ? experience : '';
   const [searchCat, setSearchCat] = useState('');
   const [searchLoc, setSearchLoc] = useState('');
-  const [searchPrice, setSearchPrice] = useState(100);
+  const [searchStartPrice, setSearchStartPrice] = useState('');
+  const [searchEndPrice, setSearchEndPrice] = useState('');
 
-  console.log(experience);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
-    query += searchPrice ? `&end_price=${searchPrice}` : '';
+    query += searchStartPrice ? `&start_price=${searchStartPrice}` : '';
+    query += searchEndPrice ? `&end_price=${searchEndPrice}` : '';
     query += searchCat ? `&category=${searchCat}` : '';
     query += searchLoc ? `&location=${searchLoc}` : '';
 
-    console.log(query);
     navigate(query);
+  }, [searchCat, searchLoc, searchStartPrice, searchEndPrice]);
 
-    // navigate(
-    //   `/allFilter?experience=${experience}&end_price=${searchPrice}&category=${searchCat}&location=${searchLoc}`
-    // );
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   let startDate = searchDate[0].format();
+  //   let endDate = searchDate[1].format();
+  //   console.log('startdate:', startDate, 'enddate:', endDate);
 
-  const deleteSearch = (e) => {
-    navigate(`/`);
-  };
+  //   let query = `/allFilter?experience=${experience}`;
+
+  //   navigate(query);
+  // }, [searchCat, searchLoc, searchStartPrice, searchEndPrice];
 
   let filteredLocations = locations.filter(
     (ele, ind) =>
       ind === locations.findIndex((elem) => elem.location === ele.location)
   );
-
-  /*  useEffect(() => {
-    const ele = document.querySelector('.buble');
-    if (ele) {
-      ele.style.left = `${Number(value / 4)}px`;
-    }
-  }); */
 
   return (
     <div>
@@ -57,39 +55,16 @@ const Filter = () => {
         initialValues={{
           categoryfilter: '',
           locationfilter: '',
-          pricefilter: '',
+          endpricefilter: '',
+          startpricefilter: '',
           rate: '',
         }}
-        onSubmit={handleSubmit}
-
-        /*  ValidationSchema={ContactFormSchema} */
       >
         {({ values }) => (
-          <Form
-            className="Filter"
-            style={{
-              display: 'flex',
-              /*  backgroundColor: 'black', */
-              // Width: '390px',
-              position: 'relative',
-              zIndex: '1',
-              justifyContent: 'center',
-              alignItems: 'center',
-              color: 'white',
-            }}
-          >
-            <div
-              className="category-filter"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-              }}
-            >
-              <p>Categoría:</p>
+          <Form className="Filter">
+            <div className="category-filter">
               <Field
+                className="select"
                 value={searchCat}
                 onChange={(e) => {
                   setSearchCat(e.target.value);
@@ -98,26 +73,19 @@ const Filter = () => {
                 name="categoryfilter"
                 as="select"
               >
-                <option value="">Selecciona una opción</option>
+                <option className="option" value="">
+                  Categoría
+                </option>
                 {categories.map((cat) => (
-                  <option key={cat.id} cat={cat}>
+                  <option className="option" key={cat.id} cat={cat}>
                     {cat.title}
                   </option>
                 ))}
               </Field>
             </div>
-            <div
-              className="location-filter"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-              }}
-            >
-              <p>Localización:</p>
+            <div className="location-filter">
               <Field
+                className="select"
                 value={searchLoc}
                 onChange={(e) => {
                   setSearchLoc(e.target.value);
@@ -126,37 +94,60 @@ const Filter = () => {
                 name="locationfilter"
                 as="select"
               >
-                <option value="">Selecciona una opción</option>
+                <option className="option" value="">
+                  Localización
+                </option>
                 {filteredLocations.map((loc, index) => (
-                  <option key={index}>{loc.location}</option>
+                  <option className="option" key={index}>
+                    {loc.location}
+                  </option>
                 ))}
               </Field>
             </div>
-            <div
-              className="price-filter"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-              }}
-            >
-              <p>Precio:</p>
-              <Field
-                value={searchPrice}
-                onChange={(e) => {
-                  setSearchPrice(e.target.value);
-                  console.log(searchPrice);
-                }}
-                name="pricefilter"
-                type="range"
-                start="50"
-                min="50"
-                max="800"
-                step="150"
-              />
-              <div>Hasta {searchPrice}€</div>
+            <div className="price-filter">
+              <div className="start-price">
+                {searchStartPrice == 0 ? (
+                  <p>Precio mínimo</p>
+                ) : (
+                  `Desde ${searchStartPrice} €`
+                )}
+                <Field
+                  className="slider"
+                  value={searchStartPrice}
+                  onChange={(e) => {
+                    setSearchStartPrice(e.target.value);
+                    console.log(searchStartPrice);
+                  }}
+                  name="startpricefilter"
+                  type="range"
+                  start={0}
+                  min={0}
+                  max={1000}
+                  step={50}
+                />
+              </div>
+
+              <div className="end-price">
+                {searchEndPrice == 0 ? (
+                  <p>Precio máximo</p>
+                ) : (
+                  `Hasta ${searchEndPrice} €`
+                )}
+                <Field
+                  className="slider"
+                  value={searchEndPrice}
+                  onChange={(e) => {
+                    setSearchEndPrice(e.target.value);
+                    console.log(searchEndPrice);
+                  }}
+                  name="endpricefilter"
+                  type="range"
+                  start={0}
+                  min={0}
+                  max={1000}
+                  step={50}
+                />
+              </div>
             </div>
             {/* <div
               className="rate-filter"
@@ -182,33 +173,6 @@ const Filter = () => {
               </label>
             </div>
             <div>{values.rate}</div> */}
-            <div
-              className="datefilter"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-              }}
-            >
-              <DateSearch />
-            </div>
-            <div className="buttonfilter">
-              <button
-                className="enviar"
-                type="submit"
-                style={{
-                  borderRadius: '30px',
-                  cursor: 'pointer',
-                  height: '3rem',
-                  width: '5rem',
-                  border: '2px solid slategray',
-                }}
-              >
-                filtrar
-              </button>
-            </div>
           </Form>
         )}
       </Formik>
