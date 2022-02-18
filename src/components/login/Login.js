@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
 import fetcher from '../../helpers/fetcher';
+import { Popup } from '../popup/Popup';
 import './login.css';
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,12 +40,14 @@ const Login = () => {
         <div>
           <form onSubmit={handleLogin} className="login-form">
             <div className="mail-field">
-              <label htmlFor="email-login">email:</label>
+              {/* <label htmlFor="email-login">email:</label> */}
               <input
                 type="text"
                 id="email-login"
                 value={email}
                 name="email-login"
+                placeholder="email"
+                size="40"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -52,13 +56,15 @@ const Login = () => {
             </div>
             <br />
             <div className="password-field">
-              <label htmlFor="password-login">Contraseña:</label>
+              {/* <label htmlFor="password-login">Contraseña:</label> */}
               <input
                 type="password"
                 id="password-login"
                 value={password}
                 name="password-login"
+                size="40"
                 autoComplete="off"
+                placeholder="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -73,8 +79,10 @@ const Login = () => {
             <Link to="/register">Crear una cuenta</Link>
           </div>
           <div className="link-to">
-            <Link to="/recoveryPassword">Recuperar contraseña</Link>
+            {/* <Link to="/recoveryPassword">Recuperar contraseña</Link> */}
+            <p onClick={() => setShowPopup(true)}>Recuperar contraseña</p>
           </div>
+          {showPopup && <Popup setShowPopup={setShowPopup} />}
         </div>
       )}
     </>

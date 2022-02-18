@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import './error-page.css';
 
 export const ErrorPage = (error) => {
-  console.log(error.error);
+  const [usuario, setUsuario] = useContext(UserContext);
+
   return (
     <div className="info-page">
       <h1 className="title">NOOOOOO!!!</h1>
@@ -12,9 +15,15 @@ export const ErrorPage = (error) => {
       </h2>
       <p className="error-title">404</p>
       <img src="../imgs/notfound404.png" alt="error" className="img_notfound" />
-      <Link to="/" className="volver-inicio">
-        Volver al inicio
-      </Link>
+      {usuario.role === 'admin' ? (
+        <Link to="/dashboard" className="volver-inicio">
+          Volver a Dashboard
+        </Link>
+      ) : (
+        <Link to="/" className="volver-inicio">
+          Volver al inicio
+        </Link>
+      )}
     </div>
   );
 };

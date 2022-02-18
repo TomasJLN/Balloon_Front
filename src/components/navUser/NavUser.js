@@ -62,6 +62,12 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/register">Registro</Link>
           </li>
         )}
+        {!token && (
+          <li>
+            <Link to="/recovery">Recuperar contraseña</Link>
+          </li>
+        )}
+
         {role !== 'admin' && (
           <li>
             <Link to="/contact-form">Contactar</Link>

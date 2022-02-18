@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 import 'react-multi-date-picker/styles/layouts/mobile.css';
 
 import './booking.css';
-import { GiToaster } from 'react-icons/gi';
 
 const Booking = () => {
   const { id } = useParams();
@@ -147,7 +146,6 @@ const Booking = () => {
           </div>
           <hr />
           <div className="rating-back">
-            <p>🌟🌟🌟🌟🌟</p>
             <button
               className="btn-back"
               onClick={() => {
@@ -206,6 +204,38 @@ const Booking = () => {
                   Máximas plazas disponibles: {maxFreePlaces}
                 </h5>
               }
+            </div>
+            <div>
+              <h3>Forma de pago</h3>
+              <div className="pay-option">
+                <div>
+                  <input
+                    type="radio"
+                    id="creditCard"
+                    name="payMethod"
+                    value="creditCard"
+                  />
+                  <label for="html">HTML</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="bizum"
+                    name="payMethod"
+                    value="bizum"
+                  />
+                    <label for="html">Bizum</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="paypal"
+                    name="payMethod"
+                    value="paypal"
+                  />
+                    <label for="html">Paypal</label>
+                </div>
+              </div>
             </div>
           </form>
 

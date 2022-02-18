@@ -1,9 +1,24 @@
 import { Link } from 'react-router-dom';
+import { useContext, useEffect, useRef } from 'react';
 import './navBar.css';
 
 const NavBar = ({ setShowNavBar }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        e.stopPropagation();
+        setShowNavBar((s) => !s);
+      }
+    };
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, [setShowNavBar]);
   return (
-    <menu className="navbar">
+    <menu ref={ref} className="navbar">
       <li>
         <Link to="/" onClick={(s) => setShowNavBar(!s)}>
           INICIO
@@ -14,12 +29,6 @@ const NavBar = ({ setShowNavBar }) => {
           MI CUENTA
         </Link>
       </li>
-      {/* <li>CATEGORIAS</li>
-            <ul>
-                <li>AVENTURAS</li>
-                <li>GOURMET</li>
-                <li>SCAPE ROOMS</li>
-            </ul> */}
       <li>
         <Link to="/contact-form" onClick={(s) => setShowNavBar(!s)}>
           CONTACTO

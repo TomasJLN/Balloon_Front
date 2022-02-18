@@ -5,12 +5,15 @@ import { Rating } from 'react-simple-star-rating';
 import './experience.css';
 import { useGetReviews } from '../../hooks/useGetReviews';
 import { useEffect, useState } from 'react';
+import { Reviews } from '../../components/reviews/Reviews';
+import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
+import { FaSearchLocation } from 'react-icons/fa';
 
 const Experience = () => {
   const { id } = useParams();
 
   const {
-    category,
+    idCategory,
     title,
     description,
     price,
@@ -21,6 +24,7 @@ const Experience = () => {
     conditions,
     normatives,
   } = useExperience(id);
+  const url = `https://www.google.es/maps/@${coords},19z`;
 
   let infoExperience = [];
   infoExperience.push({ title: 'Condiciones', content: conditions });
@@ -32,7 +36,6 @@ const Experience = () => {
 
   useEffect(() => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
-    console.log(avgRatin);
   }, [reviews]);
 
   return (
@@ -52,16 +55,17 @@ const Experience = () => {
         />
       )}
       <div className="rating-back">
-        <p>
-          {' '}
+        <p className="stars-row">
           {avgRatin !== 0 && (
-            <Rating
-              ratingValue={avgRatin}
-              size="16px"
-              showTooltip
-              tooltipClassName="stars-count"
-              readonly={true}
-            />
+            <>
+              <Rating
+                ratingValue={avgRatin}
+                size="16px"
+                tooltipClassName="stars-count"
+                readonly={true}
+              />
+              <span className="counter-reviews">({reviews.length})</span>
+            </>
           )}
         </p>
         <button
@@ -76,6 +80,19 @@ const Experience = () => {
       <div className="exp-description">
         <p>Descripción: </p>
         <p>{description}</p>
+      </div>
+      <div>
+        <span>Localización: {location} </span>
+        <span>
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="card-location"
+          >
+            <FaSearchLocation className="icon-search" />
+          </a>
+        </span>
       </div>
       <h2 id="precio-exp">{price} €</h2>
 
@@ -93,6 +110,15 @@ const Experience = () => {
         {infoExperience.map(({ title, content }) => (
           <Accordion key={title} title={title} content={content} />
         ))}
+      </div>
+      <hr />
+      {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
+      <hr />
+      <div>
+        <h1>Experiencias similades {idCategory}</h1>
+        <div>
+          <CarouselSimilar idCategory={idCategory} />
+        </div>
       </div>
     </div>
   );

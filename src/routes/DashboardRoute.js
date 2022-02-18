@@ -13,8 +13,6 @@ import { CreateExperience } from '../pages/createExperience/CreateExperience';
 export const DashboardRoute = () => {
   const [user, setUser] = useContext(UserContext);
 
-  console.log(user);
-
   return (
     <>
       {user.role === 'admin' ? (
@@ -44,7 +42,7 @@ export const DashboardRoute = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       ) : (
-        <Navigate to="/" />
+        <Navigate to="/error" />
       )}
     </>
   );
