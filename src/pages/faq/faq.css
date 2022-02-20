@@ -1,7 +1,0 @@
-div.faq-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 3rem;
-}
