@@ -1,0 +1,26 @@
+.nav-user {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 65px;
+  right: 4px;
+  z-index: 3;
+  background-color: black;
+  opacity: 80%;
+}
+.nav-user ul li {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  list-style: none;
+  padding: 0.5rem;
+}
+
+menu a {
+  color: white;
+  display: flex;
+}
+
+menu a:hover {
+  color: rgb(237, 245, 191);
+}

@@ -1,0 +1,44 @@
+.login-form {
+  background-color: rgba(255, 104, 112, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 0;
+  margin: 12px 6px;
+}
+
+.mail-field,
+.password-field {
+  margin-top: 6px;
+}
+
+.login-form label {
+  width: 130px;
+  text-align: right;
+  padding-right: 12px;
+}
+
+.btn-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.show-error {
+  height: 2.5rem;
+  font-size: 0.8rem;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-to {
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}

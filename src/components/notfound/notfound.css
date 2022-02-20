@@ -1,0 +1,14 @@
+.info-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img_notfound {
+  margin: 15px;
+  width: 60%;
+}
+
+.volver-inicio {
+  margin: 15px;
+}

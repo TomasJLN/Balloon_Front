@@ -1,0 +1,105 @@
+.photo-figure-experience {
+  display: flex;
+  justify-content: center;
+}
+.photo-experience {
+  border-radius: 10px;
+  max-height: 200px;
+}
+
+.btn-update-experience {
+  height: 3rem;
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+}
+
+/*  */
+.wrap-section {
+  margin: 10px;
+}
+
+.title-back {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 25px 0;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.id-switch {
+  display: flex;
+  margin: 0 10px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.input-text-field {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+}
+.input-text-field > input {
+  padding-left: 4px;
+  margin-left: 4px;
+  margin-bottom: 10px;
+  border: none;
+}
+
+.input-text-field-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-text-field-row > input {
+  font-size: 1.1rem;
+  background-color: bisque;
+  text-align: center;
+  margin-right: 16px;
+}
+
+.edit-sect-activar {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.double-field {
+  display: flex;
+  align-items: center;
+}
+
+input.edit-experience {
+  flex-grow: 1;
+  padding: 4px;
+}
+
+.textarea-input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+#edit-exp-name {
+  width: 100%;
+  font-size: 1.1rem;
+  word-break: break-word;
+  border: none;
+}
+
+#edit-exp-description {
+  width: 100%;
+  font-size: 1rem;
+  word-break: break-word;
+  border: none;
+}
