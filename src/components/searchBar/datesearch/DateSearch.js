@@ -30,8 +30,8 @@ const handleDate = (e)=> {
   e.preventDefault()
   let query = `/allFilter?experience=${experience}`;
 
-    query += searchDate ? `&startDate=${searchDate[0]}` : '';
-    query += searchDate ? `&endDate=${searchDate[1]}` : '';
+    query += searchDate ? `&start=${searchDate[0]}` : '';
+    query += searchDate ? `&end=${searchDate[1]}` : '';
   
 
     navigate(query);
