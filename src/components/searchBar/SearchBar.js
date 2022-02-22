@@ -12,8 +12,16 @@ const SearchBar = () => {
  
   const navigate = useNavigate();
   const location = useLocation();
+  const [dateSubmit, setDateSubmit] = useState(false);
 
-
+ 
+  
+  const handleDate = (e) => {
+  e.preventDefault();
+  setDateSubmit(false)
+  console.log('BUTTON DATE!!!');
+  
+  }
 
   let { experience } = queryString.parse(location.search);
   const [searchCat, setSearchCat] = useState('');
@@ -64,12 +72,12 @@ const SearchBar = () => {
             <FaSearch />
           </button>
           <div className="calendar-button">
-            <DateSearch searchDate={searchDate} setSearchDate={setSearchDate}/>
+            <DateSearch handleDate={handleDate} searchDate={searchDate} setSearchDate={setSearchDate} searchStartPrice={searchStartPrice} setSearchStartPrice={setSearchStartPrice} searchEndPrice={searchEndPrice} setSearchEndPrice={setSearchEndPrice}  searchLoc={searchLoc} setSearchLoc={setSearchLoc} searchCat={searchCat} setSearchCat={setSearchCat}/>
           </div>
         </form>
       </div>
       <div className="filter">
-       < Filter searchDate={searchDate} setSearchDate={setSearchDate} searchStartPrice={searchStartPrice} setSearchStartPrice={setSearchStartPrice} searchEndPrice={searchEndPrice} setSearchEndPrice={setSearchEndPrice}  searchLoc={searchLoc} setSearchLoc={setSearchLoc} searchCat={searchCat} setSearchCat={setSearchCat} prueba='prueba'/>
+       < Filter handleDate={handleDate} searchDate={searchDate} setSearchDate={setSearchDate} searchStartPrice={searchStartPrice} setSearchStartPrice={setSearchStartPrice} searchEndPrice={searchEndPrice} setSearchEndPrice={setSearchEndPrice}  searchLoc={searchLoc} setSearchLoc={setSearchLoc} searchCat={searchCat} setSearchCat={setSearchCat} prueba='prueba'/>
       </div>
     </>
   );
