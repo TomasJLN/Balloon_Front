@@ -1,34 +1,75 @@
 import { useState, useEffect, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import fetcher from '../../../helpers/fetcher';
 import { TokenContext } from '../../../contexts/TokenContext';
+import { UserContext } from '../../../contexts/UserContext';
+import { fileUpload } from '../../../helpers/fileUpload';
 import './editavatar.css';
+import { toast } from 'react-toastify';
 
 const Editavatar = () => {
   const [token, setToken] = useContext(TokenContext);
-  const [avatar, setAvatar] = useState('');
+  const [usuario, setUsuario] = useContext(UserContext);
+  const [newAvatar, setNewAvatar] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handlavatar = async (e) => {
+  const { avatar } = usuario;
+
+  let imagenAvatar = 'NA.png';
+
+  avatar ? (imagenAvatar = avatar) : (imagenAvatar = 'NA.png');
+
+  console.log(imagenAvatar);
+
+  const handleAvatar = async (e) => {
+    setLoading(true);
+    setError(null);
     e.preventDefault();
-    await fetcher('user/avatar', {
-      method: 'PUT',
-      headers: {
-        Authorization: token,
-      },
-      body: JSON.stringify({ avatar }),
-    });
+    const file = e.target.files[0];
+    const url = `${process.env.REACT_APP_BACKEND_URL}/user/avatar`;
+    const key = 'avatar';
+    if (file) {
+      const resp = await fileUpload(url, key, setError, file, token);
+      setNewAvatar(resp.data);
+    }
+    setLoading(false);
   };
 
-  let userimg = `user.png`;
+  const handlePictureClick = () => {
+    document.querySelector('file-selector');
+  };
+
+  useEffect(() => {
+    newAvatar && !error && setUsuario({ ...usuario, avatar: newAvatar });
+    error && toast.error(error.message);
+  }, [setNewAvatar, newAvatar, error]);
 
   return (
-    <section className="Editavatar">
-      <h2 id="foto">Cambiar mi foto</h2>
-      <img src={userimg} />
-      <button className="Guardar" type="submit">
-        Cambiar
-      </button>
-    </section>
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <section className="Editavatar">
+          <h2 id="foto">Cambiar mi foto</h2>
+          <figure>
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
+              alt={usuario.avatar}
+              onClick={handlePictureClick}
+            />
+            <figcaption>Pulsa en la imagen para cambiarla</figcaption>
+          </figure>
+          <input
+            type="file"
+            id="file-selector"
+            style={{ display: 'none' }}
+            onChange={handleAvatar}
+          />
+          <button className="Guardar" type="submit">
+            Cambiar
+          </button>
+        </section>
+      )}
+    </>
   );
 };
 export default Editavatar;

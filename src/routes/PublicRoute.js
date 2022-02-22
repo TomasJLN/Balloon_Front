@@ -15,6 +15,7 @@ import { UserRoute } from './UserRoute';
 import { UserContext } from '../contexts/UserContext';
 import Experience from '../pages/experience/Experience';
 import RecoveryPassword from '../components/recoveryPassword/RecoveryPassword';
+import Editprofile from '../pages/editprofile/Editprofile';
 
 export const PublicRoute = () => {
   const [user, setUser] = useContext(UserContext);
@@ -26,7 +27,6 @@ export const PublicRoute = () => {
         <Route path="privacity" element={<Privacity />} />
         <Route path="faq" element={<Faq />} />
         <Route path="conditions" element={<Conditions />} />
-        <Route path="" element={<ShowResults />} />
         <Route path="contact-form" element={<ContactForm />} />
         <Route path="account" element={<Login />} />
         <Route path="register" element={<Register />} />
@@ -35,6 +35,8 @@ export const PublicRoute = () => {
         <Route path="allFilter" element={<ShowResults />} />
         <Route path="error" element={<ErrorPage />} />
         <Route path="recovery" element={<RecoveryPassword />} />
+        <Route path="profile" element={<Editprofile />} />
+        <Route path="" element={<ShowResults />} />
         <Route path="*" element={<UserRoute />} />
       </Routes>
       {user.role !== 'admin' && <Footer />}
