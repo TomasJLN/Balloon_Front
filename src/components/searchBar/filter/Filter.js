@@ -17,7 +17,7 @@ const Filter = (props) => {
   let { experience } = queryString.parse(location.search);
   experience = experience ? experience : '';
  
-console.log('ALL PROPS =', props);
+
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -30,10 +30,10 @@ console.log('ALL PROPS =', props);
     query += props.searchDate ? `&start=${props.searchDate[0]}` : '';
     query += props.searchDate ? `&end=${props.searchDate[1]}` : '';
 
-    
+   navigate(query)
 
-    navigate(query);
-  }, [props.searchDate,props.searchCat, props.searchLoc , props.searchStartPrice, props.searchEndPrice, navigate, experience]);
+    
+  }, [props.searchCat, props.searchLoc , props.searchStartPrice, props.searchEndPrice, navigate, experience]);
 
 
 
