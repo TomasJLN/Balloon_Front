@@ -19,19 +19,17 @@ const Editpassword = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (token && error) navigate('/');
-  // }, [token, error, navigate]);
-
-  const elBody =
-    password !== ''
-      ? JSON.stringify({ name, surname, password, newPassword })
-      : JSON.stringify({ name, surname });
+  useEffect(() => {
+    if (!token) navigate('/');
+  }, [token, error, navigate]);
 
   const handlepassword = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+    const elBody =
+      password !== ''
+        ? JSON.stringify({ name, surname, password, newPassword })
+        : JSON.stringify({ name, surname });
     await fetcher(setResult, setError, setLoading, 'user/edit', {
       method: 'PUT',
       headers: {
@@ -41,6 +39,10 @@ const Editpassword = () => {
       body: elBody,
     });
   };
+
+  useEffect(() => {
+    toast.error(error);
+  }, [error, setError]);
 
   useEffect(() => {
     result && toast.success(result);
@@ -75,7 +77,7 @@ const Editpassword = () => {
             ></input>
             <label htmlFor="password">Contraseña actual:</label>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               value={password}
@@ -83,7 +85,7 @@ const Editpassword = () => {
             ></input>
             <label htmlFor="newpassword">Nueva contraseña:</label>
             <input
-              type="text"
+              type="password"
               id="newpassword"
               name="newpassword"
               value={newPassword}
