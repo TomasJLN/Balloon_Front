@@ -18,8 +18,6 @@ const Editavatar = () => {
 
   avatar ? (imagenAvatar = avatar) : (imagenAvatar = 'NA.png');
 
-  console.log(imagenAvatar);
-
   const handleAvatar = async (e) => {
     setLoading(true);
     setError(null);
@@ -35,7 +33,7 @@ const Editavatar = () => {
   };
 
   const handlePictureClick = () => {
-    document.querySelector('file-selector');
+    document.querySelector('#file-selector').click();
   };
 
   useEffect(() => {
@@ -64,9 +62,6 @@ const Editavatar = () => {
             style={{ display: 'none' }}
             onChange={handleAvatar}
           />
-          <button className="Guardar" type="submit">
-            Cambiar
-          </button>
         </section>
       )}
     </>

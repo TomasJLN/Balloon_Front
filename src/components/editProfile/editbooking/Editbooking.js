@@ -1,35 +1,54 @@
-import React, {useState} from 'react';
-import {NavLink} from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { TokenContext } from '../../../contexts/TokenContext';
+import { UserContext } from '../../../contexts/UserContext';
+import { miniFetcher } from '../../../helpers/fetcher';
+import { useUserBookings } from '../../../hooks/useUserBookings';
+import { toast } from 'react-toastify';
+import { OtherBookingV2 } from '../../../components/otherBookingV2/OtherBookingV2';
 import './editbooking.css';
 
 const Editbooking = () => {
-//const mybooking = useMybooking();
+  const { ticket } = useParams();
+  const [token, setToken] = useContext(TokenContext);
+  const [usuario, setUsuario] = useContext(UserContext);
+  const [cancelStatus, setCancelStatus] = useState(null);
+  const othersBookings = useUserBookings(ticket, token);
 
-return (
+  const handleCancelBooking = (e, ticket) => {
+    e.preventDefault();
+    const cancelBooking = async () => {
+      setCancelStatus(
+        await miniFetcher(`booking/${ticket}`, {
+          method: 'DELETE',
+          headers: { Authorization: token },
+        })
+      );
+    };
+    cancelBooking();
+  };
+
+  useEffect(() => {
+    cancelStatus && toast.success(cancelStatus);
+    setCancelStatus(null);
+  }, [cancelStatus]);
+
+  return (
     <section>
-         <form className="editbooking">
-            <h2 id="reservas">Mis reservas</h2>
-            <div>Foto reserva</div>
+      <div className="wrap-content">
+        <h1 className="title-center">Mis reservas</h1>
+        {othersBookings.map((oq) => (
+          <OtherBookingV2
+            oq={oq}
+            key={oq.id}
+            handleCancelBooking={handleCancelBooking}
+          />
+        ))}
+      </div>
 
-            <button className="ver" type="submit">
-            Ver
-            </button>
-
-            <button className="Valorar" type="submit">
-            Valorar
-            </button>
-
-            <button className="Cancelar" type="submit">
-            Cancelar
-            </button>
-
-    </form>
-
-    <a href="#back">Volver a menú</a>
-
+      <a href="#back">Volver a menú</a>
     </section>
-   
-    );
+  );
 };
 
 export default Editbooking;

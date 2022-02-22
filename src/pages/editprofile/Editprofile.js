@@ -19,7 +19,7 @@ const Editprofile = () => {
     <>
       <Editmenu />
       <Editavatar />
-      {/* <Editpassword /> */}
+      <Editpassword />
       <Editbooking />
     </>
   );
