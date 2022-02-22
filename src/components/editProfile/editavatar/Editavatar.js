@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
 import fetcher from '../../../helpers/fetcher';
 import { TokenContext } from '../../../contexts/TokenContext';
 import './editavatar.css';
