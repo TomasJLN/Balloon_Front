@@ -8,11 +8,15 @@ import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-import Footer from "react-multi-date-picker/plugins/range_picker_footer";
+import Footer from 'react-multi-date-picker/plugins/range_picker_footer';
 
-const SubmitButton  = ({handleDate})=> {
-  return <div><button onClick={handleDate}>Buscar fechas</button></div>;
-} 
+const SubmitButton = ({ handleDate }) => {
+  return (
+    <div>
+      <button onClick={handleDate}>Buscar fechas</button>
+    </div>
+  );
+};
 
 const DateSearch = () => {
   const datePickerRef = useRef();
@@ -24,27 +28,20 @@ const DateSearch = () => {
 
   const [searchDate, setSearchDate] = useState('');
 
- 
-
-const handleDate = (e)=> {
-  e.preventDefault()
-  let query = `/allFilter?experience=${experience}`;
+  const handleDate = (e) => {
+    e.preventDefault();
+    let query = `/allFilter?experience=${experience}`;
 
     query += searchDate ? `&start=${searchDate[0]}` : '';
     query += searchDate ? `&end=${searchDate[1]}` : '';
-  
 
     navigate(query);
     query = '';
-}
-
+  };
 
   return (
     <>
-      
-      <form
-        
-      >
+      <div>
         {/*<FaCalendarAlt
 									style={{
 										color: 'black',
@@ -59,17 +56,14 @@ const handleDate = (e)=> {
           range
           inputClass="custom-input"
           ref={datePickerRef}
-          plugins={[
-            <SubmitButton handleDate={handleDate} position="bottom"/>
-          ]}
+          plugins={[<SubmitButton handleDate={handleDate} position="bottom" />]}
         />
 
         <VscCalendar
           className="calendar-button"
           onClick={() => datePickerRef.current.openCalendar()}
         />
-      </form>
-      
+      </div>
     </>
   );
 };

@@ -11,8 +11,6 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
-
   let { experience } = queryString.parse(location.search);
 
   const [toSearch, setToSearch] = useState(experience ? experience : '');
@@ -37,7 +35,7 @@ const SearchBar = () => {
     setToSearch('');
     setSubmitted(false);
   };
-  console.log('to search =>', toSearch);
+
   return (
     <>
       <div className="searchBar">

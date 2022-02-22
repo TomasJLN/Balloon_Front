@@ -31,7 +31,14 @@ const Filter = () => {
     query += searchLoc ? `&location=${searchLoc}` : '';
 
     navigate(query);
-  }, [searchCat, searchLoc, searchStartPrice, searchEndPrice, navigate, experience]);
+  }, [
+    searchCat,
+    searchLoc,
+    searchStartPrice,
+    searchEndPrice,
+    navigate,
+    experience,
+  ]);
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -61,7 +68,7 @@ const Filter = () => {
         }}
       >
         {({ values }) => (
-          <Form className="Filter">
+          <div className="Filter">
             <div className="category-filter">
               <Field
                 className="select"
@@ -173,7 +180,7 @@ const Filter = () => {
               </label>
             </div>
             <div>{values.rate}</div> */}
-          </Form>
+          </div>
         )}
       </Formik>
     </div>
