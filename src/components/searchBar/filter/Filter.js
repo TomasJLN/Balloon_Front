@@ -16,26 +16,29 @@ const Filter = (props) => {
   const location = useLocation();
   let { experience } = queryString.parse(location.search);
   experience = experience ? experience : '';
- 
-
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
-    query += props.searchStartPrice ? `&start_price=${props.searchStartPrice}` : '';
+    query += props.searchStartPrice
+      ? `&start_price=${props.searchStartPrice}`
+      : '';
     query += props.searchEndPrice ? `&end_price=${props.searchEndPrice}` : '';
     query += props.searchCat ? `&category=${props.searchCat}` : '';
-    query += props.searchLoc ? `&location=${props.searchLoc }` : '';
+    query += props.searchLoc ? `&location=${props.searchLoc}` : '';
     query += props.searchDate ? `&start=${props.searchDate[0]}` : '';
-    query += props.searchDate ? `&end=${props.searchDate[1]}` : '';
+    query += props.searchDate.length > 1 ? `&end=${props.searchDate[1]}` : '';
 
-   navigate(query)
-
-    
-  }, [props.searchCat, props.searchLoc , props.searchStartPrice, props.searchEndPrice, navigate, experience]);
-
-
+    navigate(query);
+  }, [
+    props.searchCat,
+    props.searchLoc,
+    props.searchStartPrice,
+    props.searchEndPrice,
+    experience,
+    props.searchDate,
+  ]);
 
   let filteredLocations = locations.filter(
     (ele, ind) =>
@@ -54,7 +57,7 @@ const Filter = (props) => {
         }}
       >
         {({ values }) => (
-          <Form className="Filter">
+          <div className="Filter">
             <div className="category-filter">
               <Field
                 className="select"
@@ -79,10 +82,10 @@ const Filter = (props) => {
             <div className="location-filter">
               <Field
                 className="select"
-                value={props.searchLoc }
+                value={props.searchLoc}
                 onChange={(e) => {
                   props.setSearchLoc(e.target.value);
-                  console.log(props.searchLoc );
+                  console.log(props.searchLoc);
                 }}
                 name="locationfilter"
                 as="select"
@@ -166,7 +169,7 @@ const Filter = (props) => {
               </label>
             </div>
             <div>{values.rate}</div> */}
-          </Form>
+          </div>
         )}
       </Formik>
     </div>

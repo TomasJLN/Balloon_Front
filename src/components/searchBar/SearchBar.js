@@ -7,21 +7,16 @@ import './searchBar.css';
 import Filter from './filter/Filter';
 import DateSearch from './datesearch/DateSearch';
 
-
 const SearchBar = () => {
- 
   const navigate = useNavigate();
   const location = useLocation();
   const [dateSubmit, setDateSubmit] = useState(false);
 
- 
-  
   const handleDate = (e) => {
-  e.preventDefault();
-  setDateSubmit(false)
-  console.log('BUTTON DATE!!!');
-  
-  }
+    e.preventDefault();
+    setDateSubmit(false);
+    console.log('BUTTON DATE!!!');
+  };
 
   let { experience } = queryString.parse(location.search);
   const [searchCat, setSearchCat] = useState('');
@@ -31,7 +26,6 @@ const SearchBar = () => {
   const [searchDate, setSearchDate] = useState('');
 
   const [toSearch, setToSearch] = useState(experience ? experience : '');
- 
 
   useEffect(() => {
     if (location.pathname === '/') resetInput();
@@ -43,14 +37,12 @@ const SearchBar = () => {
   }; */
 
   const handleSubmit = (e) => {
-  
-    navigate(`/allFilter?experience=${toSearch}`);
+    toSearch && navigate(`/allFilter?experience=${toSearch}`);
     e.preventDefault();
   };
 
   const resetInput = () => {
     setToSearch('');
-    
   };
   console.log('to search =>', toSearch);
   return (
@@ -72,12 +64,37 @@ const SearchBar = () => {
             <FaSearch />
           </button>
           <div className="calendar-button">
-            <DateSearch handleDate={handleDate} searchDate={searchDate} setSearchDate={setSearchDate} searchStartPrice={searchStartPrice} setSearchStartPrice={setSearchStartPrice} searchEndPrice={searchEndPrice} setSearchEndPrice={setSearchEndPrice}  searchLoc={searchLoc} setSearchLoc={setSearchLoc} searchCat={searchCat} setSearchCat={setSearchCat}/>
+            <DateSearch
+              handleDate={handleDate}
+              searchDate={searchDate}
+              setSearchDate={setSearchDate}
+              searchStartPrice={searchStartPrice}
+              setSearchStartPrice={setSearchStartPrice}
+              searchEndPrice={searchEndPrice}
+              setSearchEndPrice={setSearchEndPrice}
+              searchLoc={searchLoc}
+              setSearchLoc={setSearchLoc}
+              searchCat={searchCat}
+              setSearchCat={setSearchCat}
+            />
           </div>
         </form>
       </div>
       <div className="filter">
-       < Filter handleDate={handleDate} searchDate={searchDate} setSearchDate={setSearchDate} searchStartPrice={searchStartPrice} setSearchStartPrice={setSearchStartPrice} searchEndPrice={searchEndPrice} setSearchEndPrice={setSearchEndPrice}  searchLoc={searchLoc} setSearchLoc={setSearchLoc} searchCat={searchCat} setSearchCat={setSearchCat} prueba='prueba'/>
+        <Filter
+          handleDate={handleDate}
+          searchDate={searchDate}
+          setSearchDate={setSearchDate}
+          searchStartPrice={searchStartPrice}
+          setSearchStartPrice={setSearchStartPrice}
+          searchEndPrice={searchEndPrice}
+          setSearchEndPrice={setSearchEndPrice}
+          searchLoc={searchLoc}
+          setSearchLoc={setSearchLoc}
+          searchCat={searchCat}
+          setSearchCat={setSearchCat}
+          prueba="prueba"
+        />
       </div>
     </>
   );
