@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import '../searchBar.css';
 import React, { useRef } from 'react';
 
-const Filter = () => {
+const Filter = (props) => {
   const datePickerRef = useRef();
   const categories = useCategories2();
   const locations = useLocations();
@@ -16,33 +16,26 @@ const Filter = () => {
   const location = useLocation();
   let { experience } = queryString.parse(location.search);
   experience = experience ? experience : '';
-  const [searchCat, setSearchCat] = useState('');
-  const [searchLoc, setSearchLoc] = useState('');
-  const [searchStartPrice, setSearchStartPrice] = useState('');
-  const [searchEndPrice, setSearchEndPrice] = useState('');
+ 
+console.log('ALL PROPS =', props);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
-    query += searchStartPrice ? `&start_price=${searchStartPrice}` : '';
-    query += searchEndPrice ? `&end_price=${searchEndPrice}` : '';
-    query += searchCat ? `&category=${searchCat}` : '';
-    query += searchLoc ? `&location=${searchLoc}` : '';
+    query += props.searchStartPrice ? `&start_price=${props.searchStartPrice}` : '';
+    query += props.searchEndPrice ? `&end_price=${props.searchEndPrice}` : '';
+    query += props.searchCat ? `&category=${props.searchCat}` : '';
+    query += props.searchLoc ? `&location=${props.searchLoc }` : '';
+    query += props.searchDate ? `&start=${props.searchDate[0]}` : '';
+    query += props.searchDate ? `&end=${props.searchDate[1]}` : '';
+
+    
 
     navigate(query);
-  }, [searchCat, searchLoc, searchStartPrice, searchEndPrice, navigate, experience]);
+  }, [props.searchDate,props.searchCat, props.searchLoc , props.searchStartPrice, props.searchEndPrice, navigate, experience]);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   let startDate = searchDate[0].format();
-  //   let endDate = searchDate[1].format();
-  //   console.log('startdate:', startDate, 'enddate:', endDate);
 
-  //   let query = `/allFilter?experience=${experience}`;
-
-  //   navigate(query);
-  // }, [searchCat, searchLoc, searchStartPrice, searchEndPrice];
 
   let filteredLocations = locations.filter(
     (ele, ind) =>
@@ -65,10 +58,10 @@ const Filter = () => {
             <div className="category-filter">
               <Field
                 className="select"
-                value={searchCat}
+                value={props.searchCat}
                 onChange={(e) => {
-                  setSearchCat(e.target.value);
-                  console.log(searchCat);
+                  props.setSearchCat(e.target.value);
+                  console.log(props.searchCat);
                 }}
                 name="categoryfilter"
                 as="select"
@@ -86,10 +79,10 @@ const Filter = () => {
             <div className="location-filter">
               <Field
                 className="select"
-                value={searchLoc}
+                value={props.searchLoc }
                 onChange={(e) => {
-                  setSearchLoc(e.target.value);
-                  console.log(searchLoc);
+                  props.setSearchLoc(e.target.value);
+                  console.log(props.searchLoc );
                 }}
                 name="locationfilter"
                 as="select"
@@ -106,17 +99,17 @@ const Filter = () => {
             </div>
             <div className="price-filter">
               <div className="start-price">
-                {searchStartPrice == 0 ? (
+                {props.searchStartPrice === 0 ? (
                   <p>Precio mínimo</p>
                 ) : (
-                  `Desde ${searchStartPrice} €`
+                  `Desde ${props.searchStartPrice} €`
                 )}
                 <Field
                   className="slider"
-                  value={searchStartPrice}
+                  value={props.searchStartPrice}
                   onChange={(e) => {
-                    setSearchStartPrice(e.target.value);
-                    console.log(searchStartPrice);
+                    props.setSearchStartPrice(e.target.value);
+                    console.log(props.searchStartPrice);
                   }}
                   name="startpricefilter"
                   type="range"
@@ -128,17 +121,17 @@ const Filter = () => {
               </div>
 
               <div className="end-price">
-                {searchEndPrice == 0 ? (
+                {props.searchEndPrice === 0 ? (
                   <p>Precio máximo</p>
                 ) : (
-                  `Hasta ${searchEndPrice} €`
+                  `Hasta ${props.searchEndPrice} €`
                 )}
                 <Field
                   className="slider"
-                  value={searchEndPrice}
+                  value={props.searchEndPrice}
                   onChange={(e) => {
-                    setSearchEndPrice(e.target.value);
-                    console.log(searchEndPrice);
+                    props.setSearchEndPrice(e.target.value);
+                    console.log(props.searchEndPrice);
                   }}
                   name="endpricefilter"
                   type="range"

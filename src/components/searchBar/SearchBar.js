@@ -7,16 +7,23 @@ import './searchBar.css';
 import Filter from './filter/Filter';
 import DateSearch from './datesearch/DateSearch';
 
+
 const SearchBar = () => {
+ 
   const navigate = useNavigate();
   const location = useLocation();
 
 
 
   let { experience } = queryString.parse(location.search);
+  const [searchCat, setSearchCat] = useState('');
+  const [searchLoc, setSearchLoc] = useState('');
+  const [searchStartPrice, setSearchStartPrice] = useState('');
+  const [searchEndPrice, setSearchEndPrice] = useState('');
+  const [searchDate, setSearchDate] = useState('');
 
   const [toSearch, setToSearch] = useState(experience ? experience : '');
-  const [submitted, setSubmitted] = useState(false);
+ 
 
   useEffect(() => {
     if (location.pathname === '/') resetInput();
@@ -28,14 +35,14 @@ const SearchBar = () => {
   }; */
 
   const handleSubmit = (e) => {
-    setSubmitted(true);
+  
     navigate(`/allFilter?experience=${toSearch}`);
     e.preventDefault();
   };
 
   const resetInput = () => {
     setToSearch('');
-    setSubmitted(false);
+    
   };
   console.log('to search =>', toSearch);
   return (
@@ -57,24 +64,12 @@ const SearchBar = () => {
             <FaSearch />
           </button>
           <div className="calendar-button">
-            <DateSearch />
+            <DateSearch searchDate={searchDate} setSearchDate={setSearchDate}/>
           </div>
         </form>
       </div>
       <div className="filter">
-        {submitted && <Filter />}
-        <div className="filter-toggle">
-          {submitted && (
-            <button
-              className="button-toggle"
-              onClick={(e) => {
-                setSubmitted(!submitted);
-              }}
-            >
-              Cerrar filtro
-            </button>
-          )}
-        </div>
+       < Filter searchDate={searchDate} setSearchDate={setSearchDate} searchStartPrice={searchStartPrice} setSearchStartPrice={setSearchStartPrice} searchEndPrice={searchEndPrice} setSearchEndPrice={setSearchEndPrice}  searchLoc={searchLoc} setSearchLoc={setSearchLoc} searchCat={searchCat} setSearchCat={setSearchCat} prueba='prueba'/>
       </div>
     </>
   );
