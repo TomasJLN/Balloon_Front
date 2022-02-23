@@ -9,7 +9,6 @@ import DatePicker, { DateObject } from 'react-multi-date-picker';
 import { UserContext } from '../../contexts/UserContext';
 import { toast } from 'react-toastify';
 import 'react-multi-date-picker/styles/layouts/mobile.css';
-
 import './booking.css';
 
 const Booking = () => {
@@ -167,6 +166,7 @@ const Booking = () => {
                   fontSize: '1.1rem',
                   border: 'none',
                 }}
+                id="date"
                 value={bookingDate}
                 onChange={setBookingDate}
                 editable={false}
@@ -205,7 +205,7 @@ const Booking = () => {
                 </h5>
               }
             </div>
-            <div>
+            <div className="pay-method">
               <h3>Forma de pago</h3>
               <div className="pay-option">
                 <div>
@@ -215,7 +215,7 @@ const Booking = () => {
                     name="payMethod"
                     value="creditCard"
                   />
-                  <label for="html">HTML</label>
+                  <label htmlFor="creditCard">T. Crédito</label>
                 </div>
                 <div>
                   <input
@@ -224,7 +224,7 @@ const Booking = () => {
                     name="payMethod"
                     value="bizum"
                   />
-                    <label for="html">Bizum</label>
+                  <label htmlFor="bizum">Bizum</label>
                 </div>
                 <div>
                   <input
@@ -233,7 +233,7 @@ const Booking = () => {
                     name="payMethod"
                     value="paypal"
                   />
-                    <label for="html">Paypal</label>
+                  <label htmlFor="paypal">Paypal</label>
                 </div>
               </div>
             </div>
