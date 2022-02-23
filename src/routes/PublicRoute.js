@@ -25,7 +25,6 @@ export const PublicRoute = () => {
       {user.role !== 'admin' && <SearchBar />}
       <Routes>
         <Route path="privacity" element={<Privacity />} />
-        <Route path="faq" element={<Faq />} />
         <Route path="conditions" element={<Conditions />} />
         <Route path="contact-form" element={<ContactForm />} />
         <Route path="account" element={<Login />} />
@@ -35,8 +34,8 @@ export const PublicRoute = () => {
         <Route path="allFilter" element={<ShowResults />} />
         <Route path="error" element={<ErrorPage />} />
         <Route path="recovery" element={<RecoveryPassword />} />
-        <Route path="profile" element={<Editprofile />} />
         <Route path="" element={<ShowResults />} />
+        <Route path="faq" element={<Faq />} />
         <Route path="*" element={<UserRoute />} />
       </Routes>
       {user.role !== 'admin' && <Footer />}
