@@ -62,6 +62,7 @@
   width: 100%;
   display: inline-block;
   pointer-events: none;
+  position: relative;
 }
 .carousel .carousel {
   position: relative;
@@ -116,9 +117,12 @@
 }
 .carousel .thumb img {
   vertical-align: top;
+  height: 60px;
 }
 .carousel.carousel-slider {
   position: relative;
+  max-height: 280px;
+  min-height: 280px;
   margin: 0;
   overflow: hidden;
 }
@@ -137,7 +141,8 @@
   overflow: hidden;
   margin: auto;
   width: 100%;
-  min-height: 200px;
+  min-height: 240px;
+  max-height: 240px;
   -webkit-transition: height 0.15s ease-in;
   -moz-transition: height 0.15s ease-in;
   -ms-transition: height 0.15s ease-in;
@@ -156,6 +161,8 @@
 .carousel .slider-wrapper.axis-horizontal .slider .slide {
   flex-direction: column;
   flex-flow: column;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .carousel .slider-wrapper.axis-vertical {
   -ms-box-orient: horizontal;
@@ -208,7 +215,7 @@
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   position: absolute;
-  bottom: 40px;
+  bottom: 80px;
   left: 50%;
   margin-left: -45%;
   width: 90%;
@@ -234,6 +241,19 @@
   width: 100%;
   z-index: 1;
 }
+
+.slider-container {
+  position: relative;
+  text-align: center;
+}
+
+#laetiqueta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0.6;
+}
+
 @media (min-width: 960px) {
   .carousel .control-dots {
     bottom: 0;
@@ -272,16 +292,6 @@
 }
 .carousel:hover .slide .legend {
   opacity: 1;
-}
-
-#laetiqueta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  top: 300%;
-  bottom: auto;
-  opacity: 0.7;
 }
 
 #title-carousel-card {
