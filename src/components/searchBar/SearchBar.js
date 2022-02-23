@@ -10,19 +10,13 @@ import DateSearch from './datesearch/DateSearch';
 const SearchBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [dateSubmit, setDateSubmit] = useState(false);
 
-  const handleDate = (e) => {
-    e.preventDefault();
-    setDateSubmit(false);
-    console.log('BUTTON DATE!!!');
-  };
 
   let { experience } = queryString.parse(location.search);
   const [searchCat, setSearchCat] = useState('');
   const [searchLoc, setSearchLoc] = useState('');
-  const [searchStartPrice, setSearchStartPrice] = useState('');
-  const [searchEndPrice, setSearchEndPrice] = useState('');
+  const [searchStartPrice, setSearchStartPrice] = useState('0');
+  const [searchEndPrice, setSearchEndPrice] = useState('150');
   const [searchDate, setSearchDate] = useState('');
 
   const [toSearch, setToSearch] = useState(experience ? experience : '');
@@ -31,10 +25,6 @@ const SearchBar = () => {
     if (location.pathname === '/') resetInput();
   }, [location.pathname]);
 
-  /* const handleChange = (e) => {
-    navigate(`/allFilter?experience=${toSearch}`);
-    setSubmitted(true);
-  }; */
 
   const handleSubmit = (e) => {
     toSearch && navigate(`/allFilter?experience=${toSearch}`);
@@ -65,24 +55,15 @@ const SearchBar = () => {
           </button>
           <div className="calendar-button">
             <DateSearch
-              handleDate={handleDate}
               searchDate={searchDate}
               setSearchDate={setSearchDate}
-              searchStartPrice={searchStartPrice}
-              setSearchStartPrice={setSearchStartPrice}
-              searchEndPrice={searchEndPrice}
-              setSearchEndPrice={setSearchEndPrice}
-              searchLoc={searchLoc}
-              setSearchLoc={setSearchLoc}
-              searchCat={searchCat}
-              setSearchCat={setSearchCat}
+              
             />
           </div>
         </form>
       </div>
       <div className="filter">
         <Filter
-          handleDate={handleDate}
           searchDate={searchDate}
           setSearchDate={setSearchDate}
           searchStartPrice={searchStartPrice}
@@ -93,7 +74,7 @@ const SearchBar = () => {
           setSearchLoc={setSearchLoc}
           searchCat={searchCat}
           setSearchCat={setSearchCat}
-          prueba="prueba"
+          
         />
       </div>
     </>

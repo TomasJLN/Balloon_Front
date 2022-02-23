@@ -7,6 +7,7 @@ import queryString from 'query-string';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../searchBar.css';
 import React, { useRef } from 'react';
+import { Rating } from 'react-simple-star-rating';
 
 const Filter = (props) => {
   const datePickerRef = useRef();
@@ -14,10 +15,14 @@ const Filter = (props) => {
   const locations = useLocations();
   const navigate = useNavigate();
   const location = useLocation();
+
+  
+
   let { experience } = queryString.parse(location.search);
   experience = experience ? experience : '';
+  const [rating, setRating] = useState('');
+  
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
@@ -29,8 +34,11 @@ const Filter = (props) => {
     query += props.searchLoc ? `&location=${props.searchLoc}` : '';
     query += props.searchDate ? `&start=${props.searchDate[0]}` : '';
     query += props.searchDate.length > 1 ? `&end=${props.searchDate[1]}` : '';
+    query += rating ? `&review?searchByExp=${rating}` : '';
 
     navigate(query);
+    console.log('new rating', rating);
+
   }, [
     props.searchCat,
     props.searchLoc,
@@ -38,6 +46,7 @@ const Filter = (props) => {
     props.searchEndPrice,
     experience,
     props.searchDate,
+    rating
   ]);
 
   let filteredLocations = locations.filter(
@@ -145,30 +154,11 @@ const Filter = (props) => {
                 />
               </div>
             </div>
-            {/* <div
-              className="rate-filter"
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '10px 15px',
-                justifyContent: 'center',
-                marginLeft: '1rem',
-              }}
-            >
-              <p>Valoración:</p>
-              <label>
-                <Field type="radio" name="rate" value="1estrella" />★
-              </label>
-              <label>
-                <Field type="radio" name="rate" value="3estrellas" />
-                ★★★
-              </label>
-              <label>
-                <Field type="radio" name="rate" value="5estrellas" />
-                ★★★★★
-              </label>
+            <div className='rate-filter'>
+              <p>Por valoración:</p>
+            <Rating fillColor='black' tooltipDefaultText='Por puntos' onClick={setRating} ratingValue={rating} />
             </div>
-            <div>{values.rate}</div> */}
+            
           </div>
         )}
       </Formik>
