@@ -19,7 +19,7 @@ export const ExperienceCard = ({ exp }) => {
   return (
     <div
       className="card fade_in"
-      onClick={() => {
+      onClick={(e) => {
         navigate(`/experience/${exp.id}`);
       }}
     >

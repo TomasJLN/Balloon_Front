@@ -111,7 +111,7 @@ const Experience = () => {
           <Accordion key={title} title={title} content={content} />
         ))}
       </div>
-      <hr />
+      <hr id="opinions-section" />
       {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
       <hr />
       <div>
