@@ -1,4 +1,4 @@
-.Filter {
+/* .Filter {
   display: flex;
   align-items: center;
   border: none;
@@ -46,18 +46,7 @@
   letter-spacing: 2px;
 }
 
-/* .option {
-  color: #000;
 
-  background-color: white;
-
-  border: none;
-  letter-spacing: 2px;
-  margin: 50px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 1rem;
-} */
 
 
 .slider-text {
@@ -114,3 +103,4 @@
     width: 100%;
   }
 }
+ */

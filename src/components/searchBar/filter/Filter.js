@@ -1,15 +1,19 @@
 import { Formik, Form, Field } from 'formik';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useCategories2 } from '../../../hooks/useCategories2';
 import { useLocations } from '../../../hooks/useLocations';
 import './filter.css';
 import queryString from 'query-string';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../searchBar.css';
-import React, { useRef } from 'react';
+import { FaSearch } from 'react-icons/fa';
 import { Rating } from 'react-simple-star-rating';
+import DatePicker from 'react-multi-date-picker';
+import { VscCalendar } from 'react-icons/vsc';
+import 'react-multi-date-picker/styles/layouts/mobile.css';
 
-const Filter = (props) => {
+
+const Filter = () => {
   const datePickerRef = useRef();
   const categories = useCategories2();
   const locations = useLocations();
@@ -20,32 +24,53 @@ const Filter = (props) => {
 
   let { experience } = queryString.parse(location.search);
   experience = experience ? experience : '';
+
   const [rating, setRating] = useState('');
+  const [searchCat, setSearchCat] = useState('');
+  const [searchLoc, setSearchLoc] = useState('');
+  const [searchStartPrice, setSearchStartPrice] = useState('');
+  const [searchEndPrice, setSearchEndPrice] = useState('');
+  const [searchDate, setSearchDate] = useState('');
+  const [toSearch, setToSearch] = useState(experience ? experience : '');
   
+  useEffect(() => {
+    if (location.pathname === '/') resetInput();
+  }, [location.pathname]);
+
+  const resetInput = () => {
+    setToSearch('');
+  };
+
+  const handleSubmit = (e) => {
+    toSearch && navigate(`/allFilter?experience=${toSearch}`);
+    e.preventDefault();
+    
+  };
 
 
   useEffect(() => {
     let query = `/allFilter?experience=${experience}`;
-    query += props.searchStartPrice
-      ? `&start_price=${props.searchStartPrice}`
+    query += searchStartPrice
+      ? `&start_price=${searchStartPrice}`
       : '';
-    query += props.searchEndPrice ? `&end_price=${props.searchEndPrice}` : '';
-    query += props.searchCat ? `&category=${props.searchCat}` : '';
-    query += props.searchLoc ? `&location=${props.searchLoc}` : '';
-    query += props.searchDate ? `&start=${props.searchDate[0]}` : '';
-    query += props.searchDate.length > 1 ? `&end=${props.searchDate[1]}` : '';
+    query += searchEndPrice ? `&end_price=${searchEndPrice}` : '';
+    query += searchCat ? `&category=${searchCat}` : '';
+    query += searchLoc ? `&location=${searchLoc}` : '';
+    query += searchDate ? `&start=${searchDate[0]}` : '';
+    query += searchDate.length > 1 ? `&end=${searchDate[1]}` : '';
     query += rating ? `&review?searchByExp=${rating}` : '';
+    toSearch && navigate(`/allFilter?experience=${toSearch}`);
 
     navigate(query);
     console.log('new rating', rating);
 
   }, [
-    props.searchCat,
-    props.searchLoc,
-    props.searchStartPrice,
-    props.searchEndPrice,
+    searchCat,
+    searchLoc,
+    searchStartPrice,
+    searchEndPrice,
     experience,
-    props.searchDate,
+    searchDate,
     rating
   ]);
 
@@ -54,8 +79,8 @@ const Filter = (props) => {
       ind === locations.findIndex((elem) => elem.location === ele.location)
   );
 
-  return (
-    <div>
+  return ( <>
+    
       <Formik
         initialValues={{
           categoryfilter: '',
@@ -66,14 +91,50 @@ const Filter = (props) => {
         }}
       >
         {({ values }) => (
-          <div className="Filter">
-            <div className="category-filter">
+          <Form onSubmit={handleSubmit}>
+            <div className='searchBar'>
+            
+            <Field
+            className="input-search"
+            type="text"
+            name="searchText"
+            value={toSearch}
+            onChange={(e) => {
+              setToSearch(e.target.value);
+            }}
+            autoComplete="off"
+            placeholder="Buscar...."
+          />
+          <button className="search-button" type="submit">
+            <FaSearch />
+          </button>
+          <DatePicker
+         value={searchDate}
+         onChange={setSearchDate}
+         range
+         inputClass="custom-input"
+         ref={datePickerRef}
+         
+         
+       />
+
+       <VscCalendar
+         className="calendar-button"
+         onClick={() => datePickerRef.current.openCalendar()}
+       />
+          </div>
+       
+      
+      
+       <div>
+     </div>
+            <div style={{display:'flex'}}>
               <Field
                 className="select"
-                value={props.searchCat}
+                value={searchCat}
                 onChange={(e) => {
-                  props.setSearchCat(e.target.value);
-                  console.log(props.searchCat);
+                  setSearchCat(e.target.value);
+                  console.log(searchCat);
                 }}
                 name="categoryfilter"
                 as="select"
@@ -87,14 +148,14 @@ const Filter = (props) => {
                   </option>
                 ))}
               </Field>
-            </div>
-            <div className="location-filter">
+            
+           
               <Field
                 className="select"
-                value={props.searchLoc}
+                value={searchLoc}
                 onChange={(e) => {
-                  props.setSearchLoc(e.target.value);
-                  console.log(props.searchLoc);
+                  setSearchLoc(e.target.value);
+                  console.log(searchLoc);
                 }}
                 name="locationfilter"
                 as="select"
@@ -108,20 +169,20 @@ const Filter = (props) => {
                   </option>
                 ))}
               </Field>
-            </div>
-            <div className="price-filter">
+           
+            
               <div className="start-price">
-                {props.searchStartPrice === 0 ? (
+                {searchStartPrice === 0 ? (
                   <p>Precio mínimo</p>
                 ) : (
-                  `Desde ${props.searchStartPrice} €`
+                  `Desde ${searchStartPrice} €`
                 )}
                 <Field
                   className="slider"
-                  value={props.searchStartPrice}
+                  value={searchStartPrice}
                   onChange={(e) => {
-                    props.setSearchStartPrice(e.target.value);
-                    console.log(props.searchStartPrice);
+                    setSearchStartPrice(e.target.value);
+                    console.log(searchStartPrice);
                   }}
                   name="startpricefilter"
                   type="range"
@@ -133,17 +194,17 @@ const Filter = (props) => {
               </div>
 
               <div className="end-price">
-                {props.searchEndPrice === 0 ? (
+                {searchEndPrice === 0 ? (
                   <p>Precio máximo</p>
                 ) : (
-                  `Hasta ${props.searchEndPrice} €`
+                  `Hasta ${searchEndPrice} €`
                 )}
                 <Field
                   className="slider"
-                  value={props.searchEndPrice}
+                  value={searchEndPrice}
                   onChange={(e) => {
-                    props.setSearchEndPrice(e.target.value);
-                    console.log(props.searchEndPrice);
+                    setSearchEndPrice(e.target.value);
+                    console.log(searchEndPrice);
                   }}
                   name="endpricefilter"
                   type="range"
@@ -153,16 +214,18 @@ const Filter = (props) => {
                   step={50}
                 />
               </div>
-            </div>
-            <div className='rate-filter'>
+           
+            
               <p>Por valoración:</p>
             <Rating fillColor='black' tooltipDefaultText='Por puntos' onClick={setRating} ratingValue={rating} />
             </div>
             
-          </div>
+          </Form>
         )}
+        
       </Formik>
-    </div>
+    
+    </>
   );
 };
 
