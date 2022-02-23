@@ -10,7 +10,7 @@ export const UserRoute = () => {
       <Routes>
         <Route path="/bookingDetail/:ticket" element={<BookingDetails />} />
         <Route path="/review/:ticket" element={<RateExperience />} />
-        <Route path="profile" element={<Editprofile />} />
+        <Route path="/profile" element={<Editprofile />} />
         <Route path="/*" element={<DashboardRoute />} />
       </Routes>
     </div>

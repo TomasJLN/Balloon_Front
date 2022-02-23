@@ -1,21 +1,20 @@
 import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ErrorPage } from '../components/errorPage/ErrorPage';
-import Booking from '../components/booking/Booking';
+import Booking from '../pages/booking/Booking';
 import Login from '../components/login/Login';
 import Register from '../components/register/Register';
 import SearchBar from '../components/searchBar/SearchBar';
 import ShowResults from '../components/showResults/ShowResults';
 import ContactForm from '../forms/Contact_form/ContactForm';
-import Privacity from '../pages/privacity/Privacity';
-import Conditions from '../pages/conditions/Conditions';
-import Faq from '../pages/faq/Faq';
-import Footer from '../components/footer/Footer';
 import { UserRoute } from './UserRoute';
 import { UserContext } from '../contexts/UserContext';
 import Experience from '../pages/experience/Experience';
 import RecoveryPassword from '../components/recoveryPassword/RecoveryPassword';
-import Editprofile from '../pages/editprofile/Editprofile';
+import Faq from '../pages/faq/Faq';
+import Privacity from '../pages/privacity/Privacity';
+import Conditions from '../pages/conditions/Conditions';
+import Footer from '../components/footer/Footer';
 
 export const PublicRoute = () => {
   const [user, setUser] = useContext(UserContext);

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import Accordion from '../accordion/Accordion';
+import Accordion from '../../components/accordion/Accordion';
 import { useExperience } from '../../hooks/useExperience';
 import fetcher from '../../helpers/fetcher';
 import { TokenContext } from '../../contexts/TokenContext';

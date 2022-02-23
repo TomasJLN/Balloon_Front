@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
-import Editmenu from '../../components/editProfile/editmenu/Editmenu';
-import Editavatar from '../../components/editProfile/editavatar/Editavatar';
-import Editpassword from '../../components/editProfile/editpassword/Editpassword';
-import Editbooking from '../../components/editProfile/editbooking/Editbooking';
+import Editmenu from '../editProfile/editmenu/Editmenu';
+import Editavatar from '../editProfile/editavatar/Editavatar';
+import Editpassword from '../editProfile/editpassword/Editpassword';
+import Editbooking from '../editProfile/editbooking/Editbooking';
 import { TokenContext } from '../../contexts/TokenContext';
 
 const Editprofile = () => {

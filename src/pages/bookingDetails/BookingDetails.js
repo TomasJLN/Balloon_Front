@@ -93,7 +93,7 @@ export const BookingDetails = () => {
         <button
           className="btn-back"
           onClick={() => {
-            navigate(`/bookingDetail`);
+            navigate(`/profile`);
           }}
         >
           🎟️ Mis reservas
