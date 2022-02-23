@@ -15,13 +15,14 @@ import { UserRoute } from './UserRoute';
 import { UserContext } from '../contexts/UserContext';
 import Experience from '../pages/experience/Experience';
 import RecoveryPassword from '../components/recoveryPassword/RecoveryPassword';
+import Filter from '../components/searchBar/filter/Filter';
 
 export const PublicRoute = () => {
   const [user, setUser] = useContext(UserContext);
 
   return (
     <div>
-      {user.role !== 'admin' && <SearchBar />}
+      {user.role !== 'admin' && <Filter />}
       <Routes>
         <Route path="privacity" element={<Privacity />} />
         <Route path="faq" element={<Faq />} />
