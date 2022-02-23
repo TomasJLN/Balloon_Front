@@ -7,7 +7,8 @@
 }
 
 .category-filter,
-.location-filter {
+.location-filter,
+.rate-filter {
   display: flex;
   flex-direction: column;
   padding: 10px 15px;
