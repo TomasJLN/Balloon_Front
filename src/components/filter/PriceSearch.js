@@ -10,7 +10,7 @@ const PriceSearch = ({
 	return (
 		<div className="priceSearch">
 			<div className="startPrice">
-				{searchStartPrice === "0" ? (
+				{searchStartPrice === "" ? (
 					<p>Por precio</p>
 				) : (
 					`Desde ${searchStartPrice} €`
