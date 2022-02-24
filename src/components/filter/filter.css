@@ -22,7 +22,7 @@
 	flex-wrap: wrap;
 	align-items: center;
 	align-content: center;
-
+	width: 100vw;
 	text-align: center;
 }
 
@@ -33,12 +33,27 @@
 .startPrice,
 .categorySearch,
 .LocationSearch,
-.PriceSearch,
 .RatingSearch {
 	display: flex;
 	flex-direction: column;
-	padding: 25px 15px;
+	padding: 5px 10px;
 	justify-content: center;
+}
+
+.selectFilter {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100vw;
+	text-align: center;
+}
+
+.priceRateFilter {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100vw;
+	text-align: center;
 }
 
 /* .searchBar:before {
