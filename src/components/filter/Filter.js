@@ -23,7 +23,7 @@ const Filter = () => {
 	const [rating, setRating] = useState("");
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
-	const [searchStartPrice, setSearchStartPrice] = useState("0");
+	const [searchStartPrice, setSearchStartPrice] = useState("");
 	const [searchEndPrice, setSearchEndPrice] = useState("");
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState(experience ? experience : "");
