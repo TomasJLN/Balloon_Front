@@ -19,7 +19,7 @@ const ShowResults = () => {
 
   let query = q;
 
-  query.length < 1 ? (query = '?experience=&featured=1') : (query = q);
+  query.length < 1 ? (query = '?experience=&active=1&featured=1') : (query = q);
 
   const { filtered, loading, error } = useFiltered(query);
 
