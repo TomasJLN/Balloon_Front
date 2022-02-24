@@ -219,13 +219,14 @@
   left: 50%;
   margin-left: -45%;
   width: 90%;
+  height: 70px;
   border-radius: 10px;
   background: rgb(0, 0, 0);
   color: #fff;
   padding: 10px;
   font-size: 12px;
   text-align: center;
-  opacity: 0.25;
+  opacity: 0.2;
   -webkit-transition: opacity 0.35s ease-in-out;
   -moz-transition: opacity 0.35s ease-in-out;
   -ms-transition: opacity 0.35s ease-in-out;
@@ -297,9 +298,9 @@
 }
 
 #title-carousel-card {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 #price-carousel-card {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }

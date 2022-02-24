@@ -48,7 +48,10 @@ export const CarouselSimilar = ({ idCategory = 1 }) => {
               />
             )}
             <span className="legend" id="la-etiqueta">
-              <p id="title-carousel-card"> {s.title}</p>
+              <p id="title-carousel-card">
+                {' '}
+                {s.title.length > 40 ? s.title.slice(0, 40) + '...' : s.title}
+              </p>
               <p id="price-carousel-card">{s.price} €</p>
             </span>
           </div>
