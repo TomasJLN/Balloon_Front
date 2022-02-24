@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './accordion.css';
 
 const Accordion = ({ title, content }) => {
@@ -10,7 +10,7 @@ const Accordion = ({ title, content }) => {
         <span>{title}</span>
         <span>{isActive ? '-' : '+'}</span>
       </div>
-      {isActive && <div className="accordion-content">{content}</div>}
+      {isActive && <div className="accordion-content fade_in">{content}</div>}
     </div>
   );
 };

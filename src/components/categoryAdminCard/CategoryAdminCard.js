@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TokenContext } from '../../contexts/TokenContext';
-import fetcher from '../../helpers/fetcher';
 import { toast } from 'react-toastify';
+import fetcher from '../../helpers/fetcher';
 import './category-admin-card.css';
 
 export const CategoryAdminCard = ({ cat, setToSearch }) => {
   const [token, setToken] = useContext(TokenContext);
   const [active, setActive] = useState(cat.active === 1 ? true : false);
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
