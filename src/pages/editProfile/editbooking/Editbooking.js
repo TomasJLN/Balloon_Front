@@ -4,7 +4,7 @@ import { TokenContext } from '../../../contexts/TokenContext';
 import { miniFetcher } from '../../../helpers/fetcher';
 import { useUserBookings } from '../../../hooks/useUserBookings';
 import { toast } from 'react-toastify';
-import { OtherBookingV2 } from '../../../components/otherBookingV2/OtherBookingV2';
+import { OtherBooking } from '../../../components/otherBooking/OtherBooking';
 import './editbooking.css';
 
 const Editbooking = () => {
@@ -38,7 +38,7 @@ const Editbooking = () => {
           Mis reservas
         </h1>
         {othersBookings.map((oq) => (
-          <OtherBookingV2
+          <OtherBooking
             oq={oq}
             key={oq.id}
             handleCancelBooking={handleCancelBooking}
@@ -46,7 +46,9 @@ const Editbooking = () => {
         ))}
       </div>
 
-      <a href="#back">Volver a menú</a>
+      <a href="#back" className="title-center">
+        Volver a menú
+      </a>
     </section>
   );
 };

@@ -44,8 +44,6 @@ const Footer = () => {
     setCheckbox(false);
   };
 
-  const aviso = error ? true : false;
-
   return (
     <footer className="footer">
       <section className="newsletter">
@@ -67,20 +65,17 @@ const Footer = () => {
               Enviar
             </button>
           </div>
-          {/* {aviso && (
-            <div style={{ color: 'red' }}>Inserte el correo correctamente</div>
-          )} */}
 
           <div className="privacidad">
+            <input
+              type="checkbox"
+              id="politica"
+              name="politica"
+              onClick={handleCheck}
+              checked={checkbox}
+              onChange={(e) => setCheckbox(e.target.checked)}
+            ></input>
             <label htmlFor="politica">
-              <input
-                type="checkbox"
-                id="politica"
-                name="politica"
-                onClick={handleCheck}
-                checked={checkbox}
-                onChange={(e) => setCheckbox(e.target.checked)}
-              ></input>
               He leído y acepto la política de privacidad
             </label>
           </div>

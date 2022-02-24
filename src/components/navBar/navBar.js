@@ -17,6 +17,7 @@ const NavBar = ({ setShowNavBar }) => {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, [setShowNavBar]);
+
   return (
     <menu ref={ref} className="navbar">
       <li>
@@ -42,4 +43,5 @@ const NavBar = ({ setShowNavBar }) => {
     </menu>
   );
 };
+
 export default NavBar;

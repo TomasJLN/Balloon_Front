@@ -14,7 +14,7 @@ export const ExperienceCard = ({ exp }) => {
 
   useEffect(() => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
-  }, [reviews]);
+  }, [reviews, error]);
 
   return (
     <div

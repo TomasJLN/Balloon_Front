@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ErrorPage } from '../components/errorPage/ErrorPage';
 import Booking from '../pages/booking/Booking';
-import Login from '../components/login/Login';
+import Login from '../pages/login/Login';
 import Register from '../components/register/Register';
 import SearchBar from '../components/searchBar/SearchBar';
 import ShowResults from '../components/showResults/ShowResults';

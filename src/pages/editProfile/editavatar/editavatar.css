@@ -1,36 +1,30 @@
 .Editavatar div {
-    width: 5;
-    height: 6;
-    color: red;
+  width: 5;
+  height: 6;
+  color: red;
 }
 
-.Editavatar h2{
-    font-size: 1rem;
-    overflow: auto;
-    text-align: center;
-    margin: 30px;
-
+.Editavatar h2 {
+  font-size: 1rem;
+  overflow: auto;
+  text-align: center;
+  margin: 30px;
 }
 
-.Editavatar button{
-    margin-top: 30px;
-    margin-left: 150px;
-    border-radius: 30px;
-    height: 3rem;
-    width: 5rem;
-    color: white;
-    background-color: black;
-   
+.Editavatar button {
+  margin-top: 30px;
+  margin-left: 150px;
+  border-radius: 30px;
+  height: 3rem;
+  width: 5rem;
+  color: white;
+  background-color: black;
 }
 
 .Editavatar img {
-
-    display: flex;
-    height: 10rem;
-    width: 10rem;
-    margin-left: 110px;
-
-  
- 
-
-  }
+  display: flex;
+  height: 10rem;
+  width: 10rem;
+  margin-left: 110px;
+  border-radius: 20px;
+}

@@ -68,10 +68,12 @@ export const BookingDetails = () => {
         </figure>
       </div>
       <div className="booking-details">
-        <p>Ticket: {exDetails?.ticket}</p>
+        <p>
+          Ticket: <strong>{exDetails?.ticket}</strong>
+        </p>
         <p>Descripción: {exDetails?.description}</p>
         <p>
-          Fecha experiencia:
+          Fecha experiencia:{' '}
           {moment(exDetails?.dateExperience).format('YYYY-MM-DD')}
         </p>
         <p>
@@ -80,24 +82,26 @@ export const BookingDetails = () => {
         </p>
       </div>
       <hr />
-      <h2>Descargar ticket</h2>
+      <h2 className="title-center">Descargar ticket</h2>
       <div className="qr-booking">
         {QRs.map((q) => (
           <QrTicket key={q.qrPicture} q={q} />
         ))}
       </div>
-      <div className="back-div"></div>
       <hr />
-      <div>
-        <h2> Otras reservas del usuario</h2>
+      <br />
+      <div className="back-to-profile">
         <button
-          className="btn-back"
           onClick={() => {
             navigate(`/profile`);
           }}
         >
           🎟️ Mis reservas
         </button>
+      </div>
+      <br />
+      <div>
+        <h2 className="title-center"> Otras reservas del usuario</h2>
         <div>
           {othersBookings.map((oq) => (
             <OtherBooking

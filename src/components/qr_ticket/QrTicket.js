@@ -1,11 +1,11 @@
 import { downloadImage } from '../../helpers/downloadImage';
-
+import './qr-ticket.css';
 export const QrTicket = ({ q }) => {
   return q.qrPicture ? (
     <img
       src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${q.qrPicture}`}
       alt={q.qrPicture?.title}
-      className="card-thumbnail"
+      className="qr-picture"
       onClick={async (e) => {
         const a = document.createElement('a');
         a.href = await downloadImage(
@@ -21,7 +21,7 @@ export const QrTicket = ({ q }) => {
     <img
       src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
       alt={q?.qrPicture}
-      className="card-thumbnail"
+      className="qr-picture"
     />
   );
 };

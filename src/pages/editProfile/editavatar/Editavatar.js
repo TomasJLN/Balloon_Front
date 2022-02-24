@@ -54,7 +54,9 @@ const Editavatar = () => {
               alt={usuario.avatar}
               onClick={handlePictureClick}
             />
-            <figcaption>Pulsa en la imagen para cambiarla</figcaption>
+            <figcaption className="title-center">
+              Pulsa en la imagen para cambiarla
+            </figcaption>
           </figure>
           <input
             type="file"
