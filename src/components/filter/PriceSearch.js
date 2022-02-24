@@ -9,9 +9,9 @@ const PriceSearch = ({
 }) => {
 	return (
 		<div className="priceSearch">
-			<div className="start-price">
-				{searchStartPrice === 0 ? (
-					<p>Precio mínimo</p>
+			<div className="startPrice">
+				{searchStartPrice === "0" ? (
+					<p>Por precio</p>
 				) : (
 					`Desde ${searchStartPrice} €`
 				)}
@@ -31,7 +31,7 @@ const PriceSearch = ({
 				/>
 			</div>
 
-			<div className="end-price">
+			{/* <div className="end-price">
 				{searchEndPrice === 0 ? (
 					<p>Precio máximo</p>
 				) : (
@@ -51,7 +51,7 @@ const PriceSearch = ({
 					max={1000}
 					step={50}
 				/>
-			</div>
+			</div> */}
 		</div>
 	);
 };

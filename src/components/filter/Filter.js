@@ -1,15 +1,15 @@
-import { Formik, Form } from "formik";
 import React, { useEffect, useState, useRef } from "react";
-import "./filter.css";
-import "react-multi-date-picker/styles/layouts/mobile.css";
-import queryString from "query-string";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Formik, Form } from "formik";
+import queryString from "query-string";
 import SearchBar from "./SearchBar";
 import RatingSearch from "./RatingSearch";
 import DateSearch from "./DateSearch";
 import CategorySearch from "./CategorySearch";
 import LocationSearch from "./LocationSearch";
 import PriceSearch from "./PriceSearch";
+import "./filter.css";
+import "react-multi-date-picker/styles/layouts/mobile.css";
 
 const Filter = () => {
 	const datePickerRef = useRef();
@@ -23,7 +23,7 @@ const Filter = () => {
 	const [rating, setRating] = useState("");
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
-	const [searchStartPrice, setSearchStartPrice] = useState("");
+	const [searchStartPrice, setSearchStartPrice] = useState("0");
 	const [searchEndPrice, setSearchEndPrice] = useState("");
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState(experience ? experience : "");
