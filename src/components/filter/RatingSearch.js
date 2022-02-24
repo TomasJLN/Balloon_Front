@@ -9,6 +9,7 @@ const RatingSearch = ({ rating, setRating }) => {
 				tooltipDefaultText="Por puntos"
 				onClick={setRating}
 				ratingValue={rating}
+				size={25}
 			/>
 		</div>
 	);

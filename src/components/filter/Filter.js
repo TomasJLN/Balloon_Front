@@ -34,6 +34,11 @@ const Filter = () => {
 
 	const resetInput = () => {
 		setToSearch("");
+		setSearchCat("");
+		setSearchLoc("");
+		setSearchStartPrice("");
+		setSearchDate("");
+		setRating("");
 	};
 
 	const handleSubmit = (e) => {
@@ -84,23 +89,26 @@ const Filter = () => {
 						</div>
 
 						<div className="filterContainer">
-							<CategorySearch
-								searchCat={searchCat}
-								setSearchCat={setSearchCat}
-							/>
-							<LocationSearch
-								searchLoc={searchLoc}
-								setSearchLoc={setSearchLoc}
-							/>
+							<div className="selectFilter">
+								<CategorySearch
+									searchCat={searchCat}
+									setSearchCat={setSearchCat}
+								/>
+								<LocationSearch
+									searchLoc={searchLoc}
+									setSearchLoc={setSearchLoc}
+								/>
+							</div>
+							<div className="priceRateFilter">
+								<PriceSearch
+									searchStartPrice={searchStartPrice}
+									setSearchStartPrice={setSearchStartPrice}
+									searchEndPrice={searchEndPrice}
+									setSearchEndPrice={setSearchEndPrice}
+								/>
 
-							<PriceSearch
-								searchStartPrice={searchStartPrice}
-								setSearchStartPrice={setSearchStartPrice}
-								searchEndPrice={searchEndPrice}
-								setSearchEndPrice={setSearchEndPrice}
-							/>
-
-							<RatingSearch rating={rating} setRating={setRating} />
+								<RatingSearch rating={rating} setRating={setRating} />
+							</div>
 						</div>
 					</Form>
 				)}
