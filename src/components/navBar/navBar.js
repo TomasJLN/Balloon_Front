@@ -26,7 +26,7 @@ const NavBar = ({ setShowNavBar }) => {
         </Link>
       </li>
       <li>
-        <Link to="/account" onClick={(s) => setShowNavBar(!s)}>
+        <Link to="/profile" onClick={(s) => setShowNavBar(!s)}>
           MI CUENTA
         </Link>
       </li>
