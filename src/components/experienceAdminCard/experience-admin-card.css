@@ -29,7 +29,7 @@
 .title-card-category {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: auto 6px;
 }
 
@@ -47,4 +47,19 @@
   background-color: black;
   border: none;
   border-radius: 12px;
+}
+
+.id-exp {
+  min-width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-exp {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
 }

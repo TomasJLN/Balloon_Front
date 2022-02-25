@@ -32,7 +32,7 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
         <div className="btns-bookings">
           <button
             className="btn-booking"
-            onClick={(e) => navigate(`/bookingDetail/${oq.ticket}#go-here`)}
+            onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
           >
             Detalles
           </button>

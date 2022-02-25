@@ -4,6 +4,10 @@
   gap: 12px;
 }
 
+section {
+  min-height: 100%;
+}
+
 .title-back {
   display: flex;
   justify-content: space-between;
@@ -58,7 +62,13 @@
 }
 
 .btn-update-category {
-  margin: 3rem 0 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  bottom: 20px;
+  margin: 0;
   height: 2.5rem;
   background-color: black;
   color: white;
