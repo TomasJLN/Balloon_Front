@@ -4,7 +4,6 @@ import { ErrorPage } from '../components/errorPage/ErrorPage';
 import Booking from '../pages/booking/Booking';
 import Login from '../pages/login/Login';
 import Register from '../components/register/Register';
-import SearchBar from '../components/searchBar/SearchBar';
 import ShowResults from '../components/showResults/ShowResults';
 import ContactForm from '../forms/Contact_form/ContactForm';
 import { UserRoute } from './UserRoute';
@@ -15,13 +14,14 @@ import Faq from '../pages/faq/Faq';
 import Privacity from '../pages/privacity/Privacity';
 import Conditions from '../pages/conditions/Conditions';
 import Footer from '../components/footer/Footer';
+import Filter from '../components/filter/Filter';
 
 export const PublicRoute = () => {
   const [user, setUser] = useContext(UserContext);
 
   return (
     <div>
-      {user.role !== 'admin' && <SearchBar />}
+      {user.role !== 'admin' && <Filter />}
       <Routes>
         <Route path="privacity" element={<Privacity />} />
         <Route path="conditions" element={<Conditions />} />
