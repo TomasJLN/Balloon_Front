@@ -8,7 +8,7 @@ const Accordion = ({ title, content }) => {
     <div className="accordion-item">
       <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
         <span>{title}</span>
-        <span>{isActive ? '-' : '+'}</span>
+        <span className="left-margin">{isActive ? '-' : '+'}</span>
       </div>
       {isActive && <div className="accordion-content fade_in">{content}</div>}
     </div>

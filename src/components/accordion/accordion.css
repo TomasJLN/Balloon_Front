@@ -11,3 +11,7 @@
 .accordion-content {
   padding: 0.5rem 1rem;
 }
+
+.left-margin {
+  padding-left: 10px;
+}

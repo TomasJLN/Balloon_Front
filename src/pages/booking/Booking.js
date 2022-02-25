@@ -37,6 +37,7 @@ const Booking = () => {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useContext(TokenContext);
   const [usuario, setUsuario] = useContext(UserContext);
+  const [pay, setPay] = useState(null);
 
   let maxFreePlaces = 10;
 
@@ -81,27 +82,32 @@ const Booking = () => {
   const handleNewBooking = (e) => {
     e.preventDefault();
     setResult('');
-    const createBooking = async () => {
-      await fetcher(setResult, setError, setLoading, 'booking', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-        body: JSON.stringify({
-          dateExperience:
-            typeof bookingDate === 'string'
-              ? bookingDate
-              : bookingDate.format(),
-          quantity: numTickets,
-          idExperience: id,
-        }),
-      });
-    };
-    !usuario.role && navigate('/account');
-    usuario.role === 'user' && createBooking();
-    usuario.role === 'admin' &&
-      toast.error('Un administrador no puede\nhacer reservas...');
+
+    if (pay) {
+      const createBooking = async () => {
+        await fetcher(setResult, setError, setLoading, 'booking', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify({
+            dateExperience:
+              typeof bookingDate === 'string'
+                ? bookingDate
+                : bookingDate.format(),
+            quantity: numTickets,
+            idExperience: id,
+          }),
+        });
+      };
+      !usuario.role && navigate('/account');
+      usuario.role === 'user' && createBooking();
+      usuario.role === 'admin' &&
+        toast.error('Un administrador no puede\nhacer reservas...');
+    } else {
+      toast.error('Debes seleccionar un método de pago');
+    }
   };
 
   useEffect(() => {
@@ -120,15 +126,15 @@ const Booking = () => {
       {loading ? (
         <h1 className="spinner-container">Loading...</h1>
       ) : (
-        <div className="reserved-card">
-          <h1 className="title-center"> RESERVAR</h1>
+        <div className="wrap-content">
+          <h1 className="title-center">RESERVAR</h1>
           <div className="experience-data">
             <div className="photo-thumbnail">
               {photo ? (
                 <img
                   src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
                   alt={title}
-                  className="exp-picture"
+                  className="exp-picture img-top"
                 />
               ) : (
                 <img
@@ -165,6 +171,7 @@ const Booking = () => {
                   textAlign: 'center',
                   fontSize: '1.1rem',
                   border: 'none',
+                  boxShadow: '2px 2px 4px grey',
                 }}
                 id="date"
                 value={bookingDate}
@@ -207,7 +214,10 @@ const Booking = () => {
             </div>
             <div className="pay-method">
               <h3>Forma de pago</h3>
-              <div className="pay-option">
+              <div
+                className="pay-option"
+                onChange={(e) => setPay(e.target.value)}
+              >
                 <div>
                   <input
                     type="radio"
@@ -244,9 +254,11 @@ const Booking = () => {
             Total: {(price * numTickets).toFixed(2)} €
           </p>
 
-          <button className="btn-comprar" onClick={handleNewBooking}>
-            RESERVAR
-          </button>
+          <div className="right-align">
+            <button className="btn-comprar" onClick={handleNewBooking}>
+              RESERVAR
+            </button>
+          </div>
 
           <div className="accordion-section">
             {infoExperience.map(({ title, content }) => (

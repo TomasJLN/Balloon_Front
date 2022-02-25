@@ -1,31 +1,11 @@
-.reserved-card {
-  margin: 0 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.reserved-card .exp-picture {
-  margin: 1rem auto;
+.wrap-content .exp-picture {
   width: 100%;
-  max-height: 240px;
+  margin-top: 10%;
 }
 
 .accordion-section {
   width: 90vw;
   margin: 1rem auto;
-}
-
-.btn-comprar {
-  margin-left: auto;
-  text-transform: uppercase;
-  color: white;
-  background-color: black;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 30px;
-  height: 3rem;
-  width: 10rem;
-  border: 2px solid slategray;
 }
 
 .precio-unidad {
@@ -64,7 +44,7 @@
 
 .experience-data {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
@@ -79,7 +59,8 @@
   margin: 20px 0;
   display: flex;
   justify-content: flex-start;
-  gap: 6px;
+  align-items: baseline;
+  gap: 12px;
 }
 
 #select-quantity {
@@ -95,6 +76,7 @@
   text-align: center;
   width: 50px;
   flex-grow: 0;
+  border: none;
 }
 
 .description-text {
@@ -108,12 +90,17 @@
   justify-content: start;
 }
 
+.img-top {
+  justify-self: flex-start;
+}
+
 .button-quantity {
   width: 1.8rem;
   height: 1.8rem;
   background-color: black;
   color: white;
   font-weight: bold;
+  border-radius: 50%;
 }
 
 .tickets-booking {
@@ -137,4 +124,9 @@
 }
 .pay-option input {
   margin-right: 10px;
+}
+
+.right-align {
+  display: flex;
+  justify-content: flex-end;
 }

@@ -74,7 +74,9 @@ export const BookingDetails = () => {
         <p>Descripción: {exDetails?.description}</p>
         <p>
           Fecha experiencia:{' '}
-          {moment(exDetails?.dateExperience).format('YYYY-MM-DD')}
+          <strong>
+            {moment(exDetails?.dateExperience).format('YYYY-MM-DD')}
+          </strong>
         </p>
         <p>
           Fecha de la reserva:{' '}

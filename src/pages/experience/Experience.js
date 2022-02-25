@@ -1,13 +1,13 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import Accordion from '../../components/accordion/Accordion';
-import { useExperience } from '../../hooks/useExperience';
+import { FaSearchLocation } from 'react-icons/fa';
 import { Rating } from 'react-simple-star-rating';
-import './experience.css';
-import { useGetReviews } from '../../hooks/useGetReviews';
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useExperience } from '../../hooks/useExperience';
+import { useGetReviews } from '../../hooks/useGetReviews';
 import { Reviews } from '../../components/reviews/Reviews';
 import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
-import { FaSearchLocation } from 'react-icons/fa';
+import Accordion from '../../components/accordion/Accordion';
+import './experience.css';
 
 const Experience = () => {
   const { id } = useParams();
