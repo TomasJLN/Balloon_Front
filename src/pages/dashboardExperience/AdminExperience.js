@@ -4,6 +4,7 @@ import { ExperienceAdminCard } from '../../components/experienceAdminCard/Experi
 import { useFiltered } from '../../hooks/useFiltered.js';
 import { toast } from 'react-toastify';
 import './admin-experience.css';
+import { ToTop } from '../../components/toTop/ToTop.js';
 
 export const AdminExperience = () => {
   const [toSearch, setToSearch] = useState('');
@@ -24,6 +25,7 @@ export const AdminExperience = () => {
 
   return (
     <div>
+      <ToTop />
       <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
         GESTOR de Experiencias
       </h1>

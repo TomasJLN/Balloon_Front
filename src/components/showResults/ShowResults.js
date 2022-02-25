@@ -4,6 +4,7 @@ import { useFiltered } from '../../hooks/useFiltered';
 import { ExperienceCard } from '../experienceCard/ExperienceCard';
 import { toast } from 'react-toastify';
 import './show-results.css';
+import { ToTop } from '../toTop/ToTop';
 
 const ShowResults = () => {
   //Experiencias mostradas por página
@@ -57,6 +58,7 @@ const ShowResults = () => {
         </div>
       ) : (
         <>
+          <ToTop />
           <div className="card-deck">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (

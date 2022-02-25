@@ -8,6 +8,7 @@ import { Reviews } from '../../components/reviews/Reviews';
 import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
 import Accordion from '../../components/accordion/Accordion';
 import './experience.css';
+import { scrollToTop } from '../../helpers/scrollToTop';
 
 const Experience = () => {
   const { id } = useParams();
@@ -37,6 +38,10 @@ const Experience = () => {
   useEffect(() => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
   }, [reviews]);
+
+  useEffect(() => {
+    scrollToTop();
+  }, [id]);
 
   return (
     <div className="single-card">
