@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
+import moment from 'moment';
+import DatePicker from 'react-multi-date-picker';
+import { toast } from 'react-toastify';
+import { useContext, useEffect, useState } from 'react';
 import { TokenContext } from '../../contexts/TokenContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import fetcher from '../../helpers/fetcher';
 import { fileUpload } from '../../helpers/fileUpload';
 import { useEditExperience } from '../../hooks/useEditExperience';
 import './edit-experience.css';
-import moment from 'moment';
-import { toast } from 'react-toastify';
-import DatePicker, { DateObject } from 'react-multi-date-picker';
 
 export const EditExperience = () => {
   const [expData, setExpData] = useState({
@@ -28,7 +28,7 @@ export const EditExperience = () => {
     normatives: '',
   });
   const [photoExp, setPhotoExp] = useState(null);
-  const [result, setResult] = useState('null');
+  const [result, setResult] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useContext(TokenContext);
@@ -86,6 +86,10 @@ export const EditExperience = () => {
     });
   };
 
+  useEffect(() => {
+    result !== '' && toast.success(result);
+  }, [result]);
+
   const handlePictureChange = async (e) => {
     setLoading(true);
     setError(null);
@@ -127,7 +131,6 @@ export const EditExperience = () => {
           ↩️ back
         </button>
       </div>
-
       <hr />
       <br />
       <form onSubmit={handleUpdateCategory}>
@@ -169,7 +172,6 @@ export const EditExperience = () => {
             />
           </div>
         </div>
-
         <div>
           <label htmlFor="edit-exp-description">Descripción: </label>
           <textarea
