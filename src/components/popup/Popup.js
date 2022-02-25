@@ -38,11 +38,12 @@ export const Popup = ({ setShowPopup }) => {
           <input
             type="text"
             id="email-recovery"
+            size="30"
             onChange={(e) => {
               setEmailRecovery(e.target.value);
             }}
           />
-          <button type="submit" className="btn-booking">
+          <button type="submit" className="btn-send">
             Recuperar
           </button>
         </form>

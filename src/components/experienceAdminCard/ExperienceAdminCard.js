@@ -35,8 +35,8 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
   return (
     <div className="card-category fade_in">
       <div className="title-card-category">
-        <span>ID: {exp.id}</span>
-        <span>Categoría: {exp.title}</span>
+        <span className="id-exp">{exp.id}</span>
+        <span className="title-exp">{exp.title}</span>
       </div>
       <figure className="card-figure-category">
         {exp.photo ? (
@@ -44,12 +44,18 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`}
             alt={exp.title}
             className="card-thumbnail-category"
+            onClick={() =>
+              navigate(`/dashboard/adminExperience/editExperience/${exp.id}`)
+            }
           />
         ) : (
           <img
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
             alt={exp.title}
             className="card-thumbnail-category"
+            onClick={() =>
+              navigate(`/dashboard/adminExperience/editExperience/${exp.id}`)
+            }
           />
         )}
       </figure>

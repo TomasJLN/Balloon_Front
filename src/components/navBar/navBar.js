@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './navBar.css';
 
 const NavBar = ({ setShowNavBar }) => {
@@ -17,6 +17,7 @@ const NavBar = ({ setShowNavBar }) => {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, [setShowNavBar]);
+
   return (
     <menu ref={ref} className="navbar">
       <li>
@@ -25,7 +26,7 @@ const NavBar = ({ setShowNavBar }) => {
         </Link>
       </li>
       <li>
-        <Link to="/account" onClick={(s) => setShowNavBar(!s)}>
+        <Link to="/profile" onClick={(s) => setShowNavBar(!s)}>
           MI CUENTA
         </Link>
       </li>
@@ -34,8 +35,13 @@ const NavBar = ({ setShowNavBar }) => {
           CONTACTO
         </Link>
       </li>
-      <li>FAQ</li>
+      <li>
+        <Link to="/faq" onClick={(s) => setShowNavBar(!s)}>
+          FAQ
+        </Link>
+      </li>
     </menu>
   );
 };
+
 export default NavBar;

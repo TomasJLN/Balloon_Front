@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import './avatar.css';
 
@@ -16,7 +15,7 @@ export const Avatar = ({ usuario, setUserMenu }) => {
       {usuario.email ? (
         <img
           src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
-          alt={usuario.admin}
+          alt={usuario.name}
           className="user-avatar"
         />
       ) : (

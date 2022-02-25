@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
+import { VscAccount } from 'react-icons/vsc';
 import fetcher from '../../helpers/fetcher';
-import { Popup } from '../popup/Popup';
+import { Popup } from '../../components/popup/Popup';
 import './login.css';
 
 const Login = () => {
@@ -22,6 +24,10 @@ const Login = () => {
     token && !error && usuario.role === 'user' && navigate(-1);
   }, [token, error, navigate, usuario.role]);
 
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
@@ -39,8 +45,8 @@ const Login = () => {
       ) : (
         <div>
           <form onSubmit={handleLogin} className="login-form">
+            <VscAccount size="3rem" />
             <div className="mail-field">
-              {/* <label htmlFor="email-login">email:</label> */}
               <input
                 type="text"
                 id="email-login"
@@ -54,9 +60,7 @@ const Login = () => {
                 onFocus={() => setEmail('')}
               />
             </div>
-            <br />
             <div className="password-field">
-              {/* <label htmlFor="password-login">Contraseña:</label> */}
               <input
                 type="password"
                 id="password-login"
@@ -68,18 +72,18 @@ const Login = () => {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                onFocus={() => setPassword('')}
+                onFocus={() => {
+                  setPassword('');
+                  setError(null);
+                }}
               />
             </div>
-            {error && <span className="show-error">{error}</span>}
-            <br />
-            <input type="submit" value="Login" className="btn-login" />
+            <input type="submit" value="Login" className="btn-send" />
           </form>
           <div className="link-to">
             <Link to="/register">Crear una cuenta</Link>
           </div>
           <div className="link-to">
-            {/* <Link to="/recoveryPassword">Recuperar contraseña</Link> */}
             <p onClick={() => setShowPopup(true)}>Recuperar contraseña</p>
           </div>
           {showPopup && <Popup setShowPopup={setShowPopup} />}

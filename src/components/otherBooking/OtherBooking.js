@@ -5,36 +5,46 @@ import './other-booking.css';
 export const OtherBooking = ({ oq, handleCancelBooking }) => {
   const navigate = useNavigate();
   return (
-    <div key={oq.id} className="other-card">
-      <p className="btns-other-bookings">
-        {oq.ticket} {oq.title}
-      </p>
-      <div key={oq.id} className="other-info">
-        {oq.photo ? (
-          <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${oq.photo}`}
-            alt={oq?.title}
-            className="card-thumbnail"
+    <div className="wrap-booking">
+      <div className="header-booking">
+        <p>Reserva: {oq.ticket}</p>
+        <p>Fecha Reserva: {moment(oq.dateExperience).format('YYYY-MM-DD')}</p>
+      </div>
+      <p className="title-booking">{oq.title}</p>
+      <div className="options-booking">
+        <figure className="photo-booking">
+          {oq.photo ? (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${oq.photo}`}
+              alt={oq?.title}
+              className="card-img-booking"
+              onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
+            />
+          ) : (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+              alt={oq?.title}
+              className="card-img-booking"
+              onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
+            />
+          )}
+        </figure>
+        <div className="btns-bookings">
+          <button
+            className="btn-booking"
             onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
-          />
-        ) : (
-          <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-            alt={oq?.title}
-            className="card-thumbnail"
-            onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
-          />
-        )}
-        <div className="btns-other-bookings">
+          >
+            Detalles
+          </button>
           <button
             id={moment().format() > oq.dateExperience ? 'vota' : 'no-vota'}
-            className="btn-other-bookings"
+            className="btn-booking"
             onClick={(e) => navigate(`/review/${oq.ticket}`)}
           >
             Valorar
           </button>
           <button
-            className="btn-other-bookings"
+            className="btn-booking"
             onClick={(e) => handleCancelBooking(e, oq.ticket)}
           >
             Cancelar

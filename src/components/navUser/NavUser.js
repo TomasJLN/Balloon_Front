@@ -46,9 +46,14 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/profile">Perfil</Link>
           </li>
         )}
-        {token && role === 'user' && (
+        {role !== 'admin' && (
           <li>
-            <Link to="/bookingDetail">Tus Reservas</Link>
+            <Link to="/contact-form">Contactar</Link>
+          </li>
+        )}
+        {!token && (
+          <li>
+            <Link to="/register">Registro</Link>
           </li>
         )}
         {token && <li onClick={handleLogout}>Log out</li>}
@@ -59,18 +64,7 @@ const NavUser = ({ setUserMenu, usuario }) => {
         )}
         {!token && (
           <li>
-            <Link to="/register">Registro</Link>
-          </li>
-        )}
-        {!token && (
-          <li>
             <Link to="/recovery">Recuperar contraseña</Link>
-          </li>
-        )}
-
-        {role !== 'admin' && (
-          <li>
-            <Link to="/contact-form">Contactar</Link>
           </li>
         )}
       </ul>

@@ -5,6 +5,7 @@
 .photo-experience {
   border-radius: 10px;
   max-height: 200px;
+  margin-bottom: 2.5rem;
 }
 
 .btn-update-experience {
@@ -61,9 +62,10 @@
 
 .input-text-field-row > input {
   font-size: 1.1rem;
-  background-color: bisque;
   text-align: center;
   margin-right: 16px;
+  border: none;
+  box-shadow: 2px 2px 4px grey;
 }
 
 .edit-sect-activar {

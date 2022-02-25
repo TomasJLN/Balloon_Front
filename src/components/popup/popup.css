@@ -1,17 +1,18 @@
 #popup-bg {
   position: absolute;
+  z-index: 3;
   top: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(193, 178, 209, 0.6);
+  background-color: rgba(245, 245, 245, 0.7);
   width: 100vw;
   height: 100vh;
 }
 
 #popup-fg {
-  background-color: whitesmoke;
+  background-color: rgba(193, 178, 209, 1);
   width: 80%;
   height: 30%;
   border-radius: 10%;
@@ -25,9 +26,17 @@
 #popup-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
 #popup-fg h3 {
   text-align: center;
+}
+
+#email-recovery {
+  height: 1.7rem;
+  border: none;
+  padding-left: 7px;
+  box-shadow: 2px 2px 3px grey;
 }

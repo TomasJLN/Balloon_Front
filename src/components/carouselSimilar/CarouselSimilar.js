@@ -1,8 +1,8 @@
-import { miniFetcher } from '../../helpers/fetcher';
 import { useEffect, useState } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import './carouselSimilar.css';
 import { useNavigate } from 'react-router-dom';
+import { Carousel } from 'react-responsive-carousel';
+import { miniFetcher } from '../../helpers/fetcher';
+import './carouselSimilar.css';
 
 export const CarouselSimilar = ({ idCategory = 1 }) => {
   const [expCat, setExpCat] = useState([]);
@@ -32,7 +32,6 @@ export const CarouselSimilar = ({ idCategory = 1 }) => {
             key={index}
             onClick={(e) => {
               navigate(`/experience/${s.id}`);
-              console.log(`/experience/${s.id}`);
             }}
           >
             {s.photo ? (
@@ -48,8 +47,11 @@ export const CarouselSimilar = ({ idCategory = 1 }) => {
                 className="exp-picture"
               />
             )}
-            <span className="legend" id="laetiqueta">
-              <p id="title-carousel-card"> {s.title}</p>
+            <span className="legend" id="la-etiqueta">
+              <p id="title-carousel-card">
+                {' '}
+                {s.title.length > 40 ? s.title.slice(0, 40) + '...' : s.title}
+              </p>
               <p id="price-carousel-card">{s.price} €</p>
             </span>
           </div>
