@@ -4,6 +4,7 @@ import { CategoryAdminCard } from '../../components/categoryAdminCard/CategoryAd
 import { useGetCategories } from '../../hooks/useGetCategories.js';
 import { toast } from 'react-toastify';
 import './admin-category.css';
+import { ToTop } from '../../components/toTop/ToTop.js';
 
 export const AdminCategory = () => {
   const [toSearch, setToSearch] = useState('');
@@ -26,6 +27,7 @@ export const AdminCategory = () => {
   return (
     <>
       <div>
+        <ToTop />
         <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard/`)}>
           GESTOR de Categorías
         </h1>

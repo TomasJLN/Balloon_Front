@@ -5,6 +5,10 @@
   gap: 10px;
 }
 
+.booking-details p {
+  margin: 10px 0;
+}
+
 #vota {
   background-color: green;
 }
@@ -41,11 +45,30 @@
 
 .picture-back {
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
 }
 
 .qr-booking {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 20px 0;
+}
+
+.photo-booking {
+  position: relative;
+  height: 220px;
+  /* width: 220px; */
+}
+
+.card-img-booking {
+  width: 100%;
+}
+.back-to-profile {
+  display: flex;
+  justify-content: center;
+}
+
+.back-to-profile button {
+  font-size: 1.2rem;
 }

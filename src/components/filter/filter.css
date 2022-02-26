@@ -1,7 +1,7 @@
 .hero {
 	position: relative;
 	width: 100vw;
-	height: 350px;
+	height: 200px;
 	display: flex;
 
 	justify-content: center;
@@ -19,18 +19,42 @@
 
 .filterContainer {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
-	padding: 10px 15px;
+	align-content: center;
+	width: 100vw;
 	text-align: center;
 	justify-content: center;
 }
 
-.searchBar,
-.LocationSearch,
-.PriceSearch,
-.RatingSearch {
+.searchBar {
 	display: flex;
 	justify-content: center;
+}
+.startPrice,
+.categorySearch,
+.LocationSearch,
+.RatingSearch {
+	display: flex;
+	flex-direction: column;
+	padding: 5px 10px;
+	justify-content: center;
+}
+
+.selectFilter {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100vw;
+	text-align: center;
+}
+
+.priceRateFilter {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100vw;
+	text-align: center;
 }
 
 /* .searchBar:before {
@@ -52,7 +76,7 @@
 }
 
 .input-search {
-	width: 50%;
+	width: 75%;
 	color: white;
 	padding: 5px 15px;
 	background-color: rgba(0, 0, 0, 0.6);
@@ -85,7 +109,6 @@
 
 	font-size: 2rem;
 	cursor: pointer;
-	transform: translate(-15px);
 }
 
 .search-button:hover {
@@ -116,26 +139,4 @@
 
 .custom-input {
 	display: none;
-}
-
-@media (min-width: 820px) {
-	.Filter {
-		flex-direction: row;
-	}
-}
-
-@media (max-width: 390px) {
-	.searchBar {
-		height: 200px;
-	}
-
-	.search-form {
-		width: 75%;
-
-		z-index: 2;
-	}
-
-	.Filter {
-		flex-direction: row;
-	}
 }

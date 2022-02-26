@@ -1,0 +1,11 @@
+.scroll-to-top {
+  position: fixed;
+  top: 90%;
+  left: 80%;
+  opacity: 0.5;
+  z-index: 4;
+}
+
+.icon-to-top {
+  height: 50px;
+}

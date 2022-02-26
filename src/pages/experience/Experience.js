@@ -1,13 +1,14 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import Accordion from '../../components/accordion/Accordion';
-import { useExperience } from '../../hooks/useExperience';
+import { FaSearchLocation } from 'react-icons/fa';
 import { Rating } from 'react-simple-star-rating';
-import './experience.css';
-import { useGetReviews } from '../../hooks/useGetReviews';
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useExperience } from '../../hooks/useExperience';
+import { useGetReviews } from '../../hooks/useGetReviews';
 import { Reviews } from '../../components/reviews/Reviews';
 import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
-import { FaSearchLocation } from 'react-icons/fa';
+import Accordion from '../../components/accordion/Accordion';
+import './experience.css';
+import { scrollToTop } from '../../helpers/scrollToTop';
 
 const Experience = () => {
   const { id } = useParams();
@@ -38,22 +39,36 @@ const Experience = () => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
   }, [reviews]);
 
+  useEffect(() => {
+    scrollToTop();
+  }, [id]);
+
   return (
     <div className="single-card">
       <h1 className="title">{title}</h1>
-      {photo ? (
-        <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
-          alt={title}
-          className="exp-picture"
-        />
-      ) : (
-        <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-          alt={title}
-          className="exp-picture"
-        />
-      )}
+      <figure>
+        {photo ? (
+          <img
+            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
+            alt={title}
+            className="exp-picture"
+          />
+        ) : (
+          <img
+            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+            alt={title}
+            className="exp-picture"
+          />
+        )}
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          ↩️ back
+        </button>
+      </figure>
       <div className="rating-back">
         <p className="stars-row">
           {avgRatin !== 0 && (
@@ -68,14 +83,6 @@ const Experience = () => {
             </>
           )}
         </p>
-        <button
-          className="btn-back"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ↩️ back
-        </button>
       </div>
       <div className="exp-description">
         <p>Descripción: </p>
@@ -111,11 +118,11 @@ const Experience = () => {
           <Accordion key={title} title={title} content={content} />
         ))}
       </div>
-      <hr />
+      <hr id="opinions-section" />
       {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
       <hr />
       <div>
-        <h1>Experiencias similades {idCategory}</h1>
+        <h1 id="ex-sim">Experiencias similades</h1>
         <div>
           <CarouselSimilar idCategory={idCategory} />
         </div>

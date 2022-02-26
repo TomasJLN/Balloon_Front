@@ -1,16 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TokenContext } from '../../contexts/TokenContext';
-import { UserContext } from '../../contexts/UserContext';
-import { miniFetcher } from '../../helpers/fetcher';
-import { useUserBookings } from '../../hooks/useUserBookings';
+import { TokenContext } from '../../../contexts/TokenContext';
+import { miniFetcher } from '../../../helpers/fetcher';
+import { useUserBookings } from '../../../hooks/useUserBookings';
 import { toast } from 'react-toastify';
-import { OtherBookingV2 } from '../../components/otherBookingV2/OtherBookingV2';
+import { OtherBooking } from '../../../components/otherBooking/OtherBooking';
+import './editbooking.css';
 
-export const BookingForUser = () => {
+const Editbooking = () => {
   const { ticket } = useParams();
   const [token, setToken] = useContext(TokenContext);
-  const [usuario, setUsuario] = useContext(UserContext);
   const [cancelStatus, setCancelStatus] = useState(null);
   const othersBookings = useUserBookings(ticket, token);
 
@@ -33,16 +32,25 @@ export const BookingForUser = () => {
   }, [cancelStatus]);
 
   return (
-    <div className="wrap-content">
-      <h1 className="title-center"> Hola {usuario.name}! Tus reservas</h1>
+    <section>
+      <div className="wrap-content">
+        <h1 id="reservas" className="title-center">
+          Mis reservas
+        </h1>
+        {othersBookings.map((oq) => (
+          <OtherBooking
+            oq={oq}
+            key={oq.id}
+            handleCancelBooking={handleCancelBooking}
+          />
+        ))}
+      </div>
 
-      {othersBookings.map((oq) => (
-        <OtherBookingV2
-          oq={oq}
-          key={oq.id}
-          handleCancelBooking={handleCancelBooking}
-        />
-      ))}
-    </div>
+      <a href="#back" className="title-center">
+        Volver a menú
+      </a>
+    </section>
   );
 };
+
+export default Editbooking;

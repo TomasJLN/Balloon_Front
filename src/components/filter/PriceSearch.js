@@ -5,6 +5,7 @@ import Slider from "@mui/material/Slider";
 const PriceSearch = ({ setSearchPrice, searchPrice }) => {
 	return (
 		<div className="priceSearch">
+
 			<Slider
 				color="secondary"
 				sx={{ width: "200px" }}
@@ -19,6 +20,7 @@ const PriceSearch = ({ setSearchPrice, searchPrice }) => {
 				valueLabelDisplay="auto"
 			/>
 			{searchPrice && <p>{`${searchPrice[0]}€ - ${searchPrice[1]}€`}</p>}
+
 		</div>
 	);
 };

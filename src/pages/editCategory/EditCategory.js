@@ -89,7 +89,7 @@ export const EditCategory = () => {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <section>
+        <section className="wrap-content">
           {error && <h1>{error}</h1>}
           <div className="title-back">
             <h1 className="title">Editar CATEGORIA</h1>
@@ -163,9 +163,11 @@ export const EditCategory = () => {
               style={{ display: 'none' }}
               onChange={handlePictureChange}
             />
-            <button type="submit" className="btn-update-category">
-              Actualizar Categoría
-            </button>
+            <div>
+              <button type="submit" className="btn-update-category">
+                Actualizar Categoría
+              </button>
+            </div>
           </form>
         </section>
       )}

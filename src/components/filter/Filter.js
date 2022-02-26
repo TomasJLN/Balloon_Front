@@ -1,15 +1,15 @@
-import { Formik, Form, Field } from "formik";
 import React, { useEffect, useState, useRef } from "react";
-import "./filter.css";
-import queryString from "query-string";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Formik, Form } from "formik";
+import queryString from "query-string";
 import SearchBar from "./SearchBar";
 import RatingSearch from "./RatingSearch";
 import DateSearch from "./DateSearch";
-import "react-multi-date-picker/styles/layouts/mobile.css";
 import CategorySearch from "./CategorySearch";
 import LocationSearch from "./LocationSearch";
 import PriceSearch from "./PriceSearch";
+import "./filter.css";
+import "react-multi-date-picker/styles/layouts/mobile.css";
 
 const Filter = () => {
 	const datePickerRef = useRef();
@@ -34,6 +34,11 @@ const Filter = () => {
 
 	const resetInput = () => {
 		setToSearch("");
+		setSearchCat("");
+		setSearchLoc("");
+		setSearchStartPrice("");
+		setSearchDate("");
+		setRating("");
 	};
 
 	const handleSubmit = (e) => {
@@ -55,8 +60,12 @@ const Filter = () => {
 		toSearch && navigate(`/allFilter?experience=${toSearch}`);
 
 		navigate(query);
+
 	}, [searchCat, searchLoc, searchPrice, experience, searchDate, rating]);
 	console.log("SEARCH PRICE", searchPrice);
+
+
+
 	return (
 		<>
 			<Formik>
@@ -75,6 +84,7 @@ const Filter = () => {
 						</div>
 
 						<div className="filterContainer">
+
 							<CategorySearch
 								searchCat={searchCat}
 								setSearchCat={setSearchCat}
@@ -89,7 +99,9 @@ const Filter = () => {
 								setSearchPrice={setSearchPrice}
 							/>
 
-							<RatingSearch rating={rating} setRating={setRating} />
+
+								<RatingSearch rating={rating} setRating={setRating} />
+							</div>
 						</div>
 					</Form>
 				)}

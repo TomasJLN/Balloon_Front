@@ -1,14 +1,15 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ExperienceAdminCard } from '../../components/experienceAdminCard/ExperienceAdminCard.js';
 import { useFiltered } from '../../hooks/useFiltered.js';
 import { toast } from 'react-toastify';
 import './admin-experience.css';
+import { ToTop } from '../../components/toTop/ToTop.js';
 
 export const AdminExperience = () => {
   const [toSearch, setToSearch] = useState('');
 
-  const { filtered, loading } = useFiltered(`?experience=${toSearch}`);
+  const { filtered, error, loading } = useFiltered(`?experience=${toSearch}`);
 
   const ref = useRef(null);
   const navigate = useNavigate();
@@ -18,18 +19,19 @@ export const AdminExperience = () => {
     setToSearch(ref.current.value);
   };
 
-  // useEffect(() => {
-  //   error && toast.error(error);
-  // }, [error]);
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   return (
     <div>
+      <ToTop />
       <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
         GESTOR de Experiencias
       </h1>
       <form onSubmit={handleSubmit} id="category-form">
         <div className="input-search">
-          <label htmlFor="findCat">Buscar Experiencia</label>
+          <label htmlFor="findCat">Experiencia</label>
           <input
             type="text"
             ref={ref}

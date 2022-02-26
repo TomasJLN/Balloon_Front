@@ -1,15 +1,14 @@
-import { useContext, useEffect } from 'react';
-import { FaBars } from 'react-icons/fa';
-import { GiBalloonDog } from 'react-icons/gi';
-import { useState } from 'react';
-import NavBar from '../navBar/navBar';
+import { useState, useContext, useEffect } from 'react';
 import { TokenContext } from '../../contexts/TokenContext';
-import { Avatar } from '../avatar/Avatar';
-import fetcher from '../../helpers/fetcher';
-import NavUser from '../navUser/NavUser';
-import { useNavigate } from 'react-router-dom';
-import './header.css';
 import { UserContext } from '../../contexts/UserContext';
+import { GiBalloonDog } from 'react-icons/gi';
+import { useNavigate } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
+import fetcher from '../../helpers/fetcher';
+import { Avatar } from '../avatar/Avatar';
+import NavBar from '../navBar/navBar';
+import NavUser from '../navUser/NavUser';
+import './header.css';
 
 export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);

@@ -1,31 +1,11 @@
-.reserved-card {
-  margin: 0 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.reserved-card .exp-picture {
-  margin: 1rem auto;
+.wrap-content .exp-picture {
   width: 100%;
-  max-height: 240px;
+  margin-top: 10%;
 }
 
 .accordion-section {
   width: 90vw;
   margin: 1rem auto;
-}
-
-.btn-comprar {
-  margin-left: auto;
-  text-transform: uppercase;
-  color: white;
-  background-color: black;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 30px;
-  height: 3rem;
-  width: 10rem;
-  border: 2px solid slategray;
 }
 
 .precio-unidad {
@@ -45,16 +25,12 @@
 .btn-back {
   position: absolute;
   margin: 6px;
-  right: 20px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  right: 6px;
   text-transform: uppercase;
   font-size: 0.7rem;
   width: 4rem;
   height: 1.5rem;
   color: black;
-  /* background-color: transparent; */
   background-color: white;
   border: none;
   border-radius: 50px;
@@ -68,7 +44,7 @@
 
 .experience-data {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
@@ -83,7 +59,8 @@
   margin: 20px 0;
   display: flex;
   justify-content: flex-start;
-  gap: 6px;
+  align-items: baseline;
+  gap: 12px;
 }
 
 #select-quantity {
@@ -99,6 +76,7 @@
   text-align: center;
   width: 50px;
   flex-grow: 0;
+  border: none;
 }
 
 .description-text {
@@ -112,12 +90,17 @@
   justify-content: start;
 }
 
+.img-top {
+  justify-self: flex-start;
+}
+
 .button-quantity {
   width: 1.8rem;
   height: 1.8rem;
   background-color: black;
   color: white;
   font-weight: bold;
+  border-radius: 50%;
 }
 
 .tickets-booking {
@@ -125,11 +108,14 @@
 }
 
 .pay-method {
+  margin: 30px 0;
+  line-height: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 12px;
+  gap: 10px;
+  align-items: center;
 }
+
 .pay-option {
   width: 30%;
   display: flex;
@@ -139,6 +125,8 @@
 .pay-option input {
   margin-right: 10px;
 }
-.pay-option label {
-  background-color: aqua;
+
+.right-align {
+  display: flex;
+  justify-content: flex-end;
 }
