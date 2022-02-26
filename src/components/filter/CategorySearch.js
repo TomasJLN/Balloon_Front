@@ -3,6 +3,7 @@ import { useCategories2 } from "../../hooks/useCategories2.js";
 
 const CategorySearch = ({ searchCat, setSearchCat }) => {
 	const categories = useCategories2();
+	console.log("CAT2", categories);
 	return (
 		<div className="categorySearch">
 			<Field

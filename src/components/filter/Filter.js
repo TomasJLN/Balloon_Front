@@ -23,8 +23,8 @@ const Filter = () => {
 	const [rating, setRating] = useState("");
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
-	const [searchStartPrice, setSearchStartPrice] = useState("");
-	const [searchEndPrice, setSearchEndPrice] = useState("");
+	const [searchPrice, setSearchPrice] = useState([0, 1000]);
+
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState(experience ? experience : "");
 
@@ -50,8 +50,8 @@ const Filter = () => {
 
 	useEffect(() => {
 		let query = `/allFilter?experience=${experience}`;
-		query += searchStartPrice ? `&start_price=${searchStartPrice}` : "";
-		query += searchEndPrice ? `&end_price=${searchEndPrice}` : "";
+		query += searchPrice[0] ? `&start_price=${searchPrice[0]}` : "";
+		query += searchPrice[1] ? `&end_price=${searchPrice[1]}` : "";
 		query += searchCat ? `&category=${searchCat}` : "";
 		query += searchLoc ? `&location=${searchLoc}` : "";
 		query += searchDate ? `&start=${searchDate[0]}` : "";
@@ -60,16 +60,11 @@ const Filter = () => {
 		toSearch && navigate(`/allFilter?experience=${toSearch}`);
 
 		navigate(query);
-	}, [
-		searchCat,
-		searchLoc,
-		searchStartPrice,
-		searchEndPrice,
-		experience,
-		searchDate,
-		rating,
-		toSearch,
-	]);
+
+	}, [searchCat, searchLoc, searchPrice, experience, searchDate, rating]);
+	console.log("SEARCH PRICE", searchPrice);
+
+
 
 	return (
 		<>
@@ -89,23 +84,21 @@ const Filter = () => {
 						</div>
 
 						<div className="filterContainer">
-							<div className="selectFilter">
-								<CategorySearch
-									searchCat={searchCat}
-									setSearchCat={setSearchCat}
-								/>
-								<LocationSearch
-									searchLoc={searchLoc}
-									setSearchLoc={setSearchLoc}
-								/>
-							</div>
-							<div className="priceRateFilter">
-								<PriceSearch
-									searchStartPrice={searchStartPrice}
-									setSearchStartPrice={setSearchStartPrice}
-									searchEndPrice={searchEndPrice}
-									setSearchEndPrice={setSearchEndPrice}
-								/>
+
+							<CategorySearch
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+							/>
+							<LocationSearch
+								searchLoc={searchLoc}
+								setSearchLoc={setSearchLoc}
+							/>
+
+							<PriceSearch
+								searchPrice={searchPrice}
+								setSearchPrice={setSearchPrice}
+							/>
+
 
 								<RatingSearch rating={rating} setRating={setRating} />
 							</div>
