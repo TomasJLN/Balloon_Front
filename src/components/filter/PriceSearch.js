@@ -1,57 +1,26 @@
 import "./filter.css";
-import { Field } from "formik";
 
-const PriceSearch = ({
-	setSearchStartPrice,
-	searchStartPrice,
-	searchEndPrice,
-	setSearchEndPrice,
-}) => {
+import Slider from "@mui/material/Slider";
+
+const PriceSearch = ({ setSearchPrice, searchPrice }) => {
 	return (
 		<div className="priceSearch">
-			<div className="startPrice">
-				{searchStartPrice === "" ? (
-					<p>Por precio</p>
-				) : (
-					`Desde ${searchStartPrice} €`
-				)}
-				<Field
-					className="slider"
-					value={searchStartPrice}
-					onChange={(e) => {
-						setSearchStartPrice(e.target.value);
-						console.log(searchStartPrice);
-					}}
-					name="startpricefilter"
-					type="range"
-					start={0}
-					min={0}
-					max={1000}
-					step={50}
-				/>
-			</div>
 
-			{/* <div className="end-price">
-				{searchEndPrice === 0 ? (
-					<p>Precio máximo</p>
-				) : (
-					`Hasta ${searchEndPrice} €`
-				)}
-				<Field
-					className="slider"
-					value={searchEndPrice}
-					onChange={(e) => {
-						setSearchEndPrice(e.target.value);
-						console.log(searchEndPrice);
-					}}
-					name="endpricefilter"
-					type="range"
-					start={0}
-					min={0}
-					max={1000}
-					step={50}
-				/>
-			</div> */}
+			<Slider
+				color="secondary"
+				sx={{ width: "200px" }}
+				min={0}
+				max={1000}
+				step={100}
+				value={searchPrice}
+				onChange={(e) => {
+					setSearchPrice(e.target.value);
+					console.log(searchPrice);
+				}}
+				valueLabelDisplay="auto"
+			/>
+			{searchPrice && <p>{`${searchPrice[0]}€ - ${searchPrice[1]}€`}</p>}
+
 		</div>
 	);
 };
