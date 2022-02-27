@@ -10,7 +10,6 @@ import Accordion from "../../components/accordion/Accordion";
 import "./experience.css";
 import { scrollToTop } from "../../helpers/scrollToTop";
 import Map from "../../components/Map";
-import MapView from "../../components/Map";
 
 const Experience = () => {
 	const { id } = useParams();
@@ -27,6 +26,7 @@ const Experience = () => {
 		conditions,
 		normatives,
 	} = useExperience(id);
+
 	const url = `https://www.google.es/maps/@${coords},19z`;
 
 	let infoExperience = [];
@@ -100,11 +100,8 @@ const Experience = () => {
 						className="card-location"
 					>
 						<FaSearchLocation className="icon-search" />
-					</a>
-					<a href={url} target="blank">
-						{" "}
-						<Map />{" "}
-					</a>
+					</a>{" "}
+					<Map photo={photo} title={title} coords={coords} url={url} />{" "}
 				</span>
 			</div>
 
