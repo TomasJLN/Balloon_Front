@@ -65,3 +65,10 @@
 .mapboxgl-ctrl-attrib-inner {
 	display: none;
 }
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: #121212;
+	color: #fff;
+	box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
+}
