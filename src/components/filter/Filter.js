@@ -60,11 +60,8 @@ const Filter = () => {
 		toSearch && navigate(`/allFilter?experience=${toSearch}`);
 
 		navigate(query);
-
 	}, [searchCat, searchLoc, searchPrice, experience, searchDate, rating]);
 	console.log("SEARCH PRICE", searchPrice);
-
-
 
 	return (
 		<>
@@ -84,7 +81,6 @@ const Filter = () => {
 						</div>
 
 						<div className="filterContainer">
-
 							<CategorySearch
 								searchCat={searchCat}
 								setSearchCat={setSearchCat}
@@ -99,9 +95,7 @@ const Filter = () => {
 								setSearchPrice={setSearchPrice}
 							/>
 
-
-								<RatingSearch rating={rating} setRating={setRating} />
-							</div>
+							<RatingSearch rating={rating} setRating={setRating} />
 						</div>
 					</Form>
 				)}
