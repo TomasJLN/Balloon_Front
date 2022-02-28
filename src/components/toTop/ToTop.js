@@ -21,10 +21,6 @@ export const ToTop = () => {
     };
   }, [isVisible]);
 
-  useEffect(() => {
-    window.removeEventListener("scroll", checkVisibility);
-  }, [onbeforeunload]);
-
   return (
     <div className="scroll-to-top" onClick={scrollToTop}>
       {isVisible && (
