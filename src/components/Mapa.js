@@ -13,7 +13,7 @@ import "../pages/experience/experience.css";
 
 const icon = new Icon({
   iconUrl: "/imgs/balloon-map.png",
-  iconSize: [40, 40],
+  iconSize: [50, 50],
 });
 
 function LocationMarker({ splittedCoords, url, title, photo }) {
@@ -61,7 +61,7 @@ const Mapa = ({ photo, title, coords, url }) => {
   const handleTargetClick = () => {
     document.querySelector("#targetLocation")?.click();
   };
-
+  handleTargetClick();
   useEffect(() => {
     const temp = setTimeout(handleTargetClick, 2000);
     return () => {
@@ -82,14 +82,6 @@ const Mapa = ({ photo, title, coords, url }) => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {/* <Marker icon={icon} position={splittedCoords}>
-              <Popup>
-                <a href={url} target="blank">
-                  <h2>{title}</h2>
-                </a>
-                {`<img src="http://localhost:4000/uploads/${photo}"></img>`}
-              </Popup>
-            </Marker> */}
           <LocationMarker
             splittedCoords={splittedCoords}
             url={url}

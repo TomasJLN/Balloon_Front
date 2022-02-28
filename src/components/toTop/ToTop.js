@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { scrollToTop } from '../../helpers/scrollToTop';
-import './to-top.css';
+import { useEffect, useState } from "react";
+import { scrollToTop } from "../../helpers/scrollToTop";
+import "./to-top.css";
 
 export const ToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,7 +13,10 @@ export const ToTop = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', checkVisibility);
+    window.addEventListener("scroll", checkVisibility);
+    return () => {
+      !isVisible && window.removeEventListener("scroll", checkVisibility);
+    };
   }, []);
 
   return (
