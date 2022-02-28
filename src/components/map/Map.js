@@ -1,9 +1,9 @@
 import React from "react";
-import "../pages/experience/experience.css";
+import "../../pages/experience/experience.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import "../pages/experience/experience.css";
+import "../../pages/experience/experience.css";
 
 const icon = new Icon({
 	iconUrl: "/imgs/balloon-map.png",
@@ -13,22 +13,19 @@ const icon = new Icon({
 const Map = ({ photo, title, coords, url }) => {
 	const position = ["40.41669509716843", "-3.678061492369516"];
 
-	console.clear();
-	console.log("coords", coords);
 	const splittedCoords = coords?.split(",");
-	console.log("splitted coords", splittedCoords);
 
 	return (
 		<div
 			className="leaflet-container"
-			style={{ width: "100%", height: "300px" }}
+			style={{ width: "100%", height: "200px" }}
 		>
 			<div>
 				{position && coords && (
 					<MapContainer
 						center={splittedCoords}
 						zoom={10}
-						style={{ width: "100%", height: "300px" }}
+						style={{ width: "100%", height: "200px" }}
 					>
 						<TileLayer
 							attribution=""

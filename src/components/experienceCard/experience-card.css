@@ -20,6 +20,15 @@
   width: 100%;
 }
 
+.card-thumbnail-map {
+  padding-bottom: 10px;
+  overflow: hidden;
+  height: 100px;
+  object-fit: contain;
+  align-self: center;
+  width: 100%;
+}
+
 .card-details {
   display: flex;
   flex-direction: column;
