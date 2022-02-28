@@ -12,6 +12,8 @@ export const ExperienceCard = ({ exp }) => {
   const { reviews, error, loading } = useGetReviews(exp.id);
   const [avgRatin, setAvgRatin] = useState(0);
 
+  window.removeEventListener("scroll", window.onload);
+
   useEffect(() => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
   }, [reviews, error]);

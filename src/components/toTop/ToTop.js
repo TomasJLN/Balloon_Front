@@ -13,13 +13,17 @@ export const ToTop = () => {
   };
 
   useEffect(() => {
-    isVisible && window.addEventListener("scroll", checkVisibility);
+    window.addEventListener("scroll", checkVisibility);
     isVisible && console.log("montado");
     return () => {
       !isVisible && window.removeEventListener("scroll", checkVisibility);
       console.log("desmontado");
     };
   }, [isVisible]);
+
+  useEffect(() => {
+    window.removeEventListener("scroll", checkVisibility);
+  }, [onbeforeunload]);
 
   return (
     <div className="scroll-to-top" onClick={scrollToTop}>
