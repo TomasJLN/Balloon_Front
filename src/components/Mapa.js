@@ -61,7 +61,6 @@ const Mapa = ({ photo, title, coords, url }) => {
   const handleTargetClick = () => {
     document.querySelector("#targetLocation")?.click();
   };
-  handleTargetClick();
   useEffect(() => {
     const temp = setTimeout(handleTargetClick, 2000);
     return () => {
