@@ -25,7 +25,7 @@ const Filter = () => {
 	const [rating, setRating] = useState("");
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
-	const [searchPrice, setSearchPrice] = useState([10, 1000]);
+	const [searchPrice, setSearchPrice] = useState([null, null]);
 	const [isToggleOn, setIsToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState(experience ? experience : "");
@@ -35,10 +35,9 @@ const Filter = () => {
 	}, [location.pathname]);
 
 	const resetInput = () => {
-		setToSearch("");
 		setSearchCat("");
 		setSearchLoc("");
-		setSearchPrice([10, 1000]);
+		setSearchPrice([null, null]);
 		setSearchDate("");
 		setRating("");
 	};
@@ -49,25 +48,39 @@ const Filter = () => {
 	};
 
 	const handleSubmit = (e) => {
-		toSearch && navigate(`/allFilter?experience=${toSearch}`);
+		/* toSearch && navigate(`/allFilter?experience=${toSearch}`); */
 		e.preventDefault();
 
 		resetInput();
 	};
 
 	useEffect(() => {
-		let query = `/allFilter?experience=${experience}`;
-		query += searchPrice[0] ? `&start_price=${searchPrice[0]}` : "";
-		query += searchPrice[1] ? `&end_price=${searchPrice[1]}` : "";
-		query += searchCat ? `&category=${searchCat}` : "";
-		query += searchLoc ? `&location=${searchLoc}` : "";
-		query += searchDate ? `&start=${searchDate[0]}` : "";
-		query += searchDate.length > 1 ? `&end=${searchDate[1]}` : "";
-		query += rating ? `&review?searchByExp=${rating}` : "";
-		toSearch && navigate(`/allFilter?experience=${toSearch}`);
+		if (toSearch || searchDate || isToggleOn) {
+			let query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
 
-		navigate(query);
-	}, [searchCat, searchLoc, searchPrice, experience, searchDate, rating]);
+			query += searchPrice[0] ? `&start_price=${searchPrice[0]}` : "";
+			query += searchPrice[1] ? `&end_price=${searchPrice[1]}` : "";
+			query += searchCat ? `&category=${searchCat}` : "";
+			query += searchLoc ? `&location=${searchLoc}` : "";
+			query += searchDate ? `&start=${searchDate[0]}` : "";
+			query += searchDate.length > 1 ? `&end=${searchDate[1]}` : "";
+			query += rating ? `&review?searchByExp=${rating}` : "";
+			/* toSearch && navigate(`/allFilter?experience=${toSearch}`); */
+			console.clear();
+			console.log("query", query);
+			console.log("toSEarch", toSearch);
+
+			navigate(query);
+		}
+	}, [
+		toSearch,
+		searchCat,
+		searchLoc,
+		searchPrice,
+		experience,
+		searchDate,
+		rating,
+	]);
 	console.log("SEARCH PRICE", searchPrice);
 
 	return (
