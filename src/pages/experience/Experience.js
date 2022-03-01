@@ -27,9 +27,9 @@ const Experience = () => {
     normatives,
   } = useExperience(id);
 
-  const url = `https://www.google.es/maps/@${coords},19z`;
+  let url = `https://www.google.es/maps/@${coords},19z`;
 
-  console.log("dd", url.replace(/ +/g, ""));
+  url = url.replace(/ +/g, "");
 
   let infoExperience = [];
   infoExperience.push({ title: "Condiciones", content: conditions });
