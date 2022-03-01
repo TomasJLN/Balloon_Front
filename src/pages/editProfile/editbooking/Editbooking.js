@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { TokenContext } from '../../../contexts/TokenContext';
-import { miniFetcher } from '../../../helpers/fetcher';
-import { useUserBookings } from '../../../hooks/useUserBookings';
-import { toast } from 'react-toastify';
-import { OtherBooking } from '../../../components/otherBooking/OtherBooking';
-import './editbooking.css';
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { TokenContext } from "../../../contexts/TokenContext";
+import { miniFetcher } from "../../../helpers/fetcher";
+import { useUserBookings } from "../../../hooks/useUserBookings";
+import { toast } from "react-toastify";
+import { OtherBooking } from "../../../components/otherBooking/OtherBooking";
+import "./editbooking.css";
 
 const Editbooking = () => {
+  const navigate = useNavigate();
   const { ticket } = useParams();
   const [token, setToken] = useContext(TokenContext);
   const [cancelStatus, setCancelStatus] = useState(null);
@@ -18,7 +19,7 @@ const Editbooking = () => {
     const cancelBooking = async () => {
       setCancelStatus(
         await miniFetcher(`booking/${ticket}`, {
-          method: 'DELETE',
+          method: "DELETE",
           headers: { Authorization: token },
         })
       );
@@ -46,9 +47,13 @@ const Editbooking = () => {
         ))}
       </div>
 
-      <a href="#back" className="title-center">
+      <p className="title-center" onClick={() => navigate("/")}>
+        Volver al menú
+      </p>
+
+      {/* <a href="#back" className="title-center">
         Volver a menú
-      </a>
+      </a> */}
     </section>
   );
 };
