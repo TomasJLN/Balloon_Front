@@ -14,10 +14,8 @@ export const ToTop = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", checkVisibility);
-    isVisible && console.log("montado");
     return () => {
       !isVisible && window.removeEventListener("scroll", checkVisibility);
-      console.log("desmontado");
     };
   }, [isVisible]);
 

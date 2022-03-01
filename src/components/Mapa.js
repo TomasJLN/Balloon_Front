@@ -56,7 +56,7 @@ function LocationMarker({ splittedCoords, url, title, photo }) {
 }
 
 const Mapa = ({ photo, title, coords, url }) => {
-  console.clear();
+  // console.clear();
   const splittedCoords = coords?.split(",");
   const handleTargetClick = () => {
     document.querySelector("#targetLocation")?.click();

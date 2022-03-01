@@ -12,9 +12,9 @@ export const ExperienceCard = ({ exp }) => {
   const { reviews, error, loading } = useGetReviews(exp.id);
   const [avgRatin, setAvgRatin] = useState(0);
 
-  useEffect(() => {
-    window.removeEventListener("scroll", onloadstart);
-  }, []);
+  // useEffect(() => {
+  //   window.removeEventListener("scroll", onloadstart);
+  // }, []);
 
   useEffect(() => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
@@ -24,6 +24,7 @@ export const ExperienceCard = ({ exp }) => {
     <div
       className="card fade_in"
       onClick={(e) => {
+        window.removeEventListener("scroll", onclick);
         navigate(`/experience/${exp.id}`);
       }}
     >

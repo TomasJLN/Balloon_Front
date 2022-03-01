@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import fetcher from '../helpers/fetcher';
+import { useEffect, useState } from "react";
+import fetcher from "../helpers/fetcher";
 
-export const useExperience = (id) => {
+export const useExperience = (id = 1) => {
   const [experience, setExperience] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
