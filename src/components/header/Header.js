@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
 import { GiBalloonDog } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import fetcher from "../../helpers/fetcher";
 import { Avatar } from "../avatar/Avatar";
@@ -31,6 +31,11 @@ export const Header = ({ prueba }) => {
 			});
 	}, [token, setUsuario]);
 
+	const refreshPage = () => {
+		window.location.reload();
+		console.log("refreshhhhing");
+	};
+
 	return (
 		<>
 			{loading ? (
@@ -45,7 +50,11 @@ export const Header = ({ prueba }) => {
 							}}
 						/>
 					</nav>
-					<GiBalloonDog onClick={() => navigate("/")} />
+
+					<Link to="/">
+						<GiBalloonDog onClick={refreshPage} />
+					</Link>
+
 					<div>
 						{userMenu && (
 							<NavUser setUserMenu={setUserMenu} usuario={usuario} />

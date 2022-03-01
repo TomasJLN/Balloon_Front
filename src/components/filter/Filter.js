@@ -25,53 +25,41 @@ const Filter = () => {
 	const [rating, setRating] = useState("");
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
-	const [searchPrice, setSearchPrice] = useState([null, null]);
+	const [searchPrice, setSearchPrice] = useState([1, 1000]);
 	const [isToggleOn, setIsToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState(experience ? experience : "");
 
-	useEffect(() => {
-		if (location.pathname === "/") resetInput();
-	}, [location.pathname]);
-
-	const resetInput = () => {
-		setSearchCat("");
-		setSearchLoc("");
-		setSearchPrice([null, null]);
-		setSearchDate("");
-		setRating("");
+	const handleSubmit = (e) => {
+		e.preventDefault();
 	};
+
+	/* useEffect(() => {
+		if (location.pathname === "/");
+		resetInput();
+	}, [location.pathname]); */
 
 	const handleToggle = () => {
 		setIsToggleOn(!isToggleOn);
 		console.log(isToggleOn);
 	};
 
-	const handleSubmit = (e) => {
-		/* toSearch && navigate(`/allFilter?experience=${toSearch}`); */
-		e.preventDefault();
-
-		resetInput();
-	};
-
 	useEffect(() => {
-		if (toSearch || searchDate || isToggleOn) {
-			let query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
+		let query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
+		query += searchPrice[0] === 1 ? "" : `&start_price=${searchPrice[0]}`;
 
-			query += searchPrice[0] ? `&start_price=${searchPrice[0]}` : "";
-			query += searchPrice[1] ? `&end_price=${searchPrice[1]}` : "";
-			query += searchCat ? `&category=${searchCat}` : "";
-			query += searchLoc ? `&location=${searchLoc}` : "";
-			query += searchDate ? `&start=${searchDate[0]}` : "";
-			query += searchDate.length > 1 ? `&end=${searchDate[1]}` : "";
-			query += rating ? `&review?searchByExp=${rating}` : "";
-			/* toSearch && navigate(`/allFilter?experience=${toSearch}`); */
-			console.clear();
-			console.log("query", query);
-			console.log("toSEarch", toSearch);
+		query += searchPrice[1] === 1000 ? "" : `&end_price=${searchPrice[1]}`;
+		query += searchCat ? `&category=${searchCat}` : "";
+		query += searchLoc ? `&location=${searchLoc}` : "";
+		query += searchDate ? `&start=${searchDate[0]}` : "";
+		query += searchDate.length > 1 ? `&end=${searchDate[1]}` : "";
+		query += rating ? `&review?searchByExp=${rating}` : "";
+		toSearch && navigate(`/allFilter?experience=${toSearch}`);
+		console.clear();
+		console.log("query", query);
+		console.log("toSEarch", toSearch);
 
-			navigate(query);
-		}
+		navigate(query);
 	}, [
 		toSearch,
 		searchCat,
@@ -104,7 +92,7 @@ const Filter = () => {
 						</div>
 
 						{isToggleOn && (
-							<div className="filterContainer">
+							<div className="filterContainer slideInDownfade_in">
 								<CategorySearch
 									searchCat={searchCat}
 									setSearchCat={setSearchCat}

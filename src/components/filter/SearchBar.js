@@ -1,7 +1,7 @@
 import { Field } from "formik";
 import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ toSearch, setToSearch, handleSubmit }) => {
+const SearchBar = ({ toSearch, setToSearch }) => {
 	return (
 		<div className="searchBar">
 			<Field
@@ -14,9 +14,8 @@ const SearchBar = ({ toSearch, setToSearch, handleSubmit }) => {
 				}}
 				autoComplete="off"
 				placeholder="Buscar...."
-				onSubmit={handleSubmit}
 			/>
-			<button type="submit">
+			<button>
 				<FaSearch />
 			</button>
 		</div>
