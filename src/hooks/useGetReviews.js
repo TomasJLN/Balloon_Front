@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import fetcher from '../helpers/fetcher';
+import { useEffect, useState } from "react";
+import fetcher from "../helpers/fetcher";
 
 export const useGetReviews = (id) => {
   const [reviews, setReviews] = useState([]);

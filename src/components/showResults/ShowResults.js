@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useFiltered } from '../../hooks/useFiltered';
-import { ExperienceCard } from '../experienceCard/ExperienceCard';
-import { toast } from 'react-toastify';
-import './show-results.css';
-import { ToTop } from '../toTop/ToTop';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useFiltered } from "../../hooks/useFiltered";
+import { ExperienceCard } from "../experienceCard/ExperienceCard";
+import { toast } from "react-toastify";
+import { ToTop } from "../toTop/ToTop";
+import "./show-results.css";
 
 const ShowResults = () => {
   //Experiencias mostradas por página
@@ -20,7 +20,7 @@ const ShowResults = () => {
 
   let query = q;
 
-  query.length < 1 ? (query = '?experience=&active=1&featured=1') : (query = q);
+  query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
 
   const { filtered, loading, error } = useFiltered(query);
 
@@ -59,7 +59,7 @@ const ShowResults = () => {
       ) : (
         <>
           <ToTop />
-          <div className="card-deck">
+          <div className="card-deck fade_in">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (
                 <ExperienceCard key={exp.id} exp={exp} />

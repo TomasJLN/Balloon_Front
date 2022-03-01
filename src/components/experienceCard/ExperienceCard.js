@@ -59,7 +59,7 @@ export const ExperienceCard = ({ exp }) => {
           {avgRatin !== 0 && (
             <>
               <Rating
-                ratingValue={avgRatin}
+                ratingValue={avgRatin / reviews.length}
                 size="16px"
                 tooltipClassName="stars-count"
                 readonly={true}
