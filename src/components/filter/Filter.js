@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Formik, Form } from "formik";
 import queryString from "query-string";
+import ToggleButton from "../toggleButton/ToggleButton";
+
 import SearchBar from "./SearchBar";
 import RatingSearch from "./RatingSearch";
 import DateSearch from "./DateSearch";
@@ -24,7 +26,7 @@ const Filter = () => {
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
 	const [searchPrice, setSearchPrice] = useState([10, 1000]);
-
+	const [isToggleOn, setIsToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState(experience ? experience : "");
 
@@ -39,6 +41,11 @@ const Filter = () => {
 		setSearchPrice([10, 1000]);
 		setSearchDate("");
 		setRating("");
+	};
+
+	const handleToggle = () => {
+		setIsToggleOn(!isToggleOn);
+		console.log(isToggleOn);
 	};
 
 	const handleSubmit = (e) => {
@@ -79,24 +86,29 @@ const Filter = () => {
 								/>
 							</div>
 						</div>
-
-						<div className="filterContainer">
-							<CategorySearch
-								searchCat={searchCat}
-								setSearchCat={setSearchCat}
-							/>
-							<LocationSearch
-								searchLoc={searchLoc}
-								setSearchLoc={setSearchLoc}
-							/>
-
-							<PriceSearch
-								searchPrice={searchPrice}
-								setSearchPrice={setSearchPrice}
-							/>
-
-							<RatingSearch rating={rating} setRating={setRating} />
+						<div className="toggleContainer">
+							<ToggleButton handleToggle={handleToggle} />
 						</div>
+
+						{isToggleOn && (
+							<div className="filterContainer">
+								<CategorySearch
+									searchCat={searchCat}
+									setSearchCat={setSearchCat}
+								/>
+								<LocationSearch
+									searchLoc={searchLoc}
+									setSearchLoc={setSearchLoc}
+								/>
+
+								<PriceSearch
+									searchPrice={searchPrice}
+									setSearchPrice={setSearchPrice}
+								/>
+
+								<RatingSearch rating={rating} setRating={setRating} />
+							</div>
+						)}
 					</Form>
 				)}
 			</Formik>
