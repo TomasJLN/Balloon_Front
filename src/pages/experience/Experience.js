@@ -41,6 +41,7 @@ const Experience = () => {
 
   useEffect(() => {
     !error &&
+      reviews.length > 0 &&
       setAvgRatin(
         reviews.reduce((acc, exp) => acc + exp.score, 0) / reviews.length
       );
