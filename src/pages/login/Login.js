@@ -78,7 +78,7 @@ const Login = () => {
                 }}
               />
             </div>
-            <input type="submit" value="Login" className="btn-send" />
+            <button type="submit" value="Login" className="generalbutton">Login</button>
           </form>
           <div className="link-to">
             <Link to="/register">Crear una cuenta</Link>
