@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import fetcher from '../../helpers/fetcher';
-import { toast } from 'react-toastify';
-import './register.css';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import fetcher from "../../helpers/fetcher";
+import { toast } from "react-toastify";
+import "./register.css";
 
 const Register = () => {
   const initialForm = {
-    name: '',
-    surname: '',
-    email: '',
-    password: '',
-    passwordRepeat: '',
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    passwordRepeat: "",
   };
   const [newUser, setNewUser] = useState(initialForm);
   const [error, setError] = useState(null);
@@ -23,26 +23,26 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
     if (checkboxValidation) {
-      setErrorsFormulario(validationsForm(newUser));
-      await fetcher(setNewUser, setError, setLoading, 'user', {
-        method: 'POST',
+      await fetcher(setNewUser, setError, setLoading, "user", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(newUser),
       });
     } else {
-      alert('Debes aceptar los términos y condiciones');
+      toast.error("Debes aceptar los términos y condiciones");
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewUser({
       ...newUser,
       [name]: value,
     });
-    setErrorsFormulario(validationsForm(newUser));
   };
+
   const handleBlur = (e) => {
     handleChange(e);
     setErrorsFormulario(validationsForm(newUser));
@@ -51,28 +51,27 @@ const Register = () => {
   const validationsForm = (newUser) => {
     let errorsForm = {};
 
-    if (!newUser.name.trim()) {
-      errorsForm.name = 'Debes introducir un nombre';
+    if (!newUser.name) {
+      errorsForm.name = "Debes introducir un nombre";
     }
-    if (!newUser.surname.trim()) {
-      errorsForm.surname = 'Debes introducir tus apellidos';
+    if (!newUser.surname) {
+      errorsForm.surname = "Debes introducir tus apellidos";
     }
-    if (!newUser.email.trim()) {
-      errorsForm.email = 'Debes introducir tu email';
+    if (!newUser.email) {
+      errorsForm.email = "Debes introducir tu email";
     }
-    if (!newUser.password.trim()) {
-      errorsForm.password = 'Debes introducir una contraseña';
+    if (!newUser.password) {
+      errorsForm.password = "Debes introducir una contraseña";
     }
-    if (!newUser.passwordRepeat.trim()) {
-      errorsForm.passwordRepeat = 'Debes introducir de nuevo la contraseña';
+    if (!newUser.passwordRepeat) {
+      errorsForm.passwordRepeat = "Debes introducir de nuevo la contraseña";
     }
-
     if (newUser.password !== newUser.passwordRepeat) {
-      errorsForm.password = 'Las contraseñas deben coinicidir';
+      errorsForm.password = "Las contraseñas deben coinicidir";
     }
-
     return errorsForm;
   };
+
   useEffect(() => {
     if (error) toast.error(error);
     return () => {
