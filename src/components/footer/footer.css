@@ -56,11 +56,18 @@
 }
 
 .footer .enviar {
-  border-radius: 30px;
-  /* font-size: 1rem; */
-  height: 3rem;
+
+  background-color: #000000;
+	color: white;
+	font-size: 1 rem;
+	text-transform: uppercase;
+	border-radius: 20px;
+	height: 3rem;
+	margin-bottom: 1rem;
+	border: none;
+	cursor: pointer; 
   width: 5rem;
-  border: 2px solid slategray;
+  
 }
 
 .footer #politica {

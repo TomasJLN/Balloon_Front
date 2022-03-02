@@ -255,7 +255,7 @@ const Booking = () => {
           </p>
 
           <div className="right-align">
-            <button className="btn-comprar" onClick={handleNewBooking}>
+            <button className="generalbutton" onClick={handleNewBooking}>
               RESERVAR
             </button>
           </div>

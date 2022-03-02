@@ -8,6 +8,25 @@ body {
 	min-width: 375px;
 }
 
+.generalbutton{
+	background-color: #000000;
+	
+	color: white;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	width: 10rem;
+	border-radius: 20px;
+	height: 3rem;
+	margin-bottom: 1rem;
+	border: none;
+	cursor: pointer; 
+	}
+
+.generalbutton:hover {
+
+	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
+}
+
 .loading {
 	width: 100vw;
 	height: 60vh;
