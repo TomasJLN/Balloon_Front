@@ -92,7 +92,7 @@ export const CreateExperience = () => {
 				{getID && <h1>ID_ {getID}</h1>}
 				{error && <h1 style={{ color: "red" }}>{error}</h1>}
 				<div className="title-back">
-					<h1 className="title">Editar Experiencia</h1>
+					<h1 className="title">Crear Experiencia</h1>
 					<div className="back-div">
 						<button
 							className="btn-back"
@@ -274,8 +274,8 @@ export const CreateExperience = () => {
 							/>
 						</div>
 					)}
-					<button type="submit" className="btn-update-experience">
-						Actualizar Experiencia
+					<button type="submit" className="generalbutton">
+						Crear
 					</button>
 				</form>
 			</section>

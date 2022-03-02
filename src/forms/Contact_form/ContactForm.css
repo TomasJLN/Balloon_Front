@@ -13,14 +13,6 @@ div.contact-form {
 	align-items: center;
 }
 
-.contact-form button {
-	background-color: #000;
-	color: #fff;
-	border-radius: 30px;
-	max-width: 350px;
-	margin: auto;
-	padding: 1rem 3rem;
-}
 
 .contact-form input {
 	padding: 5px;

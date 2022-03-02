@@ -164,7 +164,7 @@ export const EditCategory = () => {
               onChange={handlePictureChange}
             />
             <div>
-              <button type="submit" className="btn-update-category">
+              <button type="submit" className="generalbutton">
                 Actualizar Categoría
               </button>
             </div>

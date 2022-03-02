@@ -83,13 +83,14 @@ const ContactForm = () => {
 
 							<button
 								type='submit'
+								className="generalbutton"
 								onClick={() =>
 									validateForm().then(() =>
 										console.error('Hay errores en el formulario')
 									)
 								}
 							>
-								Enviar formulario
+								Enviar
 							</button>
 						</Form>
 					)}

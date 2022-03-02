@@ -58,7 +58,7 @@ export const CreateCategory = () => {
           placeholder="Descripcion categoría"
         />
         <Switch checked={activeCat} onChange={handleActiveChange} />
-        <button type="submit">Crear Categoría</button>
+        <button type="submit" className="generalbutton">Crear</button>
       </form>
       <h1>{nameCategory}</h1>
       <h1>{descriptionCategory}</h1>

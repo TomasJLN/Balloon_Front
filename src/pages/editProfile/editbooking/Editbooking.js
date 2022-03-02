@@ -51,9 +51,6 @@ const Editbooking = () => {
         Volver al menú
       </p>
 
-      {/* <a href="#back" className="title-center">
-        Volver a menú
-      </a> */}
     </section>
   );
 };

@@ -352,8 +352,8 @@ export const EditExperience = () => {
 					onChange={handlePictureChange}
 				/>
 				<div className="btn-update-exp">
-					<button type="submit" className="btn-update-experience">
-						Actualizar Experiencia
+					<button type="submit" className="generalbutton">
+						Actualizar
 					</button>
 				</div>
 			</form>
