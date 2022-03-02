@@ -45,7 +45,6 @@ const Filter = () => {
     query += searchDate ? `&start=${searchDate[0]}` : "";
     query += searchDate.length > 1 ? `&end=${searchDate[1]}` : "";
     query += rating ? `&review?searchByExp=${rating}` : "";
-    // toSearch && navigate(`/allFilter?experience=${toSearch}`);
     navigate(query);
   }, [searchCat, searchLoc, searchPrice, searchDate, rating, toSearch]);
 
