@@ -21,19 +21,43 @@ export const PublicRoute = () => {
 
 	return (
 		<div>
-			{user.role !== "admin" && <Filter />}
+			{/* {user.role !== "admin" && <Filter />} */}
 			<Routes>
 				<Route path="privacity" element={<Privacity />} />
 				<Route path="conditions" element={<Conditions />} />
 				<Route path="contact-form" element={<ContactForm />} />
 				<Route path="account" element={<Login />} />
 				<Route path="register" element={<Register />} />
-				<Route path="experience/:id" element={<Experience />} />
+				<Route
+					path="experience/:id"
+					element={
+						<>
+							<Filter />
+							<Experience />
+						</>
+					}
+				/>
 				<Route path="booking/:id" element={<Booking />} />
-				<Route path="allFilter" element={<ShowResults />} />
+				<Route
+					path="allFilter"
+					element={
+						<>
+							<Filter />
+							<ShowResults />
+						</>
+					}
+				/>
 				<Route path="error" element={<ErrorPage />} />
 				<Route path="recovery" element={<RecoveryPassword />} />
-				<Route path="" element={<ShowResults />} />
+				<Route
+					path=""
+					element={
+						<>
+							<Filter />
+							<ShowResults />
+						</>
+					}
+				/>
 				<Route path="faq" element={<Faq />} />
 				<Route path="*" element={<UserRoute />} />
 			</Routes>
