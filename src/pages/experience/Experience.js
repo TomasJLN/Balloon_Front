@@ -7,9 +7,9 @@ import { useGetReviews } from "../../hooks/useGetReviews";
 import { Reviews } from "../../components/reviews/Reviews";
 import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimilar";
 import Accordion from "../../components/accordion/Accordion";
-import "./experience.css";
 import { scrollToTop } from "../../helpers/scrollToTop";
 import Mapa from "../../components/Mapa";
+import "./experience.css";
 
 const Experience = () => {
   const { id } = useParams();
@@ -40,7 +40,11 @@ const Experience = () => {
   const [avgRatin, setAvgRatin] = useState(0);
 
   useEffect(() => {
-    !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
+    !error &&
+      reviews.length > 0 &&
+      setAvgRatin(
+        reviews.reduce((acc, exp) => acc + exp.score, 0) / reviews.length
+      );
   }, [reviews]);
 
   useEffect(() => {
@@ -75,7 +79,7 @@ const Experience = () => {
       </figure>
       <div className="rating-back">
         <p className="stars-row">
-          {avgRatin !== 0 && (
+          {avgRatin > 0 && (
             <>
               <Rating
                 ratingValue={avgRatin}
@@ -102,8 +106,8 @@ const Experience = () => {
             className="card-location"
           >
             <FaSearchLocation className="icon-search" />
-          </a>{" "}
-          <Mapa photo={photo} title={title} coords={coords} url={url} />{" "}
+          </a>
+          <Mapa photo={photo} title={title} coords={coords} url={url} />
         </span>
       </div>
 
