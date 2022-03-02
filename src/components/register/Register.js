@@ -12,6 +12,7 @@ const Register = () => {
     password: "",
     passwordRepeat: "",
   };
+
   const [newUser, setNewUser] = useState(initialForm);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,6 +31,7 @@ const Register = () => {
         },
         body: JSON.stringify(newUser),
       });
+      error && navigate("/account");
     } else {
       toast.error("Debes aceptar los términos y condiciones");
     }
