@@ -54,7 +54,7 @@ export const CarouselSimilar = ({ reviews, avgRatin, idCategory = 1 }) => {
 						slidesPerView: 1,
 					},
 				}}
-				spaceBetween={50}
+				spaceBetween={15}
 				onSlideChange={() => console.log("slide change")}
 				onSwiper={(swiper) => console.log(swiper)}
 			>
