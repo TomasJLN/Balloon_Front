@@ -57,7 +57,7 @@ const RecoveryPassword = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="btn-send btn-center"
+          className="generalbutton"
         >
           Enviar
         </button>
