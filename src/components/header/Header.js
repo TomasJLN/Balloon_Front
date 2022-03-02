@@ -34,6 +34,11 @@ export const Header = () => {
 		window.location.reload(false);
 	};
 
+	const handleClick = () => {
+		navigate("/");
+		refreshPage();
+	};
+
 	return (
 		<>
 			{loading ? (
@@ -48,7 +53,7 @@ export const Header = () => {
 							}}
 						/>
 					</nav>
-					<GiBalloonDog onClick={refreshPage} />
+					<GiBalloonDog onClick={handleClick} />
 					<div>
 						{userMenu && (
 							<NavUser setUserMenu={setUserMenu} usuario={usuario} />
