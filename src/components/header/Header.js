@@ -11,52 +11,52 @@ import NavUser from "../navUser/NavUser";
 import "./header.css";
 
 export const Header = () => {
-  const [showNavBar, setShowNavBar] = useState(false);
-  const [userMenu, setUserMenu] = useState(false);
-  const [token, setToken] = useContext(TokenContext);
-  const [usuario, setUsuario] = useContext(UserContext);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+	const [showNavBar, setShowNavBar] = useState(false);
+	const [userMenu, setUserMenu] = useState(false);
+	const [token, setToken] = useContext(TokenContext);
+	const [usuario, setUsuario] = useContext(UserContext);
+	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    if (token && token !== "")
-      fetcher(setUsuario, setError, setLoading, "user", {
-        headers: {
-          Authorization: token,
-        },
-      });
-  }, [token, setUsuario]);
+	useEffect(() => {
+		if (token && token !== "")
+			fetcher(setUsuario, setError, setLoading, "user", {
+				headers: {
+					Authorization: token,
+				},
+			});
+	}, [token, setUsuario]);
 
-  const refreshPage = () => {
-    usuario.role === "admin" && navigate("/");
-    window.location.reload(false);
-  };
+	const refreshPage = () => {
+		usuario.role === "admin" && navigate("/");
+		window.location.reload(false);
+	};
 
-  return (
-    <>
-      {loading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <header id="main_header">
-          <nav>
-            {showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
-            <FaBars
-              onClick={() => {
-                setShowNavBar(!showNavBar);
-              }}
-            />
-          </nav>
-          <GiBalloonDog onClick={refreshPage} />
-          <div>
-            {userMenu && (
-              <NavUser setUserMenu={setUserMenu} usuario={usuario} />
-            )}
-            <Avatar usuario={usuario} setUserMenu={setUserMenu} />
-          </div>
-        </header>
-      )}
-    </>
-  );
+	return (
+		<>
+			{loading ? (
+				<h1>Loading...</h1>
+			) : (
+				<header id="main_header">
+					<nav>
+						{showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
+						<FaBars
+							onClick={() => {
+								setShowNavBar(!showNavBar);
+							}}
+						/>
+					</nav>
+					<GiBalloonDog onClick={refreshPage} />
+					<div>
+						{userMenu && (
+							<NavUser setUserMenu={setUserMenu} usuario={usuario} />
+						)}
+						<Avatar usuario={usuario} setUserMenu={setUserMenu} />
+					</div>
+				</header>
+			)}
+		</>
+	);
 };
