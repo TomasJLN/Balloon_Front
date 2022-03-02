@@ -23,17 +23,41 @@ export const PublicRoute = () => {
 		<div>
 			{/* {user.role !== "admin" && <Filter />} */}
 			<Routes>
-				<Route path="privacity" element={<Privacity />} />
-				<Route path="conditions" element={<Conditions />} />
-				<Route path="contact-form" element={<ContactForm />} />
+				<Route
+					path="privacity"
+					element={
+						<>
+							<Privacity />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="conditions"
+					element={
+						<>
+							<Conditions />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="contact-form"
+					element={
+						<>
+							<ContactForm />
+							<Footer />
+						</>
+					}
+				/>
 				<Route path="account" element={<Login />} />
 				<Route path="register" element={<Register />} />
 				<Route
 					path="experience/:id"
 					element={
 						<>
-							<Filter />
 							<Experience />
+							<Footer />
 						</>
 					}
 				/>
@@ -44,6 +68,7 @@ export const PublicRoute = () => {
 						<>
 							<Filter />
 							<ShowResults />
+							<Footer />
 						</>
 					}
 				/>
@@ -55,13 +80,21 @@ export const PublicRoute = () => {
 						<>
 							<Filter />
 							<ShowResults />
+							<Footer />
 						</>
 					}
 				/>
-				<Route path="faq" element={<Faq />} />
+				<Route
+					path="faq"
+					element={
+						<>
+							<Faq />
+							<Footer />
+						</>
+					}
+				/>
 				<Route path="*" element={<UserRoute />} />
 			</Routes>
-			{user.role !== "admin" && <Footer />}
 		</div>
 	);
 };
