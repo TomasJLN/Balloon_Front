@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
 import { GiBalloonDog } from "react-icons/gi";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import fetcher from "../../helpers/fetcher";
 import { Avatar } from "../avatar/Avatar";
@@ -30,6 +30,7 @@ export const Header = () => {
   }, [token, setUsuario]);
 
   const refreshPage = () => {
+    usuario.role === "admin" && navigate("/");
     window.location.reload(false);
   };
 
@@ -47,11 +48,7 @@ export const Header = () => {
               }}
             />
           </nav>
-
-          <Link to="/">
-            <GiBalloonDog onClick={refreshPage} />
-          </Link>
-
+          <GiBalloonDog onClick={refreshPage} />
           <div>
             {userMenu && (
               <NavUser setUserMenu={setUserMenu} usuario={usuario} />
