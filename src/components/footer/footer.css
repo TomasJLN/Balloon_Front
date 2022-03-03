@@ -3,7 +3,7 @@
   padding: 1em 0;
   margin-top: auto;
   color: black;
-  background-color: salmon;
+  background-color: rgba(119, 118, 110, 0.829);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -44,7 +44,7 @@
 .footer .links li {
   padding-top: 0.5rem;
   margin: 0.5rem;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 
@@ -105,7 +105,7 @@
 
 .privacidad {
   width: 90vw;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;

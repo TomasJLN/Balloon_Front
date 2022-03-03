@@ -31,7 +31,7 @@ export const AdminCategory = () => {
         <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard/`)}>
           GESTOR DE CATEGORÍAS
         </h1>
-        <form onSubmit={handleSubmit} id="">
+        <form onSubmit={handleSubmit}>
           <div className="barrabusquedacategory">
             <label htmlFor="findCat">Buscar Categoría</label>
             <input
@@ -48,11 +48,9 @@ export const AdminCategory = () => {
               to="/dashboard/adminCategory/createCategory"
               id="link-create-cat"
 
-            >
-              <button className="generalbutton">
+            ><button className="generalbutton">
                 crear categoría
-
-                </button>
+            </button>
             </Link>
           </div>
         </form>

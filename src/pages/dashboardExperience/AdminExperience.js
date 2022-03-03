@@ -29,8 +29,8 @@ export const AdminExperience = () => {
       <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
         GESTOR de Experiencias
       </h1>
-      <form onSubmit={handleSubmit} id="category-form">
-        <div className="input-search">
+      <form onSubmit={handleSubmit}>
+        <div className="barrabusquedacategory">
           <label htmlFor="findCat">Experiencia</label>
           <input
             type="text"
@@ -44,8 +44,10 @@ export const AdminExperience = () => {
           <Link
             to="/dashboard/adminExperience/createExperience"
             id="link-create-cat"
-          >
-            crear experiencia
+          > <button className="generalbutton">
+          crear experiencia
+          </button>
+      
           </Link>
         </div>
       </form>

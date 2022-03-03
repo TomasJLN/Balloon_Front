@@ -44,8 +44,8 @@ const Login = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <form onSubmit={handleLogin} className="login-form">
-            <VscAccount size="3rem" />
+          <form onSubmit={handleLogin} className="generalform">
+            <VscAccount size="5rem" />
             <div className="mail-field">
               <input
                 type="text"

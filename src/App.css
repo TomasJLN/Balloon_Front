@@ -8,6 +8,10 @@ body {
 	min-width: 375px;
 }
 
+header{
+
+}
+
 .generalbutton{
 	background-color: #000000;
 	
@@ -17,9 +21,11 @@ body {
 	width: 10rem;
 	border-radius: 20px;
 	height: 3rem;
-	margin-bottom: 1rem;
+
 	border: none;
+	letter-spacing: 1px;
 	cursor: pointer; 
+	margin-top: 1rem;
 	}
 
 .generalbutton:hover {
@@ -50,6 +56,12 @@ body {
 
 .wrap-content {
 	margin: 0 10px;
+}
+
+@media screen and (max-width: 600px){
+	form{
+
+	}
 }
 
 @keyframes fadeInAnimation {
