@@ -1,4 +1,3 @@
-import { FaSearchLocation } from "react-icons/fa";
 import { Rating } from "react-simple-star-rating";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,8 +8,8 @@ import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimila
 import Accordion from "../../components/accordion/Accordion";
 import { scrollToTop } from "../../helpers/scrollToTop";
 import Mapa from "../../components/Mapa";
-import "./experience.css";
 import { MdLocationPin } from "react-icons/md";
+import "./experience.css";
 
 const Experience = () => {
   const { id } = useParams();
