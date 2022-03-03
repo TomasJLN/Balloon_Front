@@ -29,10 +29,10 @@ export const AdminCategory = () => {
       <div>
         <ToTop />
         <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard/`)}>
-          GESTOR de Categorías
+          GESTOR DE CATEGORÍAS
         </h1>
-        <form onSubmit={handleSubmit} id="category-form">
-          <div className="input-search">
+        <form onSubmit={handleSubmit} id="">
+          <div className="barrabusquedacategory">
             <label htmlFor="findCat">Buscar Categoría</label>
             <input
               // id="input-search-field"
@@ -47,8 +47,12 @@ export const AdminCategory = () => {
             <Link
               to="/dashboard/adminCategory/createCategory"
               id="link-create-cat"
+
             >
-              crear categoría
+              <button className="generalbutton">
+                crear categoría
+
+                </button>
             </Link>
           </div>
         </form>
