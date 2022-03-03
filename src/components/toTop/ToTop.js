@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { scrollToTop } from "../../helpers/scrollToTop";
 import "./to-top.css";
 
-export const ToTop = () => {
-  const [isVisible, setIsVisible] = useState(false);
+export const ToTop = ({ isVisible, setIsVisible }) => {
+  console.log(isVisible);
   const checkVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);

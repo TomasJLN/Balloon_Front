@@ -20,7 +20,6 @@ export const ExperienceCard = ({ exp }) => {
     <div
       className="card fade_in"
       onClick={(e) => {
-        window.removeEventListener("scroll", onclick);
         navigate(`/experience/${exp.id}`);
       }}
     >
@@ -39,19 +38,17 @@ export const ExperienceCard = ({ exp }) => {
       )}
       <div className="card-details">
         <h2 className="card-title">{exp.title}</h2>
-        {
-          <p>
-            <a
-              href={url}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="card-location"
-            >
-              <MdLocationPin className="icon-search" />
-              {exp.location}
-            </a>
-          </p>
-        }
+        <p>
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="card-location"
+          >
+            <MdLocationPin className="icon-search" />
+            {exp.location}
+          </a>
+        </p>
         <p className="stars-row">
           {avgRatin !== 0 && (
             <>

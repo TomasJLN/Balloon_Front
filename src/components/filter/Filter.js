@@ -15,10 +15,6 @@ import "./filter.css";
 const Filter = () => {
   const datePickerRef = useRef();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  let { experience } = queryString.parse(location.search);
-  experience = experience ? experience : "";
 
   const [rating, setRating] = useState("");
   const [searchCat, setSearchCat] = useState("");
