@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import Dropdown from '../dropDown/DropDown';
 import "./navBar.css";
 
 const NavBar = ({ setShowNavBar }) => {
@@ -20,22 +21,23 @@ const NavBar = ({ setShowNavBar }) => {
 
 	return (
 		<menu ref={ref} className="navbar">
-			<li>
-				<Link to="/" onClick={(s) => setShowNavBar(!s)}>
+			<li className="dropdown-btn" >
+				<Link  to="/" onClick={(s) => setShowNavBar(!s)}>
 					INICIO
 				</Link>
 			</li>
-			<li>
+			<li className="dropdown-btn" >
 				<Link to="/account" onClick={(s) => setShowNavBar(!s)}>
 					MI CUENTA
 				</Link>
 			</li>
-			<li>
+			<Dropdown/>  
+			<li className="dropdown-btn" >
 				<Link to="/contact-form" onClick={(s) => setShowNavBar(!s)}>
 					CONTACTO
 				</Link>
 			</li>
-			<li>
+			<li className="dropdown-btn" >
 				<Link to="/faq" onClick={(s) => setShowNavBar(!s)}>
 					FAQ
 				</Link>
@@ -45,3 +47,7 @@ const NavBar = ({ setShowNavBar }) => {
 };
 
 export default NavBar;
+
+
+ 
+ 
