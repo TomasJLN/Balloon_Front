@@ -35,10 +35,10 @@ const RecoveryPassword = () => {
   return (
     <div>
       <h2 className="title-center">Recuperación contraseña</h2>
-      <form className="generalform" onSubmit={handleSubmit}>
-        <label className="generallabel" htmlFor="recoveryCode">Código de recuperación:</label>
+      <form className="generalFormm" onSubmit={handleSubmit}>
+        <label className="generalLabel" htmlFor="recoveryCode">Código de recuperación:</label>
         <input
-          className="generalinput"
+          className="generalInput"
           type="text"
           id="recoveryCode"
           value={recoveryCode}
@@ -46,9 +46,9 @@ const RecoveryPassword = () => {
           onChange={(e) => setRecoveryCode(e.target.value)}
           autoComplete="off"
         />
-        <label className="generallabel" htmlFor="newPassword">Nueva Contraseña:</label>
+        <label className="generalLabel" htmlFor="newPassword">Nueva Contraseña:</label>
         <input
-          className="generalinput"
+          className="generalInput"
           type="password"
           id="newPassword"
           value={newPassword}
@@ -59,7 +59,7 @@ const RecoveryPassword = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="generalbutton"
+          className="generalButton"
         >
           Enviar
         </button>

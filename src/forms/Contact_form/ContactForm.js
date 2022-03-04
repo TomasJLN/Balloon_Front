@@ -52,38 +52,38 @@ const ContactForm = () => {
 					/*  ValidationSchema={ContactFormSchema} */
 				>
 					{({ errors, touched, validateField, validateForm }) => (
-						<Form className='generalform'>
-							<label className="generallabel">Nombre:</label>
-							<Field className="generalinput" name='nombre' type='text' validate={validateName} />
+						<Form className='generalForm'>
+							<label className="generalLabel">Nombre:</label>
+							<Field className="generalInput" name='nombre' type='text' validate={validateName} />
 							{errors.nombre && touched.nombre && <h3 className="errorValidation">{errors.nombre}</h3>}
 
-							<label className="generallabel">Correo electrónico:</label>
-							<Field className="generalinput" name='email' type='email' validate={validateEmail} />
+							<label className="generalLabel">Correo electrónico:</label>
+							<Field className="generalInput" name='email' type='email' validate={validateEmail} />
 							{errors.email && touched.email && <h3 className="errorValidation">{errors.email}</h3>}
 
-							<label className="generallabel">Teléfono:</label>
-							<Field className="generalinput" name='tel' type='number' />
-							<ErrorMessage name='tel' />
+							<label className="generalLabel">Teléfono:</label>
+							<Field className="generalInput" name='tel' type='number' />
+							<ErrorMessage className="errorValidation" name='tel' />
 
-							<label className="generallabel">Tipo de consulta:</label>
-							<Field className="generalinput" name='tipo_consulta' as='select'>
+							<label className="generalLabel">Tipo de consulta:</label>
+							<Field className="generalInput" name='tipo_consulta' as='select'>
 								<option value='consulta1'>consulta1</option>
 								<option value='consulta2'>consulta2</option>
 								<option value='consulta3'>consulta3</option>
 							</Field>
-							<ErrorMessage name='tipo_consulta' />
-							<label className="generallabel">Mensaje:</label>
-							<Field className="generalinput" name='mensaje' as='textarea' rows='5' />
-							<ErrorMessage name='mensaje' />
+							<ErrorMessage className="errorValidation" name='tipo_consulta' />
+							<label className="generalLabel">Mensaje:</label>
+							<Field className="generalInput" name='mensaje' as='textarea' rows='5' />
+							<ErrorMessage className="errorValidation" name='mensaje' />
 							<label>
 								<Field type='checkbox' name='acceptance' />
 								He leído y acepto la política de privacidad
 							</label>
-							<ErrorMessage name='acceptance' />
+							<ErrorMessage className="errorValidation" name='acceptance' />
 
 							<button
 								type='submit'
-								className="generalbutton"
+								className="generalButton"
 								onClick={() =>
 									validateForm().then(() =>
 										console.error('Hay errores en el formulario')

@@ -44,10 +44,10 @@ const Login = () => {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <form onSubmit={handleLogin} className="generalform">
+          <form onSubmit={handleLogin} className="generalForm">
             <VscAccount size="5rem" />
               <input
-                className="generalinput"
+                className="generalInput"
                 type="text"
                 id="email-login"
                 value={email}
@@ -60,7 +60,7 @@ const Login = () => {
                 onFocus={() => setEmail('')}
               />
               <input
-                className="generalinput"
+                className="generalInput"
                 type="password"
                 id="password-login"
                 value={password}
@@ -77,7 +77,7 @@ const Login = () => {
                 }}
               />
           
-            <button type="submit" value="Login" className="generalbutton">Login</button>
+            <button type="submit" value="Login" className="generalButton">Login</button>
           </form>
           <div className="link-to">
             <Link to="/register">Crear una cuenta</Link>

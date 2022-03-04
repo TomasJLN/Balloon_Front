@@ -44,7 +44,7 @@ export const AdminExperience = () => {
           <Link
             to="/dashboard/adminExperience/createExperience"
             id="link-create-cat"
-          > <button className="generalbutton">
+          > <button className="generalButton">
           crear experiencia
           </button>
       

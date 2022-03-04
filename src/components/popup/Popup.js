@@ -43,7 +43,7 @@ export const Popup = ({ setShowPopup }) => {
               setEmailRecovery(e.target.value);
             }}
           />
-          <button type="submit" className="generalbutton">
+          <button type="submit" className="generalButton">
             Recuperar
           </button>
         </form>

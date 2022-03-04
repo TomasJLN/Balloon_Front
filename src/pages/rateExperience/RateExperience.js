@@ -99,7 +99,7 @@ export const RateExperience = () => {
           <div className="btn-bottom">
             <button
               type="submit"
-              className="generalbutton"
+              className="generalButton"
               onClick={handleNewReview}
             >
               Enviar

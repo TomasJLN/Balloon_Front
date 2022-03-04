@@ -48,7 +48,7 @@ export const AdminCategory = () => {
               to="/dashboard/adminCategory/createCategory"
               id="link-create-cat"
 
-            ><button className="generalbutton">
+            ><button className="generalButton">
                 crear categoría
             </button>
             </Link>
