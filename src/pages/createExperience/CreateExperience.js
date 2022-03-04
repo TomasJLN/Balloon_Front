@@ -223,7 +223,7 @@ export const CreateExperience = () => {
               onChange={(e) => {
                 setExpData({ ...expData, coords: e.target.value });
               }}
-              placeholder="Fecha inicio experiencia"
+              placeholder="coordenadas"
             />
           </div>
           <div>
@@ -280,7 +280,7 @@ export const CreateExperience = () => {
             </div>
           )}
           <button type="submit" className="btn-update-experience">
-            Actualizar Experiencia
+            Crear Experiencia
           </button>
         </form>
       </section>

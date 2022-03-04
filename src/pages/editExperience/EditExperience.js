@@ -211,6 +211,19 @@ export const EditExperience = () => {
           />
         </div>
         <div className="input-text-field-row">
+          <label htmlFor="edit-places-exp">Plazas por día: </label>
+          <input
+            type="text"
+            name="totalPlaces"
+            id="edit-places-exp"
+            value={expData.totalPlaces}
+            onChange={(e) => {
+              setExpData({ ...expData, totalPlaces: e.target.value });
+            }}
+            placeholder="Plazas por día"
+          />
+        </div>
+        <div className="input-text-field-row">
           <label htmlFor="edit-startDate-exp">Fecha Inicio: </label>
           <div id="edit-startDate-exp">
             <DatePicker
