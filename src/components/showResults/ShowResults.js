@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useFiltered } from "../../hooks/useFiltered";
 import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
-import { ToTop } from "../toTop/ToTop";
+// import { ToTop } from "../toTop/ToTop";
 import "./show-results.css";
 
 const ShowResults = ({ isVisible, setIsVisible }) => {
@@ -58,7 +58,7 @@ const ShowResults = ({ isVisible, setIsVisible }) => {
         </div>
       ) : (
         <>
-          <ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
+          {/* <ToTop isVisible={isVisible} setIsVisible={setIsVisible} /> */}
           <div className="card-deck fade_in">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (
