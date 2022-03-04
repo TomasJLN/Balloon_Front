@@ -274,7 +274,7 @@ export const CreateExperience = () => {
 							/>
 						</div>
 					)}
-					<button type="submit" className="generalbutton">
+					<button type="submit" className="generalButton">
 						Crear
 					</button>
 				</form>

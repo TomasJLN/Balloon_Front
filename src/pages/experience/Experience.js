@@ -111,7 +111,7 @@ const Experience = () => {
 
       <div className="ratin-comprar">
         <button
-          className="generalbutton"
+          className="generalButton"
           onClick={(e) => {
             navigate(`/booking/${id}`);
           }}

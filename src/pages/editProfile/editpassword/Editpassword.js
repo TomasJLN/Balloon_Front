@@ -91,7 +91,7 @@ const Editpassword = () => {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             ></input>
-            <button className='generalbutton'
+            <button className='generalButton'
             type="submit">Guardar</button>
           </form>
         </section>
