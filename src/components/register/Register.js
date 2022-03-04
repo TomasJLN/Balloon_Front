@@ -81,9 +81,9 @@ const Register = () => {
   }, [error]);
 
   return (
-    <div>
-      <h2 className="newUserCreate">Crear nuevo usuario</h2>
+    
       <form className="generalForm" onSubmit={register}>
+      <h2 className="newUserCreate">Crear nuevo usuario</h2>
         <div>
           <label className="generalLabel" htmlFor="name">Nombre:</label>
 
@@ -204,11 +204,11 @@ const Register = () => {
           </p>
         </div>
 
-        <button className="generalButton" type="submit">
+        <button  className="generalButton " type="submit">
           REGISTRARSE
         </button>
       </form>
-    </div>
+  
   );
 };
 
