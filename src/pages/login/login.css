@@ -12,8 +12,7 @@
 
 }
 
-.mail-field input,
-.password-field input {
+.generalinput {
   border-radius: 30px;
   text-align: center;
   height: 2.5rem;
@@ -25,7 +24,15 @@
 
 .link-to {
   font-weight: bold;
+  text-decoration: underline;
   margin: 20px;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+  transition: background-color.5s;
+}
+
+.lin-to:hover {
+
+  background-color: rgba(235, 203, 62, 0.829);
 }

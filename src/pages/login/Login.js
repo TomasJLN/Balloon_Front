@@ -46,8 +46,8 @@ const Login = () => {
         <div>
           <form onSubmit={handleLogin} className="generalform">
             <VscAccount size="5rem" />
-            <div className="mail-field">
               <input
+                className="generalinput"
                 type="text"
                 id="email-login"
                 value={email}
@@ -59,9 +59,8 @@ const Login = () => {
                 }}
                 onFocus={() => setEmail('')}
               />
-            </div>
-            <div className="password-field">
               <input
+                className="generalinput"
                 type="password"
                 id="password-login"
                 value={password}
@@ -77,7 +76,7 @@ const Login = () => {
                   setError(null);
                 }}
               />
-            </div>
+          
             <button type="submit" value="Login" className="generalbutton">Login</button>
           </form>
           <div className="link-to">

@@ -52,28 +52,28 @@ const ContactForm = () => {
 					/*  ValidationSchema={ContactFormSchema} */
 				>
 					{({ errors, touched, validateField, validateForm }) => (
-						<Form className='contact-form'>
-							<label>Nombre:</label>
-							<Field name='nombre' type='text' validate={validateName} />
-							{errors.nombre && touched.nombre && <h3>{errors.nombre}</h3>}
+						<Form className='generalform'>
+							<label className="generallabel">Nombre:</label>
+							<Field className="generalinput" name='nombre' type='text' validate={validateName} />
+							{errors.nombre && touched.nombre && <h3 className="errorform">{errors.nombre}</h3>}
 
-							<label>Correo electrónico:</label>
-							<Field name='email' type='email' validate={validateEmail} />
+							<label className="generallabel">Correo electrónico:</label>
+							<Field className="generalinput" name='email' type='email' validate={validateEmail} />
 							{errors.email && touched.email && <h3>{errors.email}</h3>}
 
-							<label>Teléfono:</label>
-							<Field name='tel' type='number' />
+							<label className="generallabel">Teléfono:</label>
+							<Field className="generalinput" name='tel' type='number' />
 							<ErrorMessage name='tel' />
 
-							<label>Tipo de consulta:</label>
-							<Field name='tipo_consulta' as='select'>
+							<label className="generallabel">Tipo de consulta:</label>
+							<Field className="generalinput" name='tipo_consulta' as='select'>
 								<option value='consulta1'>consulta1</option>
 								<option value='consulta2'>consulta2</option>
 								<option value='consulta3'>consulta3</option>
 							</Field>
 							<ErrorMessage name='tipo_consulta' />
-							<label>Mensaje:</label>
-							<Field name='mensaje' as='textarea' rows='5' />
+							<label className="generallabel">Mensaje:</label>
+							<Field className="generalinput" name='mensaje' as='textarea' rows='5' />
 							<ErrorMessage name='mensaje' />
 							<label>
 								<Field type='checkbox' name='acceptance' />

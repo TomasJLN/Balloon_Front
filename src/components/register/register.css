@@ -1,40 +1,4 @@
-/* 
 
-html {
-  background-color: lightseagreen;
-}
-
-h2 {
-  display: flex;
-justify-content: center;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-.barrabuscadora{
-
-  display: flex;
-  justify-content: center;
-
-
-
-
-  
-}
-
-input{
-
-
-  width: 30rem;
-  height: 4rem;
-
-}
-
-button {
-  border: 0.5px solid black;
-  width: 6rem;
-  height: 4.3rem;
-  font-size: 1.5rem;
-} */
 .newUserCreate {
   display: flex;
   justify-content: center;

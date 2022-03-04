@@ -1,29 +1,16 @@
-div.contact-form-container {
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #fff;
-	margin: auto;
+
+.generallabel {
+	font-size: 1em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align:right;
+	
 }
 
-div.contact-form {
-	background-color: white;
-	padding: 1rem;
-	align-items: center;
+.errorform{
+	color: red;
+	font-weight:lighter;
+	font-size: 1em;
 }
 
 
-.contact-form input {
-	padding: 5px;
-	font-size: 18px;
-}
-
-.contact-form label {
-	text-transform: uppercase;
-}
-
-.contact-form {
-	display: flex;
-	flex-direction: column;
-}

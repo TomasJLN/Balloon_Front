@@ -83,12 +83,12 @@ const Register = () => {
   return (
     <div>
       <h2 className="newUserCreate">Crear nuevo usuario</h2>
-      <form className="registerForm" onSubmit={register}>
+      <form className="generalform" onSubmit={register}>
         <div>
-          <label htmlFor="name">Nombre:</label>
+          <label className="generallabel" htmlFor="name">Nombre:</label>
 
           <input
-            className="registerInputs"
+            className="generalinput"
             name="name"
             type="text"
             placeholder="Escribe tu nombre"
@@ -105,10 +105,10 @@ const Register = () => {
         </div>
 
         <div>
-          <label htmlFor="surname">Apellidos:</label>
+          <label className="generallabel" htmlFor="surname">Apellidos:</label>
 
           <input
-            className="registerInputs"
+            className="generalinput"
             name="surname"
             type="text"
             placeholder="Escribe tus apellidos"
@@ -125,9 +125,9 @@ const Register = () => {
         </div>
 
         <div>
-          <label htmlFor="email">Correo electrónico:</label>
+          <label className="generallabel" htmlFor="email">Correo electrónico:</label>
           <input
-            className="registerInputs"
+            className="generalinput"
             name="email"
             type="email"
             placeholder="Escribe tu correo electrónico"
@@ -144,10 +144,10 @@ const Register = () => {
         </div>
 
         <div>
-          <label htmlFor="password">Contraseña:</label>
+          <label className="generallabel" htmlFor="password">Contraseña:</label>
 
           <input
-            className="registerInputs"
+           className="generalinput"
             name="password"
             type="password"
             placeholder="Escribe una contraseña"
@@ -164,9 +164,9 @@ const Register = () => {
         </div>
 
         <div>
-          <label htmlFor="passwordRepeat">Repite la contraseña:</label>
+          <label className="generallabel" htmlFor="passwordRepeat">Repite la contraseña:</label>
           <input
-            className="registerInputs"
+            className="generalinput"
             name="passwordRepeat"
             type="password"
             placeholder="Repite la contraseña"
@@ -183,7 +183,7 @@ const Register = () => {
         </div>
 
         <div>
-          <label htmlFor="terminos">
+          <label className="generallabel" htmlFor="terminos">
             <input
               type="checkbox"
               name="terminos"
