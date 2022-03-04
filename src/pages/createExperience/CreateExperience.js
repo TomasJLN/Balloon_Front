@@ -108,12 +108,19 @@ export const CreateExperience = () => {
         <form onSubmit={handleNewExperience} className="edit-cat-form">
           <div className="group-switch">
             <div>
-              <select name="id-cat-exp">
-                <option>{}</option>
+              <label htmlFor="id-cat-exp">Categoría: </label>
+              <select
+                name="id-cat-exp"
+                id="id-cat-exp"
+                onChange={(e) =>
+                  setExpData({ ...expData, idCategory: e.target.value })
+                }
+              >
                 {categories.map((cat) => (
                   <option
-                    value={expData.idCategory}
+                    value={cat.id}
                     onChange={(e) => {
+                      console.log(e.target.value);
                       setExpData({ ...expData, idCategory: e.target.value });
                     }}
                     key={cat.id}

@@ -139,8 +139,10 @@ export const EditExperience = () => {
       <br />
       <form onSubmit={handleUpdateCategory}>
         <div>
+          <label htmlFor="id-cat-exp">Categoría: </label>
           <select
             name="categorias"
+            id="id-cat-exp"
             onChange={(e) => {
               setExpData({ ...expData, idCategory: e.target.value });
             }}
@@ -157,20 +159,6 @@ export const EditExperience = () => {
               );
             })}
           </select>
-        </div>
-        <div className="input-text-field">
-          <label htmlFor="id-cat-exp">ID Categoría: </label>
-          <input
-            className="edit-experience"
-            type="text"
-            id="id-cat-exp"
-            name="id-cat-exp"
-            value={expData.idCategory}
-            onChange={(e) => {
-              setExpData({ ...expData, idCategory: e.target.value });
-            }}
-            placeholder="ID Categoría"
-          />
         </div>
         <div className="double-field">
           <div>
