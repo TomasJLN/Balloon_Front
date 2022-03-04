@@ -3,7 +3,6 @@ import { scrollToTop } from "../../helpers/scrollToTop";
 import "./to-top.css";
 
 export const ToTop = ({ isVisible, setIsVisible }) => {
-  console.log(isVisible);
   const checkVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);
