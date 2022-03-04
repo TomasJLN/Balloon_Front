@@ -70,13 +70,7 @@
   
 }
 
-.footer #politica {
-  height: 50px;
-  width: 20px;
-  margin-top: auto;
 
-  margin-right: 10px;
-}
 
 .footer label {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
@@ -103,10 +97,4 @@
   align-items: center;
 }
 
-.privacidad {
-  width: 90vw;
-  font-size: 0.8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+

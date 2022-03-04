@@ -55,11 +55,11 @@ const ContactForm = () => {
 						<Form className='generalform'>
 							<label className="generallabel">Nombre:</label>
 							<Field className="generalinput" name='nombre' type='text' validate={validateName} />
-							{errors.nombre && touched.nombre && <h3 className="errorform">{errors.nombre}</h3>}
+							{errors.nombre && touched.nombre && <h3 className="errorValidation">{errors.nombre}</h3>}
 
 							<label className="generallabel">Correo electrónico:</label>
 							<Field className="generalinput" name='email' type='email' validate={validateEmail} />
-							{errors.email && touched.email && <h3>{errors.email}</h3>}
+							{errors.email && touched.email && <h3 className="errorValidation">{errors.email}</h3>}
 
 							<label className="generallabel">Teléfono:</label>
 							<Field className="generalinput" name='tel' type='number' />

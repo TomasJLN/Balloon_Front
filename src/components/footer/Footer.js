@@ -66,8 +66,9 @@ const Footer = () => {
             </button>
           </div>
 
-          <div className="privacidad">
+          <div className="terminosConditions">
             <input
+              className='checkboxBox'
               type="checkbox"
               id="politica"
               name="politica"

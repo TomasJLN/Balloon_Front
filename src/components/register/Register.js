@@ -64,7 +64,7 @@ const Register = () => {
       errorsForm.password = 'Debes introducir una contraseña';
     }
     if (!newUser.passwordRepeat.trim()) {
-      errorsForm.passwordRepeat = 'Debes introducir de nuevo la contraseña';
+      errorsForm.passwordRepeat = 'Introduce de nuevo la contraseña';
     }
 
     if (newUser.password !== newUser.passwordRepeat) {
@@ -182,15 +182,18 @@ const Register = () => {
           )}
         </div>
 
-        <div>
-          <label className="generallabel" htmlFor="terminos">
+        <div  className='terminosConditions'>
+           
             <input
+              className='checkboxBox'
               type="checkbox"
               name="terminos"
               id="terminos"
               checked={checkboxValidation}
               onChange={() => setCheckboxValidation(!checkboxValidation)}
             />
+
+          <label  htmlFor="terminos">
             Acepto los términos y condiciones
           </label>
         </div>
