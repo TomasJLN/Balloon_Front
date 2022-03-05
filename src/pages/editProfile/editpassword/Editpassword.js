@@ -54,19 +54,21 @@ const Editpassword = () => {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <section className="editpassword">
-          <form onSubmit={handlepassword}>
+        
+          <form className="generalForm" onSubmit={handlepassword}>
             <h2 id="datos">Cambiar mis datos</h2>
-            <label htmlFor="name">Nombre:</label>
+            <label className="generalLabel" htmlFor="name">Nombre:</label>
             <input
+              className="generalInput"
               type="text"
               id="name"
               name="name"
               value={usuario.name}
               onChange={(e) => setUsuario({ ...usuario, name: e.target.value })}
             ></input>
-            <label htmlFor="surname">Apellidos:</label>
+            <label className="generalLabel" htmlFor="surname">Apellidos:</label>
             <input
+              className="generalInput"
               type="text"
               id="surname"
               name="surname"
@@ -75,16 +77,18 @@ const Editpassword = () => {
                 setUsuario({ ...usuario, surname: e.target.value })
               }
             ></input>
-            <label htmlFor="password">Contraseña actual:</label>
+            <label className="generalLabel" htmlFor="password">Contraseña actual:</label>
             <input
+              className="generalInput"
               type="password"
               id="password"
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
-            <label htmlFor="newpassword">Nueva contraseña:</label>
+            <label className="generalLabel" htmlFor="newpassword">Nueva contraseña:</label>
             <input
+              className="generalInput"
               type="password"
               id="newpassword"
               name="newpassword"
@@ -94,7 +98,7 @@ const Editpassword = () => {
             <button className='generalButton'
             type="submit">Guardar</button>
           </form>
-        </section>
+    
       )}
     </>
   );

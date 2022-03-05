@@ -88,164 +88,146 @@ export const CreateExperience = () => {
 
 	return (
 		<>
-			<section>
-				{getID && <h1>ID_ {getID}</h1>}
-				{error && <h1 style={{ color: "red" }}>{error}</h1>}
-				<div className="title-back">
-					<h1 className="title">Crear Experiencia</h1>
-					<div className="back-div">
-						<button
-							className="btn-back"
-							onClick={() => {
-								navigate(-1);
-							}}
-						>
-							↩️ back
-						</button>
-					</div>
+		<section>
+		{getID && <h1>ID_ {getID}</h1>}
+		{error && <h1 style={{ color: "red" }}>{error}</h1>}
+		
+	    </section>
+		<form onSubmit={handleNewExperience} className="generalForm">
+			<h1 className="title">Experiencia</h1>
+				<div className="select-experience">
+					<select name="id-cat-exp">
+						<option>{}</option>
+						{categories.map((cat) => (
+							<option
+								value={expData.idCategory}
+								onChange={(e) => {
+									setExpData({ ...expData, idCategory: e.target.value });
+								}}
+								key={cat.id}
+							>
+								{cat.title}
+							</option>
+						))}
+					</select>
 				</div>
-				<br />
-
-				<hr />
-				<form onSubmit={handleNewExperience} className="edit-cat-form">
-					<div className="group-switch">
-						<div>
-							<select name="id-cat-exp">
-								<option>{}</option>
-								{categories.map((cat) => (
-									<option
-										value={expData.idCategory}
-										onChange={(e) => {
-											setExpData({ ...expData, idCategory: e.target.value });
-										}}
-										key={cat.id}
-									>
-										{cat.title}
-									</option>
-								))}
-							</select>
-						</div>
-						<div className="edit-sect-activar">
-							<p>Activar</p>
-							<Switch checked={expData.active} onChange={handleActiveChange} />
-							<p>Destacado</p>
-							<Switch
-								checked={expData.featured}
-								onChange={handleFeaturedChange}
-							/>
-						</div>
-					</div>
-					<div id="edit-exp-title">
-						<label htmlFor="edit-exp-name">Título: </label>
-						<textarea
-							type="text"
-							id="edit-exp-name"
-							name="experience"
-							value={expData.title}
-							onChange={(e) => {
-								setExpData({ ...expData, title: e.target.value });
-							}}
-							placeholder="Título de la experiencia"
-						/>
-					</div>
-					<div id="edit-exp-description">
-						<textarea
-							type="text"
-							name="description"
-							value={expData.description}
-							onChange={(e) => {
-								setExpData({ ...expData, description: e.target.value });
-							}}
-							placeholder="Descripción de la experiencia"
-						/>
-					</div>
-					<div>
-						<input
-							type="text"
-							name="price"
-							value={expData.price}
-							onChange={(e) => {
-								setExpData({ ...expData, price: e.target.value });
-							}}
-							placeholder="Precio de la experiencia"
-						/>
-					</div>
-					<div>
-						<input
-							type="text"
-							name="totalPlaces"
-							value={expData.totalPlaces}
-							onChange={(e) => {
-								setExpData({ ...expData, totalPlaces: e.target.value });
-							}}
-							placeholder="Plazas por día"
-						/>
-					</div>
-					<div>
-						<input
-							type="text"
-							name="starDate"
-							value={expData.startDate}
-							onChange={(e) => {
-								setExpData({ ...expData, startDate: e.target.value });
-							}}
-							placeholder="Fecha inicio experiencia"
-						/>
-						<input
-							type="text"
-							name="endDate"
-							value={expData.endDate}
-							onChange={(e) => {
-								setExpData({ ...expData, endDate: e.target.value });
-							}}
-							placeholder="Fecha fin experiencia"
-						/>
-					</div>
-					<div>
-						<input
-							type="text"
-							name="location"
-							value={expData.location}
-							onChange={(e) => {
-								setExpData({ ...expData, location: e.target.value });
-							}}
-							placeholder="Lugar de la experiencia"
-						/>
-						<input
-							type="text"
-							name="coords"
-							value={expData.coords}
-							onChange={(e) => {
-								setExpData({ ...expData, coords: e.target.value });
-							}}
-							placeholder="Fecha inicio experiencia"
-						/>
-					</div>
-					<div>
-						<textarea
-							type="text"
-							name="condiciones"
-							value={expData.conditions}
-							onChange={(e) => {
-								setExpData({ ...expData, conditions: e.target.value });
-							}}
-							placeholder="Condiciones de la experiencia"
-						/>
-					</div>
-					<div>
-						<textarea
-							type="text"
-							name="normatives"
-							value={expData.normatives}
-							onChange={(e) => {
-								setExpData({ ...expData, normatives: e.target.value });
-							}}
-							placeholder="Normativas de la experiencia"
-						/>
-					</div>
-					<br />
+				<div className="edit-sect-activar">
+					<p>Activar</p>
+					<Switch checked={expData.active} onChange={handleActiveChange} />
+					<p>Destacado</p>
+					<Switch
+						checked={expData.featured}
+						onChange={handleFeaturedChange}
+					/>
+				</div>
+					<label className="generalLabel" htmlFor="edit-exp-name"></label>
+					<input
+						className="generalInput"
+						type="text"
+						id="edit-exp-name"
+						name="experience"
+						value={expData.title}
+						onChange={(e) => {
+							setExpData({ ...expData, title: e.target.value });
+						}}
+						placeholder="Título de la experiencia"
+					></input>
+					
+					<textarea
+						className="generalTextarea"
+						type="text"
+						name="description"
+						value={expData.description}
+						onChange={(e) => {
+							setExpData({ ...expData, description: e.target.value });
+						}}
+						placeholder="Descripción de la experiencia"
+					/>
+					
+					<input
+						className="generalInput"
+						type="text"
+						name="price"
+						value={expData.price}
+						onChange={(e) => {
+							setExpData({ ...expData, price: e.target.value });
+						}}
+						placeholder="Precio de la experiencia"
+					/>
+					<input
+						className="generalInput"
+						type="text"
+						name="totalPlaces"
+						value={expData.totalPlaces}
+						onChange={(e) => {
+							setExpData({ ...expData, totalPlaces: e.target.value });
+						}}
+						placeholder="Plazas por día"
+					/>
+				
+					<input
+						className="generalInput"
+						type="text"
+						name="starDate"
+						value={expData.startDate}
+						onChange={(e) => {
+							setExpData({ ...expData, startDate: e.target.value });
+						}}
+						placeholder="Fecha inicio experiencia"
+					/>
+					<input
+						className="generalInput"
+						type="text"
+						name="endDate"
+						value={expData.endDate}
+						onChange={(e) => {
+							setExpData({ ...expData, endDate: e.target.value });
+						}}
+						placeholder="Fecha fin experiencia"
+					/>
+					<input
+						className="generalInput"
+						type="text"
+						name="location"
+						value={expData.location}
+						onChange={(e) => {
+							setExpData({ ...expData, location: e.target.value });
+						}}
+						placeholder="Lugar de la experiencia"
+					/>
+					<input
+						className="generalInput"
+						type="text"
+						name="coords"
+						value={expData.coords}
+						onChange={(e) => {
+							setExpData({ ...expData, coords: e.target.value });
+						}}
+						placeholder="Fecha inicio experiencia"
+					/>
+					<input
+						className="generalInput"
+						type="text"
+						name="condiciones"
+						value={expData.conditions}
+						onChange={(e) => {
+							setExpData({ ...expData, conditions: e.target.value });
+						}}
+						placeholder="Condiciones de la experiencia"
+					/>
+					<input
+						className="generalInput"
+						type="text"
+						name="normatives"
+						value={expData.normatives}
+						onChange={(e) => {
+							setExpData({ ...expData, normatives: e.target.value });
+						}}
+						placeholder="Normativas de la experiencia"
+					/>
+					
 					{!error && getID && (
-						<div>
+						<div className="createImageExperience">
 							<p className="title-center">Imagen de la categoría</p>
 
 							<figure className="photo-figure-category">
@@ -267,6 +249,7 @@ export const CreateExperience = () => {
 							</figure>
 
 							<input
+								className="generalInput"
 								type="file"
 								id="fileSelector"
 								style={{ display: "none" }}
@@ -274,11 +257,27 @@ export const CreateExperience = () => {
 							/>
 						</div>
 					)}
+
+
+					<div className="back-div">
+						<button
+							className="btn-back"
+							onClick={() => {
+								navigate(-1);
+							}}
+						>
+							↩️ Back
+						</button>
+					</div>
+				
+				
+					
+				
 					<button type="submit" className="generalButton">
 						Crear
 					</button>
 				</form>
-			</section>
+		
 		</>
 	);
 };

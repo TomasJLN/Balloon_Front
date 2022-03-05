@@ -45,6 +45,20 @@ header{
 	width: 250px;
 	border: none;
 	box-shadow: 2px 2px 4px gray;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+  }
+
+  .generalTextarea{
+	border-radius: 30px;
+	text-align: center;
+	height: 120px;
+	width: 250px;
+	border: none;
+	box-shadow: 2px 2px 4px gray;
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
   }
 
 
@@ -74,6 +88,12 @@ header{
 
 	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
 }
+
+.generalTítulo1 {
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
 
 .loading {
 	width: 100vw;

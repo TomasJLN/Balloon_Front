@@ -34,11 +34,9 @@ const validateEmail = (value) => {
   email: Yup.string().email('email incorrecto').required('campo obligatorio'),
 }); */
 
-const ContactForm = () => {
-	return (
-		<div className='contact-form'>
-			<h1>Contacto</h1>
-			<div className='contact-form-container'>
+	const ContactForm = () => {
+		return (
+			<div>
 				<Formik
 					initialValues={{
 						nombre: '',
@@ -53,6 +51,7 @@ const ContactForm = () => {
 				>
 					{({ errors, touched, validateField, validateForm }) => (
 						<Form className='generalForm'>
+							<h1 className="generalTítulo1">Contacto</h1>
 							<label className="generalLabel">Nombre:</label>
 							<Field className="generalInput" name='nombre' type='text' validate={validateName} />
 							{errors.nombre && touched.nombre && <h3 className="errorValidation">{errors.nombre}</h3>}
@@ -96,7 +95,6 @@ const ContactForm = () => {
 					)}
 				</Formik>
 			</div>
-		</div>
 	);
 };
 

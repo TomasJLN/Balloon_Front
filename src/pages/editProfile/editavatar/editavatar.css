@@ -1,7 +1,9 @@
 .Editavatar div {
+  border: 1px solid black;
   width: 5;
   height: 6;
   color: red;
+  
 }
 
 .Editavatar h2 {
@@ -23,8 +25,9 @@
 
 .Editavatar img {
   display: flex;
+  justify-content: center;
   height: 10rem;
   width: 10rem;
   margin-left: 110px;
-  border-radius: 20px;
+ 
 }

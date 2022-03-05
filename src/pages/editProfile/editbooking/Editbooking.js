@@ -34,7 +34,7 @@ const Editbooking = () => {
 
   return (
     <section>
-      <div className="wrap-content">
+      <div className="general">
         <h1 id="reservas" className="title-center">
           Mis reservas
         </h1>

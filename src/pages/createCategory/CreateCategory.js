@@ -35,9 +35,10 @@ export const CreateCategory = () => {
 
   return (
     <section>
-      <h1>CATEGORIA</h1>
-      <form onSubmit={newCategory}>
+      <form className="generalForm"onSubmit={newCategory}>
+      <h1>Categoría</h1>
         <input
+          className="generalInput"
           type="text"
           id="category"
           name="category"
@@ -48,6 +49,7 @@ export const CreateCategory = () => {
           placeholder="Nombre categoría"
         />
         <input
+          className="generalInput"
           type="text"
           id="description"
           name="description"

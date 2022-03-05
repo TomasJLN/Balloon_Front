@@ -26,6 +26,7 @@ margin-bottom: 20px;
 
 .editbooking div{
     border: 1px solid black;
+    background-color: rgba(235, 203, 62, 0.829);
     display:flex;
     flex-direction: column;
     justify-content: center;
