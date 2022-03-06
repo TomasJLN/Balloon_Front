@@ -31,6 +31,7 @@ export const CreateExperience = () => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useContext(TokenContext);
   const [getID, setGetID] = useState("");
+  const [created, setCreated] = useState(false);
   const { categories } = useGetCategories();
   const navigate = useNavigate();
 
@@ -43,17 +44,21 @@ export const CreateExperience = () => {
 
   const handleNewExperience = (e) => {
     e.preventDefault();
-    fetcher(setResult, setError, setLoading, "experience", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-      body: JSON.stringify({
-        ...expData,
-        active: expData.active ? "1" : "0",
-      }),
-    });
+    if (getID === "") {
+      fetcher(setResult, setError, setLoading, "experience", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          ...expData,
+          active: expData.active ? "1" : "0",
+        }),
+      });
+    } else {
+      toast.error("Experiencia ya creada");
+    }
   };
   //
   const handlePictureChange = async (e) => {
@@ -87,7 +92,7 @@ export const CreateExperience = () => {
   return (
     <>
       <section>
-        {getID && <h1>ID_ {getID}</h1>}
+        {getID && <h1>Experiencia creada: {getID}</h1>}
         {error && <h1 style={{ color: "red" }}>{error}</h1>}
         <div className="title-back">
           <h1 className="title">Crear Experiencia</h1>
@@ -103,7 +108,6 @@ export const CreateExperience = () => {
           </div>
         </div>
         <br />
-
         <hr />
         <form onSubmit={handleNewExperience} className="edit-cat-form">
           <div className="group-switch">
@@ -116,15 +120,11 @@ export const CreateExperience = () => {
                   setExpData({ ...expData, idCategory: e.target.value })
                 }
               >
+                <option value={1} key={0}>
+                  Categoría
+                </option>
                 {categories.map((cat) => (
-                  <option
-                    value={cat.id}
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                      setExpData({ ...expData, idCategory: e.target.value });
-                    }}
-                    key={cat.id}
-                  >
+                  <option value={cat.id} key={cat.id}>
                     {cat.title}
                   </option>
                 ))}
@@ -279,9 +279,11 @@ export const CreateExperience = () => {
               />
             </div>
           )}
-          <button type="submit" className="btn-update-experience">
-            Crear Experiencia
-          </button>
+          {!getID && (
+            <button type="submit" className="btn-update-experience">
+              Crear Experiencia
+            </button>
+          )}
         </form>
       </section>
     </>
