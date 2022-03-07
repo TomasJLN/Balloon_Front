@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { CategoryAdminCard } from '../../components/categoryAdminCard/CategoryAdminCard.js';
-import { useGetCategories } from '../../hooks/useGetCategories.js';
-import { toast } from 'react-toastify';
-import './admin-category.css';
-import { ToTop } from '../../components/toTop/ToTop.js';
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CategoryAdminCard } from "../../components/categoryAdminCard/CategoryAdminCard.js";
+import { useGetCategories } from "../../hooks/useGetCategories.js";
+import { toast } from "react-toastify";
+import "./admin-category.css";
+// import { ToTop } from "../../components/toTop/ToTop.js";
 
 export const AdminCategory = () => {
-  const [toSearch, setToSearch] = useState('');
+  const [toSearch, setToSearch] = useState("");
 
   const { categories, loading, error } = useGetCategories(toSearch);
 
@@ -27,7 +27,7 @@ export const AdminCategory = () => {
   return (
     <>
       <div>
-        <ToTop />
+        {/* <ToTop /> */}
         <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard/`)}>
           GESTOR DE CATEGORÍAS
         </h1>
@@ -43,6 +43,14 @@ export const AdminCategory = () => {
               placeholder="Búsqueda por ID / Categoría"
             />
           </div>
+          <button
+            className="btn-back"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            ↩️ back
+          </button>
           <div>
             <Link
               to="/dashboard/adminCategory/createCategory"

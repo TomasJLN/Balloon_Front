@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
 import { GiBalloonDog } from "react-icons/gi";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import fetcher from "../../helpers/fetcher";
 import { Avatar } from "../avatar/Avatar";
@@ -10,9 +10,7 @@ import NavBar from "../navBar/navBar";
 import NavUser from "../navUser/NavUser";
 import "./header.css";
 
-export const Header = ({ prueba }) => {
-	console.log("HEADER", prueba);
-
+export const Header = () => {
 	const [showNavBar, setShowNavBar] = useState(false);
 	const [userMenu, setUserMenu] = useState(false);
 	const [token, setToken] = useContext(TokenContext);
@@ -32,8 +30,13 @@ export const Header = ({ prueba }) => {
 	}, [token, setUsuario]);
 
 	const refreshPage = () => {
-		window.location.reload();
-		console.log("refreshhhhing");
+		usuario.role === "admin" && navigate("/");
+		window.location.reload(false);
+	};
+
+	const handleClick = () => {
+		navigate("/");
+		refreshPage();
 	};
 
 	return (
@@ -50,11 +53,7 @@ export const Header = ({ prueba }) => {
 							}}
 						/>
 					</nav>
-
-					<Link to="/">
-						<GiBalloonDog onClick={refreshPage} />
-					</Link>
-
+					<GiBalloonDog onClick={handleClick} />
 					<div>
 						{userMenu && (
 							<NavUser setUserMenu={setUserMenu} usuario={usuario} />

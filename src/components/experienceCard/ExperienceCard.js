@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { FaSearchLocation } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGetReviews } from "../../hooks/useGetReviews";
 import { Rating } from "react-simple-star-rating";
+import { MdLocationPin } from "react-icons/md";
 import "./experience-card.css";
 
 export const ExperienceCard = ({ exp }) => {
@@ -12,10 +12,6 @@ export const ExperienceCard = ({ exp }) => {
   const { reviews, error, loading } = useGetReviews(exp.id);
   const [avgRatin, setAvgRatin] = useState(0);
 
-  // useEffect(() => {
-  //   window.removeEventListener("scroll", onloadstart);
-  // }, []);
-
   useEffect(() => {
     !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
   }, [reviews, error]);
@@ -24,7 +20,6 @@ export const ExperienceCard = ({ exp }) => {
     <div
       className="card fade_in"
       onClick={(e) => {
-        window.removeEventListener("scroll", onclick);
         navigate(`/experience/${exp.id}`);
       }}
     >
@@ -43,19 +38,17 @@ export const ExperienceCard = ({ exp }) => {
       )}
       <div className="card-details">
         <h2 className="card-title">{exp.title}</h2>
-        {
-          <p>
-            <a
-              href={url}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="card-location"
-            >
-              <FaSearchLocation className="icon-search" />
-              {exp.location}
-            </a>
-          </p>
-        }
+        <p>
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="card-location"
+          >
+            <MdLocationPin className="icon-search" />
+            {exp.location}
+          </a>
+        </p>
         <p className="stars-row">
           {avgRatin !== 0 && (
             <>

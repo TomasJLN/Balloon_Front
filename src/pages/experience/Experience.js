@@ -1,4 +1,3 @@
-import { FaSearchLocation } from "react-icons/fa";
 import { Rating } from "react-simple-star-rating";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,9 +6,10 @@ import { useGetReviews } from "../../hooks/useGetReviews";
 import { Reviews } from "../../components/reviews/Reviews";
 import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimilar";
 import Accordion from "../../components/accordion/Accordion";
-import "./experience.css";
 import { scrollToTop } from "../../helpers/scrollToTop";
 import Mapa from "../../components/Mapa";
+import { MdLocationPin } from "react-icons/md";
+import "./experience.css";
 
 const Experience = () => {
   const { id } = useParams();
@@ -40,7 +40,11 @@ const Experience = () => {
   const [avgRatin, setAvgRatin] = useState(0);
 
   useEffect(() => {
-    !error && setAvgRatin(reviews.reduce((acc, exp) => acc + exp.score, 0));
+    !error &&
+      reviews.length > 0 &&
+      setAvgRatin(
+        reviews.reduce((acc, exp) => acc + exp.score, 0) / reviews.length
+      );
   }, [reviews]);
 
   useEffect(() => {
@@ -75,7 +79,7 @@ const Experience = () => {
       </figure>
       <div className="rating-back">
         <p className="stars-row">
-          {avgRatin !== 0 && (
+          {avgRatin > 0 && (
             <>
               <Rating
                 ratingValue={avgRatin}
@@ -93,7 +97,6 @@ const Experience = () => {
         <p>{description}</p>
       </div>
       <div>
-        <span>Localización: {location} </span>
         <span>
           <a
             href={url}
@@ -101,9 +104,10 @@ const Experience = () => {
             rel="noreferrer noopener"
             className="card-location"
           >
-            <FaSearchLocation className="icon-search" />
-          </a>{" "}
-          <Mapa photo={photo} title={title} coords={coords} url={url} />{" "}
+            <MdLocationPin className="icon-search" />
+            {location}
+          </a>
+          <Mapa photo={photo} title={title} coords={coords} url={url} />
         </span>
       </div>
 
@@ -128,9 +132,13 @@ const Experience = () => {
       {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
       <hr />
       <div>
-        <h1 id="ex-sim">Experiencias similades</h1>
+        <h2 id="ex-sim">Otras experiencias que podrían interesarte...</h2>
         <div>
-          <CarouselSimilar idCategory={idCategory} />
+          <CarouselSimilar
+            reviews={reviews}
+            avgRatin={avgRatin}
+            idCategory={idCategory}
+          />
         </div>
       </div>
     </div>

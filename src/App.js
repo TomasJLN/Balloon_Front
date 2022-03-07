@@ -1,10 +1,13 @@
-import { AppRoute } from './routes/AppRoute';
-import './App.css';
+import { AppRoute } from "./routes/AppRoute";
+import "./App.css";
+import { StrictMode } from "react";
 
 function App() {
   return (
     <div className="App">
-      <AppRoute />
+      <StrictMode>
+        <AppRoute />
+      </StrictMode>
     </div>
   );
 }

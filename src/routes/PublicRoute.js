@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ErrorPage } from "../components/errorPage/ErrorPage";
 import Booking from "../pages/booking/Booking";
@@ -17,27 +17,84 @@ import Footer from "../components/footer/Footer";
 import Filter from "../components/filter/Filter";
 
 export const PublicRoute = () => {
-	const [user, setUser] = useContext(UserContext);
+  const [isVisible, setIsVisible] = useState(false);
 
-	return (
-		<div>
-			{user.role !== "admin" && <Filter />}
-			<Routes>
-				<Route path="privacity" element={<Privacity />} />
-				<Route path="conditions" element={<Conditions />} />
-				<Route path="contact-form" element={<ContactForm />} />
-				<Route path="account" element={<Login />} />
-				<Route path="register" element={<Register />} />
-				<Route path="experience/:id" element={<Experience />} />
-				<Route path="booking/:id" element={<Booking />} />
-				<Route path="allFilter" element={<ShowResults />} />
-				<Route path="error" element={<ErrorPage />} />
-				<Route path="recovery" element={<RecoveryPassword />} />
-				<Route path="" element={<ShowResults />} />
-				<Route path="faq" element={<Faq />} />
-				<Route path="*" element={<UserRoute />} />
-			</Routes>
-			{user.role !== "admin" && <Footer />}
-		</div>
-	);
+  return (
+    <div>
+      {/* {user.role !== "admin" && <Filter />} */}
+      <Routes>
+        <Route
+          path="privacity"
+          element={
+            <>
+              <Privacity />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="conditions"
+          element={
+            <>
+              <Conditions />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="contact-form"
+          element={
+            <>
+              <ContactForm />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="account" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route
+          path="experience/:id"
+          element={
+            <>
+              <Experience />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="booking/:id" element={<Booking />} />
+        <Route
+          path="allFilter"
+          element={
+            <>
+              <Filter />
+              <ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="error" element={<ErrorPage />} />
+        <Route path="recovery" element={<RecoveryPassword />} />
+        <Route
+          path=""
+          element={
+            <>
+              <Filter />
+              <ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="faq"
+          element={
+            <>
+              <Faq />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="*" element={<UserRoute />} />
+      </Routes>
+    </div>
+  );
 };

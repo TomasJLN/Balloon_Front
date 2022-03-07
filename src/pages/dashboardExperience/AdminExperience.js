@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ExperienceAdminCard } from '../../components/experienceAdminCard/ExperienceAdminCard.js';
-import { useFiltered } from '../../hooks/useFiltered.js';
-import { toast } from 'react-toastify';
-import './admin-experience.css';
-import { ToTop } from '../../components/toTop/ToTop.js';
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ExperienceAdminCard } from "../../components/experienceAdminCard/ExperienceAdminCard.js";
+import { useFiltered } from "../../hooks/useFiltered.js";
+import { toast } from "react-toastify";
+import "./admin-experience.css";
+// import { ToTop } from "../../components/toTop/ToTop.js";
 
 export const AdminExperience = () => {
-  const [toSearch, setToSearch] = useState('');
+  const [toSearch, setToSearch] = useState("");
 
   const { filtered, error, loading } = useFiltered(`?experience=${toSearch}`);
 
@@ -25,7 +25,7 @@ export const AdminExperience = () => {
 
   return (
     <div>
-      <ToTop />
+      {/* <ToTop /> */}
       <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
         GESTOR de Experiencias
       </h1>
@@ -40,6 +40,14 @@ export const AdminExperience = () => {
             value={toSearch}
           />
         </div>
+        <button
+          className="btn-back"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          ↩️ back
+        </button>
         <div>
           <Link
             to="/dashboard/adminExperience/createExperience"

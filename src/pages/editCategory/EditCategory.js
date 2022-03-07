@@ -1,26 +1,24 @@
-import { useContext, useEffect, useState } from 'react';
-import Switch from '@mui/material/Switch';
-import { TokenContext } from '../../contexts/TokenContext';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAdminCat } from '../../hooks/useAdminCat';
-import fetcher from '../../helpers/fetcher';
-import { fileUpload } from '../../helpers/fileUpload';
-import { toast } from 'react-toastify';
-import './edit-category.css';
+import { useContext, useEffect, useState } from "react";
+import Switch from "@mui/material/Switch";
+import { TokenContext } from "../../contexts/TokenContext";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAdminCat } from "../../hooks/useAdminCat";
+import fetcher from "../../helpers/fetcher";
+import { fileUpload } from "../../helpers/fileUpload";
+import { toast } from "react-toastify";
+import "./edit-category.css";
 
 export const EditCategory = () => {
-  const [nameCategory, setNameCategory] = useState('');
-  const [descriptionCategory, setDescriptionCategory] = useState('');
+  const [nameCategory, setNameCategory] = useState("");
+  const [descriptionCategory, setDescriptionCategory] = useState("");
   const [activeCat, setActiveCat] = useState(false);
   const [photoCat, setPhotoCat] = useState(null);
-  const [result, setResult] = useState('null');
+  const [result, setResult] = useState("null");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useContext(TokenContext);
   const navigate = useNavigate();
   const { id } = useParams();
-
-  console.log('param de la categoria ', id);
   const { cat } = useAdminCat(id, token, setLoading, setError);
 
   useEffect(() => {
@@ -43,15 +41,15 @@ export const EditCategory = () => {
   const handleUpdateCategory = (e) => {
     e.preventDefault();
     fetcher(setResult, setError, setLoading, `category/${id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: token,
       },
       body: JSON.stringify({
         title: nameCategory,
         description: descriptionCategory,
-        active: activeCat ? '1' : '0',
+        active: activeCat ? "1" : "0",
       }),
     });
   };
@@ -61,7 +59,7 @@ export const EditCategory = () => {
     setError(null);
     const file = e.target.files[0];
     const url = `${process.env.REACT_APP_BACKEND_URL}/category/${id}/photo`;
-    const key = 'photo';
+    const key = "photo";
     if (file) {
       const resp = await fileUpload(url, key, setError, file, token);
       setPhotoCat(resp.data);
@@ -70,18 +68,17 @@ export const EditCategory = () => {
   };
 
   const handlePictureClick = () => {
-    document.querySelector('#fileSelector').click();
+    document.querySelector("#fileSelector").click();
   };
 
   useEffect(() => {
-    console.log('photoCat -> ', photoCat, !error);
     photoCat && !error && setNameCategory(cat.title);
     error && toast.error(error.message);
   }, [setPhotoCat, photoCat, error, cat.title]);
 
   useEffect(() => {
-    result.includes('Categoría actualizada') &&
-      navigate('/dashboard/adminCategory');
+    result.includes("Categoría actualizada") &&
+      navigate("/dashboard/adminCategory");
   }, [result, navigate]);
 
   return (
@@ -160,7 +157,7 @@ export const EditCategory = () => {
             <input
               type="file"
               id="fileSelector"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               onChange={handlePictureChange}
             />
             <div>

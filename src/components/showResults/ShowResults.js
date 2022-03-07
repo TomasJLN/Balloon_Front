@@ -3,10 +3,10 @@ import { useLocation } from "react-router-dom";
 import { useFiltered } from "../../hooks/useFiltered";
 import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
-import { ToTop } from "../toTop/ToTop";
+// import { ToTop } from "../toTop/ToTop";
 import "./show-results.css";
 
-const ShowResults = () => {
+const ShowResults = ({ isVisible, setIsVisible }) => {
   //Experiencias mostradas por página
   const expByPage = 6;
 
@@ -58,7 +58,7 @@ const ShowResults = () => {
         </div>
       ) : (
         <>
-          <ToTop />
+          {/* <ToTop isVisible={isVisible} setIsVisible={setIsVisible} /> */}
           <div className="card-deck fade_in">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (
