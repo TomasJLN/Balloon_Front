@@ -9,36 +9,35 @@ import { Popup } from "../../components/popup/Popup";
 import "./login.css";
 
 const Login = () => {
-	const [token, setToken] = useContext(TokenContext);
-	const [usuario, setUsuario] = useContext(UserContext);
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(false);
-	const [showPopup, setShowPopup] = useState(false);
+  const [token, setToken] = useContext(TokenContext);
+  const [usuario, setUsuario] = useContext(UserContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		token && !error && usuario.role === "admin" && navigate("/dashboard");
-		token && !error && usuario.role === "user" && navigate(-1);
-	}, [token, error, navigate, usuario.role]);
+  useEffect(() => {
+    token && !error && usuario.role === "admin" && navigate("/dashboard");
+    token && !error && usuario.role === "user" && navigate(-1);
+  }, [token, error, navigate, usuario.role]);
 
-	useEffect(() => {
-		error && toast.error(error);
-	}, [error]);
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
-	const handleLogin = async (e) => {
-		e.preventDefault();
-		setError(null);
-		await fetcher(setToken, setError, setLoading, "user/login", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ email, password }),
-		});
-	};
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError(null);
+    await fetcher(setToken, setError, setLoading, "user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+  };
 
-<<<<<<< HEAD
   return (
     <>
       {loading ? (
@@ -47,38 +46,40 @@ const Login = () => {
         <div>
           <form onSubmit={handleLogin} className="generalForm">
             <VscAccount size="5rem" />
-              <input
-                className="generalInput"
-                type="text"
-                id="email-login"
-                value={email}
-                name="email-login"
-                placeholder="email"
-                size="40"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                onFocus={() => setEmail('')}
-              />
-              <input
-                className="generalInput"
-                type="password"
-                id="password-login"
-                value={password}
-                name="password-login"
-                size="40"
-                autoComplete="off"
-                placeholder="password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                onFocus={() => {
-                  setPassword('');
-                  setError(null);
-                }}
-              />
-          
-            <button type="submit" value="Login" className="generalButton">Login</button>
+            <input
+              className="generalInput"
+              type="text"
+              id="email-login"
+              value={email}
+              name="email-login"
+              placeholder="email"
+              size="40"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              onFocus={() => setEmail("")}
+            />
+            <input
+              className="generalInput"
+              type="password"
+              id="password-login"
+              value={password}
+              name="password-login"
+              size="40"
+              autoComplete="off"
+              placeholder="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              onFocus={() => {
+                setPassword("");
+                setError(null);
+              }}
+            />
+
+            <button type="submit" value="Login" className="generalButton">
+              Login
+            </button>
           </form>
           <div className="link-to">
             <Link to="/register">Crear una cuenta</Link>
@@ -91,61 +92,6 @@ const Login = () => {
       )}
     </>
   );
-=======
-	return (
-		<>
-			{loading ? (
-				<h1>Loading...</h1>
-			) : (
-				<div>
-					<form onSubmit={handleLogin} className="login-form">
-						<VscAccount size="3rem" />
-						<div className="mail-field">
-							<input
-								type="text"
-								id="email-login"
-								value={email}
-								name="email-login"
-								placeholder="email"
-								size="40"
-								onChange={(e) => {
-									setEmail(e.target.value);
-								}}
-								onFocus={() => setEmail("")}
-							/>
-						</div>
-						<div className="password-field">
-							<input
-								type="password"
-								id="password-login"
-								value={password}
-								name="password-login"
-								size="40"
-								autoComplete="off"
-								placeholder="password"
-								onChange={(e) => {
-									setPassword(e.target.value);
-								}}
-								onFocus={() => {
-									setPassword("");
-									setError(null);
-								}}
-							/>
-						</div>
-						<input type="submit" value="Login" className="btn-send" />
-					</form>
-					<div className="link-to">
-						<Link to="/register">Crear una cuenta</Link>
-					</div>
-					<div className="link-to">
-						<p onClick={() => setShowPopup(true)}>Recuperar contraseña</p>
-					</div>
-					{showPopup && <Popup setShowPopup={setShowPopup} />}
-				</div>
-			)}
-		</>
-	);
->>>>>>> developmentTest
 };
 
 export default Login;
