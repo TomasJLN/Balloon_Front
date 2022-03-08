@@ -31,7 +31,8 @@ const Register = () => {
         },
         body: JSON.stringify(newUser),
       });
-      error && navigate("/account");
+
+      !error && navigate("/account");
     } else {
       toast.error("Debes aceptar los términos y condiciones");
     }
