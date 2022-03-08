@@ -47,17 +47,15 @@ const Editavatar = () => {
         <h1>Loading...</h1>
       ) : (
         <section className="Editavatar">
-          <h2 id="foto">Cambiar mi foto</h2>
-          <figure>
+          <h2>Cambiar mi foto</h2>
             <img
               src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
               alt={usuario.avatar}
               onClick={handlePictureClick}
             />
-            <figcaption className="title-center">
+            <p className="title-center">
               Pulsa en la imagen para cambiarla
-            </figcaption>
-          </figure>
+            </p>
           <input
             type="file"
             id="file-selector"

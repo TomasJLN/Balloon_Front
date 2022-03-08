@@ -71,7 +71,7 @@
 }
 
 .accordion-wrapper .accordion-item .accordion-panel .panel-close {
-	background: #e0e0e0;
+	background-color: rgba(235, 203, 62, 0.829);
 	box-sizing: border-box;
 	padding: 0.5rem 1rem 0 1rem;
 	opacity: 0;
@@ -84,7 +84,8 @@
 
 .accordion-wrapper .accordion-item .accordion-panel .panel-open {
 	overflow: hidden;
-	background: #e0e0e0;
+	background-color: rgba(235, 203, 62, 0.829);
+	/*background: #e0e0e0;*/
 	padding: 1rem;
 	margin-bottom: 1rem;
 	box-sizing: border-box;

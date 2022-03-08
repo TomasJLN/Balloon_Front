@@ -1,30 +1,13 @@
-.select-experience {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-/* 
-#edit-exp-title {
+ .inputForm {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-} */
-
-.edit-sect-activar{
-  margin-top: 1rem;
-  font-size: 1em;
-  display: flex;
-  flex-direction: column;
-
+  flex-wrap: wrap;
 }
 
 .btn-back{
-  position: 0;
-  top: 0;
-  left: 0;
 
   background-color: white;
-	margin: 50px;
+	margin-top: 500px;
 	color: grey;
 	font-size: 1.2rem;
 	width: 7rem;
@@ -37,6 +20,6 @@
 	margin-top: 1rem;
 	}
 
-  .createImageExperience{
-    border: 1px solid black;
+  .edit-sect-activar{
+    margin-top: 20px;
   }

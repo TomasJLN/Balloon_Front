@@ -59,17 +59,22 @@ export const CreateCategory = () => {
           }}
           placeholder="Descripcion categoría"
         />
+        <h3>Activar</h3>
         <Switch checked={activeCat} onChange={handleActiveChange} />
         <button type="submit" className="generalButton">Crear</button>
       </form>
-      <h1>{nameCategory}</h1>
-      <h1>{descriptionCategory}</h1>
-      <h1>{activeCat.toString()}</h1>
-      <h5>{token}</h5>
-      <h5>{result}</h5>
-      {error && <h1>{error}</h1>}
-      <hr />
-      {!error && <p>Podemos subir imagen</p>}
+      <div className="hola">
+        <h2>{nameCategory}</h2>
+        <h3>{descriptionCategory}</h3>
+        <p>{activeCat.toString()}</p>
+        <p>{token}</p>
+        <h4>{result}</h4>
+        {error && <h1>{error}</h1>}
+        <hr />
+        {!error && <p>Podemos subir imagen</p>}
+
+      </div>
+      
     </section>
   );
 };

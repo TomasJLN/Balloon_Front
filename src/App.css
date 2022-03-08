@@ -61,6 +61,12 @@ header{
 	flex-direction: column;
   }
 
+  .generalForm h2{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+
 
 .errorValidation{
 	color: red;

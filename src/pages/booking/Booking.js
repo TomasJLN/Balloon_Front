@@ -160,7 +160,7 @@ const Booking = () => {
               ↩️ back
             </button>
           </div>
-          <form>
+          <form className="generalForm">
             <div id="select-date">
               <label htmlFor="date">Escoger Fecha</label>
               <DatePicker
