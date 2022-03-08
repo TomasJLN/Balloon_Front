@@ -85,7 +85,7 @@ export const CarouselSimilar = ({ reviews, avgRatin, idCategory = 1 }) => {
                     {exp.location}
                   </p>
                 }
-                <p className="stars-row">
+                {/* <p className="stars-row">
                   {avgRatin !== 0 && (
                     <>
                       <Rating
@@ -99,7 +99,7 @@ export const CarouselSimilar = ({ reviews, avgRatin, idCategory = 1 }) => {
                       </span>
                     </>
                   )}
-                </p>
+                </p> */}
                 <p className="card-price">{exp.price} €</p>
               </div>
             </div>
