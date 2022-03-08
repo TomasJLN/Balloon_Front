@@ -21,7 +21,7 @@ const Login = () => {
 
   useEffect(() => {
     token && !error && usuario.role === "admin" && navigate("/dashboard");
-    token && !error && usuario.role === "user" && navigate(-1);
+    token && !error && usuario.role === "user" && navigate("/profile");
   }, [token, error, navigate, usuario.role]);
 
   useEffect(() => {
