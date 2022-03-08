@@ -40,11 +40,12 @@ const Experience = () => {
   const [avgRatin, setAvgRatin] = useState(0);
 
   useEffect(() => {
-    !error &&
-      reviews.length > 0 &&
+    // !error &&
+    reviews.length !== 0 &&
       setAvgRatin(
         reviews.reduce((acc, exp) => acc + exp.score, 0) / reviews.length
       );
+    reviews.length === 0 && setAvgRatin(0);
   }, [reviews]);
 
   useEffect(() => {
