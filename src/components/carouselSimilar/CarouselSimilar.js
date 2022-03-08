@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { miniFetcher } from "../../helpers/fetcher";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Rating } from "react-simple-star-rating";
 import { MdLocationPin } from "react-icons/md";
 import "../experienceCard/experience-card.css";
 import "swiper/css";
@@ -52,8 +51,6 @@ export const CarouselSimilar = ({ reviews, avgRatin, idCategory = 1 }) => {
           },
         }}
         spaceBetween={15}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
         {filterExp.map((exp) => (
           <SwiperSlide key={exp.title}>
