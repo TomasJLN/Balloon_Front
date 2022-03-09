@@ -2,12 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import Switch from "@mui/material/Switch";
 import fetcher from "../../helpers/fetcher";
 import { TokenContext } from "../../contexts/TokenContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fileUpload } from "../../helpers/fileUpload";
 import { toast } from "react-toastify";
-import "./create-experience.css";
-import { useExperience } from "../../hooks/useExperience";
 import { useGetCategories } from "../../hooks/useGetCategories";
+import "./create-experience.css";
 
 export const CreateExperience = () => {
   const [expData, setExpData] = useState({
@@ -25,6 +24,7 @@ export const CreateExperience = () => {
     conditions: "N/A",
     normatives: "N/A",
   });
+
   const [photoExp, setPhotoExp] = useState(null);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
@@ -74,6 +74,7 @@ export const CreateExperience = () => {
       }
     }
     setLoading(false);
+    navigate(-1);
   };
 
   const handlePictureClick = () => {
@@ -278,6 +279,11 @@ export const CreateExperience = () => {
             <button type="submit" className="generalButton">
               Crear Experiencia
             </button>
+          )}
+          {getID && (
+            <Link to="/dashboard">
+              <button className="generalButton">Volver a Dashboard</button>
+            </Link>
           )}
         </form>
       </section>

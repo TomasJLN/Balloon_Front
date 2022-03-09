@@ -1,14 +1,13 @@
-import moment from 'moment';
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { TokenContext } from '../../contexts/TokenContext';
-import fetcher from '../../helpers/fetcher';
-import { useBookingDetails } from '../../hooks/useBookingDetails';
-import { Rating } from 'react-simple-star-rating';
-import { toast } from 'react-toastify';
-import { useGetExperienceOpinion } from '../../hooks/useGetExperienceOpinion';
-import './rate-experience.css';
-import { useGetReviews } from '../../hooks/useGetReviews';
+import moment from "moment";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { TokenContext } from "../../contexts/TokenContext";
+import fetcher from "../../helpers/fetcher";
+import { useBookingDetails } from "../../hooks/useBookingDetails";
+import { Rating } from "react-simple-star-rating";
+import { toast } from "react-toastify";
+import { useGetExperienceOpinion } from "../../hooks/useGetExperienceOpinion";
+import "./rate-experience.css";
 
 export const RateExperience = () => {
   const { ticket } = useParams();
@@ -35,9 +34,9 @@ export const RateExperience = () => {
     e.preventDefault();
     setError(null);
     fetcher(setResult, setError, setLoading, `review/${ticket}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: token,
       },
       body: JSON.stringify({
@@ -64,7 +63,7 @@ export const RateExperience = () => {
 
       <section id="rate-exp">
         <h3>{exDetails?.title}</h3>
-        <h4>Fecha: {moment(exDetails?.dateExperience).format('YYYY-MM-DD')}</h4>
+        <h4>Fecha: {moment(exDetails?.dateExperience).format("YYYY-MM-DD")}</h4>
         <button
           className="btn-back"
           onClick={() => {
@@ -88,11 +87,11 @@ export const RateExperience = () => {
             ratingValue={review?.score}
             showTooltip
             tooltipArray={[
-              'Agónico',
-              'Mal',
-              'Normal',
-              'Fantástico',
-              'Memorable',
+              "Agónico",
+              "Mal",
+              "Normal",
+              "Fantástico",
+              "Memorable",
             ]}
           />
 

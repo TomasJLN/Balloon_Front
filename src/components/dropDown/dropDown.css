@@ -1,0 +1,25 @@
+.arrowdown {
+    width: 1rem;
+     margin-left: 1rem;
+     padding-top: 0.4rem;
+  }
+   
+  .dropdown-item {
+     padding-left: 2rem;
+  }
+  .dropdown-item:hover {
+     background-color: white;
+     opacity: 90%;
+     transition: all 0.2;
+     cursor: pointer;
+     color: black;
+  }
+   
+  .dropdown-btn:hover {
+     background-color: white;
+     opacity: 90%;
+     transition: all;
+     cursor: pointer;
+     color: black; 
+  }
+  

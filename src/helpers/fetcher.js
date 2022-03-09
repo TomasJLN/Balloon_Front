@@ -12,10 +12,12 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
       setError(null);
       // console.log(data);
     } else {
+      setState("");
       setError(message);
       // console.log("mensaje error con respuesta ->", message);
     }
   } catch (error) {
+    setState("");
     setError("Algo salió muy mal!");
     // console.log("mensaje error sin respuesta ->", error);
     // console.log("Todo mal, no iniciaste el backend o no tienes el .env....");
