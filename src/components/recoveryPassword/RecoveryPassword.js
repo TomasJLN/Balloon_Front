@@ -35,7 +35,7 @@ const RecoveryPassword = () => {
   return (
     <div>
       <form className="generalForm" onSubmit={handleSubmit}>
-        <h1 className="generalTítulo1">Recuperación contraseña</h1>
+        <h1 className="generalTitulo1">Recuperar contraseña</h1>
         <label className="generalLabel" htmlFor="recoveryCode">Código de recuperación:</label>
         <input
           className="generalInput"

@@ -152,8 +152,8 @@ export const CreateExperience = () => {
               }}
               placeholder="Título de la experiencia"
             />
-            <input
-              className="generalInput"
+            <textarea
+              className="generalTextarea"
               type="text"
               name="description"
               value={expData.description}
