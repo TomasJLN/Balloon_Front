@@ -48,6 +48,7 @@ export const Header = () => {
 					<nav>
 						{showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
 						<FaBars
+							className="menuprincipal"
 							onClick={() => {
 								setShowNavBar(!showNavBar);
 							}}
