@@ -1,6 +1,7 @@
 #main_header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+
   align-items: center;
   font-size: 3rem;
   min-height: 80px;

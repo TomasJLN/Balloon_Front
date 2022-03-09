@@ -71,7 +71,13 @@ header{
     margin-bottom: 2rem;
 }
 
+.generalPhoto {
 
+	border: none;
+	border-radius: 30px;
+	max-width: 250px;
+	max-height: 100;
+  }  
 
 .errorValidation{
 	color: red;
@@ -101,7 +107,7 @@ header{
 	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
 }
 
-.generalTítulo1 {
+.generalTitulo1 {
 	margin-top: 20px;
 	margin-bottom: 40px;
 }

@@ -48,8 +48,8 @@ export const CreateCategory = () => {
           }}
           placeholder="Nombre categoría"
         />
-        <input
-          className="generalInput"
+        <textarea
+          className="generalTextarea"
           type="text"
           id="description"
           name="description"
@@ -70,7 +70,7 @@ export const CreateCategory = () => {
         <p>{token}</p>
         <h4>{result}</h4>
         {error && <h1>{error}</h1>}
-        <hr />
+      
         {!error && <p>Podemos subir imagen</p>}
 
       </div>
