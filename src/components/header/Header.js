@@ -49,6 +49,8 @@ export const Header = () => {
 				<header id="main_header">
 					<nav>
 						{showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
+
+
 						{!showNavBar ? (
 							<FaBars
 								onClick={() => {
@@ -58,6 +60,7 @@ export const Header = () => {
 						) : (
 							<GrClose />
 						)}
+
 					</nav>
 					<GiBalloonDog onClick={handleClick} />
 					<div>

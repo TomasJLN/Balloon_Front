@@ -101,12 +101,9 @@ export const EditCategory = () => {
               </button>
             </div>
           </div>
-          <br />
-
-          <hr />
-          <form onSubmit={handleUpdateCategory} className="edit-cat-form">
-            <div id="edit-cat-title">
+          <form onSubmit={handleUpdateCategory} className="generalForm">
               <input
+                className="generalInput"
                 type="text"
                 id="edit-cat-name"
                 name="category"
@@ -120,9 +117,8 @@ export const EditCategory = () => {
                 <p>Activar</p>
                 <Switch checked={activeCat} onChange={handleActiveChange} />
               </div>
-            </div>
-            <div id="edit-cat-description">
               <textarea
+                className="generalTextarea"
                 type="text"
                 name="description"
                 value={descriptionCategory}
@@ -131,17 +127,15 @@ export const EditCategory = () => {
                 }}
                 placeholder="Descripcion categoría"
               />
-            </div>
 
-            <br />
             {!error && <p className="title-center">Imagen de la categoría</p>}
 
-            <figure className="photo-figure-category">
+            <div className="photo-figure-category">
               {photoCat ? (
                 <img
                   src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoCat}`}
                   alt={cat.title}
-                  className="photo-category"
+                  className="generalPhoto"
                   onClick={handlePictureClick}
                 />
               ) : (
@@ -149,12 +143,13 @@ export const EditCategory = () => {
                   src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
                   alt={cat.title}
                   onClick={handlePictureClick}
-                  className="photo-category"
+                  className="generalPhoto"
                 />
               )}
-            </figure>
+            </div>
 
             <input
+              className="generalInput"
               type="file"
               id="fileSelector"
               style={{ display: "none" }}
@@ -162,7 +157,7 @@ export const EditCategory = () => {
             />
             <div>
               <button type="submit" className="generalButton">
-                Actualizar Categoría
+                Actualizar
               </button>
             </div>
           </form>

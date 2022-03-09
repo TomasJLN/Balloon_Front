@@ -110,8 +110,8 @@ export const CreateExperience = () => {
         </div>
         <br />
         <hr />
-        <form onSubmit={handleNewExperience} className="edit-cat-form">
-          <div className="group-switch">
+        <form onSubmit={handleNewExperience} className="generalForm">
+          <div>
             <div>
               <label htmlFor="id-cat-exp">Categoría: </label>
               <select
@@ -132,7 +132,7 @@ export const CreateExperience = () => {
               </select>
             </div>
             <div className="edit-sect-activar">
-              <p>Activar</p>
+              <p className="Active">Activar</p>
               <Switch checked={expData.active} onChange={handleActiveChange} />
               <p>Destacado</p>
               <Switch
@@ -141,9 +141,9 @@ export const CreateExperience = () => {
               />
             </div>
           </div>
-          <div id="edit-exp-title">
-            <label htmlFor="edit-exp-name">Título: </label>
-            <textarea
+          <div className="inputForm">
+            <input
+              className="generalInput"
               type="text"
               id="edit-exp-name"
               name="experience"
@@ -153,9 +153,8 @@ export const CreateExperience = () => {
               }}
               placeholder="Título de la experiencia"
             />
-          </div>
-          <div id="edit-exp-description">
             <textarea
+              className="generalTextarea"
               type="text"
               name="description"
               value={expData.description}
@@ -164,9 +163,8 @@ export const CreateExperience = () => {
               }}
               placeholder="Descripción de la experiencia"
             />
-          </div>
-          <div>
             <input
+              className="generalInput"
               type="text"
               name="price"
               value={expData.price}
@@ -175,9 +173,8 @@ export const CreateExperience = () => {
               }}
               placeholder="Precio de la experiencia"
             />
-          </div>
-          <div>
             <input
+              className="generalInput"
               type="text"
               name="totalPlaces"
               value={expData.totalPlaces}
@@ -186,9 +183,8 @@ export const CreateExperience = () => {
               }}
               placeholder="Plazas por día"
             />
-          </div>
-          <div>
             <input
+              className="generalInput"
               type="text"
               name="starDate"
               value={expData.startDate}
@@ -198,6 +194,7 @@ export const CreateExperience = () => {
               placeholder="Fecha inicio experiencia"
             />
             <input
+              className="generalInput"
               type="text"
               name="endDate"
               value={expData.endDate}
@@ -206,9 +203,8 @@ export const CreateExperience = () => {
               }}
               placeholder="Fecha fin experiencia"
             />
-          </div>
-          <div>
             <input
+              className="generalInput"
               type="text"
               name="location"
               value={expData.location}
@@ -218,6 +214,7 @@ export const CreateExperience = () => {
               placeholder="Lugar de la experiencia"
             />
             <input
+              className="generalInput"
               type="text"
               name="coords"
               value={expData.coords}
@@ -225,10 +222,9 @@ export const CreateExperience = () => {
                 setExpData({ ...expData, coords: e.target.value });
               }}
               placeholder="coordenadas"
-            />
-          </div>
-          <div>
-            <textarea
+            /> 
+            <input
+              className="generalInput"
               type="text"
               name="condiciones"
               value={expData.conditions}
@@ -237,9 +233,8 @@ export const CreateExperience = () => {
               }}
               placeholder="Condiciones de la experiencia"
             />
-          </div>
-          <div>
-            <textarea
+            <input
+              className="generalInput"
               type="text"
               name="normatives"
               value={expData.normatives}
@@ -281,7 +276,7 @@ export const CreateExperience = () => {
             </div>
           )}
           {!getID && (
-            <button type="submit" className="btn-update-experience">
+            <button type="submit" className="generalButton">
               Crear Experiencia
             </button>
           )}
