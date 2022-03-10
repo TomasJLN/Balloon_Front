@@ -9,19 +9,24 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 export const AppRoute = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  return (
-    <Router>
-      <TokenContextProvider>
-        <UserContextProvider>
-          <Header />
-          <ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
-          <Routes>
-            <Route path="/*" element={<PublicRoute />} />
-          </Routes>
-        </UserContextProvider>
-      </TokenContextProvider>
-      <ToastContainer position="top-center" autoClose={4000} limit={2} />
-    </Router>
-  );
+	const [isVisible, setIsVisible] = useState(false);
+	const [catTit, setCatTit] = useState(null);
+	console.log("mother fucker", catTit);
+	return (
+		<Router>
+			<TokenContextProvider>
+				<UserContextProvider>
+					<Header catTit={catTit} setCatTit={setCatTit} />
+					<ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
+					<Routes>
+						<Route
+							path="/*"
+							element={<PublicRoute catTit={catTit} setCatTit={setCatTit} />}
+						/>
+					</Routes>
+				</UserContextProvider>
+			</TokenContextProvider>
+			<ToastContainer position="top-center" autoClose={4000} limit={2} />
+		</Router>
+	);
 };
