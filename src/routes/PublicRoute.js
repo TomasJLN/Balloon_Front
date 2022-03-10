@@ -50,8 +50,25 @@ export const PublicRoute = () => {
             </>
           }
         />
-        <Route path="account" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route
+          path="account" 
+          element={
+            <>
+              <Login />
+              <Footer />
+            </>
+          } 
+        />
+        <Route 
+          path="register" 
+          element={
+          
+            <>
+              <Register />
+              <Footer />
+            </>
+          } 
+        />
         <Route
           path="experience/:id"
           element={
@@ -61,7 +78,15 @@ export const PublicRoute = () => {
             </>
           }
         />
-        <Route path="booking/:id" element={<Booking />} />
+        <Route 
+          path="booking/:id" 
+          element={
+            <>
+              <Booking />
+              <Footer />
+            </>
+          }
+        />
         <Route
           path="allFilter"
           element={

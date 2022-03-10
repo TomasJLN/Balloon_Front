@@ -1,3 +1,14 @@
+.wrap-content{
+  border: 1px solid black;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  border-radius: 50px;
+  
+
+}
 .booking-details {
   margin: 12px 0;
   display: flex;
@@ -46,6 +57,7 @@
 .picture-back {
   display: flex;
   justify-content: center;
+  
 }
 
 .qr-booking {
@@ -58,7 +70,8 @@
 .photo-booking {
   position: relative;
   height: 220px;
-  /* width: 220px; */
+  width: 250px;
+  border-radius: 50px;
 }
 
 .card-img-booking {

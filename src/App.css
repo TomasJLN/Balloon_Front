@@ -6,6 +6,9 @@
 
 body {
 	min-width: 375px;
+	height:100vh;
+
+
 }
 
 header{
@@ -200,4 +203,3 @@ header{
   
 	margin-right: 10px;
 }
-
