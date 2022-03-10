@@ -222,7 +222,7 @@ export const CreateExperience = () => {
                 setExpData({ ...expData, coords: e.target.value });
               }}
               placeholder="coordenadas"
-            /> 
+            />
             <input
               className="generalInput"
               type="text"
@@ -247,7 +247,7 @@ export const CreateExperience = () => {
           <br />
           {!error && getID && (
             <div>
-              <p className="title-center">Imagen de la categoría</p>
+              <p className="title-center">Imagen de la Experiencia</p>
 
               <figure className="photo-figure-category">
                 {photoExp ? (

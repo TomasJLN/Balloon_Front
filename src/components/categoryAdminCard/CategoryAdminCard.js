@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TokenContext } from '../../contexts/TokenContext';
-import { toast } from 'react-toastify';
-import fetcher from '../../helpers/fetcher';
-import './category-admin-card.css';
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { TokenContext } from "../../contexts/TokenContext";
+import { toast } from "react-toastify";
+import fetcher from "../../helpers/fetcher";
+import "./category-admin-card.css";
 
 export const CategoryAdminCard = ({ cat, setToSearch }) => {
   const [token, setToken] = useContext(TokenContext);
   const [active, setActive] = useState(cat.active === 1 ? true : false);
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -17,13 +17,13 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
   useEffect(() => {
     setLoading(true);
     fetcher(setResult, setError, setLoading, `category/${cat.id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: token,
       },
       body: JSON.stringify({
-        active: active ? '1' : '0',
+        active: active ? "1" : "0",
       }),
     });
   }, [active, cat.id, token]);
@@ -59,20 +59,21 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
           className="btn-category-option"
           onClick={async (e) => {
             e.preventDefault();
-            setToSearch(' ');
+            setError(null);
+            setToSearch(" ");
             await fetcher(
               setResult,
               setError,
               setLoading,
               `category/${cat.id}`,
               {
-                method: 'DELETE',
+                method: "DELETE",
                 headers: {
                   Authorization: token,
                 },
               }
             );
-            setToSearch('');
+            setToSearch("");
           }}
         >
           Borrar

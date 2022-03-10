@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TokenContext } from '../../contexts/TokenContext';
-import fetcher from '../../helpers/fetcher';
-import { toast } from 'react-toastify';
-import './experience-admin-card.css';
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { TokenContext } from "../../contexts/TokenContext";
+import fetcher from "../../helpers/fetcher";
+import { toast } from "react-toastify";
+import "./experience-admin-card.css";
 
 export const ExperienceAdminCard = ({ exp, setToSearch }) => {
   const [token, setToken] = useContext(TokenContext);
@@ -16,13 +16,13 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
   // Trae los resultados de las experiencias
   useEffect(() => {
     fetcher(setResult, setError, setLoading, `experience/${exp.id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: token,
       },
       body: JSON.stringify({
-        active: active ? '1' : '0',
+        active: active ? "1" : "0",
       }),
     });
   }, [active, exp.id, token]);
@@ -64,20 +64,21 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
           className="btn-category-option"
           onClick={async (e) => {
             e.preventDefault();
-            setToSearch(' ');
+            setError(null);
+            setToSearch(" ");
             await fetcher(
               setResult,
               setError,
               setLoading,
               `experience/${exp.id}`,
               {
-                method: 'DELETE',
+                method: "DELETE",
                 headers: {
                   Authorization: token,
                 },
               }
             );
-            setToSearch('');
+            setToSearch("");
           }}
         >
           Borrar
