@@ -16,85 +16,85 @@ import Conditions from "../pages/conditions/Conditions";
 import Footer from "../components/footer/Footer";
 import Filter from "../components/filter/Filter";
 
-export const PublicRoute = () => {
-  const [isVisible, setIsVisible] = useState(false);
+export const PublicRoute = ({ catTit, setCatTit }) => {
+	const [isVisible, setIsVisible] = useState(false);
 
-  return (
-    <div>
-      {/* {user.role !== "admin" && <Filter />} */}
-      <Routes>
-        <Route
-          path="privacity"
-          element={
-            <>
-              <Privacity />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="conditions"
-          element={
-            <>
-              <Conditions />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="contact-form"
-          element={
-            <>
-              <ContactForm />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="account" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route
-          path="experience/:id"
-          element={
-            <>
-              <Experience />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="booking/:id" element={<Booking />} />
-        <Route
-          path="allFilter"
-          element={
-            <>
-              <Filter />
-              <ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="error" element={<ErrorPage />} />
-        <Route path="recovery" element={<RecoveryPassword />} />
-        <Route
-          path=""
-          element={
-            <>
-              <Filter />
-              <ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="faq"
-          element={
-            <>
-              <Faq />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="*" element={<UserRoute />} />
-      </Routes>
-    </div>
-  );
+	return (
+		<div>
+			{/* {user.role !== "admin" && <Filter />} */}
+			<Routes>
+				<Route
+					path="privacity"
+					element={
+						<>
+							<Privacity />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="conditions"
+					element={
+						<>
+							<Conditions />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="contact-form"
+					element={
+						<>
+							<ContactForm />
+							<Footer />
+						</>
+					}
+				/>
+				<Route path="account" element={<Login />} />
+				<Route path="register" element={<Register />} />
+				<Route
+					path="experience/:id"
+					element={
+						<>
+							<Experience />
+							<Footer />
+						</>
+					}
+				/>
+				<Route path="booking/:id" element={<Booking />} />
+				<Route
+					path="allFilter"
+					element={
+						<>
+							<Filter catTit={catTit} setCatTit={setCatTit} />
+							<ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+							<Footer />
+						</>
+					}
+				/>
+				<Route path="error" element={<ErrorPage />} />
+				<Route path="recovery" element={<RecoveryPassword />} />
+				<Route
+					path=""
+					element={
+						<>
+							<Filter />
+							<ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="faq"
+					element={
+						<>
+							<Faq />
+							<Footer />
+						</>
+					}
+				/>
+				<Route path="*" element={<UserRoute />} />
+			</Routes>
+		</div>
+	);
 };

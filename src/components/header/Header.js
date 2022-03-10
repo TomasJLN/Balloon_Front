@@ -12,7 +12,7 @@ import NavBar from "../navBar/navBar";
 import NavUser from "../navUser/NavUser";
 import "./header.css";
 
-export const Header = () => {
+export const Header = ({ catTit, setCatTit }) => {
 	const [showNavBar, setShowNavBar] = useState(false);
 	const [userMenu, setUserMenu] = useState(false);
 	const [token, setToken] = useContext(TokenContext);
@@ -48,8 +48,13 @@ export const Header = () => {
 			) : (
 				<header id="main_header">
 					<nav>
-						{showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
-
+						{showNavBar && (
+							<NavBar
+								catTit={catTit}
+								setCatTit={setCatTit}
+								setShowNavBar={setShowNavBar}
+							/>
+						)}
 
 						{!showNavBar ? (
 							<FaBars
@@ -60,7 +65,6 @@ export const Header = () => {
 						) : (
 							<GrClose />
 						)}
-
 					</nav>
 					<GiBalloonDog onClick={handleClick} />
 					<div>
