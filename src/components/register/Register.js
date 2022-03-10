@@ -98,6 +98,7 @@ const Register = () => {
           onChange={handleChange}
           value={newUser.name}
           onBlur={handleBlur}
+          autoComplete="off"
           required
         ></input>
         {errorsFormulario.name ? (
@@ -120,6 +121,7 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={newUser.surname}
+          autoComplete="off"
           required
         ></input>
         {errorsFormulario.surname ? (
@@ -141,6 +143,7 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={newUser.email}
+          autoComplete="off"
           required
         ></input>
         {errorsFormulario.email ? (
@@ -163,6 +166,7 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={newUser.password}
+          autoComplete="off"
           required
         ></input>
         {errorsFormulario.password ? (
@@ -184,6 +188,7 @@ const Register = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={newUser.passwordRepeat}
+          autoComplete="off"
           required
         ></input>
         {errorsFormulario.passwordRepeat ? (

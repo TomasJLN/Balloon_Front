@@ -4,6 +4,8 @@ import { UserContext } from "../../contexts/UserContext";
 import { GiBalloonDog } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { GrClose } from "react-icons/gr";
+
 import fetcher from "../../helpers/fetcher";
 import { Avatar } from "../avatar/Avatar";
 import NavBar from "../navBar/navBar";
@@ -47,11 +49,18 @@ export const Header = () => {
 				<header id="main_header">
 					<nav>
 						{showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
-						<FaBars
-							onClick={() => {
-								setShowNavBar(!showNavBar);
-							}}
-						/>
+
+
+						{!showNavBar ? (
+							<FaBars
+								onClick={() => {
+									setShowNavBar(!showNavBar);
+								}}
+							/>
+						) : (
+							<GrClose />
+						)}
+
 					</nav>
 					<GiBalloonDog onClick={handleClick} />
 					<div>

@@ -104,7 +104,7 @@ export const CarouselSimilar = ({ reviews, avgRatin, idCategory = 1 }) => {
         ))}
         <div className="swiper-button-prev"></div>
         <div className="swiper-button-next"></div>
-      </Swiper>
-    </div>
-  );
+                  </Swiper>
+                  </div>
+                  );
 };

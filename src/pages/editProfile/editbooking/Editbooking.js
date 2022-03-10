@@ -38,19 +38,22 @@ const Editbooking = () => {
         <h1 id="reservas" className="title-center">
           Mis reservas
         </h1>
-        {othersBookings.map((oq) => (
-          <OtherBooking
-            oq={oq}
-            key={oq.id}
-            handleCancelBooking={handleCancelBooking}
-          />
-        ))}
+        {othersBookings.length < 1 ? (
+          <p className="title-center">No dispone de ninguna reserva</p>
+        ) : (
+          othersBookings.map((oq) => (
+            <OtherBooking
+              oq={oq}
+              key={oq.id}
+              handleCancelBooking={handleCancelBooking}
+            />
+          ))
+        )}
       </div>
 
       <p className="title-center" onClick={() => navigate("/")}>
         Volver al menú
       </p>
-
     </section>
   );
 };

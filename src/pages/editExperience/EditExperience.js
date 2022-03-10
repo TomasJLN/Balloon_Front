@@ -135,10 +135,7 @@ export const EditExperience = () => {
           ↩️ back
         </button>
       </div>
-      <hr />
-      <br />
-      <form onSubmit={handleUpdateCategory}>
-        <div>
+      <form className="generalForm" onSubmit={handleUpdateCategory}>
           <label htmlFor="id-cat-exp">Categoría: </label>
           <select
             name="categorias"
@@ -159,21 +156,6 @@ export const EditExperience = () => {
               );
             })}
           </select>
-        </div>
-        <div className="double-field">
-          <div>
-            <label htmlFor="edit-exp-name">Título: </label>
-            <textarea
-              type="text"
-              id="edit-exp-name"
-              name="experience"
-              value={expData.title}
-              onChange={(e) => {
-                setExpData({ ...expData, title: e.target.value });
-              }}
-              placeholder="Nombre categoría"
-            />
-          </div>
           <div className="edit-sect-activar">
             <p>Activar</p>
             <Switch checked={expData.active} onChange={handleActiveChange} />
@@ -183,10 +165,20 @@ export const EditExperience = () => {
               onChange={handleFeaturedChange}
             />
           </div>
-        </div>
-        <div>
-          <label htmlFor="edit-exp-description">Descripción: </label>
+         
+          <input
+              className="generalInput"
+              type="text"
+              id="edit-exp-name"
+              name="experience"
+              value={expData.title}
+              onChange={(e) => {
+                setExpData({ ...expData, title: e.target.value });
+              }}
+              placeholder="Nombre categoría"
+            />
           <textarea
+            className="generalTextarea"
             type="text"
             id="edit-exp-description"
             name="description"
@@ -196,10 +188,8 @@ export const EditExperience = () => {
             }}
             placeholder="Descripción de la experiencia"
           />
-        </div>
-        <div className="input-text-field">
-          <label htmlFor="edit-price-exp">Precio: </label>
           <input
+            className="generalInput"
             type="text"
             id="edit-price-exp"
             name="price"
@@ -209,10 +199,8 @@ export const EditExperience = () => {
             }}
             placeholder="Precio de la experiencia"
           />
-        </div>
-        <div className="input-text-field-row">
-          <label htmlFor="edit-places-exp">Plazas por día: </label>
           <input
+            className="generalInput"
             type="text"
             name="totalPlaces"
             id="edit-places-exp"
@@ -222,19 +210,41 @@ export const EditExperience = () => {
             }}
             placeholder="Plazas por día"
           />
-        </div>
-        <div className="input-text-field-row">
+           <input
+            className="generalInput"
+            type="text"
+            id="edit-location-exp"
+            name="location"
+            value={expData.location}
+            onChange={(e) => {
+              setExpData({ ...expData, location: e.target.value });
+            }}
+            placeholder="Lugar de la experiencia"
+          />
+          <input
+            className="generalInput"
+            type="text"
+            id="edit-coords-exp"
+            name="coords"
+            value={expData.coords}
+            onChange={(e) => {
+              setExpData({ ...expData, coords: e.target.value });
+            }}
+            placeholder="Coordenadas"
+          />
+          <div className="input-text-field-row">
           <label htmlFor="edit-startDate-exp">Fecha Inicio: </label>
           <div id="edit-startDate-exp">
             <DatePicker
               style={{
-                display: "flex",
-                alignItems: "center",
-                width: "120px",
-                textAlign: "center",
-                fontSize: "1.1rem",
-                border: "none",
-                boxShadow: "2px 2px 4px grey",
+                borderRadius: "30px",
+	              textAlign: "center",
+	              height: "2.5rem",
+	              width: "250px",
+	              border: "none",
+	              boxShadow: "2px 2px 4px gray",
+	              marginBottom: "1rem",
+	              marginTop: "1rem",
               }}
               id="date"
               value={expData?.startDate}
@@ -248,13 +258,14 @@ export const EditExperience = () => {
           <div id="edit-endDate-exp">
             <DatePicker
               style={{
-                display: "flex",
-                alignItems: "center",
-                width: "120px",
-                textAlign: "center",
-                fontSize: "1.1rem",
-                border: "none",
-                boxShadow: "2px 2px 4px grey",
+                borderRadius: "30px",
+	              textAlign: "center",
+	              height: "2.5rem",
+	              width: "250px",
+	              border: "none",
+	              boxShadow: "2px 2px 4px gray",
+	              marginBottom: "1rem",
+	              marginTop: "1rem",
               }}
               id="date"
               value={expData?.endDate}
@@ -265,37 +276,8 @@ export const EditExperience = () => {
             />
           </div>
         </div>
-        <div className="input-text-field">
-          <label htmlFor="edit-location-exp">Localización: </label>
-          <input
-            className="edit-experience"
-            type="text"
-            id="edit-location-exp"
-            name="location"
-            value={expData.location}
-            onChange={(e) => {
-              setExpData({ ...expData, location: e.target.value });
-            }}
-            placeholder="Lugar de la experiencia"
-          />
-        </div>
-        <div className="input-text-field">
-          <label htmlFor="edit-coords-exp">Coordenadas: </label>
-          <input
-            className="edit-experience"
-            type="text"
-            id="edit-coords-exp"
-            name="coords"
-            value={expData.coords}
-            onChange={(e) => {
-              setExpData({ ...expData, coords: e.target.value });
-            }}
-            placeholder="Fecha inicio experiencia"
-          />
-        </div>
-        <div className="textarea-input">
-          <label htmlFor="edit-conditions-exp">Condiciones: </label>
-          <textarea
+        <textarea
+            className="generalTextarea"
             type="text"
             id="edit-conditions-exp"
             name="condiciones"
@@ -305,10 +287,8 @@ export const EditExperience = () => {
             }}
             placeholder="Condiciones de la experiencia"
           />
-        </div>
-        <div className="textarea-input">
-          <label htmlFor="edit-normatives-exp">Normativas: </label>
           <textarea
+            className="generalTextarea"
             type="text"
             id="edit-normatives-exp"
             name="normatives"
@@ -318,7 +298,9 @@ export const EditExperience = () => {
             }}
             placeholder="Normativas de la experiencia"
           />
+             <div className="input-text-field">
         </div>
+      
         {!error && <p className="title-center">Imagen de la categoría</p>}
 
         <figure className="photo-figure-category">
@@ -326,7 +308,7 @@ export const EditExperience = () => {
             <img
               src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp}`}
               alt={expData.title}
-              className="photo-experience"
+              className="generalPhoto"
               onClick={handlePictureClick}
             />
           ) : (
@@ -334,11 +316,10 @@ export const EditExperience = () => {
               src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
               alt={expData.title}
               onClick={handlePictureClick}
-              className="photo-experience"
+              className="generalPhoto"
             />
           )}
         </figure>
-
         <input
           type="file"
           id="fileSelector"
