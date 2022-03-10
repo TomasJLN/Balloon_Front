@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ToggleButton from "../toggleButton/ToggleButton";
@@ -15,8 +15,6 @@ const Filter = ({ catTit, setCatTit }) => {
 	const datePickerRef = useRef();
 	const navigate = useNavigate();
 
-	console.log("NAVIGATE", navigate);
-
 	const [rating, setRating] = useState("");
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
@@ -25,6 +23,7 @@ const Filter = ({ catTit, setCatTit }) => {
 	const [isButtonToggleOn, setIsButtonToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState("");
+	const [order, setOrder] = useState("ASC");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -37,8 +36,12 @@ const Filter = ({ catTit, setCatTit }) => {
 		setIsToggleOn(!isToggleOn);
 	};
 	let query = "/";
+
+	console.log("ORDEEER", order);
+
 	useEffect(() => {
 		query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
+		query += order ? `&direction=${order}` : "";
 		query += searchPrice[0] === 1 ? "" : `&start_price=${searchPrice[0]}`;
 		query += searchPrice[1] === 1000 ? "" : `&end_price=${searchPrice[1]}`;
 		query += searchCat ? `&category=${searchCat}` : "";
@@ -47,7 +50,7 @@ const Filter = ({ catTit, setCatTit }) => {
 		query += searchDate.length > 1 ? `&end=${searchDate[1]}` : "";
 		query += rating ? `&review?searchByExp=${rating}` : "";
 		navigate(query);
-	}, [searchCat, searchLoc, searchPrice, searchDate, rating]);
+	}, [order, searchCat, searchLoc, searchPrice, searchDate, rating]);
 
 	return (
 		<>
@@ -100,6 +103,33 @@ const Filter = ({ catTit, setCatTit }) => {
 								<RatingSearch rating={rating} setRating={setRating} />
 							</div>
 						)}
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "flex-start",
+							}}
+							className="order"
+						>
+							<label>Ordenar por:</label>
+							<Field
+								className="order"
+								value={order}
+								onChange={(e) => {
+									setOrder(e.target.value);
+								}}
+								name="locationfilter"
+								as="select"
+							>
+								<option className="order" value="ASC">
+									Mas baratos primero
+								</option>
+
+								<option className="order" value="DESC">
+									Mas caros primero
+								</option>
+							</Field>
+						</div>
 					</Form>
 				)}
 			</Formik>
