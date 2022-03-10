@@ -8,20 +8,14 @@ body {
 	min-width: 375px;
 }
 
-
 header {
 	background-color: rgba(235, 203, 62, 0.829);
-
-
-
-
-
 }
 
 .generalForm {
 	border-radius: 20px;
 	background-color: rgb(158, 152, 152);
-	
+
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -29,11 +23,7 @@ header {
 	padding: 0.5rem 0;
 	min-height: 450px;
 	margin: 40px;
-
 }
-
-
-
 
 .generalLabel {
 	/* margin-bottom: 1rem;
@@ -68,20 +58,17 @@ header {
 	flex-direction: column;
 }
 
-
-  .generalForm h2{
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+.generalForm h2 {
+	margin-top: 1rem;
+	margin-bottom: 2rem;
 }
 
 .generalPhoto {
-
 	border: none;
 	border-radius: 30px;
 	max-width: 250px;
 	max-height: 100;
-  }  
-
+}
 
 .errorValidation {
 	color: red;
@@ -106,9 +93,7 @@ header {
 }
 
 .generalButton:hover {
-
-
-	background-color: rgb(255, 85, 58) ;
+	background-color: rgb(255, 85, 58);
 	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
 }
 
@@ -203,7 +188,7 @@ header {
 	margin-right: 10px;
 }
 
-h1 {
+#principal > h1 {
 	color: white;
 	font-size: 39px;
 	font-weight: 400;

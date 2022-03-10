@@ -1,7 +1,6 @@
 import { Formik, Form } from "formik";
-import queryString from "query-string";
 import { useEffect, useState, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ToggleButton from "../toggleButton/ToggleButton";
 import SearchBar from "./SearchBar";
 import RatingSearch from "./RatingSearch";
@@ -12,28 +11,34 @@ import PriceSearch from "./PriceSearch";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import "./filter.css";
 
-const Filter = () => {
+const Filter = ({ catTit, setCatTit }) => {
 	const datePickerRef = useRef();
 	const navigate = useNavigate();
+
+	console.log("NAVIGATE", navigate);
 
 	const [rating, setRating] = useState("");
 	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
 	const [searchPrice, setSearchPrice] = useState([1, 1000]);
 	const [isToggleOn, setIsToggleOn] = useState(false);
+	const [isButtonToggleOn, setIsButtonToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		setIsButtonToggleOn(true);
+		navigate(`/allFilter?experience=${toSearch}`);
 	};
 
 	const handleToggle = () => {
 		setIsToggleOn(!isToggleOn);
 	};
-
+	let query = "/";
 	useEffect(() => {
-		let query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
+		query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
 		query += searchPrice[0] === 1 ? "" : `&start_price=${searchPrice[0]}`;
 		query += searchPrice[1] === 1000 ? "" : `&end_price=${searchPrice[1]}`;
 		query += searchCat ? `&category=${searchCat}` : "";
@@ -42,7 +47,7 @@ const Filter = () => {
 		query += searchDate.length > 1 ? `&end=${searchDate[1]}` : "";
 		query += rating ? `&review?searchByExp=${rating}` : "";
 		navigate(query);
-	}, [searchCat, searchLoc, searchPrice, searchDate, rating, toSearch]);
+	}, [searchCat, searchLoc, searchPrice, searchDate, rating]);
 
 	return (
 		<>
@@ -50,8 +55,12 @@ const Filter = () => {
 				{() => (
 					<Form onSubmit={handleSubmit}>
 						<div className="hero">
-							<div>
-								<h1>Encuentra la experiencia que estabas buscando</h1>
+							<div id="principal">
+								{catTit ? (
+									<h1>Categoría {catTit}</h1>
+								) : (
+									<h1>Encuentra la experiencia que estabas buscando</h1>
+								)}
 							</div>
 
 							<div className="searchContainer">
@@ -64,16 +73,22 @@ const Filter = () => {
 								/>
 							</div>
 						</div>
-						<div className="toggleContainer">
-							<ToggleButton handleToggle={handleToggle} />
-						</div>
+						{!isButtonToggleOn ? (
+							""
+						) : (
+							<div className="toggleContainer">
+								<ToggleButton handleToggle={handleToggle} />
+							</div>
+						)}
 
 						{isToggleOn && (
 							<div className="filterContainer slideInDownfade_in">
-								<CategorySearch
-									searchCat={searchCat}
-									setSearchCat={setSearchCat}
-								/>
+								{!catTit && (
+									<CategorySearch
+										searchCat={searchCat}
+										setSearchCat={setSearchCat}
+									/>
+								)}
 								<LocationSearch
 									searchLoc={searchLoc}
 									setSearchLoc={setSearchLoc}
