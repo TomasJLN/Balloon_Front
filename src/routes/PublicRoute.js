@@ -97,8 +97,24 @@ export const PublicRoute = () => {
             </>
           }
         />
-        <Route path="error" element={<ErrorPage />} />
-        <Route path="recovery" element={<RecoveryPassword />} />
+        <Route 
+          path="error" 
+          element={
+          <>
+            <ErrorPage />
+            <Footer />
+          </>
+          }
+        />
+        <Route 
+          path="recovery" 
+          element={
+          <>
+            <RecoveryPassword />
+            <Footer/>
+          </>
+          }
+        />
         <Route
           path=""
           element={
