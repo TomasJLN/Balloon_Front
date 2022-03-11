@@ -1,19 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap');
+
 * {
-	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.03em;
+	line-height: 1.6em;
+	min-height: calc(100vh - 100px - 250px);
 	min-width: 375px;
+	position: relative;
+	padding-bottom: 3em;
+
 }
 
 header{
+
+	/*He probado a posicionar header con sticky y footer pero aún así las card-experiences no
+	hacen scroll hasta abajo y la imagen del filtro pisa el puto menú jaja*/
+	position: sticky;
+	width: 100%;
 	background-color: white;
-	box-shadow: 1px 1px 50px 2px;
-
-
+	box-shadow: 2px 3px 20px 5px;
+	/* height: 5vh; */
+	height: 100px;
 }
+
+.navbar {
+	position: absolute;
+	top: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	
+	margin-top: 4rem;
+	z-index: 100;
+	background-color: black;
+	width: 100vmax;
+	opacity: 95%;
+   }
+
+.footer {
+	font-size: 0.8rem;
+	position: fixed;
+	/* margin: 0; */
+    bottom: 0;
+	max-height: 290px;
+	width: 100%;
+	height: 250px;
+	padding: 1em 0;
+	color: black;
+	background-color: white;
+    border-top: 1px solid rgb(214, 200, 200);
+	box-shadow: 2px 3px 20px 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	
+  }
+
+
 
 .generalForm{
 
@@ -138,6 +188,7 @@ header{
 .wrap-content {
 	margin: 0 10px;
 }
+
 
 @media screen and (max-width: 600px){
 	form{
