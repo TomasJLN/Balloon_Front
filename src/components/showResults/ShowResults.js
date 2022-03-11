@@ -3,18 +3,15 @@ import { useLocation } from "react-router-dom";
 import { useFiltered } from "../../hooks/useFiltered";
 import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
-// import { ToTop } from "../toTop/ToTop";
 import "./show-results.css";
 
-const ShowResults = ({ isVisible, setIsVisible }) => {
-  //Experiencias mostradas por página
-  const expByPage = 6;
-
+const ShowResults = () => {
   const location = useLocation();
 
-  const [lastIndex, setLastIndex] = useState(expByPage);
-
   const [btnMore, setBtnMore] = useState(false);
+  const [expByPage, setExpByPage] = useState(6);
+  const [lastIndex, setLastIndex] = useState(expByPage);
+  const [windowWidth, setWindowWidth] = useState(window.outerWidth);
 
   const q = location.search;
 
@@ -27,13 +24,20 @@ const ShowResults = ({ isVisible, setIsVisible }) => {
   const pagFiltered = filtered.slice(0, lastIndex);
 
   useEffect(() => {
+    const getWindowWidth = () => {
+      windowWidth > 767 ? setExpByPage(12) : setExpByPage(6);
+    };
+    getWindowWidth();
+  }, []);
+
+  useEffect(() => {
     error && toast.error(error);
   }, [error]);
 
   useEffect(() => {
     setLastIndex(expByPage);
     setBtnMore(true);
-  }, [query]);
+  }, [query, expByPage, setExpByPage, windowWidth]);
 
   useEffect(() => {
     if (filtered.length > 0 && lastIndex >= filtered.length) {
@@ -58,7 +62,6 @@ const ShowResults = ({ isVisible, setIsVisible }) => {
         </div>
       ) : (
         <>
-          {/* <ToTop isVisible={isVisible} setIsVisible={setIsVisible} /> */}
           <div className="card-deck fade_in">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (
