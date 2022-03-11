@@ -143,8 +143,10 @@ const Filter = ({ catTit, setCatTit }) => {
 							</div>
 						)}
 						<div className="resultTit">
-							{isButtonToggleOn && (
+							{isButtonToggleOn ? (
 								<h2>Resultado de búsqueda para: {toSearch}</h2>
+							) : (
+								<h2>No te pierdas nuestras experiencias destacadas...</h2>
 							)}
 						</div>
 						<div
