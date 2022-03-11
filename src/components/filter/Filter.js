@@ -33,7 +33,9 @@ const Filter = ({ catTit, setCatTit }) => {
 		navigate(`/allFilter?experience=${toSearch}`);
 	};
 
-	const handleToggle = () => {
+	const handleToggle = (e) => {
+		e.preventDefault();
+
 		setIsToggleOn(!isToggleOn);
 	};
 	let query = "/";
@@ -52,6 +54,11 @@ const Filter = ({ catTit, setCatTit }) => {
 		query += rating ? `&review?searchByExp=${rating}` : "";
 		navigate(query);
 	}, [order, searchCat, searchLoc, searchPrice, searchDate, rating]);
+
+	useEffect(() => {
+		setIsButtonToggleOn(false);
+		setIsToggleOn(false);
+	}, [toSearch]);
 
 	return (
 		<>
@@ -161,6 +168,9 @@ const Filter = ({ catTit, setCatTit }) => {
 								</option>
 							</Field>
 						</div>
+						{isButtonToggleOn && (
+							<h2>Resultado de búsqueda para: {toSearch}</h2>
+						)}
 					</Form>
 				)}
 			</Formik>
