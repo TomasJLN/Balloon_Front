@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
+
 import { useGetCategories } from "../../hooks/useGetCategories";
 import { useNavigate } from "react-router-dom";
 import "./dropDown.css";
@@ -15,7 +17,12 @@ const Dropdown = ({ catTit, setCatTit, setShowNavBar }) => {
 	return (
 		<ul className="dropdown">
 			<li className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-				CATEGORIAS <FaArrowDown className="arrowdown" />
+				CATEGORIAS{" "}
+				{isActive ? (
+					<FaArrowUp className="arrowdown" />
+				) : (
+					<FaArrowDown className="arrowdown" />
+				)}
 			</li>
 
 			{isActive && (
