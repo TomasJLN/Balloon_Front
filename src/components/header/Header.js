@@ -53,12 +53,14 @@ export const Header = () => {
 
 						{!showNavBar ? (
 							<FaBars
+								className="menuprincipal"
 								onClick={() => {
 									setShowNavBar(!showNavBar);
 								}}
 							/>
 						) : (
-							<GrClose />
+							<GrClose
+							/>
 						)}
 
 					</nav>
@@ -67,7 +69,9 @@ export const Header = () => {
 						{userMenu && (
 							<NavUser setUserMenu={setUserMenu} usuario={usuario} />
 						)}
-						<Avatar usuario={usuario} setUserMenu={setUserMenu} />
+						<Avatar 
+						
+						usuario={usuario} setUserMenu={setUserMenu} />
 					</div>
 				</header>
 			)}

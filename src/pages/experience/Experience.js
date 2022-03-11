@@ -53,7 +53,21 @@ const Experience = () => {
 
   return (
     <div className="single-card">
+      <div > 
+
       <h1 className="title">{title}</h1>
+      </div>
+      <div className="buttoncontainer">
+
+      <button
+          className="buttonback"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Volver
+        </button>
+      </div>
       <figure>
         {photo ? (
           <img
@@ -68,14 +82,7 @@ const Experience = () => {
             className="exp-picture"
           />
         )}
-        <button
-          className="btn-back"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ↩️ back
-        </button>
+      
       </figure>
       <div className="rating-back">
         <p className="stars-row">
@@ -93,7 +100,7 @@ const Experience = () => {
         </p>
       </div>
       <div className="exp-description">
-        <p>Descripción: </p>
+        <p className="description">Descripción general:</p>
         <p>{description}</p>
       </div>
       <div>
@@ -123,16 +130,16 @@ const Experience = () => {
           Comprar
         </button>
       </div>
-      <div className="accordion-section">
+      <div >
         {infoExperience.map(({ title, content }) => (
-          <Accordion key={title} title={title} content={content} />
+          <Accordion className="accordion-section" key={title} title={title} content={content} />
         ))}
       </div>
       <hr id="opinions-section" />
       {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
       <hr />
       <div>
-        <h2 id="ex-sim">Otras experiencias que podrían interesarte...</h2>
+        <h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
         <div>
           <CarouselSimilar
             reviews={reviews}
