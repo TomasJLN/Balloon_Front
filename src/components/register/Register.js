@@ -202,7 +202,9 @@ const Register = () => {
           name="terminos"
           id="terminos"
           checked={checkboxValidation}
-          onChange={() => setCheckboxValidation(!checkboxValidation)}
+          onChange={() => {
+            setCheckboxValidation(!checkboxValidation);
+          }}
         />
 
         <label htmlFor="terminos">Acepto los términos y condiciones</label>
