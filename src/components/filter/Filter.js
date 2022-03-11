@@ -10,6 +10,7 @@ import LocationSearch from "./LocationSearch";
 import PriceSearch from "./PriceSearch";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import "./filter.css";
+import { AiOutlineControl } from "react-icons/ai";
 
 const Filter = ({ catTit, setCatTit }) => {
 	const datePickerRef = useRef();
@@ -23,7 +24,7 @@ const Filter = ({ catTit, setCatTit }) => {
 	const [isButtonToggleOn, setIsButtonToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
 	const [toSearch, setToSearch] = useState("");
-	const [order, setOrder] = useState("ASC");
+	const [order, setOrder] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -80,7 +81,37 @@ const Filter = ({ catTit, setCatTit }) => {
 							""
 						) : (
 							<div className="toggleContainer">
-								<ToggleButton handleToggle={handleToggle} />
+								{!isToggleOn ? (
+									<button
+										style={{
+											display: "flex",
+											alignItems: "center",
+											padding: "5px 10px",
+											fontSize: "17px",
+											backgroundColor: "white",
+											borderRadius: "4px",
+										}}
+										onClick={handleToggle}
+									>
+										Más filtros
+										<AiOutlineControl style={{ fontSize: "25px" }} />
+									</button>
+								) : (
+									<button
+										style={{
+											display: "flex",
+											alignItems: "center",
+											padding: "5px 10px",
+											fontSize: "17px",
+											backgroundColor: "white",
+											borderRadius: "4px",
+										}}
+										onClick={handleToggle}
+									>
+										Cerrar filtros{" "}
+										<AiOutlineControl style={{ fontSize: "25px" }} />
+									</button>
+								)}
 							</div>
 						)}
 
