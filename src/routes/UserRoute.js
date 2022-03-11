@@ -3,6 +3,7 @@ import { BookingDetails } from '../pages/bookingDetails/BookingDetails';
 import Editprofile from '../pages/editProfile/Editprofile';
 import { RateExperience } from '../pages/rateExperience/RateExperience';
 import { DashboardRoute } from './DashboardRoute';
+import Footer from '../components/footer/Footer';
 
 export const UserRoute = () => {
     return (
