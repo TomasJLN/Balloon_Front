@@ -58,6 +58,7 @@ const Filter = ({ catTit, setCatTit }) => {
 	useEffect(() => {
 		setIsButtonToggleOn(false);
 		setIsToggleOn(false);
+		navigate("/");
 	}, [toSearch]);
 
 	return (
@@ -141,6 +142,11 @@ const Filter = ({ catTit, setCatTit }) => {
 								<RatingSearch rating={rating} setRating={setRating} />
 							</div>
 						)}
+						<div className="resultTit">
+							{isButtonToggleOn && (
+								<h2>Resultado de búsqueda para: {toSearch}</h2>
+							)}
+						</div>
 						<div
 							style={{
 								display: "flex",
@@ -168,9 +174,6 @@ const Filter = ({ catTit, setCatTit }) => {
 								</option>
 							</Field>
 						</div>
-						{isButtonToggleOn && (
-							<h2>Resultado de búsqueda para: {toSearch}</h2>
-						)}
 					</Form>
 				)}
 			</Formik>
