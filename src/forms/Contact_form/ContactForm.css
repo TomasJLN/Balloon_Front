@@ -3,6 +3,12 @@
 	margin-bottom: 40px;
 }
 
+.checkForm{
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+
+}
 
 
 

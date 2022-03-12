@@ -1,9 +1,7 @@
 .hero {
 	position: relative;
-	width: 100vw;
 	height: 200px;
 	display: flex;
-
 	justify-content: center;
 	align-items: center;
 	background: url("https://source.unsplash.com/random/?adventures");

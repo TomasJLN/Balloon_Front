@@ -61,7 +61,7 @@ const validateEmail = (value) => {
 							{errors.email && touched.email && <h3 className="errorValidation">{errors.email}</h3>}
 
 							<label className="generalLabel">Teléfono:</label>
-							<Field className="generalInput" name='tel' type='number' />
+							<Field className="generalInput" name='tel' type='tlf' />
 							<ErrorMessage className="errorValidation" name='tel' />
 
 							<label className="generalLabel">Tipo de consulta:</label>
@@ -72,10 +72,10 @@ const validateEmail = (value) => {
 							</Field>
 							<ErrorMessage className="errorValidation" name='tipo_consulta' />
 							<label className="generalLabel">Mensaje:</label>
-							<Field className="generalInput" name='mensaje' as='textarea' rows='5' />
+							<Field className="generalTextarea" name='mensaje' as='textarea' />
 							<ErrorMessage className="errorValidation" name='mensaje' />
-							<label>
-								<Field type='checkbox' name='acceptance' />
+							<label className="terminosConditions">
+								<Field className="checkboxBox" type='checkbox' name='acceptance' />
 								He leído y acepto la política de privacidad
 							</label>
 							<ErrorMessage className="errorValidation" name='acceptance' />

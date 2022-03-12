@@ -62,11 +62,11 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/account">Log in</Link>
           </li>
         )}
-        {!token && (
+        {/* {!token && (
           <li>
             <Link to="/recovery">Recuperar contraseña</Link>
           </li>
-        )}
+        )} */}
       </ul>
     </menu>
   );
