@@ -5,81 +5,108 @@ import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
 import "./show-results.css";
 
-const ShowResults = () => {
-  const location = useLocation();
+const ShowResults = ({
+	toSearchTit,
+	toSearch,
 
-  const [btnMore, setBtnMore] = useState(false);
-  const [expByPage, setExpByPage] = useState(6);
-  const [lastIndex, setLastIndex] = useState(expByPage);
-  const [windowWidth, setWindowWidth] = useState(window.outerWidth);
+	catTit,
+	setCatTit,
+}) => {
+	let resultTitle = "";
 
-  const q = location.search;
+	if (catTit && !toSearchTit) {
+		resultTitle = catTit;
+	} else if (toSearchTit && !catTit) {
+		resultTitle = toSearch;
+	} else if (toSearchTit && catTit) {
+		resultTitle = catTit;
+	} else {
+		resultTitle = "Destacados";
+	}
 
-  let query = q;
+	console.log("catTit", catTit);
+	console.log("toSearchTit", toSearchTit);
 
-  query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
+	const location = useLocation();
 
-  const { filtered, loading, error } = useFiltered(query);
+	const [btnMore, setBtnMore] = useState(false);
+	const [expByPage, setExpByPage] = useState(6);
+	const [lastIndex, setLastIndex] = useState(expByPage);
+	const [windowWidth, setWindowWidth] = useState(window.outerWidth);
 
-  const pagFiltered = filtered.slice(0, lastIndex);
+	const q = location.search;
 
-  useEffect(() => {
-    const getWindowWidth = () => {
-      windowWidth > 767 ? setExpByPage(12) : setExpByPage(6);
-    };
-    getWindowWidth();
-  }, []);
+	let query = q;
 
-  useEffect(() => {
-    error && toast.error(error);
-  }, [error]);
+	query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
 
-  useEffect(() => {
-    setLastIndex(expByPage);
-    setBtnMore(true);
-  }, [query, expByPage, setExpByPage, windowWidth]);
+	const { filtered, loading, error } = useFiltered(query);
 
-  useEffect(() => {
-    if (filtered.length > 0 && lastIndex >= filtered.length) {
-      setBtnMore(false);
-    }
-  }, [filtered, lastIndex]);
+	const pagFiltered = filtered.slice(0, lastIndex);
 
-  const handleLoadMore = () => {
-    if (lastIndex >= filtered.length) {
-      setBtnMore(false);
-    } else {
-      setBtnMore(true);
-      setLastIndex(lastIndex + expByPage);
-    }
-  };
+	useEffect(() => {
+		const getWindowWidth = () => {
+			windowWidth > 767 ? setExpByPage(12) : setExpByPage(6);
+		};
+		getWindowWidth();
+	}, []);
 
-  return (
-    <>
-      {loading ? (
-        <div className="spinner-container">
-          <h1>Loading...</h1>
-        </div>
-      ) : (
-        <>
-          <div className="card-deck fade_in">
-            {pagFiltered.length > 0 ? (
-              pagFiltered.map((exp) => (
-                <ExperienceCard key={exp.id} exp={exp} />
-              ))
-            ) : (
-              <h1 className="info fade_in">No se encontraron resultados</h1>
-            )}
-          </div>
-          {btnMore && (
-            <button onClick={handleLoadMore} className="show-more">
-              Cargar más...
-            </button>
-          )}
-        </>
-      )}
-    </>
-  );
+	useEffect(() => {
+		error && toast.error(error);
+	}, [error]);
+
+	useEffect(() => {
+		setLastIndex(expByPage);
+		setBtnMore(true);
+	}, [query, expByPage, setExpByPage, windowWidth]);
+
+	useEffect(() => {
+		if (filtered.length > 0 && lastIndex >= filtered.length) {
+			setBtnMore(false);
+		}
+	}, [filtered, lastIndex]);
+
+	const handleLoadMore = () => {
+		if (lastIndex >= filtered.length) {
+			setBtnMore(false);
+		} else {
+			setBtnMore(true);
+			setLastIndex(lastIndex + expByPage);
+		}
+	};
+
+	return (
+		<>
+			{loading ? (
+				<div className="spinner-container">
+					<h1>Loading...</h1>
+				</div>
+			) : (
+				<>
+					{" "}
+					{pagFiltered.length > 0 && (
+						<h2>Resultado para la búsqueda: {resultTitle}</h2>
+					)}
+					<div className="card-deck fade_in">
+						{pagFiltered.length > 0 ? (
+							pagFiltered.map((exp) => (
+								<ExperienceCard key={exp.id} exp={exp} />
+							))
+						) : (
+							<h1 className="info fade_in">
+								No se encontraron resultados para: {toSearch}
+							</h1>
+						)}
+					</div>
+					{btnMore && (
+						<button onClick={handleLoadMore} className="show-more">
+							Cargar más...
+						</button>
+					)}
+				</>
+			)}
+		</>
+	);
 };
 
 export default ShowResults;

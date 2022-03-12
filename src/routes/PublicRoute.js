@@ -16,7 +16,14 @@ import Conditions from "../pages/conditions/Conditions";
 import Footer from "../components/footer/Footer";
 import Filter from "../components/filter/Filter";
 
-export const PublicRoute = ({ catTit, setCatTit }) => {
+export const PublicRoute = ({
+	toSearchTit,
+	setToSearchTit,
+	toSearch,
+	setToSearch,
+	catTit,
+	setCatTit,
+}) => {
 	const [isVisible, setIsVisible] = useState(false);
 
 	return (
@@ -66,8 +73,24 @@ export const PublicRoute = ({ catTit, setCatTit }) => {
 					path="allFilter"
 					element={
 						<>
-							<Filter catTit={catTit} setCatTit={setCatTit} />
-							<ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+							<Filter
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								catTit={catTit}
+								setCatTit={setCatTit}
+							/>
+							<ShowResults
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								catTit={catTit}
+								setCatTit={setCatTit}
+								isVisible={isVisible}
+								setIsVisible={setIsVisible}
+							/>
 							<Footer />
 						</>
 					}
@@ -78,8 +101,20 @@ export const PublicRoute = ({ catTit, setCatTit }) => {
 					path=""
 					element={
 						<>
-							<Filter />
-							<ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+							<Filter
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+							/>
+							<ShowResults
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								catTit={catTit}
+								setCatTit={setCatTit}
+								isVisible={isVisible}
+								setIsVisible={setIsVisible}
+							/>
 							<Footer />
 						</>
 					}

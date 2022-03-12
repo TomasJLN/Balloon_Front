@@ -12,7 +12,14 @@ import NavBar from "../navBar/navBar";
 import NavUser from "../navUser/NavUser";
 import "./header.css";
 
-export const Header = ({ catTit, setCatTit }) => {
+export const Header = ({
+	toSearch,
+	setToSearch,
+	toSearchTit,
+	setToSearchTit,
+	catTit,
+	setCatTit,
+}) => {
 	const [showNavBar, setShowNavBar] = useState(false);
 	const [userMenu, setUserMenu] = useState(false);
 	const [token, setToken] = useContext(TokenContext);
@@ -50,6 +57,10 @@ export const Header = ({ catTit, setCatTit }) => {
 					<nav>
 						{showNavBar && (
 							<NavBar
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
 								catTit={catTit}
 								setCatTit={setCatTit}
 								setShowNavBar={setShowNavBar}
@@ -66,7 +77,7 @@ export const Header = ({ catTit, setCatTit }) => {
 							<GrClose />
 						)}
 					</nav>
-					<GiBalloonDog onClick={handleClick} />
+					<GiBalloonDog style={{ fontSize: "60px" }} onClick={handleClick} />
 					<div>
 						{userMenu && (
 							<NavUser setUserMenu={setUserMenu} usuario={usuario} />

@@ -12,7 +12,14 @@ import "react-multi-date-picker/styles/layouts/mobile.css";
 import "./filter.css";
 import { AiOutlineControl } from "react-icons/ai";
 
-const Filter = ({ catTit, setCatTit }) => {
+const Filter = ({
+	toSearchTit,
+	setToSearchTit,
+	toSearch,
+	setToSearch,
+	catTit,
+	setCatTit,
+}) => {
 	const datePickerRef = useRef();
 	const navigate = useNavigate();
 
@@ -23,13 +30,13 @@ const Filter = ({ catTit, setCatTit }) => {
 	const [isToggleOn, setIsToggleOn] = useState(false);
 	const [isButtonToggleOn, setIsButtonToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
-	const [toSearch, setToSearch] = useState("");
 	const [order, setOrder] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		setIsButtonToggleOn(true);
+		setToSearchTit(true);
 		navigate(`/allFilter?experience=${toSearch}`);
 	};
 
@@ -40,7 +47,9 @@ const Filter = ({ catTit, setCatTit }) => {
 	};
 	let query = "/";
 
-	console.log("ORDEEER", order);
+	if (toSearch === 0) {
+		navigate(query);
+	}
 
 	useEffect(() => {
 		query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
@@ -58,7 +67,11 @@ const Filter = ({ catTit, setCatTit }) => {
 	useEffect(() => {
 		setIsButtonToggleOn(false);
 		setIsToggleOn(false);
-		navigate("/");
+		/* navigate("/"); */
+		if (catTit) {
+			setCatTit("");
+		}
+		setToSearchTit(false);
 	}, [toSearch]);
 
 	return (
@@ -68,11 +81,7 @@ const Filter = ({ catTit, setCatTit }) => {
 					<Form onSubmit={handleSubmit}>
 						<div className="hero">
 							<div id="principal">
-								{catTit ? (
-									<h1>Categoría {catTit}</h1>
-								) : (
-									<h1>Encuentra la experiencia que estabas buscando</h1>
-								)}
+								<h1>Encuentra la experiencia que estabas buscando</h1>
 							</div>
 
 							<div className="searchContainer">
@@ -142,13 +151,7 @@ const Filter = ({ catTit, setCatTit }) => {
 								<RatingSearch rating={rating} setRating={setRating} />
 							</div>
 						)}
-						<div className="resultTit">
-							{isButtonToggleOn ? (
-								<h2>Resultado de búsqueda para: {toSearch}</h2>
-							) : (
-								<h2>No te pierdas nuestras experiencias destacadas...</h2>
-							)}
-						</div>
+
 						<div
 							style={{
 								display: "flex",

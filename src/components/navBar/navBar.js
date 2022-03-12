@@ -3,7 +3,15 @@ import { useEffect, useRef } from "react";
 import Dropdown from "../dropDown/DropDown";
 import "./navBar.css";
 
-const NavBar = ({ catTit, setCatTit, setShowNavBar }) => {
+const NavBar = ({
+	toSearch,
+	setToSearch,
+	toSearchTit,
+	setToSearchTit,
+	catTit,
+	setCatTit,
+	setShowNavBar,
+}) => {
 	const ref = useRef(null);
 
 	useEffect(() => {
@@ -34,6 +42,10 @@ const NavBar = ({ catTit, setCatTit, setShowNavBar }) => {
 			{/* Añadimos al componente dropDown la función para cambiar el valor de showNavBar (setShowNavBar)
 		  para poder cerrar el menú cuando hagamos click en una categoría */}
 			<Dropdown
+				toSearch={toSearch}
+				setToSearch={setToSearch}
+				toSearchTit={toSearchTit}
+				setToSearchTit={setToSearchTit}
 				catTit={catTit}
 				setCatTit={setCatTit}
 				setShowNavBar={setShowNavBar}

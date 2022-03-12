@@ -10,18 +10,36 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const AppRoute = () => {
 	const [isVisible, setIsVisible] = useState(false);
-	const [catTit, setCatTit] = useState(null);
-	console.log("mother fucker", catTit);
+	const [catTit, setCatTit] = useState("");
+	const [toSearch, setToSearch] = useState("");
+	const [toSearchTit, setToSearchTit] = useState(false);
+
 	return (
 		<Router>
 			<TokenContextProvider>
 				<UserContextProvider>
-					<Header catTit={catTit} setCatTit={setCatTit} />
+					<Header
+						toSearch={toSearch}
+						setToSearch={setToSearch}
+						toSearchTit={toSearchTit}
+						setToSearchTit={setToSearchTit}
+						catTit={catTit}
+						setCatTit={setCatTit}
+					/>
 					<ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
 					<Routes>
 						<Route
 							path="/*"
-							element={<PublicRoute catTit={catTit} setCatTit={setCatTit} />}
+							element={
+								<PublicRoute
+									toSearchTit={toSearchTit}
+									setToSearchTit={setToSearchTit}
+									toSearch={toSearch}
+									setToSearch={setToSearch}
+									catTit={catTit}
+									setCatTit={setCatTit}
+								/>
+							}
 						/>
 					</Routes>
 				</UserContextProvider>

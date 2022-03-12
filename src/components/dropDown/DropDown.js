@@ -7,7 +7,14 @@ import { useNavigate } from "react-router-dom";
 import "./dropDown.css";
 
 //Traemos el mostrar Menu (setShowNavBar) para ocultarlo una vez se haga click en una categoría
-const Dropdown = ({ catTit, setCatTit, setShowNavBar }) => {
+const Dropdown = ({
+	setToSearch,
+
+	setToSearchTit,
+	catTit,
+	setCatTit,
+	setShowNavBar,
+}) => {
 	const [isActive, setIsActive] = useState(false);
 	//Declaramos una constante para poder usar el useNavigate en la página
 	const navigate = useNavigate();
@@ -35,11 +42,12 @@ const Dropdown = ({ catTit, setCatTit, setShowNavBar }) => {
 							//añadimos un onClick en cada elemento de la lista categorías, lo que hará será
 							//ocultar la barra del menú (setShowNavBar(false))
 							//navegar al filtro de categorías por el nombre de la categoría
-							onClick={() => {
-								setShowNavBar(false);
-
-								navigate(`/allFilter?category=${category.title}`);
+							onClick={(e) => {
 								setCatTit(category.title);
+								setShowNavBar(false);
+								/* setToSearchTit(false);
+								 */ /* setToSearch(""); */
+								navigate(`/allFilter?category=${category.title}`);
 							}}
 						>
 							{category.title}
