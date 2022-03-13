@@ -10,7 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const AppRoute = () => {
 	const [isVisible, setIsVisible] = useState(false);
-	const [catTit, setCatTit] = useState("");
+
+	const [searchCat, setSearchCat] = useState("");
 	const [toSearch, setToSearch] = useState("");
 	const [toSearchTit, setToSearchTit] = useState(false);
 
@@ -19,12 +20,12 @@ export const AppRoute = () => {
 			<TokenContextProvider>
 				<UserContextProvider>
 					<Header
+						searchCat={searchCat}
+						setSearchCat={setSearchCat}
 						toSearch={toSearch}
 						setToSearch={setToSearch}
 						toSearchTit={toSearchTit}
 						setToSearchTit={setToSearchTit}
-						catTit={catTit}
-						setCatTit={setCatTit}
 					/>
 					<ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
 					<Routes>
@@ -32,12 +33,12 @@ export const AppRoute = () => {
 							path="/*"
 							element={
 								<PublicRoute
+									searchCat={searchCat}
+									setSearchCat={setSearchCat}
 									toSearchTit={toSearchTit}
 									setToSearchTit={setToSearchTit}
 									toSearch={toSearch}
 									setToSearch={setToSearch}
-									catTit={catTit}
-									setCatTit={setCatTit}
 								/>
 							}
 						/>

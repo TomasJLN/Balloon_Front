@@ -11,8 +11,8 @@ const Dropdown = ({
 	setToSearch,
 
 	setToSearchTit,
-	catTit,
-	setCatTit,
+	searchCat,
+	setSearchCat,
 	setShowNavBar,
 }) => {
 	const [isActive, setIsActive] = useState(false);
@@ -43,10 +43,10 @@ const Dropdown = ({
 							//ocultar la barra del menú (setShowNavBar(false))
 							//navegar al filtro de categorías por el nombre de la categoría
 							onClick={(e) => {
-								setCatTit(category.title);
-								setShowNavBar(false);
+								setSearchCat(category.title);
+								setShowNavBar(false); /* setToSearch(""); */
 								/* setToSearchTit(false);
-								 */ /* setToSearch(""); */
+								 */
 								navigate(`/allFilter?category=${category.title}`);
 							}}
 						>
