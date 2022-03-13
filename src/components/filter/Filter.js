@@ -17,14 +17,13 @@ const Filter = ({
 	setToSearchTit,
 	toSearch,
 	setToSearch,
-	catTit,
-	setCatTit,
+	searchCat,
+	setSearchCat,
 }) => {
 	const datePickerRef = useRef();
 	const navigate = useNavigate();
 
 	const [rating, setRating] = useState("");
-	const [searchCat, setSearchCat] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
 	const [searchPrice, setSearchPrice] = useState([1, 1000]);
 	const [isToggleOn, setIsToggleOn] = useState(false);
@@ -32,9 +31,17 @@ const Filter = ({
 	const [searchDate, setSearchDate] = useState("");
 	const [order, setOrder] = useState("");
 
+	const resetFilter = () => {
+		setSearchCat("");
+		setSearchLoc("");
+		setSearchPrice([1, 1000]);
+		setRating("");
+		setSearchDate("");
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
+		resetFilter();
 		setIsButtonToggleOn(true);
 		setToSearchTit(true);
 		navigate(`/allFilter?experience=${toSearch}`);
@@ -47,9 +54,9 @@ const Filter = ({
 	};
 	let query = "/";
 
-	if (toSearch === 0) {
-		navigate(query);
-	}
+	/* if (toSearch.length < 1) {
+		navigate(-1);
+	} */
 
 	useEffect(() => {
 		query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
@@ -65,11 +72,8 @@ const Filter = ({
 	}, [order, searchCat, searchLoc, searchPrice, searchDate, rating]);
 
 	useEffect(() => {
-		setIsButtonToggleOn(false);
-		setIsToggleOn(false);
-		/* navigate("/"); */
-		if (catTit) {
-			setCatTit("");
+		if (searchCat) {
+			setSearchCat("");
 		}
 		setToSearchTit(false);
 	}, [toSearch]);
@@ -93,64 +97,48 @@ const Filter = ({
 									setSearchDate={setSearchDate}
 								/>
 							</div>
-						</div>
-						{!isButtonToggleOn ? (
-							""
-						) : (
-							<div className="toggleContainer">
+							{/* <div className="toggleContainer">
 								{!isToggleOn ? (
-									<button
-										style={{
-											display: "flex",
-											alignItems: "center",
-											padding: "5px 10px",
-											fontSize: "17px",
-											backgroundColor: "white",
-											borderRadius: "4px",
-										}}
-										onClick={handleToggle}
-									>
+									<button className="filterButton" onClick={handleToggle}>
 										Más filtros
 										<AiOutlineControl style={{ fontSize: "25px" }} />
 									</button>
 								) : (
-									<button
-										style={{
-											display: "flex",
-											alignItems: "center",
-											padding: "5px 10px",
-											fontSize: "17px",
-											backgroundColor: "white",
-											borderRadius: "4px",
-										}}
-										onClick={handleToggle}
-									>
+									<button className="filterButton" onClick={handleToggle}>
 										Cerrar filtros{" "}
 										<AiOutlineControl style={{ fontSize: "25px" }} />
 									</button>
 								)}
-							</div>
-						)}
+							</div> */}
+						</div>
 
-						{isToggleOn && (
-							<div className="filterContainer slideInDownfade_in">
-								{!catTit && (
-									<CategorySearch
-										searchCat={searchCat}
-										setSearchCat={setSearchCat}
-									/>
-								)}
-								<LocationSearch
-									searchLoc={searchLoc}
-									setSearchLoc={setSearchLoc}
-								/>
-								<PriceSearch
-									searchPrice={searchPrice}
-									setSearchPrice={setSearchPrice}
-								/>
-								<RatingSearch rating={rating} setRating={setRating} />
-							</div>
-						)}
+						<div className="filterContainer slideInDownfade_in">
+							<CategorySearch
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+							/>
+
+							<LocationSearch
+								searchLoc={searchLoc}
+								setSearchLoc={setSearchLoc}
+							/>
+							<PriceSearch
+								searchPrice={searchPrice}
+								setSearchPrice={setSearchPrice}
+							/>
+							<RatingSearch rating={rating} setRating={setRating} />
+							<button
+								className="filterButton"
+								onClick={(e) => {
+									e.preventDefault();
+									resetFilter();
+								}}
+							>
+								Borrar filtro
+							</button>
+						</div>
+
+						<div></div>
 
 						<div
 							style={{

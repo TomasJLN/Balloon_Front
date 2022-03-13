@@ -8,8 +8,8 @@ const NavBar = ({
 	setToSearch,
 	toSearchTit,
 	setToSearchTit,
-	catTit,
-	setCatTit,
+	searchCat,
+	setSearchCat,
 	setShowNavBar,
 }) => {
 	const ref = useRef(null);
@@ -46,8 +46,8 @@ const NavBar = ({
 				setToSearch={setToSearch}
 				toSearchTit={toSearchTit}
 				setToSearchTit={setToSearchTit}
-				catTit={catTit}
-				setCatTit={setCatTit}
+				searchCat={searchCat}
+				setSearchCat={setSearchCat}
 				setShowNavBar={setShowNavBar}
 			/>
 			<li className="dropdown-btn">

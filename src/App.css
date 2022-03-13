@@ -200,3 +200,14 @@ h2 {
 	font-size: 31px;
 	margin: 50px 0 25px 0;
 }
+
+span {
+	color: rgb(255, 85, 58);
+}
+
+@media screen and (max-width: 390px) {
+	#principal > h1 {
+		font-size: 27px;
+		text-align: center;
+	}
+}

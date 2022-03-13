@@ -17,8 +17,8 @@ export const Header = ({
 	setToSearch,
 	toSearchTit,
 	setToSearchTit,
-	catTit,
-	setCatTit,
+	searchCat,
+	setSearchCat,
 }) => {
 	const [showNavBar, setShowNavBar] = useState(false);
 	const [userMenu, setUserMenu] = useState(false);
@@ -61,8 +61,8 @@ export const Header = ({
 								setToSearch={setToSearch}
 								toSearchTit={toSearchTit}
 								setToSearchTit={setToSearchTit}
-								catTit={catTit}
-								setCatTit={setCatTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
 								setShowNavBar={setShowNavBar}
 							/>
 						)}

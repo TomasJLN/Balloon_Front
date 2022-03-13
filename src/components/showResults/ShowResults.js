@@ -5,28 +5,7 @@ import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
 import "./show-results.css";
 
-const ShowResults = ({
-	toSearchTit,
-	toSearch,
-
-	catTit,
-	setCatTit,
-}) => {
-	let resultTitle = "";
-
-	if (catTit && !toSearchTit) {
-		resultTitle = catTit;
-	} else if (toSearchTit && !catTit) {
-		resultTitle = toSearch;
-	} else if (toSearchTit && catTit) {
-		resultTitle = catTit;
-	} else {
-		resultTitle = "Destacados";
-	}
-
-	console.log("catTit", catTit);
-	console.log("toSearchTit", toSearchTit);
-
+const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 	const location = useLocation();
 
 	const [btnMore, setBtnMore] = useState(false);
@@ -37,6 +16,17 @@ const ShowResults = ({
 	const q = location.search;
 
 	let query = q;
+
+	let resultTitle = "";
+
+	if (searchCat && !toSearchTit) {
+		resultTitle = `Categoría ${searchCat}`;
+	} else if ((toSearchTit && !searchCat) || (toSearchTit && searchCat)) {
+		resultTitle = `Resultado de búsqueda para: ${toSearch}`;
+	} else if (!toSearchTit && toSearch) {
+		resultTitle = "";
+	} else if (query.length < 1)
+		resultTitle = "Nuestras experiencias destacadas...";
 
 	query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
 
@@ -84,18 +74,14 @@ const ShowResults = ({
 			) : (
 				<>
 					{" "}
-					{pagFiltered.length > 0 && (
-						<h2>Resultado para la búsqueda: {resultTitle}</h2>
-					)}
+					{pagFiltered.length > 0 && <h2>{resultTitle}</h2>}
 					<div className="card-deck fade_in">
 						{pagFiltered.length > 0 ? (
 							pagFiltered.map((exp) => (
 								<ExperienceCard key={exp.id} exp={exp} />
 							))
 						) : (
-							<h1 className="info fade_in">
-								No se encontraron resultados para: {toSearch}
-							</h1>
+							<h2 className="info fade_in">No se encontraron resultados</h2>
 						)}
 					</div>
 					{btnMore && (

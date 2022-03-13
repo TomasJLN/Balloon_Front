@@ -21,8 +21,8 @@ export const PublicRoute = ({
 	setToSearchTit,
 	toSearch,
 	setToSearch,
-	catTit,
-	setCatTit,
+	searchCat,
+	setSearchCat,
 }) => {
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -78,16 +78,16 @@ export const PublicRoute = ({
 								setToSearchTit={setToSearchTit}
 								toSearch={toSearch}
 								setToSearch={setToSearch}
-								catTit={catTit}
-								setCatTit={setCatTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
 							/>
 							<ShowResults
 								toSearchTit={toSearchTit}
 								setToSearchTit={setToSearchTit}
 								toSearch={toSearch}
 								setToSearch={setToSearch}
-								catTit={catTit}
-								setCatTit={setCatTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
 								isVisible={isVisible}
 								setIsVisible={setIsVisible}
 							/>
@@ -106,12 +106,14 @@ export const PublicRoute = ({
 								setToSearchTit={setToSearchTit}
 								toSearch={toSearch}
 								setToSearch={setToSearch}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
 							/>
 							<ShowResults
 								toSearch={toSearch}
 								setToSearch={setToSearch}
-								catTit={catTit}
-								setCatTit={setCatTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
 								isVisible={isVisible}
 								setIsVisible={setIsVisible}
 							/>
