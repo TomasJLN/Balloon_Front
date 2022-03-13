@@ -36,7 +36,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 
 	useEffect(() => {
 		const getWindowWidth = () => {
-			windowWidth > 767 ? setExpByPage(12) : setExpByPage(6);
+			windowWidth > 767 ? setExpByPage(6) : setExpByPage(6);
 		};
 		getWindowWidth();
 	}, []);
