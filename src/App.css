@@ -212,10 +212,10 @@ span {
   }
 }
 
-@media screen and (width> 959px) {
+/* @media screen and (width> 959px) {
   body {
     margin-left: auto;
     margin-right: auto;
     max-width: 1200px;
   }
-}
+} */
