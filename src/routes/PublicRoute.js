@@ -26,125 +26,152 @@ export const PublicRoute = ({
 }) => {
 	const [isVisible, setIsVisible] = useState(false);
 
-
-  return (
-    <div>
-      {/* {user.role !== "admin" && <Filter />} */}
-      <Routes>
-        <Route
-          path="privacity"
-          element={
-            <>
-              <Privacity />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="conditions"
-          element={
-            <>
-              <Conditions />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="contact-form"
-          element={
-            <>
-              <ContactForm />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="account" 
-          element={
-            <>
-              <Login />
-              <Footer />
-            </>
-          } 
-        />
-        <Route 
-          path="register" 
-          element={
-          
-            <>
-              <Register />
-              <Footer />
-            </>
-          } 
-        />
-        <Route
-          path="experience/:id"
-          element={
-            <>
-              <Experience />
-              <Footer />
-            </>
-          }
-        />
-        <Route 
-          path="booking/:id" 
-          element={
-            <>
-              <Booking />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="allFilter"
-          element={
-            <>
-              <Filter />
-              <ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
-              <Footer />
-            </>
-          }
-        />
-        <Route 
-          path="error" 
-          element={
-          <>
-            <ErrorPage />
-            <Footer />
-          </>
-          }
-        />
-        <Route 
-          path="recovery" 
-          element={
-          <>
-            <RecoveryPassword />
-            <Footer/>
-          </>
-          }
-        />
-        <Route
-          path=""
-          element={
-            <>
-              <Filter />
-              <ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="faq"
-          element={
-            <>
-              <Faq />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="*" element={<UserRoute />} />
-      </Routes>
-    </div>
-  );
+	return (
+		<div>
+			{/* {user.role !== "admin" && <Filter />} */}
+			<Routes>
+				<Route
+					path="privacity"
+					element={
+						<>
+							<Privacity />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="conditions"
+					element={
+						<>
+							<Conditions />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="contact-form"
+					element={
+						<>
+							<ContactForm />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="account"
+					element={
+						<>
+							<Login />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="register"
+					element={
+						<>
+							<Register />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="experience/:id"
+					element={
+						<>
+							<Experience />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="booking/:id"
+					element={
+						<>
+							<Booking />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="allFilter"
+					element={
+						<>
+							<Filter
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+							/>
+							<ShowResults
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+								isVisible={isVisible}
+								setIsVisible={setIsVisible}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+							/>
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="error"
+					element={
+						<>
+							<ErrorPage />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="recovery"
+					element={
+						<>
+							<RecoveryPassword />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path=""
+					element={
+						<>
+							<Filter
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+							/>
+							<ShowResults
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+								isVisible={isVisible}
+								setIsVisible={setIsVisible}
+							/>
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="faq"
+					element={
+						<>
+							<Faq />
+							<Footer />
+						</>
+					}
+				/>
+				<Route path="*" element={<UserRoute />} />
+			</Routes>
+		</div>
+	);
 };
-
