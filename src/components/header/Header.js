@@ -69,12 +69,14 @@ export const Header = ({
 
 						{!showNavBar ? (
 							<FaBars
+								className="menuprincipal"
 								onClick={() => {
 									setShowNavBar(!showNavBar);
 								}}
 							/>
 						) : (
-							<GrClose />
+							<GrClose
+							/>
 						)}
 					</nav>
 					<GiBalloonDog style={{ fontSize: "60px" }} onClick={handleClick} />
@@ -82,7 +84,9 @@ export const Header = ({
 						{userMenu && (
 							<NavUser setUserMenu={setUserMenu} usuario={usuario} />
 						)}
-						<Avatar usuario={usuario} setUserMenu={setUserMenu} />
+						<Avatar 
+						
+						usuario={usuario} setUserMenu={setUserMenu} />
 					</div>
 				</header>
 			)}

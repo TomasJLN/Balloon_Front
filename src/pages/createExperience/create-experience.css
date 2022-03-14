@@ -3,7 +3,7 @@
   flex-direction: column;
   flex-wrap: wrap;
 }
-
+/* 
 .btn-back{
 
   background-color: white;
@@ -18,7 +18,7 @@
 	letter-spacing: 1px;
 	cursor: pointer; 
 	margin-top: 1rem;
-	}
+	} */
 
   .edit-sect-activar{
     margin-top: 20px;

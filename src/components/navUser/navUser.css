@@ -1,12 +1,23 @@
 .nav-user {
-  display: flex;
+  
+  position: absolute;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	
+	margin-top: 4.7rem;
+	z-index: 3;
+	background-color: black;
+	opacity: 95%;
+
+  /* display: flex;
   flex-direction: column;
   position: absolute;
   top: 76px;
   right: 4px;
   z-index: 3;
   background-color: black;
-  opacity: 80%;
+  opacity: 80%; */
 }
 .nav-user ul li {
   font-size: 1.2rem;
