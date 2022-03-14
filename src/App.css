@@ -200,9 +200,13 @@ header{
 
 
 @media screen and (max-width: 600px){
-	form{
+	
+	body{
+		margin-right: 20%;
+		margin-left: 20%;
 
 	}
+
 }
 
 @keyframes fadeInAnimation {
