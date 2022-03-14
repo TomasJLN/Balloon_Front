@@ -37,7 +37,6 @@ const Filter = ({
 		setSearchPrice([1, 1000]);
 		setRating("");
 		setSearchDate("");
-		setToSearch("");
 	};
 
 	const handleSubmit = (e) => {
