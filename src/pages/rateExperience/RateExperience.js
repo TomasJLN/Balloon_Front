@@ -24,6 +24,7 @@ export const RateExperience = () => {
     setReview(dataReview);
     setLoading(load);
     setError(err);
+    console.log(dataReview);
   }, [dataReview]);
 
   const handleRating = (rate) => {
