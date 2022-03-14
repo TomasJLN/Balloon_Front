@@ -10,6 +10,7 @@ import fetcher from "../../helpers/fetcher";
 import { Avatar } from "../avatar/Avatar";
 import NavBar from "../navBar/navBar";
 import NavUser from "../navUser/NavUser";
+import MenuDesktop from "../menuDesktop/MenuDesktop";
 import "./header.css";
 
 export const Header = ({ catTit, setCatTit }) => {
@@ -19,6 +20,7 @@ export const Header = ({ catTit, setCatTit }) => {
 	const [usuario, setUsuario] = useContext(UserContext);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
+	// const [navDesktop, setNavDesktop] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -47,7 +49,8 @@ export const Header = ({ catTit, setCatTit }) => {
 				<h1>Loading...</h1>
 			) : (
 				<header id="main_header">
-					<nav>
+
+					<nav>						
 						{showNavBar && (
 							<NavBar
 								catTit={catTit}
@@ -58,8 +61,10 @@ export const Header = ({ catTit, setCatTit }) => {
 
 						{!showNavBar ? (
 							<FaBars
+								className="hamb-menu"
 								onClick={() => {
 									setShowNavBar(!showNavBar);
+									
 								}}
 							/>
 						) : (
@@ -73,8 +78,19 @@ export const Header = ({ catTit, setCatTit }) => {
 						)}
 						<Avatar usuario={usuario} setUserMenu={setUserMenu} />
 					</div>
+					<div>
+
+
+				
+					</div>
 				</header>
+				
 			)}
+			
+				<MenuDesktop
+							clasName="menuDesktop"
+							/>
+			
 		</>
 	);
 };
