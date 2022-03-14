@@ -16,8 +16,16 @@ import Conditions from "../pages/conditions/Conditions";
 import Footer from "../components/footer/Footer";
 import Filter from "../components/filter/Filter";
 
-export const PublicRoute = () => {
-  const [isVisible, setIsVisible] = useState(false);
+export const PublicRoute = ({
+	toSearchTit,
+	setToSearchTit,
+	toSearch,
+	setToSearch,
+	searchCat,
+	setSearchCat,
+}) => {
+	const [isVisible, setIsVisible] = useState(false);
+
 
   return (
     <div>
@@ -139,3 +147,4 @@ export const PublicRoute = () => {
     </div>
   );
 };
+

@@ -76,10 +76,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (error) toast.error(error);
-    return () => {
-      setError(null);
-    };
+    error && toast.error(error);
   }, [error]);
 
   return (
@@ -205,7 +202,9 @@ const Register = () => {
           name="terminos"
           id="terminos"
           checked={checkboxValidation}
-          onChange={() => setCheckboxValidation(!checkboxValidation)}
+          onChange={() => {
+            setCheckboxValidation(!checkboxValidation);
+          }}
         />
 
         <label htmlFor="terminos">Acepto los términos y condiciones</label>

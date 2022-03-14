@@ -12,7 +12,14 @@ import NavBar from "../navBar/navBar";
 import NavUser from "../navUser/NavUser";
 import "./header.css";
 
-export const Header = () => {
+export const Header = ({
+	toSearch,
+	setToSearch,
+	toSearchTit,
+	setToSearchTit,
+	searchCat,
+	setSearchCat,
+}) => {
 	const [showNavBar, setShowNavBar] = useState(false);
 	const [userMenu, setUserMenu] = useState(false);
 	const [token, setToken] = useContext(TokenContext);
@@ -48,8 +55,17 @@ export const Header = () => {
 			) : (
 				<header id="main_header">
 					<nav>
-						{showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
-
+						{showNavBar && (
+							<NavBar
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+								setShowNavBar={setShowNavBar}
+							/>
+						)}
 
 						{!showNavBar ? (
 							<FaBars
@@ -62,9 +78,8 @@ export const Header = () => {
 							<GrClose
 							/>
 						)}
-
 					</nav>
-					<GiBalloonDog onClick={handleClick} />
+					<GiBalloonDog style={{ fontSize: "60px" }} onClick={handleClick} />
 					<div>
 						{userMenu && (
 							<NavUser setUserMenu={setUserMenu} usuario={usuario} />
