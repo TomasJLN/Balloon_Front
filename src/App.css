@@ -187,7 +187,7 @@ header {
 	margin-right: 10px;
 }
 
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
 	body {
 		margin-right: 20%;
 		margin-left: 20%;
@@ -202,7 +202,7 @@ header {
 		}
 	}
 }
-
+ */
 .slideInDown {
 	-webkit-animation-name: slideInDown;
 	animation-name: slideInDown;
@@ -235,16 +235,11 @@ header {
 }
 
 #principal > h1 {
+	font-family: "Montserrat";
 	color: white;
 	font-size: 39px;
 	font-weight: 400;
 	padding: 15px 25px;
-}
-
-h2 {
-	text-align: center;
-	font-size: 31px;
-	margin: 50px 0 25px 0;
 }
 
 @media screen and (max-width: 390px) {

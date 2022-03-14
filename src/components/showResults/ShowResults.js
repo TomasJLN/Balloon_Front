@@ -25,7 +25,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 		resultTitle = `Resultado de búsqueda para: ${toSearch}`;
 	} else if (!toSearchTit && toSearch) {
 		resultTitle = "";
-	} else if (query.length < 1)
+	} else if (query.length < 1 || toSearch === "")
 		resultTitle = "Nuestras experiencias destacadas...";
 
 	query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
@@ -74,7 +74,9 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 			) : (
 				<>
 					{" "}
-					{pagFiltered.length > 0 && <h2>{resultTitle}</h2>}
+					{pagFiltered.length > 0 && (
+						<h2 className="result-title">{resultTitle}</h2>
+					)}
 					<div className="card-deck fade_in">
 						{pagFiltered.length > 0 ? (
 							pagFiltered.map((exp) => (
