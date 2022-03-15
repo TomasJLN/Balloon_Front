@@ -8,9 +8,10 @@ import { toast } from "react-toastify";
 import { useGetCategories } from "../../hooks/useGetCategories";
 import "./create-experience.css";
 import DatePicker, { DateObject } from "react-multi-date-picker";
-import "react-multi-date-picker/styles/layouts/mobile.css";
 
 export const CreateExperience = () => {
+	const [startDate, setStartDate] = useState("");
+	const [endDate, setEndDate] = useState("");
 	const [expData, setExpData] = useState({
 		idCategory: "",
 		title: "",
@@ -18,16 +19,24 @@ export const CreateExperience = () => {
 		price: "",
 		location: "",
 		coords: "",
-		startDate: new DateObject(),
-		endDate: new DateObject(),
+		startDate: "",
+		endDate: "",
 		active: true,
 		featured: true,
 		totalPlaces: "",
 		conditions: "N/A",
 		normatives: "N/A",
 	});
-	console.log("startDate", expData.startDate);
-	console.log("startDate", expData.endDate);
+
+	const handleStartDate = (startDate) => {
+		setExpData({ ...expData, startDate: startDate });
+		console.log(startDate);
+	};
+
+	const handleEndDate = (endDate) => {
+		setExpData({ ...expData, endDate: endDate });
+		console.log(endDate);
+	};
 
 	const [photoExp, setPhotoExp] = useState(null);
 	const [result, setResult] = useState(null);
@@ -37,6 +46,7 @@ export const CreateExperience = () => {
 	const [getID, setGetID] = useState("");
 	const [created, setCreated] = useState(false);
 	const { categories } = useGetCategories();
+
 	const navigate = useNavigate();
 
 	const handleActiveChange = (e) => {
@@ -187,25 +197,14 @@ export const CreateExperience = () => {
 							}}
 							placeholder="Plazas por día"
 						/>
-						<label>Fecha de inicio</label>
+						<p>Fecha de inicio</p>
 						<DatePicker
-							value={expData.startDate}
-							onChange={(e) =>
-								setExpData({ ...expData, startDate: e.target?.value })
-							}
-							minDate={new DateObject().add(1, "days")}
-							editable={false}
+							value={startDate}
+							onChange={handleStartDate}
+							minDate={new DateObject().subtract(1, "days")}
 						/>
-						<label>Fecha fin</label>
-
-						<DatePicker
-							value={expData.endDate}
-							onChange={(e) =>
-								setExpData({ ...expData, endDate: e.target?.value })
-							}
-							editable={false}
-						/>
-
+						<p>Fecha de fin</p>
+						<DatePicker value={endDate} onChange={handleEndDate} />
 						<input
 							className="generalInput"
 							type="text"

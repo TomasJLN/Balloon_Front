@@ -86,7 +86,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 							<h2 className="info fade_in">No se encontraron resultados</h2>
 						)}
 					</div>
-					{btnMore && (
+					{btnMore && pagFiltered.length > 0 && (
 						<button onClick={handleLoadMore} className="show-more">
 							Cargar más...
 						</button>
