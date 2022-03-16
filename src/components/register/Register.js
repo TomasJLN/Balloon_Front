@@ -55,22 +55,22 @@ const Register = () => {
     let errorsForm = {};
 
     if (!newUser.name) {
-      errorsForm.name = "Debes introducir un nombre";
+      errorsForm.name = "*";
     }
     if (!newUser.surname) {
-      errorsForm.surname = "Debes introducir tus apellidos";
+      errorsForm.surname = "*";
     }
     if (!newUser.email) {
-      errorsForm.email = "Debes introducir tu email";
+      errorsForm.email = "*";
     }
     if (!newUser.password) {
-      errorsForm.password = "Debes introducir una contraseña";
+      errorsForm.password = "*";
     }
     if (!newUser.passwordRepeat) {
-      errorsForm.passwordRepeat = "Debes introducir de nuevo la contraseña";
+      errorsForm.passwordRepeat = "*";
     }
     if (newUser.password !== newUser.passwordRepeat) {
-      errorsForm.password = "Las contraseñas deben coinicidir";
+      errorsForm.password = "*";
     }
     return errorsForm;
   };
@@ -81,13 +81,17 @@ const Register = () => {
 
   return (
     <form className="generalForm" onSubmit={register}>
-      <h1 className="generalTítulo1">Crear nuevo usuario</h1>
+      <h1 className="generalTítulo1">Registro</h1>
       <div className="register-form">
-        <label className="generalLabel" htmlFor="name">
-          Nombre:
+        <label className="generalLabel" htmlFor="nameReg">
+          Nombre:&nbsp;
+          {errorsFormulario.name && (
+            <p className="errorValidation">{errorsFormulario.name}</p>
+          )}
         </label>
         <input
           className="generalInput"
+          id="nameReg"
           name="name"
           type="text"
           placeholder="Escribe tu nombre"
@@ -97,16 +101,17 @@ const Register = () => {
           autoComplete="off"
           required
         ></input>
-        {errorsFormulario.name ? (
-          <p className="errorValidation">{errorsFormulario.name}</p>
-        ) : (
-          <p className="errorValidation">&nbsp;</p>
-        )}
-        <label className="generalLabel" htmlFor="surname">
-          Apellidos:
+
+        <label className="generalLabel" htmlFor="surnameReg">
+          Apellidos:&nbsp;
+          {errorsFormulario.surname && (
+            <p className="errorValidation">{errorsFormulario.surname}</p>
+          )}
         </label>
+
         <input
           className="generalInput"
+          id="surnameReg"
           name="surname"
           type="text"
           placeholder="Escribe tus apellidos"
@@ -116,16 +121,16 @@ const Register = () => {
           autoComplete="off"
           required
         ></input>
-        {errorsFormulario.surname ? (
-          <p className="errorValidation">{errorsFormulario.surname}</p>
-        ) : (
-          <p className="errorValidation">&nbsp;</p>
-        )}
-        <label className="generalLabel" htmlFor="email">
-          Correo electrónico:
+
+        <label className="generalLabel" htmlFor="emailReg">
+          Correo electrónico:&nbsp;
+          {errorsFormulario.email && (
+            <p className="errorValidation">{errorsFormulario.email}</p>
+          )}
         </label>
         <input
           className="generalInput"
+          id="emailReg"
           name="email"
           type="email"
           placeholder="Escribe tu correo electrónico"
@@ -135,16 +140,16 @@ const Register = () => {
           autoComplete="off"
           required
         ></input>
-        {errorsFormulario.email ? (
-          <p className="errorValidation">{errorsFormulario.email}</p>
-        ) : (
-          <p className="errorValidation">&nbsp;</p>
-        )}
-        <label className="generalLabel" htmlFor="password">
-          Contraseña:
+
+        <label className="generalLabel" htmlFor="passwordReg">
+          Contraseña:&nbsp;
+          {errorsFormulario.password && (
+            <p className="errorValidation">{errorsFormulario.password}</p>
+          )}
         </label>
         <input
           className="generalInput"
+          id="passwordReg"
           name="password"
           type="password"
           placeholder="Escribe una contraseña"
@@ -154,16 +159,16 @@ const Register = () => {
           autoComplete="off"
           required
         ></input>
-        {errorsFormulario.password ? (
-          <p className="errorValidation">{errorsFormulario.password}</p>
-        ) : (
-          <p className="errorValidation">&nbsp;</p>
-        )}
-        <label className="generalLabel" htmlFor="passwordRepeat">
-          Repite la contraseña:
+
+        <label className="generalLabel" htmlFor="passwordRepeatReg">
+          Repite la contraseña:&nbsp;
+          {errorsFormulario.passwordRepeat && (
+            <p className="errorValidation">{errorsFormulario.passwordRepeat}</p>
+          )}
         </label>
         <input
           className="generalInput"
+          id="passwordRepeatReg"
           name="passwordRepeat"
           type="password"
           placeholder="Repite la contraseña"
@@ -173,11 +178,6 @@ const Register = () => {
           autoComplete="off"
           required
         ></input>
-        {errorsFormulario.passwordRepeat ? (
-          <p className="errorValidation">{errorsFormulario.passwordRepeat}</p>
-        ) : (
-          <p className="errorValidation">&nbsp;</p>
-        )}
       </div>
       <div className="terminosConditions">
         <input
@@ -192,14 +192,8 @@ const Register = () => {
         />
         <label htmlFor="terminos">Acepto los términos y condiciones</label>
       </div>
-
-      {/* <div className="errMsn">
-        <p>
-          <b>Error:</b>Por favor, rellena el formulario correctamente.
-        </p>
-      </div> */}
       <button className="generalButton " type="submit">
-        REGISTRARSE
+        Enviar
       </button>
     </form>
   );
