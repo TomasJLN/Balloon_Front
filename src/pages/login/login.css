@@ -1,6 +1,3 @@
-
-
-
 .link-to {
   font-weight: bold;
   text-decoration: underline;
@@ -12,6 +9,5 @@
 }
 
 .lin-to:hover {
-
   background-color: rgba(235, 203, 62, 0.829);
 }
