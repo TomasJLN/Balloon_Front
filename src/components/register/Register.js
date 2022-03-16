@@ -81,12 +81,11 @@ const Register = () => {
 
   return (
     <form className="generalForm" onSubmit={register}>
-      <h1 className="generalTítulo1">Crear nuevo usuario</h1>
-      <div>
+      <h2 className="generalTítulo1">Crear nuevo usuario</h2>
+      <div className="register-form">
         <label className="generalLabel" htmlFor="name">
           Nombre:
         </label>
-
         <input
           className="generalInput"
           name="name"
@@ -103,13 +102,9 @@ const Register = () => {
         ) : (
           <p className="errorValidation">&nbsp;</p>
         )}
-      </div>
-
-      <div>
         <label className="generalLabel" htmlFor="surname">
           Apellidos:
         </label>
-
         <input
           className="generalInput"
           name="surname"
@@ -126,9 +121,6 @@ const Register = () => {
         ) : (
           <p className="errorValidation">&nbsp;</p>
         )}
-      </div>
-
-      <div>
         <label className="generalLabel" htmlFor="email">
           Correo electrónico:
         </label>
@@ -148,13 +140,9 @@ const Register = () => {
         ) : (
           <p className="errorValidation">&nbsp;</p>
         )}
-      </div>
-
-      <div>
         <label className="generalLabel" htmlFor="password">
           Contraseña:
         </label>
-
         <input
           className="generalInput"
           name="password"
@@ -171,9 +159,6 @@ const Register = () => {
         ) : (
           <p className="errorValidation">&nbsp;</p>
         )}
-      </div>
-
-      <div>
         <label className="generalLabel" htmlFor="passwordRepeat">
           Repite la contraseña:
         </label>
@@ -194,7 +179,6 @@ const Register = () => {
           <p className="errorValidation">&nbsp;</p>
         )}
       </div>
-
       <div className="terminosConditions">
         <input
           className="checkboxBox"
@@ -206,16 +190,14 @@ const Register = () => {
             setCheckboxValidation(!checkboxValidation);
           }}
         />
-
         <label htmlFor="terminos">Acepto los términos y condiciones</label>
       </div>
 
-      <div className="errMsn">
+      {/* <div className="errMsn">
         <p>
           <b>Error:</b>Por favor, rellena el formulario correctamente.
         </p>
-      </div>
-
+      </div> */}
       <button className="generalButton " type="submit">
         REGISTRARSE
       </button>
