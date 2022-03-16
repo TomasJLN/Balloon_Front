@@ -6,5 +6,5 @@
   margin-right: 8px;
   object-position: center;
   object-fit: fit;
-} 
-
+  color: rgb(var(--primary-color-hard));
+}

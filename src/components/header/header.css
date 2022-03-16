@@ -1,19 +1,15 @@
 #main_header {
   display: flex;
   justify-content: space-between;
- 
+
   width: 100%;
-
-
 
   align-items: center;
   font-size: 3rem;
   min-height: 80px;
-
 }
 
 .menuprincipal {
- color: #ff553a;
+  color: rgb(var(--primary-color-hard));
   margin-left: 1rem;
-
 }

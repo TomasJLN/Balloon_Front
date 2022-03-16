@@ -75,10 +75,21 @@ export const Header = ({
                 }}
               />
             ) : (
-              <GrClose className="menuprincipal" />
+              <GrClose
+                className="menuprincipal"
+                style={{
+                  color: "rgb(var(--primary-color-hard))",
+                }}
+              />
             )}
           </nav>
-          <GiBalloonDog style={{ fontSize: "60px" }} onClick={handleClick} />
+          <GiBalloonDog
+            style={{
+              fontSize: "60px",
+              color: "rgb(var(--primary-color-hard))",
+            }}
+            onClick={handleClick}
+          />
           <div>
             {userMenu && (
               <NavUser setUserMenu={setUserMenu} usuario={usuario} />

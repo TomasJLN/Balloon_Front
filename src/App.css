@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap");
 
+/* VARIABLES */
+:root {
+  --primary-color-soft: 238, 237, 222;
+  --secondary-color-soft: 224, 221, 170;
+  --primary-color-hard: 32, 50, 57;
+  --secondary-color-hard: 20, 30, 39;
+  --primary-font-color: 255, 255, 255;
+  --secondary-font-color: 0, 0, 0;
+  --error-font-color: 192, 4, 4;
+}
+/* FIN VARIABLES */
+
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +30,7 @@ body {
 header {
   /* position: sticky; */
   width: 100%;
-  background-color: white;
+  background-color: rgb(var(--primary-color-soft));
   box-shadow: 2px 3px 20px 5px;
   height: 100px;
 }
@@ -29,9 +41,8 @@ header {
   height: 250px;
   padding: 1em 0;
   color: black;
-  background-color: white;
+  background-color: rgb(var(--primary-color-soft));
   border-top: 3px solid black;
-
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
