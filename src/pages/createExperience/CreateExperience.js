@@ -18,8 +18,8 @@ export const CreateExperience = () => {
 		price: "",
 		location: "",
 		coords: "",
-		startDate: new DateObject(),
-		endDate: new DateObject(),
+		startDate: "",
+		endDate: "",
 		active: true,
 		featured: true,
 		totalPlaces: "",
@@ -27,7 +27,7 @@ export const CreateExperience = () => {
 		normatives: "N/A",
 	});
 	console.log("startDate", expData.startDate);
-	console.log("startDate", expData.endDate);
+	console.log("endDate", expData.endDate);
 
 	const [photoExp, setPhotoExp] = useState(null);
 	const [result, setResult] = useState(null);
@@ -190,9 +190,9 @@ export const CreateExperience = () => {
 						<label>Fecha de inicio</label>
 						<DatePicker
 							value={expData.startDate}
-							onChange={(e) =>
-								setExpData({ ...expData, startDate: e.target?.value })
-							}
+							onChange={(e) => {
+								setExpData({ ...expData, startDate: e.format() });
+							}}
 							minDate={new DateObject().add(1, "days")}
 							editable={false}
 						/>
@@ -200,9 +200,7 @@ export const CreateExperience = () => {
 
 						<DatePicker
 							value={expData.endDate}
-							onChange={(e) =>
-								setExpData({ ...expData, endDate: e.target?.value })
-							}
+							onChange={(e) => setExpData({ ...expData, endDate: e.format() })}
 							editable={false}
 						/>
 
