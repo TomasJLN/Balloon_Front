@@ -245,6 +245,8 @@ header {
 	font-size: 39px;
 	font-weight: 400;
 	padding: 15px 25px;
+	text-align: center;
+	line-height: normal;
 }
 
 @media screen and (max-width: 390px) {
