@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { miniFetcher } from "../../helpers/fetcher";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 import { MdLocationPin } from "react-icons/md";
 import "../experienceCard/experience-card.css";
 import "swiper/css";
 import "./carouselSimilar.css";
+// Styles must use direct files imports
 
 export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
+	SwiperCore.use([Autoplay, Pagination, Navigation]);
+
 	const [expCat, setExpCat] = useState([]);
 	const [filterExp, setFilterExp] = useState([]);
 	const navigate = useNavigate();
@@ -32,6 +36,12 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 	return (
 		<div>
 			<Swiper
+				pagination={{ clickable: true }}
+				navigation={true}
+				loop={true}
+				autoplay={{
+					delay: 2000,
+				}}
 				breakpoints={{
 					// when window width is >= 640px
 					1920: {
