@@ -81,7 +81,7 @@ const Register = () => {
 
   return (
     <form className="generalForm" onSubmit={register}>
-      <h2 className="generalTítulo1">Crear nuevo usuario</h2>
+      <h1 className="generalTítulo1">Crear nuevo usuario</h1>
       <div className="register-form">
         <label className="generalLabel" htmlFor="name">
           Nombre:
