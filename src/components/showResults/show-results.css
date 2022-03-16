@@ -1,44 +1,45 @@
 .card-deck {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  overflow: hidden;
-  gap: 20px;
-  padding: 12px 0 26px;
-  margin: 15px 0 0;
-  background-color: rgb(var(--primary-color-soft));
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	overflow: hidden;
+	gap: 20px;
+	padding: 12px 0 26px;
+	margin: 15px 0 0;
+	background-color: rgb(var(--primary-color-soft));
+	background-color: white;
 }
 
 .info {
-  height: 16rem;
-  display: flex;
-  text-align: center;
-  line-height: 2.5;
-  align-items: center;
+	height: 16rem;
+	display: flex;
+	text-align: center;
+	line-height: 2.5;
+	align-items: center;
 }
 
 .show-more {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 3rem;
-  background-color: rgb(var(--primary-color-soft));
-  border: none;
-  font-size: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 3rem;
+	background-color: rgb(var(--primary-color-soft));
+	border: none;
+	font-size: 1.2rem;
 }
 
 .spinner-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 50vh;
 }
 
 .result-title {
-  text-align: center;
-  font-size: 31px;
-  margin: 50px 0 25px 0;
+	text-align: center;
+	font-size: 31px;
+	margin: 50px 0 25px 0;
 }
