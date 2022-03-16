@@ -28,15 +28,8 @@ export const CreateExperience = () => {
 		normatives: "N/A",
 	});
 
-	const handleStartDate = (startDate) => {
-		setExpData({ ...expData, startDate: startDate });
-		console.log(startDate);
-	};
 
-	const handleEndDate = (endDate) => {
-		setExpData({ ...expData, endDate: endDate });
-		console.log(endDate);
-	};
+
 
 	const [photoExp, setPhotoExp] = useState(null);
 	const [result, setResult] = useState(null);
@@ -199,12 +192,23 @@ export const CreateExperience = () => {
 						/>
 						<p>Fecha de inicio</p>
 						<DatePicker
-							value={startDate}
-							onChange={handleStartDate}
-							minDate={new DateObject().subtract(1, "days")}
+
+							value={expData.startDate}
+							onChange={(e) => {
+								setExpData({ ...expData, startDate: e.format() });
+							}}
+							minDate={new DateObject().add(1, "days")}
+							editable={false}
 						/>
-						<p>Fecha de fin</p>
-						<DatePicker value={endDate} onChange={handleEndDate} />
+						<label>Fecha fin</label>
+
+						<DatePicker
+							value={expData.endDate}
+							onChange={(e) => setExpData({ ...expData, endDate: e.format() })}
+							editable={false}
+						/>
+
+
 						<input
 							className="generalInput"
 							type="text"

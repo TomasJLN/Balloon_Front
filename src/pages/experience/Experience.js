@@ -10,6 +10,7 @@ import { scrollToTop } from "../../helpers/scrollToTop";
 import Mapa from "../../components/Mapa";
 import { MdLocationPin } from "react-icons/md";
 import "./experience.css";
+import moment from "moment";
 
 const Experience = () => {
 	const { id } = useParams();
@@ -23,10 +24,12 @@ const Experience = () => {
 		coords,
 		photo,
 		endDate,
+
+		startDate,
 		conditions,
 		normatives,
 	} = useExperience(id);
-
+	
 	let url = `https://www.google.es/maps/@${coords},19z`;
 
 	url = url.replace(/ +/g, "");
@@ -101,6 +104,15 @@ const Experience = () => {
 				<p>{description}</p>
 			</div>
 			<div>
+				<p className="exp-date">
+					Disponibilidad:
+					<p>
+						Desde <strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
+						hasta <strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
+					</p>
+				</p>
+			</div>
+			<div>
 				<span>
 					<a
 						href={url}
@@ -116,6 +128,7 @@ const Experience = () => {
 			</div>
 
 			<h2 id="precio-exp">{price} €</h2>
+
 
 			<div className="ratin-comprar">
 				<button
@@ -144,7 +157,10 @@ const Experience = () => {
 				<h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
 				<div>
 					<CarouselSimilar
+
+
 						id={id}
+
 						reviews={reviews}
 						avgRatin={avgRatin}
 						idCategory={idCategory}
