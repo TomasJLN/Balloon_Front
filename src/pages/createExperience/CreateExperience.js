@@ -8,9 +8,10 @@ import { toast } from "react-toastify";
 import { useGetCategories } from "../../hooks/useGetCategories";
 import "./create-experience.css";
 import DatePicker, { DateObject } from "react-multi-date-picker";
-import "react-multi-date-picker/styles/layouts/mobile.css";
 
 export const CreateExperience = () => {
+	const [startDate, setStartDate] = useState("");
+	const [endDate, setEndDate] = useState("");
 	const [expData, setExpData] = useState({
 		idCategory: "",
 		title: "",
@@ -26,8 +27,9 @@ export const CreateExperience = () => {
 		conditions: "N/A",
 		normatives: "N/A",
 	});
-	console.log("startDate", expData.startDate);
-	console.log("endDate", expData.endDate);
+
+
+
 
 	const [photoExp, setPhotoExp] = useState(null);
 	const [result, setResult] = useState(null);
@@ -37,6 +39,7 @@ export const CreateExperience = () => {
 	const [getID, setGetID] = useState("");
 	const [created, setCreated] = useState(false);
 	const { categories } = useGetCategories();
+
 	const navigate = useNavigate();
 
 	const handleActiveChange = (e) => {
@@ -187,8 +190,9 @@ export const CreateExperience = () => {
 							}}
 							placeholder="Plazas por día"
 						/>
-						<label>Fecha de inicio</label>
+						<p>Fecha de inicio</p>
 						<DatePicker
+
 							value={expData.startDate}
 							onChange={(e) => {
 								setExpData({ ...expData, startDate: e.format() });
@@ -203,6 +207,7 @@ export const CreateExperience = () => {
 							onChange={(e) => setExpData({ ...expData, endDate: e.format() })}
 							editable={false}
 						/>
+
 
 						<input
 							className="generalInput"

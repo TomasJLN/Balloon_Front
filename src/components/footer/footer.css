@@ -35,7 +35,7 @@
 }
 
 .footer #email {
-	border-radius: 30px;
+	border-radius: 20px 0 0 20px;
 	height: 3rem;
 	padding: 1rem;
 	border: 2px solid slategray;
@@ -46,12 +46,17 @@
 	color: white;
 	font-size: 1 rem;
 	text-transform: uppercase;
-	border-radius: 20px;
+	border-radius: 0 20px 20px 0;
 	height: 3rem;
 	margin-bottom: 1rem;
 	border: none;
 	cursor: pointer;
 	width: 5rem;
+}
+
+.footer .enviar:hover {
+	background-color: rgb(255, 85, 58);
+	box-shadow: 0 20px 20px 0 rgb(76 74 74 / 39%);
 }
 
 .footer label {

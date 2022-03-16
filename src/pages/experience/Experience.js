@@ -24,16 +24,12 @@ const Experience = () => {
 		coords,
 		photo,
 		endDate,
+
 		startDate,
 		conditions,
 		normatives,
 	} = useExperience(id);
-	console.log(
-		"Desde",
-		moment(startDate).format("DD-MM-YYYY"),
-		"hasta",
-		moment(endDate).format("DD-MM-YYYY")
-	);
+	
 	let url = `https://www.google.es/maps/@${coords},19z`;
 
 	url = url.replace(/ +/g, "");
@@ -133,6 +129,7 @@ const Experience = () => {
 
 			<h2 id="precio-exp">{price} €</h2>
 
+
 			<div className="ratin-comprar">
 				<button
 					className="generalButton"
@@ -160,6 +157,10 @@ const Experience = () => {
 				<h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
 				<div>
 					<CarouselSimilar
+
+
+						id={id}
+
 						reviews={reviews}
 						avgRatin={avgRatin}
 						idCategory={idCategory}
