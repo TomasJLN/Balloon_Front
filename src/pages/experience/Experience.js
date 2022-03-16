@@ -29,7 +29,7 @@ const Experience = () => {
 		conditions,
 		normatives,
 	} = useExperience(id);
-	
+
 	let url = `https://www.google.es/maps/@${coords},19z`;
 
 	url = url.replace(/ +/g, "");
@@ -55,112 +55,107 @@ const Experience = () => {
 	}, [id]);
 
 	return (
-		<div className="single-card">
-			<div>
-				<h1 className="title">{title}</h1>
-			</div>
-			<div className="buttoncontainer">
-				<button
-					className="buttonback"
-					onClick={() => {
-						navigate(-1);
-					}}
-				>
-					Volver
-				</button>
-			</div>
-			<figure>
-				{photo ? (
-					<img
-						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
-						alt={title}
-						className="exp-picture"
-					/>
-				) : (
-					<img
-						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-						alt={title}
-						className="exp-picture"
-					/>
-				)}
-			</figure>
+		<div className="exp-container">
 			<div className="rating-back">
-				<p className="stars-row">
-					{avgRatin > 0 && (
-						<>
-							<Rating
-								ratingValue={avgRatin}
-								size="16px"
-								tooltipClassName="stars-count"
-								readonly={true}
+				{avgRatin > 0 && (
+					<>
+						<Rating
+							ratingValue={avgRatin}
+							size="16px"
+							tooltipClassName="stars-count"
+							readonly={true}
+						/>
+						<span className="counter-reviews">({reviews.length})</span>
+					</>
+				)}
+			</div>
+			<div className="figure-description-container">
+				<div className="figure-container">
+					<div className="buttoncontainer">
+						<button
+							className="buttonback"
+							onClick={() => {
+								navigate(-1);
+							}}
+						>
+							Volver
+						</button>
+					</div>
+					<figure>
+						{photo ? (
+							<img
+								src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
+								alt={title}
+								className="exp-picture"
 							/>
-							<span className="counter-reviews">({reviews.length})</span>
-						</>
-					)}
-				</p>
-			</div>
-			<div className="exp-description">
-				<p className="description">Descripción general:</p>
-				<p>{description}</p>
-			</div>
-			<div>
-				<p className="exp-date">
-					Disponibilidad:
-					<p>
-						Desde <strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
-						hasta <strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
-					</p>
-				</p>
-			</div>
-			<div>
-				<span>
-					<a
-						href={url}
-						target="_blank"
-						rel="noreferrer noopener"
-						className="card-location"
-					>
-						<MdLocationPin className="icon-search" />
-						{location}
-					</a>
-					<Mapa photo={photo} title={title} coords={coords} url={url} />
-				</span>
+						) : (
+							<img
+								src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+								alt={title}
+								className="exp-picture"
+							/>
+						)}
+					</figure>
+				</div>
+
+				<div className="description-container">
+					<h1 id="exp-title">{title}</h1>
+					<div className="exp-description">
+						<p>{description}</p>
+					</div>
+					<div>
+						<p className="exp-date">
+							<a
+								href={url}
+								target="_blank"
+								rel="noreferrer noopener"
+								className="card-location"
+							>
+								{" "}
+								<p>
+									<MdLocationPin className="icon-search" />
+									En <strong>{location}</strong> desde{" "}
+									<strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
+									hasta <strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
+								</p>
+							</a>
+						</p>
+					</div>
+
+					<div className="ratin-comprar">
+						<p id="precio-exp">{price} €</p>
+						<button
+							className="buy-button"
+							onClick={(e) => {
+								navigate(`/booking/${id}`);
+							}}
+						>
+							Comprar
+						</button>
+					</div>
+				</div>
 			</div>
 
-			<h2 id="precio-exp">{price} €</h2>
+			{infoExperience.map(({ title, content }) => (
+				<Accordion
+					className="accordion-section"
+					key={title}
+					title={title}
+					content={content}
+				/>
+			))}
 
-
-			<div className="ratin-comprar">
-				<button
-					className="generalButton"
-					onClick={(e) => {
-						navigate(`/booking/${id}`);
-					}}
-				>
-					Comprar
-				</button>
-			</div>
-			<div>
-				{infoExperience.map(({ title, content }) => (
-					<Accordion
-						className="accordion-section"
-						key={title}
-						title={title}
-						content={content}
-					/>
-				))}
-			</div>
 			<hr id="opinions-section" />
 			{avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
 			<hr />
+
+			<Mapa photo={photo} title={title} coords={coords} url={url} />
+
 			<div>
 				<h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
 				<div>
 					<CarouselSimilar
-
-
 						id={id}
-
 						reviews={reviews}
 						avgRatin={avgRatin}
 						idCategory={idCategory}
