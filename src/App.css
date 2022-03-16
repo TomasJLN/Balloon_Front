@@ -168,8 +168,8 @@ header {
 }
 
 .terminosConditions {
-  width: 90vw;
-  font-size: 0.8rem;
+  /* width: 90vw; */
+  font-size: 0.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
