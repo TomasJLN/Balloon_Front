@@ -71,16 +71,6 @@ const Experience = () => {
       </div>
       <div className="figure-description-container">
         <div className="figure-container">
-          <div className="buttoncontainer">
-            <button
-              className="buttonback"
-              onClick={() => {
-                navigate(-1);
-              }}
-            >
-              Volver
-            </button>
-          </div>
           <figure>
             {photo ? (
               <img
