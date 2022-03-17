@@ -151,6 +151,7 @@ const Filter = ({
 								display: "flex",
 								flexDirection: "column",
 								alignItems: "flex-start",
+								backgroundColor: "rgb(var(--primary-color-soft))",
 							}}
 							className="order"
 						>

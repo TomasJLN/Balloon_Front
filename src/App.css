@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap");
-
+@font-face {
+	font-family: "balloon";
+	src: local("balloon"), url(./fonts/balloon.ttf) format("truetype");
+}
+@font-face {
+	font-family: "babyballoon";
+	src: local("babyballoon"), url(./fonts/babyballoon.ttf) format("truetype");
+}
+@font-face {
+	font-family: "balloonparty";
+	src: local("balloonparty"), url(./fonts/balloonparty.ttf) format("truetype");
+}
 /* VARIABLES */
 :root {
 	--primary-color-soft: 238, 237, 222;
@@ -9,6 +20,7 @@
 	--primary-font-color: 255, 255, 255;
 	--secondary-font-color: 0, 0, 0;
 	--error-font-color: 192, 4, 4;
+	--primary-font: "babyballoon";
 }
 /* FIN VARIABLES */
 
@@ -24,7 +36,6 @@ body {
 	letter-spacing: 0.03em;
 	line-height: 1.6em;
 	height: 100vh;
-	position: relative;
 }
 
 header {
@@ -40,12 +51,25 @@ header {
 	width: 100%;
 	height: 250px;
 	padding: 1em 0;
-	color: black;
+	color: white;
 	background-color: rgb(var(--primary-color-soft));
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+}
+
+.footer::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.386);
+	z-index: -1;
 }
 
 .navbar {

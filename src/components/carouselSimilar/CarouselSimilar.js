@@ -40,7 +40,7 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 				navigation={true}
 				loop={true}
 				autoplay={{
-					delay: 2000,
+					delay: 4000,
 				}}
 				breakpoints={{
 					// when window width is >= 640px
