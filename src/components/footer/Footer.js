@@ -48,7 +48,7 @@ const Footer = () => {
 		<footer className="footer">
 			<section className="newsletter">
 				<form className="sendEmail" onSubmit={createNewsletter}>
-					<h2 className="news-letter-tit">NEWSLETTER</h2>
+					<h2 className="news-letter-tit"> Apúntate al newsletter!!!</h2>
 					<div>
 						<input
 							type="text"
