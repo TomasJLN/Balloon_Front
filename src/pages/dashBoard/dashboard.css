@@ -3,6 +3,26 @@
   margin: 20vw 0;
 }
 
-.gestores{
+.gestores {
   background-color: #ffc400;
+}
+.data-dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-dashboard > h3 {
+  height: 3rem;
+}
+
+.best-exp-item {
+  font-size: 0.7rem;
+  padding: 0 6px;
+  margin-left: 1rem;
+  cursor: pointer;
+  line-height: 1.7;
+}
+
+.best-exp-item:hover {
+  font-weight: bold;
 }
