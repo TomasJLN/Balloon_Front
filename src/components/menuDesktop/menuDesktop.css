@@ -1,6 +1,10 @@
-.menuescritorio{
-    background-color: rgb(226, 143, 143);
+ .menuescritorio{
+    background-color: rgb(238, 170, 170);
     color: black;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
    
 }
 
@@ -10,10 +14,14 @@
     font-size: 1.5rem;
     margin: 2rem;
     display: flex;
-  align-content: center;
+  flex-direction: column;
     font-weight: bold;
  
 }
 
 
-
+.menunavegacionDesktop{
+  color: purple;
+  display: flex;
+  flex-direction: row;
+}
