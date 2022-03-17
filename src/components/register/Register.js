@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import fetcher from "../../helpers/fetcher";
 import { toast } from "react-toastify";
 import "./register.css";
@@ -190,7 +190,9 @@ const Register = () => {
             setCheckboxValidation(!checkboxValidation);
           }}
         />
-        <label htmlFor="terminos">Acepto los términos y condiciones</label>
+        <label htmlFor="terminos">
+          Acepto los <Link to="/conditions">términos y condiciones</Link>
+        </label>
       </div>
       <button className="generalButton " type="submit">
         Enviar

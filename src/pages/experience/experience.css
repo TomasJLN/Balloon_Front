@@ -45,7 +45,7 @@
 	margin: 1rem auto;
 }
 
-.ratin-comprar {
+.ratin-buy-button {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
@@ -133,12 +133,12 @@
 	font-size: 1.5rem;
 }
 
-.ratin-comprar button {
+.ratin-buy-button button {
 	z-index: 90;
 	background-color: #ee6a2c;
 }
 
-.ratin-comprar button:hover {
+.ratin-buy-button button:hover {
 	background-color: green;
 }
 .accordion-section {
@@ -190,7 +190,7 @@
 		width: 100%;
 	}
 
-	.ratin-comprar {
+	.ratin-buy-button {
 		align-items: center;
 	}
 }
@@ -200,7 +200,7 @@
 		flex-direction: column;
 	}
 
-	.ratin-comprar {
+	.ratin-buy-button {
 		align-items: center;
 	}
 

@@ -1,12 +1,12 @@
 import moment from "moment";
+import { toast } from "react-toastify";
+import { Rating } from "react-simple-star-rating";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { TokenContext } from "../../contexts/TokenContext";
-import fetcher from "../../helpers/fetcher";
 import { useBookingDetails } from "../../hooks/useBookingDetails";
-import { Rating } from "react-simple-star-rating";
-import { toast } from "react-toastify";
 import { useGetExperienceOpinion } from "../../hooks/useGetExperienceOpinion";
+import fetcher from "../../helpers/fetcher";
 import "./rate-experience.css";
 
 export const RateExperience = () => {
@@ -24,7 +24,6 @@ export const RateExperience = () => {
     setReview(dataReview);
     setLoading(load);
     setError(err);
-    console.log(dataReview);
   }, [dataReview]);
 
   const handleRating = (rate) => {
@@ -55,7 +54,7 @@ export const RateExperience = () => {
   }, [result]);
 
   return token ? (
-    <div className="wrap-content">
+    <div>
       {review.voted === 1 ? (
         <header id="rate-exp-header-voted">EXPERIENCIA VALORADA</header>
       ) : (
@@ -63,8 +62,11 @@ export const RateExperience = () => {
       )}
 
       <section id="rate-exp">
-        <h3>{exDetails?.title}</h3>
-        <h4>Fecha: {moment(exDetails?.dateExperience).format("YYYY-MM-DD")}</h4>
+        <h3 className="title-rate-exp">{exDetails?.title}</h3>
+        <h4>
+          Fecha experiencia:{" "}
+          {moment(exDetails?.dateExperience).format("YYYY-MM-DD")}
+        </h4>
         <button
           className="btn-back"
           onClick={() => {
@@ -78,12 +80,14 @@ export const RateExperience = () => {
             type="text"
             name="opinion"
             value={review?.description}
+            className="rateExperience-textarea"
             onChange={(e) => {
               setReview({ ...review, description: e.target.value });
             }}
             placeholder="Opina sobre tu experiencia"
           ></textarea>
           <Rating
+            className="stars-rate-experience"
             onClick={handleRating}
             ratingValue={review?.score}
             showTooltip

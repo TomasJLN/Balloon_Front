@@ -23,7 +23,13 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 		expByCat();
 	}, [idCategory]);
 
-	console.log(expCat);
+	useEffect(() => {
+		setFilterExp(
+			expCat.filter((e) => {
+				return e.idCategory === idCategory && e.id !== +id;
+			})
+		);
+	}, [expCat, idCategory, id]);
 
 	useEffect(() => {
 		setFilterExp(
@@ -95,6 +101,7 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 									</p>
 								}
 								{/* <p className="stars-row">
+
                   {avgRatin !== 0 && (
                     <>
                       <Rating

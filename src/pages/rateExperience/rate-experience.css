@@ -8,12 +8,14 @@
 }
 
 #rate-exp-header-unvoted {
-  height: 4rem;
+  height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(253, 235, 154);
+  background-color: rgb(var(--secondary-color-soft));
   font-size: 1.4rem;
+  padding: 12px 0;
+  margin: 20px 0;
 }
 
 #rate-exp {
@@ -22,9 +24,24 @@
   gap: 12px;
 }
 
-#rate-exp > form > textarea {
-  width: 100%;
+.title-rate-exp {
+  font-size: 1.2rem;
   height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.rateExperience-textarea {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: 4rem;
+  border: none;
+  margin: 16px 0;
+  padding: 6px;
+}
+
+.stars-rate-experience {
   margin: 12px 0;
 }
 

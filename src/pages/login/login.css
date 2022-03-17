@@ -7,7 +7,3 @@
   cursor: pointer;
   transition: background-color.5s;
 }
-
-.lin-to:hover {
-  background-color: rgba(235, 203, 62, 0.829);
-}
