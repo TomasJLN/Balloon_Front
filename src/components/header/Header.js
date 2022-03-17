@@ -88,7 +88,7 @@ export const Header = ({ catTit, setCatTit }) => {
 			)}
 			
 				<MenuDesktop
-							clasName="menuDesktop"
+						className="menuescritorio"
 							/>
 			
 		</>

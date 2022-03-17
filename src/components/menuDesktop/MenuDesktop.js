@@ -7,7 +7,7 @@ import { useGetCategories } from "../../hooks/useGetCategories";
 
 const MenuDesktop = ({setShowNavBar}) =>  {
 
-	const [isActive, setIsActive] = useState(false);
+const [isActive, setIsActive] = useState(false);
 
 const navigate = useNavigate();
 const {categories } = useGetCategories();

@@ -4,7 +4,7 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-
+  display: none;
    
 }
 
@@ -25,34 +25,46 @@
   color: purple;
   display: flex;
   flex-direction: row;
+
 }
 .itemmenucategory {
   list-style: none;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   font-size: 1.5rem;
-  width: 100vmax;
+  width: 100%;
   padding: 1rem;
   font-weight: bold;
+  background-color: aqua;
+
+
 
   
 }
 .menucategory {
   display: flex;
 
-background-color: white;
+background-color: rgb(27, 153, 27);
   justify-content: center;
+
  position: relative;
- width: 100%;
+ width: 20rem;
+
 }
 
 
+
+
 .itemmenucategory:hover {
-  background-color: black;
+
   opacity: 90%;
+  display: flex;
   transition: all;
   cursor: pointer;
-  color: white; 
+  justify-content: center;
   width: 100%;
+  position: relative;
+  color: rgb(85, 82, 82); 
+  background-color: red;
   
 }

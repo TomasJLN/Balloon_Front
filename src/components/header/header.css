@@ -12,18 +12,24 @@
 
 }
 
-@media (max-width: 768px) { 
+@media screen and (min-width: 768px) { 
   .hamb-menu{
     display: none;
+  }
+
+  .menuescritorio {
+    display: flex;
+    flex-wrap: wrap;
+   
+
+  }
+  .menucategory {
+    position: absolute;
+    z-index: 3;
+    margin-top:  5rem;
+    
   }
   
 }
 
-@media (min-width: 500px) { 
-  .menuescritorio{
-   display: flex;
-   flex-wrap: wrap;
-  }
-  
-  
-}
+
