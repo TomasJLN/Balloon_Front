@@ -1,31 +1,24 @@
 
 .editmenu{
-
-  
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(235, 203, 62, 0.829);
-    color: white;
-    position: sticky;
+    font-style: Roboto, 'sans-serif';
+    min-width: 390px;
+    min-height: 350px;
   
 }
 
 .editmenu li {
-    
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 1px solid black;
-    font-size: 1.2rem;
+    border-bottom: 2px solid black;
+    font-size: 1.3rem;
     font-weight: bold;
     list-style-type: none;
     color: white;
-    padding: 2rem;
-    height: 100px;
-    opacity: 1;
-   
-    
+    padding: 2rem; 
 }
 
 .editmenu div {

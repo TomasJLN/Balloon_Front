@@ -47,7 +47,7 @@ const Editavatar = () => {
         <h1>Loading...</h1>
       ) : (
         <section className="Editavatar">
-          <h2>Cambiar mi foto</h2>
+          <h2 id="foto">Cambiar mi foto</h2>
             <img
               src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
               alt={usuario.avatar}
