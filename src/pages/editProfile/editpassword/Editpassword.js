@@ -56,22 +56,22 @@ const Editpassword = () => {
       ) : (
         <form className="editForm" onSubmit={handlepassword}>
           <h2 id="datos">Cambiar mis datos</h2>
-          <label className="generalLabel" htmlFor="name">
+          <label className="editLabel" htmlFor="name">
             Nombre:
           </label>
           <input
-            className="generalInput"
+            className="editInput"
             type="text"
             id="name"
             name="name"
             value={usuario.name}
             onChange={(e) => setUsuario({ ...usuario, name: e.target.value })}
           ></input>
-          <label className="generalLabel" htmlFor="surname">
+          <label className="editLabel" htmlFor="surname">
             Apellidos:
           </label>
           <input
-            className="generalInput"
+            className="editInput"
             type="text"
             id="surname"
             name="surname"
@@ -80,11 +80,11 @@ const Editpassword = () => {
               setUsuario({ ...usuario, surname: e.target.value })
             }
           ></input>
-          <label className="generalLabel" htmlFor="password">
+          <label className="editLabel" htmlFor="password">
             Contraseña actual:
           </label>
           <input
-            className="generalInput"
+            className="editInput"
             type="password"
             id="password"
             name="password"
@@ -92,11 +92,11 @@ const Editpassword = () => {
             autoComplete="off"
             onChange={(e) => setPassword(e.target.value)}
           ></input>
-          <label className="generalLabel" htmlFor="newpassword">
+          <label className="editLabel" htmlFor="newpassword">
             Nueva contraseña:
           </label>
           <input
-            className="generalInput"
+            className="editInput"
             type="password"
             id="newpassword"
             name="newpassword"

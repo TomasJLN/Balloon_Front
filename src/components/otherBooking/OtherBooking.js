@@ -51,6 +51,7 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
           </button>
         </div>
       </div>
-    </div>
+       
+      </div>
   );
 };

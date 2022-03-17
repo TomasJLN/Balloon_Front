@@ -1,50 +1,56 @@
+.wrap-booking {
+  margin: 50px;
+  padding: 15px;
+  border: 1px dashed black;
+  min-width: 300px;
+  font-weight: bold;
+}
+
 .title-booking {
   font-size: 1.3rem;
-  margin: 12px 0;
   text-align: center;
+  background-color: rgb(var(--secondary-color-soft));
 }
 
-.wrap-booking {
-  margin: 2rem 0;
-  padding: 10px;
-  background-color: rgba(250, 128, 114, 0.25);
-  border-radius: 20px;
-  box-shadow: 2px 2px 4px grey;
-}
-
-.options-booking {
+.header-booking {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.option-booking{
+  bottom: 0;
 }
 
 .photo-booking {
   display: flex;
   justify-content: center;
-  min-width: 75%;
 }
 
 .card-img-booking {
-  width: 250px;
-  border-radius: 20px;
-  object-fit: cover;
-  box-shadow: 2px 2px 4px grey;
+  min-width: 300px;
+  min-height: 150px;
+  object-fit:cover;
 }
+
 
 .btns-bookings {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 100%;
+  justify-content: space-between;
+  width: 90px;
 }
 
 .btn-booking {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
   background-color: black;
+  padding: 25px;
   height: 2.2rem;
   font-size: 1.2rem;
 }
 
-.header-booking {
-  display: flex;
-  justify-content: space-between;
-  margin: 12px 0;
-}
