@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./menuDesktop.css"
 import { Link, useNavigate } from 'react-router-dom'
-import Dropdown from '../dropDown/DropDown'
+import { useGetCategories } from "../../hooks/useGetCategories";
 
-const MenuDesktop = () =>  {
+
+
+const MenuDesktop = ({setShowNavBar}) =>  {
+
+	const [isActive, setIsActive] = useState(false);
 
 const navigate = useNavigate();
+const {categories } = useGetCategories();
+
 
 
 
@@ -26,11 +32,11 @@ const navigate = useNavigate();
 					MI CUENTA
 				</Link>
 			</li>
-            <li className="itemmenuescritorio">
-				<Link to="/contact-form" >
-					CATEGORIAS
-				</Link>
+            <li className="itemmenuescritorio" onClick={(e)=> setIsActive(!isActive)}>
+			
+					CATEGORIAS			
 			</li>
+	
 			<li className="itemmenuescritorio">
 				<Link to="/contact-form" >
 					CONTACTO
@@ -42,6 +48,25 @@ const navigate = useNavigate();
 				</Link>
 			</li>
 		</menu>
+		<div className='menucategory'>
+
+{isActive && (
+	<div >
+		{categories.map((category) => (
+			<li
+				className="itemmenucategory"
+				key={category.id}
+				category={category}
+				onClick={() => {
+					navigate(`/allFilter?category=${category.title}`);}}
+	
+			>
+				{category.title}
+			</li>
+		))}
+	</div>
+)}
+</div>
  </div>
   )
 }
