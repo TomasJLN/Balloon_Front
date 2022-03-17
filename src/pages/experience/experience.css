@@ -1,220 +1,220 @@
 .single-card {
-	margin: 0 10px;
-	display: flex;
-	flex-direction: column;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .figure-container {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
 }
 
 .description-container {
-	display: flex;
-	flex-direction: column;
-	padding: 1rem;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  justify-content: center;
 }
 
 .figure-description-container {
-	display: flex;
-	min-height: 50vh;
+  display: flex;
+  min-height: 50vh;
 }
 
 .exp-container {
-	height: 100%;
-	padding: 2rem 1rem;
+  height: 100%;
+  padding: 2rem 1rem;
 }
 
 .single-card > p {
-	display: flex;
-	margin: 1rem 1rem;
+  display: flex;
+  margin: 1rem 1rem;
 }
 
 .exp-picture {
-	width: 600px;
+  width: 600px;
 
-	border-radius: 0 0px 10px 10px;
+  border-radius: 0 0px 10px 10px;
 }
 
 .accordion-section {
-	width: 90vw;
-	margin: 1rem auto;
+  width: 90vw;
+  margin: 1rem auto;
 }
 
-.ratin-comprar {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	padding: 1.5rem 0;
-	align-items: flex-start;
+.ratin-buy-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem 0;
+  align-items: flex-start;
 }
 
 .buy-button {
-	background-color: #000000;
+  background-color: #000000;
 
-	color: white;
-	font-size: 17px;
-	text-transform: uppercase;
-	border-radius: 20px;
+  color: white;
+  font-size: 17px;
+  text-transform: uppercase;
+  border-radius: 20px;
 
-	border: none;
-	letter-spacing: 1px;
-	cursor: pointer;
+  border: none;
+  letter-spacing: 1px;
+  cursor: pointer;
 }
 
 #precio-exp {
-	font-size: 29px;
-	display: flex;
-	justify-content: end;
+  font-size: 29px;
+  display: flex;
+  justify-content: end;
 }
 
 #ex-sim {
-	padding: 2rem 1rem;
-	font-weight: 500;
-	font-size: 25px;
-	text-align: center;
+  padding: 2rem 1rem;
+  font-weight: 500;
+  font-size: 25px;
+  text-align: center;
 }
 
 #exp-title {
-	padding: 2rem 1rem;
+  padding: 2rem 1rem;
 }
 
 .back-div {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .exp-description {
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
-	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-bottom: 2px solid rgba(214, 210, 210, 0.594);
 }
 
 .map-container {
-	height: 200px;
+  height: 200px;
 }
 
 .mapboxgl-ctrl-attrib-inner {
-	display: none;
+  display: none;
 }
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-	background: #121212;
-	color: #fff;
-	box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
+  background: #121212;
+  color: #fff;
+  box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
 }
 .buttonback {
-	position: fixed;
-	background-color: black;
-	z-index: 2000;
-	color: white;
-	font-size: 1rem;
-	text-transform: uppercase;
-	width: 5rem;
-	border-radius: 20px;
-	height: 3rem;
+  position: fixed;
+  background-color: black;
+  z-index: 2000;
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  width: 5rem;
+  border-radius: 20px;
+  height: 3rem;
 
-	border: none;
-	letter-spacing: 1px;
-	cursor: pointer;
-	margin-top: 1rem;
-	right: 1rem;
-	bottom: 2rem;
+  border: none;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 1rem;
+  right: 1rem;
+  bottom: 2rem;
 }
 
 .description {
-	font-weight: bold;
-	font-size: 1.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
-.ratin-comprar button {
-	z-index: 90;
-	background-color: #ee6a2c;
+.ratin-buy-button button {
+  z-index: 90;
+  background-color: #ee6a2c;
 }
 
-.ratin-comprar button:hover {
-	background-color: green;
+.ratin-buy-button button:hover {
+  background-color: green;
 }
 .accordion-section {
-	width: 100%;
-	border-top: 2px solid rgba(214, 210, 210, 0.594);
-	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
+  width: 100%;
+  border-top: 2px solid rgba(214, 210, 210, 0.594);
+  border-bottom: 2px solid rgba(214, 210, 210, 0.594);
 }
 
 .exp-date {
-	display: flex;
-	flex-direction: column;
-	margin-top: 1rem;
-	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  border-bottom: 2px solid rgba(214, 210, 210, 0.594);
 }
 
 .title {
-	margin: 25px 0;
-	margin-left: 5px;
-	flex-grow: 1;
-	width: 50%;
+  margin: 25px 0;
+  margin-left: 5px;
+  flex-grow: 1;
+  width: 50%;
 }
 
 .buy-button {
-	color: white;
-	font-size: 17px;
-	text-transform: uppercase;
-	width: 7rem;
-	border-radius: 20px;
-	height: 2rem;
-	border: none;
-	letter-spacing: 1px;
-	cursor: pointer;
-	margin-top: 1rem;
+  color: white;
+  font-size: 17px;
+  text-transform: uppercase;
+  width: 7rem;
+  border-radius: 20px;
+  height: 2rem;
+  border: none;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 820px) {
-	.figure-description-container {
-		flex-direction: column;
-	}
+  .figure-description-container {
+    flex-direction: column;
+  }
 
-	#exp-title {
-		padding: 1rem;
-		text-align: center;
-		font-size: 32px;
-		line-height: normal;
-	}
+  #exp-title {
+    padding: 1rem;
+    text-align: center;
+    font-size: 32px;
+    line-height: normal;
+  }
 
-	.exp-picture {
-		width: 100%;
-	}
+  .exp-picture {
+    width: 100%;
+  }
 
-	.ratin-comprar {
-		align-items: center;
-	}
+  .ratin-buy-button {
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 375px) {
-	.figure-description-container {
-		flex-direction: column;
-	}
+  .figure-description-container {
+    flex-direction: column;
+  }
 
-	.ratin-comprar {
-		align-items: center;
-	}
+  .ratin-buy-button {
+    align-items: center;
+  }
 
-	#exp-title {
-		padding: 1rem;
-		text-align: center;
-		font-size: 32px;
-	}
+  #exp-title {
+    padding: 1rem;
+    text-align: center;
+    font-size: 32px;
+  }
 
-	.description-container {
-		padding: 1rem;
-		justify-content: center;
-	}
+  .description-container {
+    padding: 1rem;
+    justify-content: center;
+  }
 
-	#ex-sim {
-		text-align: center;
-	}
+  #ex-sim {
+    text-align: center;
+  }
 }
