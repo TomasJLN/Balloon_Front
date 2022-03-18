@@ -16,6 +16,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
   const q = location.search;
 
   let query = q;
+  console.log("ok");
 
   let resultTitle = "Nuestras experiencias destacadas...";
 
