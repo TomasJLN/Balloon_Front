@@ -1,0 +1,74 @@
+.booking-details {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booking-details p {
+  margin: 10px 0;
+}
+
+#vota {
+  background-color: green;
+}
+
+#no-vota {
+  background-color: rebeccapurple;
+}
+
+.btn-other-bookings {
+  color: white;
+  background-color: black;
+  height: 1.8rem;
+  width: 30%;
+}
+
+.btns-other-bookings {
+  min-width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+.other-card {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.other-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.picture-back {
+  display: flex;
+  justify-content: center;
+}
+
+.qr-booking {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.photo-booking {
+  position: relative;
+  height: 220px;
+  /* width: 220px; */
+}
+
+.card-img-booking {
+  width: 100%;
+}
+.back-to-profile {
+  display: flex;
+  justify-content: center;
+}
+
+.back-to-profile button {
+  font-size: 1.2rem;
+}

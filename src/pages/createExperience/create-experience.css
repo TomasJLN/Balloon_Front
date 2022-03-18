@@ -1,0 +1,25 @@
+ .inputForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+/* 
+.btn-back{
+
+  background-color: white;
+	margin-top: 500px;
+	color: grey;
+	font-size: 1.2rem;
+	width: 7rem;
+	border-radius: 20px;
+	height: 2rem;
+
+	border: 2px solid grey;
+	letter-spacing: 1px;
+	cursor: pointer; 
+	margin-top: 1rem;
+	} */
+
+  .edit-sect-activar{
+    margin-top: 20px;
+  }

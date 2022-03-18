@@ -1,0 +1,10 @@
+.user-avatar {
+  border-radius: 100px;
+  display: flex;
+  max-height: 1em;
+  max-width: 1em;
+  margin-right: 8px;
+  object-position: center;
+  object-fit: fit;
+  color: rgb(var(--primary-color-hard));
+}

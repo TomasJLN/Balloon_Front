@@ -1,0 +1,24 @@
+
+.title {
+  margin: 25px 0 ;
+  margin-left: 5px;
+
+  flex-grow: 1;
+
+}
+
+
+.edit-sect-activar {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.photo-figure-experience {
+  display: flex;
+  justify-content: center;
+}
+
+

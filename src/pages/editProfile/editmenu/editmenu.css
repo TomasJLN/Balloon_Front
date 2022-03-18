@@ -1,0 +1,29 @@
+.editmenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(var(--primary-color-soft));
+  color: white;
+  position: sticky;
+}
+
+.editmenu li {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  list-style-type: none;
+  color: white;
+  padding: 2rem;
+  height: 100px;
+  opacity: 1;
+}
+
+.editmenu div {
+  display: flex;
+  flex-wrap: wrap;
+  color: black;
+  padding-right: 2rem;
+}

@@ -1,0 +1,9 @@
+.link-to {
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color.5s;
+}

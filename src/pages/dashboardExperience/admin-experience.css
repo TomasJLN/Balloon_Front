@@ -1,0 +1,28 @@
+
+#title-admin-cat {
+  margin: 20px 0 40px;
+  text-align: center;
+}
+
+.input-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+#link-create-cat {
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.error-info {
+  margin: 5rem 0;
+  text-align: center;
+  width: 100%;
+  font-size: 2rem;
+}
+
+.form-wrap {
+  margin: 20px 0;
+  margin-bottom: 50px;
+}
