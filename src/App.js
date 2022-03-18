@@ -1,6 +1,6 @@
 import { AppRoute } from "./routes/AppRoute";
-import "./App.css";
 import { StrictMode } from "react";
+import "./App.css";
 
 function App() {
   return (
