@@ -19,14 +19,12 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 
   let resultTitle = "Nuestras experiencias destacadas...";
 
-  if (searchCat && !toSearchTit) {
+  if (searchCat) {
     resultTitle = `Categoría ${searchCat}`;
-  } else if ((toSearchTit && !searchCat) || (toSearchTit && searchCat)) {
-    resultTitle = toSearch
-      ? `Resultado de búsqueda para: ${toSearch}`
-      : "Experiencias destacadas";
-  } else if (!toSearchTit && toSearch) {
-    resultTitle = "";
+  } else if (toSearch) {
+    resultTitle = `Resultado de búsqueda para: ${toSearch}`;
+  } else if (!toSearch) {
+    resultTitle = "Experiencias destacadas";
   }
 
   query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
