@@ -162,13 +162,15 @@ const Register = () => {
 					autoComplete="off"
 					required
 				></input>
-				<PasswordStrengthBar
-					minScore={5}
-					scoreWords={scoreWords}
-					shortScoreWord={"muy corta"}
-					minLength={6}
-					password={newUser.password}
-				/>
+				{newUser.password.length > 0 && (
+					<PasswordStrengthBar
+						minScore={5}
+						scoreWords={scoreWords}
+						shortScoreWord={"muy corta"}
+						minLength={6}
+						password={newUser.password}
+					/>
+				)}
 				<label className="generalLabel" htmlFor="passwordRepeatReg">
 					Repite la contraseña:&nbsp;
 					{errorsFormulario.passwordRepeat && (

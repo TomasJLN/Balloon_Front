@@ -107,13 +107,15 @@ const Editpassword = () => {
 						autoComplete="off"
 						onChange={(e) => setNewPassword(e.target.value)}
 					></input>
-					<PasswordStrengthBar
-						minScore={5}
-						scoreWords={scoreWords}
-						shortScoreWord={"muy corta"}
-						minLength={6}
-						password={newPassword}
-					/>
+					{newPassword.length > 0 && (
+						<PasswordStrengthBar
+							minScore={5}
+							scoreWords={scoreWords}
+							shortScoreWord={"muy corta"}
+							minLength={6}
+							password={newPassword}
+						/>
+					)}
 					<button className="generalButton" type="submit">
 						Guardar
 					</button>
