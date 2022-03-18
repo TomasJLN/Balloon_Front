@@ -17,16 +17,17 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 
   let query = q;
 
-  let resultTitle = "";
+  let resultTitle = "Nuestras experiencias destacadas...";
 
   if (searchCat && !toSearchTit) {
     resultTitle = `Categoría ${searchCat}`;
   } else if ((toSearchTit && !searchCat) || (toSearchTit && searchCat)) {
-    resultTitle = `Resultado de búsqueda para: ${toSearch}`;
+    resultTitle = toSearch
+      ? `Resultado de búsqueda para: ${toSearch}`
+      : "Experiencias destacadas";
   } else if (!toSearchTit && toSearch) {
     resultTitle = "";
-  } else if (query.length < 1 || toSearch === "")
-    resultTitle = "Nuestras experiencias destacadas...";
+  }
 
   query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
 
