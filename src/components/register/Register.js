@@ -3,10 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import fetcher from "../../helpers/fetcher";
 import { toast } from "react-toastify";
 import "./register.css";
-import PasswordStrengthBar from "react-password-strength-bar";
 
 const Register = () => {
-	const scoreWords = ["débil", "normál", "buena", "fuerte", "muy fuerte"];
 	const initialForm = {
 		name: "",
 		surname: "",
@@ -162,15 +160,7 @@ const Register = () => {
 					autoComplete="off"
 					required
 				></input>
-				{newUser.password.length > 0 && (
-					<PasswordStrengthBar
-						minScore={5}
-						scoreWords={scoreWords}
-						shortScoreWord={"muy corta"}
-						minLength={6}
-						password={newUser.password}
-					/>
-				)}
+
 				<label className="generalLabel" htmlFor="passwordRepeatReg">
 					Repite la contraseña:&nbsp;
 					{errorsFormulario.passwordRepeat && (

@@ -5,11 +5,8 @@ import { useNavigate } from "react-router-dom";
 import fetcher from "../../../helpers/fetcher";
 import { toast } from "react-toastify";
 import "./editpassword.css";
-import PasswordStrengthBar from "react-password-strength-bar";
 
 const Editpassword = () => {
-	const scoreWords = ["débil", "normál", "buena", "fuerte", "muy fuerte"];
-
 	const [token, setToken] = useContext(TokenContext);
 	const [usuario, setUsuario] = useContext(UserContext);
 	const [password, setPassword] = useState("");
@@ -107,15 +104,7 @@ const Editpassword = () => {
 						autoComplete="off"
 						onChange={(e) => setNewPassword(e.target.value)}
 					></input>
-					{newPassword.length > 0 && (
-						<PasswordStrengthBar
-							minScore={5}
-							scoreWords={scoreWords}
-							shortScoreWord={"muy corta"}
-							minLength={6}
-							password={newPassword}
-						/>
-					)}
+
 					<button className="generalButton" type="submit">
 						Guardar
 					</button>
