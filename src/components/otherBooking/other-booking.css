@@ -55,6 +55,10 @@
   width: 100%;
 }
 
+.padding-general {
+  padding: 0 10px;
+}
+
 .img-card-otherbooking {
   object-fit: cover;
 }

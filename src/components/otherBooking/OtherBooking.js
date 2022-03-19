@@ -23,11 +23,11 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
           />
         )}
       </figure>
-      <div className="header-booking">
+      <div className="header-booking padding-general">
         <p>Reserva: {oq.ticket}</p>
         <p>Fecha Reserva: {moment(oq.dateExperience).format("YYYY-MM-DD")}</p>
       </div>
-      <p className="title-booking">{oq.title}</p>
+      <p className="title-booking padding-general">{oq.title}</p>
 
       <div className="btns-bookings">
         <button
