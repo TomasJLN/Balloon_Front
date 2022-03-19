@@ -1,8 +1,6 @@
 import { downloadImage } from "../../helpers/downloadImage";
 import "./qr-ticket.css";
 export const QrTicket = ({ q }) => {
-  console.log(q.qrPicture);
-
   return q.qrPicture ? (
     <figure>
       <figcaption>Ref.: {q.qrPicture.split(".")[0]}</figcaption>
