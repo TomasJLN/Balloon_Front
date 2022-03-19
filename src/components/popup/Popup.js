@@ -22,6 +22,10 @@ export const Popup = ({ setShowPopup }) => {
 
   useEffect(() => {
     !error && result.includes("comprueba tu email") && navigate("/recovery");
+    return () => {
+      setResult("");
+      setError(null);
+    };
   }, [result]);
 
   // useEffect(() => {

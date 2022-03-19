@@ -78,7 +78,7 @@ const Login = () => {
                 }}
                 onFocus={() => {
                   setPassword("");
-                  setError(null);
+                  // setError(null);
                 }}
               />
             </div>
