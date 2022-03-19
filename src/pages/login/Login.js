@@ -26,6 +26,9 @@ const Login = () => {
 
   useEffect(() => {
     error && toast.error(error);
+    return () => {
+      setError(null);
+    };
   }, [error]);
 
   const handleLogin = async (e) => {
@@ -78,7 +81,6 @@ const Login = () => {
                 }}
                 onFocus={() => {
                   setPassword("");
-                  // setError(null);
                 }}
               />
             </div>
