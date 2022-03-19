@@ -56,22 +56,10 @@ const Experience = () => {
 
   return (
     <div className="exp-container">
-      <div className="rating-back">
-        {avgRatin > 0 && (
-          <>
-            <Rating
-              ratingValue={avgRatin}
-              size="16px"
-              tooltipClassName="stars-count"
-              readonly={true}
-            />
-            <span className="counter-reviews">({reviews.length})</span>
-          </>
-        )}
-      </div>
-      <div className="figure-description-container">
-        <div className="figure-container">
-          <figure>
+      
+    <div className='figure-desc-container'>
+       <div className="figure-container">
+          <figure >
             {photo ? (
               <img
                 src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
@@ -86,13 +74,27 @@ const Experience = () => {
               />
             )}
           </figure>
-        </div>
+     </div>
+    
 
         <div className="description-container">
           <h1 id="exp-title">{title}</h1>
+          <div className="rating-back">
+        {avgRatin > 0 && (
+          <>
+            <Rating
+              ratingValue={avgRatin}
+              size="16px"
+              tooltipClassName="stars-count"
+              readonly={true}
+            />
+            <span className="counter-reviews">({reviews.length})</span>
+          </>
+        )}
+      </div>
           <div className="exp-description">
             <p>{description}</p>
-          </div>
+          
           <div>
             <p className="exp-date">
               <a
@@ -110,7 +112,7 @@ const Experience = () => {
                 </span>
               </a>
             </p>
-          </div>
+            </div>
 
           <div className="ratin-buy-button">
             <p id="precio-exp">{price} €</p>
@@ -125,8 +127,16 @@ const Experience = () => {
           </div>
         </div>
       </div>
-
+      </div>
+      <div className='map-container'>
+      <h2 id="map-title">¿Cómo llegar?</h2>
+        <Mapa photo={photo} title={title} coords={coords} url={url} />
+<div className='exp-info-container'>
+  
+  <div className='extra-info'>
+<p>Otra información</p>
       {infoExperience.map(({ title, content }) => (
+        
         <Accordion
           className="accordion-section"
           key={title}
@@ -134,12 +144,23 @@ const Experience = () => {
           content={content}
         />
       ))}
-
-      <hr id="opinions-section" />
-      {avgRatin !== 0 && <Reviews id={id} reviews={reviews} />}
+      </div>
+      <div className='ratin-info'>
+{avgRatin !== 0 ? <p>Valoraciones de clientes</p> : <p>Sin valoraciones por el momento</p>}
+       <hr id="opinions-section" />
+      {avgRatin !== 0 && (
+      <Reviews id={id} reviews={reviews} />)}
       <hr />
+      </div>
+      </div>
+      
+     </div>
+        
+        
 
-      <Mapa photo={photo} title={title} coords={coords} url={url} />
+     
+
+      
 
       <div>
         <h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>

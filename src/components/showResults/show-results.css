@@ -6,8 +6,8 @@
 	gap: 20px;
 	padding: 12px 0 26px;
 
-	background-color: rgb(var(--primary-color-soft));
-	background-color: white;
+	
+	/* background-image: url('../../../public/imgs/texture3.jpeg'); */
 }
 
 .info {
