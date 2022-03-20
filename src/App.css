@@ -30,7 +30,7 @@
   box-sizing: border-box;
 }
 html {
-  background-color: transparent;
+  background-image: url("../public/imgs/paper-texture.jpg");
 }
 
 body {
