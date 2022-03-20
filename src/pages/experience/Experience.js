@@ -1,18 +1,16 @@
-import { Rating } from "react-simple-star-rating";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useExperience } from "../../hooks/useExperience";
 import { useGetReviews } from "../../hooks/useGetReviews";
 import { Reviews } from "../../components/reviews/Reviews";
 import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimilar";
-import Accordion from "../../components/accordion/Accordion";
 import { scrollToTop } from "../../helpers/scrollToTop";
 import Mapa from "../../components/Mapa";
-import { MdLocationPin } from "react-icons/md";
 import "./experience.css";
-import moment from "moment";
 
 const Experience = () => {
+
 	const { id } = useParams();
 
 	const {
@@ -138,6 +136,7 @@ const Experience = () => {
 			</div>
 		</div>
 	);
+
 };
 
 export default Experience;

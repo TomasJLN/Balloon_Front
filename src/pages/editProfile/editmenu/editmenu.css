@@ -5,11 +5,11 @@
   align-items: center;
   background-color: rgb(var(--primary-color-soft));
   color: white;
-  position: sticky;
 }
 
 .editmenu li {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   border-bottom: 1px solid black;
   font-size: 1.2rem;
@@ -24,6 +24,7 @@
 .editmenu div {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   color: black;
   padding-right: 2rem;
 }
