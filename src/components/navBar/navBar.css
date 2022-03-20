@@ -9,19 +9,18 @@
   opacity: 95%;
  } */
 
+.dropdown-btn {
+	list-style: none;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 1rem;
+	color: white;
+}
 
- li {
-   list-style: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 1rem;
-  color: white;
- }
- 
- .dropdown-btn:hover {
-  background-color: white;
-  opacity: 90%;
-  transition: all;
-  cursor: pointer;
-  color: black; 
+.dropdown-btn:hover {
+	background-color: white;
+	opacity: 90%;
+	transition: all;
+	cursor: pointer;
+	color: black;
 }

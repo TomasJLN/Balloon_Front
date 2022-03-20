@@ -1,32 +1,32 @@
 .nav-user {
-  position: absolute;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  margin-top: 4.7rem;
-  z-index: 3;
-  background-color: black;
-  opacity: 95%;
+	position: absolute;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	margin-top: 4.7rem;
+	z-index: 3;
+	background-color: rgb(var(--primary-color-hard));
+	opacity: 95%;
 }
 .nav-user ul li {
-  font-size: 1.2rem;
-  font-weight: bold;
-  list-style: none;
-  padding: 1rem;
-  color: white;
+	font-size: 1.2rem;
+	font-weight: bold;
+	list-style: none;
+	padding: 1rem;
+	color: white;
 }
 
 menu a {
-  color: white;
-  display: flex;
+	color: white;
+	display: flex;
 }
 
 menu a:hover {
-  color: rgb(237, 245, 191);
+	color: rgb(237, 245, 191);
 }
 
 @media screen and (min-width: 1400px) {
-  .nav-user {
-    right: auto;
-  }
+	.nav-user {
+		right: auto;
+	}
 }
