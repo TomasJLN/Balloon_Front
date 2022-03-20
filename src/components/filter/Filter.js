@@ -148,6 +148,7 @@ const Filter = ({
 								flexDirection: "column",
 								alignItems: "flex-start",
 								backgroundColor: "white",
+								padding: "1rem",
 							}}
 							className="order"
 						>
