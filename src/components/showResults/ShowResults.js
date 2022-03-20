@@ -72,7 +72,6 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
         </div>
       ) : (
         <>
-          {" "}
           {pagFiltered.length > 0 && (
             <h2 className="result-title">{resultTitle}</h2>
           )}
@@ -82,7 +81,9 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
                 <ExperienceCard key={exp.id} exp={exp} />
               ))
             ) : (
-              <h2 className="info fade_in">No se encontraron resultados</h2>
+              <h2 className="info show_no_results">
+                No se encontraron resultados
+              </h2>
             )}
           </div>
           {btnMore && pagFiltered.length > 0 && (
