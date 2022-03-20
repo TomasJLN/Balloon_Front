@@ -154,18 +154,8 @@
 	font-size: 1.5rem;
 }
 
-.ratin-buy-button button {
-	z-index: 90;
-	background-color: #ee6a2c;
-	border-radius: 9px;
-}
-
-.ratin-buy-button button:hover {
-	background-color: green;
-}
 .accordion-section {
 	width: 100%;
-	border-top: 2px solid rgba(214, 210, 210, 0.594);
 	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
 }
 
@@ -205,7 +195,7 @@
 	}
 
 	.figure-container {
-		width: 85%;
+		width: 100%;
 	}
 
 	.exp-description {

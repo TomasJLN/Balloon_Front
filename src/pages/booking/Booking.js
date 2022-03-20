@@ -130,121 +130,117 @@ const Booking = () => {
 				<h1 className="spinner-container">Cargando...</h1>
 			) : (
 				<div className="wrap-content">
-					<h1 className="title-center">RESERVAR</h1>
 					<div className="experience-data">
 						<div className="photo-thumbnail">
 							{photo ? (
 								<img
 									src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
 									alt={title}
-									className="exp-picture img-top"
+									className="exp-pic"
 								/>
 							) : (
 								<img
 									src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
 									alt={title}
-									className="exp-picture"
+									className="exp-pic"
 								/>
 							)}
 						</div>
-						<div className="title-description">
-							<h1>{title}</h1>
-							<p className="description-text">{description}</p>
-							<div className="accordion-section">
-								<ul className="normatives">
-									{infoExperience.map(({ title, content }) => (
-										<li>
-											<strong>{title}</strong>: {content}
-										</li>
-									))}
-								</ul>
+						<div style={{ padding: "2rem" }}>
+							<div className="title-description">
+								<h1>{title}</h1>
+								<p className="description-text">{description}</p>
+								<div className="accordion-section">
+									<ul className="normatives">
+										{infoExperience.map(({ title, content }) => (
+											<li>
+												<strong>{title}</strong>: {content}
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+							<div className="info-checkout-container">
+								<form className="booking-form">
+									<div id="select-date">
+										<label htmlFor="date">Escoger Fecha</label>
+										<DatePicker
+											style={{
+												display: "flex",
+												alignItems: "center",
+												width: "120px",
+												textAlign: "center",
+												fontSize: "1.1rem",
+												border: "none",
+												boxShadow: "2px 2px 4px grey",
+											}}
+											id="date"
+											value={bookingDate}
+											onChange={setBookingDate}
+											editable={false}
+											minDate={new Date(startDate)}
+											maxDate={new Date(endDate)}
+										/>
+									</div>
+									<div className="tickets-booking">
+										<div id="select-quantity">
+											<label htmlFor="quantity">Nº Tickets</label>
+											<button
+												type="button"
+												className="button-quantity"
+												onClick={handleSubtractTicket}
+											>
+												-
+											</button>
+											<input
+												type="text"
+												name="quantity"
+												id="quantity"
+												className="input-quantity"
+												value={numTickets}
+												onChange={handleTicket}
+											/>
+											<button
+												type="button"
+												className="button-quantity"
+												onClick={handleAddTicket}
+											>
+												+
+											</button>
+										</div>
+										{
+											<h5 style={{ textAlign: "center" }}>
+												Máximas plazas disponibles: {maxFreePlaces}
+											</h5>
+										}
+									</div>
+									<div className="pay-method">
+										<p>Forma de pago</p>
+										<div
+											className="pay-option"
+											onChange={(e) => setPay(e.target.value)}
+										>
+											<select className="booking-select">
+												<option id="paypal" name="payMethod" value="paypal">
+													Paypal
+												</option>
+												<option
+													id="creditCard"
+													name="payMethod"
+													value="creditCard"
+												>
+													Targeta de crédito
+												</option>
+												<option id="bizum" name="payMethod" value="bizum">
+													Bizum
+												</option>
+											</select>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
-					<hr />
-					<div className="rating-back">
-						<button
-							className="btn-back"
-							onClick={() => {
-								navigate(-1);
-							}}
-						>
-							↩️ back
-						</button>
-					</div>
-					<form className="booking-form">
-						<div id="select-date">
-							<label htmlFor="date">Escoger Fecha</label>
-							<DatePicker
-								style={{
-									display: "flex",
-									alignItems: "center",
-									width: "120px",
-									textAlign: "center",
-									fontSize: "1.1rem",
-									border: "none",
-									boxShadow: "2px 2px 4px grey",
-								}}
-								id="date"
-								value={bookingDate}
-								onChange={setBookingDate}
-								editable={false}
-								minDate={new Date(startDate)}
-								maxDate={new Date(endDate)}
-							/>
-						</div>
-						<div className="tickets-booking">
-							<div id="select-quantity">
-								<label htmlFor="quantity">Nº Tickets</label>
-								<button
-									type="button"
-									className="button-quantity"
-									onClick={handleSubtractTicket}
-								>
-									-
-								</button>
-								<input
-									type="text"
-									name="quantity"
-									id="quantity"
-									className="input-quantity"
-									value={numTickets}
-									onChange={handleTicket}
-								/>
-								<button
-									type="button"
-									className="button-quantity"
-									onClick={handleAddTicket}
-								>
-									+
-								</button>
-							</div>
-							{
-								<h5 style={{ textAlign: "center" }}>
-									Máximas plazas disponibles: {maxFreePlaces}
-								</h5>
-							}
-						</div>
-						<div className="pay-method">
-							<h3>Forma de pago</h3>
-							<div
-								className="pay-option"
-								onChange={(e) => setPay(e.target.value)}
-							>
-								<select>
-									<option id="paypal" name="payMethod" value="paypal">
-										Paypal
-									</option>
-									<option id="creditCard" name="payMethod" value="creditCard">
-										Targeta de crédito
-									</option>
-									<option id="bizum" name="payMethod" value="bizum">
-										Bizum
-									</option>
-								</select>
-							</div>
-						</div>
-					</form>
 					<div className="check-out">
 						<p className="precio-unidad">Precio ticket: {price} €</p>
 						<p className="precio-total">
@@ -256,6 +252,17 @@ const Booking = () => {
 								RESERVAR
 							</button>
 						</div>
+					</div>
+
+					<div className="rating-back">
+						<button
+							className="btn-back"
+							onClick={() => {
+								navigate(-1);
+							}}
+						>
+							↩️ back
+						</button>
 					</div>
 				</div>
 			)}

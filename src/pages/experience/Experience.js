@@ -63,13 +63,13 @@ const Experience = () => {
 							<img
 								src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
 								alt={title}
-								className="exp-picture"
+								className="exp-pic"
 							/>
 						) : (
 							<img
 								src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
 								alt={title}
-								className="exp-picture"
+								className="exp-pic"
 							/>
 						)}
 					</figure>
@@ -103,7 +103,7 @@ const Experience = () => {
 						<div className="ratin-buy-button">
 							<p id="precio-exp">{price} €</p>
 							<button
-								className="buy-button"
+								className="generalButton"
 								onClick={(e) => {
 									navigate(`/booking/${id}`);
 								}}
