@@ -23,11 +23,19 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
           />
         )}
       </figure>
-      <div className="header-booking padding-general">
+      <div
+        className="header-booking padding-general"
+        onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
+      >
         <p>Reserva: {oq.ticket}</p>
         <p>Fecha Reserva: {moment(oq.dateExperience).format("YYYY-MM-DD")}</p>
       </div>
-      <p className="title-booking padding-general">{oq.title}</p>
+      <p
+        className="title-booking padding-general"
+        onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
+      >
+        {oq.title.length > 100 ? `${oq.title.slice(0, 100)}...` : oq.title}
+      </p>
 
       <div className="btns-bookings">
         <button

@@ -55,7 +55,7 @@ const Editbooking = () => {
         className="title-center link-text big-font"
         onClick={() => navigate("/")}
       >
-        Volver al menú
+        Volver al Inicio
       </p>
     </section>
   );
