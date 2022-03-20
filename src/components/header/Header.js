@@ -55,7 +55,7 @@ export const Header = ({
         <h1>Cargando...</h1>
       ) : (
         <header id="main_header">
-          <nav>
+          <nav className="main-menu-group">
             {showNavBar && (
               <NavBar
                 toSearch={toSearch}
