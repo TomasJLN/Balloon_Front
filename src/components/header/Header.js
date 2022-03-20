@@ -52,7 +52,7 @@ export const Header = ({
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <h1>Cargando...</h1>
       ) : (
         <header id="main_header">
           <nav>
