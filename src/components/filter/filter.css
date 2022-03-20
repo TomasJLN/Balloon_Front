@@ -43,8 +43,8 @@
 	align-items: center;
 	align-content: center;
 	text-align: center;
-	justify-content: space-evenly;
-
+	justify-content: center;
+	padding: 10px 0;
 	background-color: rgb(var(--primary-color-soft));
 }
 
@@ -54,7 +54,7 @@
 }
 .priceSearch,
 .categorySearch,
-.LocationSearch,
+.locationSearch,
 .ratingSearch {
 	display: flex;
 
@@ -145,14 +145,6 @@
 	transform: translate(-50px, 1px);
 }
 
-.Filter {
-	display: flex;
-	flex-direction: column;
-	color: rebeccapurple;
-	width: 90vw;
-	margin: 10px 0;
-}
-
 .filter-toggle {
 	display: flex;
 	justify-content: center;
@@ -172,7 +164,7 @@
 	color: white;
 	font-size: 17px;
 	width: 7rem;
-	border-radius: 20px;
+	border-radius: 9px;
 	height: 2rem;
 
 	border: none;
@@ -188,17 +180,14 @@
 .generalFilter {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	border-radius: 30px;
+
+	border-radius: 9px;
 	text-align: center;
-	height: 2.5rem;
-	min-width: 180px;
+	height: 25px;
+	width: 140px;
 	border: none;
 	box-shadow: 2px 2px 4px gray;
-	margin-bottom: 1rem;
-	margin-top: 1rem;
 	background-color: white;
-	padding: 10px 15px;
 }
 
 .custom-input {
@@ -207,26 +196,26 @@
 
 div.locationSearch > p {
 	color: black;
-	text-align: center;
-	font-size: 25px;
+
+	font-size: 16px;
 }
 
 div.categorySearch > p {
 	color: black;
-	text-align: center;
-	font-size: 25px;
+
+	font-size: 16px;
 }
 
 div.priceSearch > p {
 	color: black;
-	text-align: center;
-	font-size: 25px;
+
+	font-size: 16px;
 }
 
 div.ratingSearch > p {
 	color: black;
-	text-align: center;
-	font-size: 25px;
+
+	font-size: 16px;
 }
 
 /* button.filterButton {
@@ -240,18 +229,16 @@ div.ratingSearch > p {
 	background-color: rgba(0, 0, 0, 0.274);
 } */
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 520px) {
 	.priceSearch,
 	.categorySearch,
-	.LocationSearch,
+	.locationSearch,
 	.ratingSearch {
 		display: flex;
 		width: 50%;
 		justify-content: center;
-	}
-
-	.generalFilter {
-		width: 50%;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.hero {
@@ -267,27 +254,33 @@ div.ratingSearch > p {
 	}
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 820px) {
 	.priceSearch,
 	.categorySearch,
-	.LocationSearch,
+	.locationSearch,
 	.ratingSearch {
 		display: flex;
+		flex-direction: column;
 		flex-wrap: nowrap;
-		width: 200px;
+		width: 150px;
 		justify-content: center;
+		align-items: center;
 	}
 }
 
 @media screen and (min-width: 1200px) {
 	.priceSearch,
 	.categorySearch,
-	.LocationSearch,
+	.locationSearch,
 	.ratingSearch {
 		display: flex;
+		flex-direction: column;
 		flex-wrap: nowrap;
-		width: 200px;
+		width: 170px;
 		justify-content: center;
+		align-items: center;
+		/* position: relative;
+		top: 20px; */
 	}
 }
 

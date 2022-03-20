@@ -28,7 +28,7 @@ const NavBar = ({
 	}, [setShowNavBar]);
 
 	return (
-		<menu ref={ref} className="navbar">
+		<menu id="slide" ref={ref} className="navbar">
 			<li className="dropdown-btn">
 				<Link to="/" onClick={(s) => setShowNavBar(!s)}>
 					INICIO

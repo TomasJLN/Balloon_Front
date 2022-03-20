@@ -5,6 +5,7 @@ const CategorySearch = ({ searchCat, setSearchCat }) => {
 	const { categories } = useGetCategories();
 	return (
 		<div className="categorySearch">
+			<p>Categoría</p>
 			<Field
 				className="generalFilter"
 				value={searchCat}
@@ -15,7 +16,7 @@ const CategorySearch = ({ searchCat, setSearchCat }) => {
 				as="select"
 			>
 				<option className="option" value="">
-					Categoría
+					Todas
 				</option>
 				{categories.map((cat) => (
 					<option className="option" key={cat.id} cat={cat}>
