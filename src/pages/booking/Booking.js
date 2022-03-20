@@ -14,6 +14,7 @@ import moment from "moment";
 
 const Booking = () => {
 	const { id } = useParams();
+
 	const {
 		category,
 		title,
