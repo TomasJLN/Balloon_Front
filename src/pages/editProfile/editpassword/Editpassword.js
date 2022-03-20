@@ -55,7 +55,7 @@ const Editpassword = () => {
         <h1>Cargando...</h1>
       ) : (
         <form className="generalForm" onSubmit={handlepassword}>
-          <h2>Cambiar mis datos</h2>
+          <h2 id="datos">Cambiar mis datos</h2>
           <label className="generalLabel" htmlFor="name">
             Nombre:
           </label>
