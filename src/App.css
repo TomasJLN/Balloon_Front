@@ -192,6 +192,12 @@ header {
   animation-fill-mode: forwards;
 }
 
+.show_no_results {
+  animation: fadeInAnimation ease 4s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
 .title-center {
   display: flex;
   justify-content: center;
