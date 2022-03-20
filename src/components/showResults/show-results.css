@@ -4,7 +4,7 @@
 	justify-content: space-evenly;
 	overflow: hidden;
 	gap: 20px;
-	padding: 12px 0 26px;
+	padding: 1rem;
 
 	/* background-image: url('../../../public/imgs/texture3.jpeg'); */
 }
@@ -41,6 +41,6 @@
 .result-title {
 	text-align: center;
 	font-size: 31px;
-	padding: 50px 0 25px 0;
+	padding: 1rem;
 	background-color: white;
 }
