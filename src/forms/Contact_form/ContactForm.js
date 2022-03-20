@@ -1,6 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-/* import * as Yup from 'yup'; */
-import "./ContactForm.css";
+import { toast } from "react-toastify";
 import "../../pages/Contact/Contact.css";
 
 const validateName = (value) => {
@@ -26,17 +25,9 @@ const validateEmail = (value) => {
   return error;
 };
 
-/* const ContactFormSchema = Yup.object().shape({
-  nombre: Yup.string()
-    .min(2, 'demasiado corto')
-    .max(50, 'demasiado largo')
-    .required('campo obligatorio'),
-  email: Yup.string().email('email incorrecto').required('campo obligatorio'),
-}); */
-
 const ContactForm = () => {
   return (
-    <div>
+    <div className="contact-form">
       <Formik
         initialValues={{
           nombre: "",
@@ -46,8 +37,6 @@ const ContactForm = () => {
           mensaje: "",
           acceptance: "",
         }}
-        // onSubmit={(values) => console.log('values', values)}
-        /*  ValidationSchema={ContactFormSchema} */
       >
         {({ errors, touched, validateField, validateForm }) => (
           <Form className="generalForm">
@@ -79,7 +68,11 @@ const ContactForm = () => {
             <ErrorMessage className="errorValidation" name="tel" />
 
             <label className="generalLabel">Tipo de consulta:</label>
-            <Field className="generalInput" name="tipo_consulta" as="select">
+            <Field
+              className="generalInput generalSelect"
+              name="tipo_consulta"
+              as="select"
+            >
               <option value="consulta1">consulta1</option>
               <option value="consulta2">consulta2</option>
               <option value="consulta3">consulta3</option>
@@ -103,7 +96,7 @@ const ContactForm = () => {
               className="generalButton"
               onClick={() =>
                 validateForm().then(() =>
-                  console.error("Hay errores en el formulario")
+                  toast.error("Hay errores en el formulario")
                 )
               }
             >
