@@ -193,7 +193,7 @@ header {
 }
 
 .show_no_results {
-  animation: fadeInAnimation ease 4s;
+  animation: fadeInAnimation ease 6s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -232,17 +232,16 @@ header {
 		margin-right: 20%;
 		margin-left: 20%;
 	}
-
-	@keyframes fadeInAnimation {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
+  
+  */
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
- */
 .slideInDown {
   -webkit-animation-name: slideInDown;
   animation-name: slideInDown;
