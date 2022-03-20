@@ -94,7 +94,7 @@ export const Header = ({
             />{" "}
             Balloon
           </div>
-          <div>
+          <div className="user-avatar-menu">
             {userMenu && (
               <NavUser setUserMenu={setUserMenu} usuario={usuario} />
             )}
