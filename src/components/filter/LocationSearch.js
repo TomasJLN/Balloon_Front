@@ -10,6 +10,7 @@ const LocationSearch = ({ searchLoc, setSearchLoc }) => {
 
 	return (
 		<div className="locationSearch">
+			<p>Ciudad</p>
 			<Field
 				className="generalFilter"
 				value={searchLoc}
@@ -20,7 +21,7 @@ const LocationSearch = ({ searchLoc, setSearchLoc }) => {
 				as="select"
 			>
 				<option className="option" value="">
-					Localización
+					Todas
 				</option>
 				{filteredLocations.map((loc, index) => (
 					<option className="option" key={index}>
