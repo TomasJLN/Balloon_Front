@@ -67,10 +67,7 @@
   color: black;
 }
 
-.footer a:visited {
-  color: rgb(0, 0, 0);
-}
-
+.footer a:visited,
 .footer a:link {
   color: rgb(0, 0, 0);
 }
