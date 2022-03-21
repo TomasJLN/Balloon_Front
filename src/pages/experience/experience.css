@@ -14,8 +14,7 @@
 .description-container {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
-	justify-items: center;
+	padding: 2rem;
 }
 .figure-desc-container {
 	display: flex;
@@ -66,10 +65,8 @@
 
 .ratin-buy-button {
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	padding: 1.5rem 0;
-	align-items: flex-start;
+	margin-top: 1rem;
+	align-items: center;
 }
 
 .buy-button {
@@ -86,8 +83,7 @@
 
 #precio-exp {
 	font-size: 29px;
-	display: flex;
-	justify-content: end;
+	margin-right: 1rem;
 }
 
 #ex-sim,
@@ -185,6 +181,12 @@
 	margin-top: 1rem;
 }
 
+@media screen and (min-width: 1200px) {
+	.figure-desc-container {
+		padding: 3rem;
+	}
+}
+
 @media screen and (max-width: 1200px) {
 	.figure-desc-container {
 		flex-direction: column;
@@ -223,6 +225,14 @@
 	.ratin-buy-button {
 		align-items: center;
 		border-bottom: 2px solid rgba(214, 210, 210, 0.594);
+
+		flex-direction: column;
+	}
+
+	#precio-exp {
+		font-size: 29px;
+		margin-bottom: 1rem;
+		margin-right: 0;
 	}
 }
 

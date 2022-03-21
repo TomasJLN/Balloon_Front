@@ -10,7 +10,6 @@ import Mapa from "../../components/Mapa";
 import "./experience.css";
 
 const Experience = () => {
-
 	const { id } = useParams();
 
 	const {
@@ -136,7 +135,6 @@ const Experience = () => {
 			</div>
 		</div>
 	);
-
 };
 
 export default Experience;

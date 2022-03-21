@@ -6,7 +6,7 @@ const PriceSearch = ({ setSearchPrice, searchPrice }) => {
 	return (
 		<div className="priceSearch">
 			<p>Precio</p>
-			<div style={{ width: "140px" }}>
+			<div style={{ display: "flex", width: "140px" }}>
 				<Slider
 					sx={{
 						paddingTop: "0px",
