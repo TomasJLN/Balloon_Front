@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
 import { VscAccount } from "react-icons/vsc";
 import fetcher from "../../helpers/fetcher";
 import { Popup } from "../../components/popup/Popup";
+
 import "./login.css";
+import { PopupRegisterOk } from "../../components/popupRegisterOk/PopupRegisterOk";
 
 const Login = () => {
   const [token, setToken] = useContext(TokenContext);
@@ -16,8 +18,21 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [registerOk, setRegisterOk] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const q = location.search;
+
+  let query = q;
+
+  useEffect(() => {
+    query.includes("register=ok") ? setRegisterOk(true) : setRegisterOk(false);
+    return () => {
+      setRegisterOk(false);
+    };
+  }, []);
 
   useEffect(() => {
     token && !error && usuario.role === "admin" && navigate("/dashboard");
@@ -47,6 +62,7 @@ const Login = () => {
         <h1>Cargando...</h1>
       ) : (
         <div>
+          {registerOk && <PopupRegisterOk setRegisterOk={setRegisterOk} />}
           <form onSubmit={handleLogin} className="generalForm">
             <VscAccount size="5rem" />
             <div>
