@@ -82,7 +82,6 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
       ) : (
         <>
           {registerOk && <PopupRegisterOk setRegisterOk={setRegisterOk} />}
-          <h1>{q}</h1>
           {pagFiltered.length > 0 && (
             <h2 className="result-title">{resultTitle}</h2>
           )}
