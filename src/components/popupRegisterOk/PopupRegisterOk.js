@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import "../popup/popup.css";
 
 export const PopupRegisterOk = ({ setRegisterOk }) => {
