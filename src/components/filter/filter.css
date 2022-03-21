@@ -1,80 +1,80 @@
 .hero {
-  position: relative;
+	position: relative;
 
-  width: 100%;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background: url("https://source.unsplash.com/random/?adventures");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  justify-content: center;
-  align-items: center;
+	max-width: 100%;
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	background: url("https://source.unsplash.com/random/?adventures");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	justify-content: center;
+	align-items: center;
 
-  z-index: 1;
+	z-index: 1;
 }
 
 .hero::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-  background: rgba(0, 0, 0, 0.461);
-  z-index: -1;
+	background: rgba(0, 0, 0, 0.461);
+	z-index: -1;
 }
 
 .searchContainer {
-  display: flex;
-  min-width: 350px;
-  justify-content: center;
+	display: flex;
+	min-width: 350px;
+	justify-content: center;
 }
 
 .filterContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-  justify-content: center;
-  padding: 10px 0;
-  background-color: rgb(var(--primary-color-soft));
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	justify-content: center;
+	padding: 10px 0;
+	background-color: rgb(var(--primary-color-soft));
 }
 
 .searchBar {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .priceSearch,
 .categorySearch,
 .locationSearch,
 .ratingSearch {
-  display: flex;
+	display: flex;
 
-  justify-content: center;
+	justify-content: center;
 }
 
 .selectFilter {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100vw;
-  text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100vw;
+	text-align: center;
 }
 
 .priceRateFilter {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100vw;
-  text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100vw;
+	text-align: center;
 }
 
 /* .searchBar:before {
@@ -88,134 +88,134 @@
 } */
 
 .button-search {
-  background-color: transparent;
-  color: white;
-  border: none;
-  font-size: 1em;
-  cursor: pointer;
-  position: relative;
-  right: 25px;
+	background-color: transparent;
+	color: white;
+	border: none;
+	font-size: 1em;
+	cursor: pointer;
+	position: relative;
+	right: 25px;
 }
 
 .search-form {
-  width: 90%;
-  max-width: 700px;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
+	width: 90%;
+	max-width: 700px;
+	z-index: 2;
+	display: flex;
+	justify-content: space-between;
 }
 
 .input-search {
-  color: white;
-  padding: 5px 15px;
-  background-color: rgba(0, 0, 0, 0.6);
-  font-size: 1.5rem;
-  border: none;
-  letter-spacing: 2px;
+	color: white;
+	padding: 5px 15px;
+	background-color: rgba(0, 0, 0, 0.6);
+	font-size: 1.5rem;
+	border: none;
+	letter-spacing: 2px;
 }
 
 .input-search:focus {
-  outline: none;
+	outline: none;
 }
 
 .search-button {
-  padding: 6px;
-  border: none;
-  color: white;
-  background-color: transparent;
-  /* position: absolute; */
-  height: 2rem;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  transform: translate(-50px, 1px);
+	padding: 6px;
+	border: none;
+	color: white;
+	background-color: transparent;
+	/* position: absolute; */
+	height: 2rem;
+	font-size: 1.4rem;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	transform: translate(-50px, 1px);
 }
 
 .calendar-button {
-  border: none;
-  color: white;
-  background-color: transparent;
+	border: none;
+	color: white;
+	background-color: transparent;
 
-  font-size: 2rem;
-  cursor: pointer;
+	font-size: 2rem;
+	cursor: pointer;
 }
 
 .search-button:hover {
-  transform: scale(1.4);
-  transform: translate(-50px, 1px);
+	transform: scale(1.4);
+	transform: translate(-50px, 1px);
 }
 
 .filter-toggle {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .button-toggle {
-  padding: 10px 15px;
-  background-color: black;
-  color: white;
-  border: none;
-  cursor: pointer;
+	padding: 10px 15px;
+	background-color: black;
+	color: white;
+	border: none;
+	cursor: pointer;
 }
 
 .filterButton {
-  background-color: #000000;
+	background-color: #000000;
 
-  color: white;
-  font-size: 17px;
-  width: 7rem;
-  border-radius: 9px;
-  height: 2rem;
+	color: white;
+	font-size: 17px;
+	width: 7rem;
+	border-radius: 9px;
+	height: 2rem;
 
-  border: none;
+	border: none;
 
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .filterButton:hover {
-  background-color: rgb(255, 85, 58);
-  box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
+	background-color: rgb(255, 85, 58);
+	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
 }
 
 .generalFilter {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 
-  border-radius: 9px;
-  text-align: center;
-  height: 25px;
-  width: 140px;
-  border: none;
-  box-shadow: 2px 2px 4px gray;
-  background-color: white;
+	border-radius: 9px;
+	text-align: center;
+	height: 25px;
+	width: 140px;
+	border: none;
+	box-shadow: 2px 2px 4px gray;
+	background-color: white;
 }
 
 .custom-input {
-  display: none;
+	display: none;
 }
 
 div.locationSearch > p {
-  color: black;
+	color: black;
 
-  font-size: 16px;
+	font-size: 16px;
 }
 
 div.categorySearch > p {
-  color: black;
+	color: black;
 
-  font-size: 16px;
+	font-size: 16px;
 }
 
 div.priceSearch > p {
-  color: black;
+	color: black;
 
-  font-size: 16px;
+	font-size: 16px;
 }
 
 div.ratingSearch > p {
-  color: black;
+	color: black;
 
-  font-size: 16px;
+	font-size: 16px;
 }
 
 /* button.filterButton {
@@ -230,65 +230,65 @@ div.ratingSearch > p {
 } */
 
 @media screen and (max-width: 520px) {
-  .priceSearch,
-  .categorySearch,
-  .locationSearch,
-  .ratingSearch {
-    display: flex;
-    width: 50%;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+	.priceSearch,
+	.categorySearch,
+	.locationSearch,
+	.ratingSearch {
+		display: flex;
+		width: 50%;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
 
-  .hero {
-    height: 200px;
-  }
+	.hero {
+		height: 200px;
+	}
 
-  .hero::after {
-    height: 200px;
-  }
+	.hero::after {
+		height: 200px;
+	}
 
-  #principal > h1 {
-    font-size: 21px;
-  }
+	#principal > h1 {
+		font-size: 21px;
+	}
 }
 
-@media screen and (min-width: 820px) {
-  .priceSearch,
-  .categorySearch,
-  .locationSearch,
-  .ratingSearch {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    width: 150px;
-    justify-content: center;
-    align-items: center;
-  }
+@media screen and (min-width: 768px) {
+	.priceSearch,
+	.categorySearch,
+	.locationSearch,
+	.ratingSearch {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		width: 150px;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 @media screen and (min-width: 1200px) {
-  .priceSearch,
-  .categorySearch,
-  .locationSearch,
-  .ratingSearch {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    width: 170px;
-    justify-content: center;
-    align-items: center;
-    /* position: relative;
+	.priceSearch,
+	.categorySearch,
+	.locationSearch,
+	.ratingSearch {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		width: 170px;
+		justify-content: center;
+		align-items: center;
+		/* position: relative;
 		top: 20px; */
-  }
+	}
 }
 
 @media screen and (min-width: 1400px) {
-  .hero {
-    height: 650px;
-  }
-  .hero::after {
-    height: 650px;
-  }
+	.hero {
+		height: 650px;
+	}
+	.hero::after {
+		height: 650px;
+	}
 }
