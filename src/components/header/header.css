@@ -7,14 +7,11 @@
 #main_header {
   display: flex;
   justify-content: space-between;
-
   width: 100%;
   color: rgb(var(--primary-color-hard));
-
   align-items: center;
   font-size: 3rem;
   min-height: 80px;
-  margin-bottom: 2rem;
 }
 
 .menuprincipal {
