@@ -20,7 +20,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
   let query = q;
 
   useEffect(() => {
-    query.includes("register=ok") ? setRegisterOk(true) : setRegisterOk(false);
+    if (q.includes("?register=ok")) setRegisterOk(true);
     return () => {
       setRegisterOk(false);
     };
@@ -82,7 +82,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
       ) : (
         <>
           {registerOk && <PopupRegisterOk setRegisterOk={setRegisterOk} />}
-          <h1>{query}</h1>
+          <h1>{q}</h1>
           {pagFiltered.length > 0 && (
             <h2 className="result-title">{resultTitle}</h2>
           )}
