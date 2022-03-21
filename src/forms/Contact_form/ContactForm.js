@@ -27,7 +27,7 @@ const validateEmail = (value) => {
 
 const ContactForm = () => {
   return (
-    <div className="contact-form">
+    <div className="wrapped-form">
       <Formik
         initialValues={{
           nombre: "",

@@ -1,6 +1,7 @@
 import { AppRoute } from "./routes/AppRoute";
 import { StrictMode } from "react";
 import "./App.css";
+import "./balloon.css";
 
 function App() {
   return (

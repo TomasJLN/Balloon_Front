@@ -19,8 +19,6 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 
   let query = q;
 
-  console.log(q);
-
   useEffect(() => {
     query.includes("register=ok") ? setRegisterOk(true) : setRegisterOk(false);
     return () => {

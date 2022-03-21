@@ -61,7 +61,7 @@ const Login = () => {
       {loading ? (
         <h1>Cargando...</h1>
       ) : (
-        <div>
+        <div className="wrapped-form">
           {registerOk && <PopupRegisterOk setRegisterOk={setRegisterOk} />}
           <form onSubmit={handleLogin} className="generalForm">
             <VscAccount size="5rem" />
