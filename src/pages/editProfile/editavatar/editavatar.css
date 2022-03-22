@@ -21,4 +21,6 @@
   min-height: 12rem;
   min-width: 12rem;
   cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

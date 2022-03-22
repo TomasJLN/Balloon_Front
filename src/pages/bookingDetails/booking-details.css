@@ -9,28 +9,38 @@
   margin: 10px 0;
 }
 
-#vota {
-  background-color: green;
+ #vota {
+  background-color: rgb(219, 209, 209);
+  color: black;
 }
+
+ #vota:hover {
+  background-color: rgb(255, 85, 58);
+	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
+  color: white;
+ }
 
 #no-vota {
   background-color: rebeccapurple;
 }
 
-.btn-other-bookings {
+/* .btn-other-bookings {
   color: white;
   background-color: black;
   height: 1.8rem;
   width: 30%;
+  
 }
 
 .btns-other-bookings {
+  position: relative;
+  bottom: 0;
   min-width: 50%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-around;
-}
+} */
 
 .other-card {
   margin: 30px 0;

@@ -33,11 +33,10 @@ const Editbooking = () => {
   }, [cancelStatus]);
 
   return (
-    <section>
-      <div className="general">
-        <h1 id="reservas" className="title-center">
+    <section className="editbooking">
+        <h2>
           Mis reservas
-        </h1>
+        </h2>
         {othersBookings.length < 1 ? (
           <p className="title-center">No dispone de ninguna reserva</p>
         ) : (
@@ -49,11 +48,9 @@ const Editbooking = () => {
             />
           ))
         )}
-      </div>
-
-      <p className="title-center" onClick={() => navigate("/")}>
-        Volver al menú
-      </p>
+        <p className="title-center" onClick={() => navigate("/")}>
+          Volver al menú
+        </p>
     </section>
   );
 };
