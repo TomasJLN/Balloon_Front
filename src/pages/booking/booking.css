@@ -5,6 +5,7 @@
 
 .wrap-content {
 	padding: 2rem 1rem;
+	background-color: white;
 }
 
 .accordion-section {
@@ -161,9 +162,8 @@
 .check-out {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 150px;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 
 .booking-select {
