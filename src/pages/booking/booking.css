@@ -163,9 +163,8 @@
 .check-out {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 150px;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 
 .booking-select {

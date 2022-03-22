@@ -1,4 +1,4 @@
-import moment from "moment";
+/* import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useExperience } from "../../hooks/useExperience";
@@ -111,30 +111,9 @@ const Experience = () => {
 					</div>
 				</div>
 			</div>
-			<div className="ratin-info">
-				{avgRatin !== 0 ? (
-					<Reviews id={id} reviews={reviews} />
-				) : (
-					<h2 id="ex-sim">Experiencia sin valoraraciones</h2>
-				)}
-			</div>
-			<h2 id="map-title">¿Cómo llegar?</h2>
-			<Mapa photo={photo} title={title} coords={coords} url={url} />
-			<div className="exp-info-container"></div>
-
-			<div>
-				<h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
-				<div>
-					<CarouselSimilar
-						id={id}
-						reviews={reviews}
-						avgRatin={avgRatin}
-						idCategory={idCategory}
-					/>
-				</div>
-			</div>
 		</div>
 	);
 };
 
 export default Experience;
+ */
