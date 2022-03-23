@@ -38,33 +38,45 @@ const NavUser = ({ setUserMenu, usuario }) => {
       <ul>
         {token && role === 'admin' && (
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link 
+            className='itemmenuuser'
+            to="/dashboard">Dashboard</Link>
           </li>
         )}
         {token && (
           <li>
-            <Link to="/profile">Perfil</Link>
+            <Link 
+            className='itemmenuuser'
+            to="/profile">Perfil</Link>
           </li>
         )}
         {role !== 'admin' && (
           <li >
-            <Link to="/contact-form">Contactar</Link>
+            <Link 
+            className='itemmenuuser'
+            to="/contact-form">Contactar</Link>
           </li>
         )}
         {!token && (
           <li>
-            <Link to="/register">Registro</Link>
+            <Link 
+            className='itemmenuuser'
+            to="/register">Registro</Link>
           </li>
         )}
         {token && <li onClick={handleLogout}>Log out</li>}
         {!token && (
           <li>
-            <Link to="/account">Log in</Link>
+            <Link 
+            className='itemmenuuser'
+            to="/account">Log in</Link>
           </li>
         )}
         {!token && (
           <li>
-            <Link to="/recovery">Recuperar contraseña</Link>
+            <Link 
+            className='itemmenuuser'
+            to="/recovery">Recuperar contraseña</Link>
           </li>
         )}
       </ul>
