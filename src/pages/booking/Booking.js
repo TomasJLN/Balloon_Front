@@ -261,7 +261,7 @@ const Booking = () => {
 											onChange={(e) => setPay(e.target.value)}
 										>
 											<select className="booking-select">
-												<option value="none">Elegir forma de pago</option>
+												<option disabled>Elegir forma de pago</option>
 												<option id="paypal" name="payMethod" value="paypal">
 													Paypal
 												</option>
@@ -330,12 +330,14 @@ const Booking = () => {
 						</div>
 					</div>
 					<div className="booking-popup">
-						{popUp && (
+						{popUp && pay && (
 							<PopUpBooking
 								bookingInfo={{
 									price: price,
 									location: location,
 									title: title,
+									photo: photo,
+									numTickets: numTickets,
 								}}
 							/>
 						)}

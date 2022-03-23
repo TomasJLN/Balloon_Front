@@ -215,3 +215,26 @@
 		width: 100%;
 	}
 }
+
+#popup-booking {
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(var(--primary-color-soft));
+	justify-content: center;
+	align-items: center;
+	padding: 3rem;
+	border-radius: 9px;
+}
+
+#popup-booking-container {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 31, 19, 0.721);
+	align-items: center;
+	justify-content: center;
+}
