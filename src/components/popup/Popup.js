@@ -22,6 +22,10 @@ export const Popup = ({ setShowPopup }) => {
 
   useEffect(() => {
     !error && result.includes("comprueba tu email") && navigate("/recovery");
+    return () => {
+      setResult("");
+      setError(null);
+    };
   }, [result]);
 
   // useEffect(() => {
@@ -33,7 +37,9 @@ export const Popup = ({ setShowPopup }) => {
       <article id="popup-fg" onClick={(e) => e.stopPropagation()}>
         <h3>RECUPERAR CONTRASEÑA</h3>
         <form id="popup-form" onSubmit={handleRecoveryPassword}>
-          <label className="generalLabel" htmlFor="email-recovery">Email</label>
+          <label className="generalLabel" htmlFor="email-recovery">
+            Email
+          </label>
           <input
             className="generalInput"
             type="text"

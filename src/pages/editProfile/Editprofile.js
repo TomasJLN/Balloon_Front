@@ -4,10 +4,8 @@ import Editmenu from "./editmenu/Editmenu";
 import Editavatar from "./editavatar/Editavatar";
 import Editpassword from "./editpassword/Editpassword";
 import Editbooking from "./editbooking/Editbooking";
-import { TokenContext } from "../../contexts/TokenContext";
 
 const Editprofile = () => {
-  const [token, setToken] = useContext(TokenContext);
   const [usuario, setUsuario] = useContext(UserContext);
   return (
     <>

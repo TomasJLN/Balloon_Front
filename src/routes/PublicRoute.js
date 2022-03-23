@@ -16,12 +16,18 @@ import Conditions from "../pages/conditions/Conditions";
 import Footer from "../components/footer/Footer";
 import Filter from "../components/filter/Filter";
 
-export const PublicRoute = ({ catTit, setCatTit }) => {
+export const PublicRoute = ({
+	toSearchTit,
+	setToSearchTit,
+	toSearch,
+	setToSearch,
+	searchCat,
+	setSearchCat,
+}) => {
 	const [isVisible, setIsVisible] = useState(false);
 
 	return (
 		<div>
-			{/* {user.role !== "admin" && <Filter />} */}
 			<Routes>
 				<Route
 					path="privacity"
@@ -50,36 +56,106 @@ export const PublicRoute = ({ catTit, setCatTit }) => {
 						</>
 					}
 				/>
-				<Route path="account" element={<Login />} />
-				<Route path="register" element={<Register />} />
 				<Route
-					path="experience/:id"
+					path="account"
 					element={
 						<>
-							<Experience />
+							<Login />
 							<Footer />
 						</>
 					}
 				/>
-				<Route path="booking/:id" element={<Booking />} />
+				<Route
+					path="register"
+					element={
+						<>
+							<Register />
+							<Footer />
+						</>
+					}
+				/>
+				{/*  <Route
+          path="experience/:id"
+          element={
+            <>
+              <Experience />
+              <Footer />
+            </>
+          }
+        /> */}
+				<Route
+					path="booking/:id"
+					element={
+						<>
+							<Booking />
+							<Footer />
+						</>
+					}
+				/>
 				<Route
 					path="allFilter"
 					element={
 						<>
-							<Filter catTit={catTit} setCatTit={setCatTit} />
-							<ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+							<Filter
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+							/>
+							<ShowResults
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+								isVisible={isVisible}
+								setIsVisible={setIsVisible}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+							/>
 							<Footer />
 						</>
 					}
 				/>
-				<Route path="error" element={<ErrorPage />} />
-				<Route path="recovery" element={<RecoveryPassword />} />
+				<Route
+					path="error"
+					element={
+						<>
+							<ErrorPage />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="recovery"
+					element={
+						<>
+							<RecoveryPassword />
+							<Footer />
+						</>
+					}
+				/>
 				<Route
 					path=""
 					element={
 						<>
-							<Filter />
-							<ShowResults isVisible={isVisible} setIsVisible={setIsVisible} />
+							<Filter
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								toSearch={toSearch}
+								setToSearch={setToSearch}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+							/>
+							<ShowResults
+								toSearchTit={toSearchTit}
+								setToSearchTit={setToSearchTit}
+								searchCat={searchCat}
+								setSearchCat={setSearchCat}
+								isVisible={isVisible}
+								setIsVisible={setIsVisible}
+							/>
 							<Footer />
 						</>
 					}

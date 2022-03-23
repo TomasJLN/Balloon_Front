@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { TokenContext } from "../../../contexts/TokenContext";
 import { miniFetcher } from "../../../helpers/fetcher";
 import { useUserBookings } from "../../../hooks/useUserBookings";
-import { toast } from "react-toastify";
 import { OtherBooking } from "../../../components/otherBooking/OtherBooking";
 import "./editbooking.css";
 
@@ -34,10 +34,10 @@ const Editbooking = () => {
 
   return (
     <section>
+      <h1 id="reservas" className="title-center">
+        Mis reservas
+      </h1>
       <div className="general">
-        <h1 id="reservas" className="title-center">
-          Mis reservas
-        </h1>
         {othersBookings.length < 1 ? (
           <p className="title-center">No dispone de ninguna reserva</p>
         ) : (
@@ -51,8 +51,11 @@ const Editbooking = () => {
         )}
       </div>
 
-      <p className="title-center" onClick={() => navigate("/")}>
-        Volver al menú
+      <p
+        className="title-center link-text big-font"
+        onClick={() => navigate("/")}
+      >
+        Volver al Inicio
       </p>
     </section>
   );

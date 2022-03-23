@@ -84,7 +84,7 @@ export const EditCategory = () => {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <h1>Cargando...</h1>
       ) : (
         <section className="wrap-content">
           {error && <h1>{error}</h1>}
@@ -102,31 +102,31 @@ export const EditCategory = () => {
             </div>
           </div>
           <form onSubmit={handleUpdateCategory} className="generalForm">
-              <input
-                className="generalInput"
-                type="text"
-                id="edit-cat-name"
-                name="category"
-                value={nameCategory}
-                onChange={(e) => {
-                  setNameCategory(e.target.value);
-                }}
-                placeholder="Nombre categoría"
-              />
-              <div className="edit-sect-activar">
-                <p>Activar</p>
-                <Switch checked={activeCat} onChange={handleActiveChange} />
-              </div>
-              <textarea
-                className="generalTextarea"
-                type="text"
-                name="description"
-                value={descriptionCategory}
-                onChange={(e) => {
-                  setDescriptionCategory(e.target.value);
-                }}
-                placeholder="Descripcion categoría"
-              />
+            <input
+              className="generalInput"
+              type="text"
+              id="edit-cat-name"
+              name="category"
+              value={nameCategory}
+              onChange={(e) => {
+                setNameCategory(e.target.value);
+              }}
+              placeholder="Nombre categoría"
+            />
+            <div className="edit-sect-activar">
+              <p>Activar</p>
+              <Switch checked={activeCat} onChange={handleActiveChange} />
+            </div>
+            <textarea
+              className="generalTextarea"
+              type="text"
+              name="description"
+              value={descriptionCategory}
+              onChange={(e) => {
+                setDescriptionCategory(e.target.value);
+              }}
+              placeholder="Descripcion categoría"
+            />
 
             {!error && <p className="title-center">Imagen de la categoría</p>}
 

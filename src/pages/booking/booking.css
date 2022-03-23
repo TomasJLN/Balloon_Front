@@ -1,132 +1,214 @@
-.wrap-content .exp-picture {
-  width: 100%;
-  margin-top: 10%;
+.exp-pic {
+	object-fit: cover;
+	width: 100%;
+}
+
+.wrap-content {
+	padding: 2rem 1rem;
+	background-color: white;
 }
 
 .accordion-section {
-  width: 90vw;
-  margin: 1rem auto;
+	padding: 1rem 0;
+	border: none;
 }
 
 .precio-unidad {
-  margin: 2rem 0 1rem;
-  display: flex;
-  justify-content: end;
-  font-size: 1.4rem;
+	display: flex;
+	justify-content: end;
+	font-size: 1.4rem;
 }
 
 .precio-total {
-  margin: 1rem 0 2rem;
-  display: flex;
-  justify-content: end;
-  font-size: 1.8rem;
+	padding: 1rem 0;
+	display: flex;
+	justify-content: end;
+	font-size: 1.8rem;
+	text-decoration: underline;
 }
 
 .btn-back {
-  position: absolute;
-  margin: 6px;
-  right: 6px;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  width: 4rem;
-  height: 1.5rem;
-  color: black;
-  background-color: white;
-  border: none;
-  border-radius: 50px;
-}
-
-.rating-back {
-  margin: 16px 0;
-  display: flex;
-  justify-content: space-between;
+	position: absolute;
+	margin: 6px;
+	right: 6px;
+	text-transform: uppercase;
+	font-size: 0.7rem;
+	width: 4rem;
+	height: 1.5rem;
+	color: black;
+	background-color: white;
+	border: none;
+	border-radius: 50px;
+	display: none;
 }
 
 .experience-data {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 .title-description {
-  font-size: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+	font-weight: 400;
+	font-size: 0.8rem;
+	line-height: normal;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+	text-align: center;
+}
+
+.booking-form {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	background-color: rgb(var(--primary-color-soft));
 }
 
 #select-date {
-  margin: 20px 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: baseline;
-  gap: 12px;
+	padding: 1rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
 }
 
 #select-quantity {
-  margin: 30px 0 10px;
-  display: flex;
-  align-items: center;
-}
-
-#select-quantity label {
-  padding-right: 45px;
-}
-#select-quantity input {
-  text-align: center;
-  width: 50px;
-  flex-grow: 0;
-  border: none;
-}
-
-.description-text {
-  margin: 12px 0;
-  line-height: 1.5;
-}
-
-.photo-thumbnail {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-}
-
-.img-top {
-  justify-self: flex-start;
-}
-
-.button-quantity {
-  width: 1.8rem;
-  height: 1.8rem;
-  background-color: black;
-  color: white;
-  font-weight: bold;
-  border-radius: 50%;
+	display: flex;
 }
 
 .tickets-booking {
-  margin: 12px 2;
+	display: flex;
+	flex-direction: column;
+	justify-items: flex-start;
+}
+
+#select-quantity label {
+	padding-right: 45px;
+}
+#select-quantity input {
+	text-align: center;
+	width: 50px;
+	flex-grow: 0;
+	border: none;
+}
+
+.description-text {
+	margin: 12px 0;
+	line-height: 1.5;
+}
+
+.photo-thumbnail {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.img-top {
+	justify-self: flex-start;
+}
+
+.button-quantity {
+	width: 1.8rem;
+	height: 1.8rem;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	border-radius: 50%;
+}
+
+.tickets-booking {
+	padding: 1rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 12px 2;
+	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
 }
 
 .pay-method {
-  margin: 30px 0;
-  line-height: 2;
-  display: flex;
-  flex-direction: column;
- 
-  align-items: center;
+	padding: 1rem 0;
+	line-height: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
 }
 
 .pay-option {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 .pay-option input {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
 .right-align {
-  display: flex;
-  justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.normatives {
+	list-style: none;
+	text-align: left;
+	line-height: normal;
+}
+
+.check-out {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.booking-select {
+	border-radius: 9px;
+
+	border: none;
+	box-shadow: 2px 2px 4px grey;
+	background-color: white;
+}
+
+@media screen and (min-width: 1200px) {
+	.wrap-content .exp-picture {
+		object-fit: cover;
+		width: 100%;
+	}
+
+	.experience-data {
+		flex-direction: row;
+	}
+
+	.title-description {
+		text-align: left;
+	}
+
+	#select-date,
+	.tickets-booking,
+	.pay-method {
+		width: 33%;
+		border: none;
+		align-items: center;
+
+		flex-direction: column;
+		padding: 0.5rem 0;
+		background-color: white;
+	}
+
+	.booking-form {
+		flex-direction: row;
+		height: 100%;
+		width: 100%;
+		align-items: center;
+		background-color: white;
+	}
+
+	.info-checkout-container {
+		width: 100%;
+	}
 }

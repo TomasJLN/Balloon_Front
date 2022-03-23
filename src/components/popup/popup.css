@@ -6,15 +6,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(247, 229, 152, 0.7);
+  background-color: rgba(var(--secondary-color-soft), 0.7);
   width: 100vw;
   height: 100vh;
 }
 
 #popup-fg {
- 
-  background-color: rgba(235, 203, 62, 0.829);
+  background-color: rgba(var(--primary-color-soft), 0.9);
   width: 80%;
+  max-width: 560px;
   height: 30%;
   border-radius: 10%;
   display: flex;

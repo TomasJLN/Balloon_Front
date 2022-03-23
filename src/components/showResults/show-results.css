@@ -4,8 +4,8 @@
   justify-content: space-evenly;
   overflow: hidden;
   gap: 20px;
-  padding: 0;
-  margin: 15px 0;
+  padding: 1rem;
+  background-color: white;
 }
 
 .info {
@@ -22,7 +22,7 @@
   align-items: center;
   width: 100%;
   height: 3rem;
-  background-color: transparent;
+  background-color: white;
   border: none;
   font-size: 1.2rem;
 }
@@ -34,4 +34,12 @@
   align-items: center;
   width: 100vw;
   height: 50vh;
+  background-color: rgb(var(--primary-color-soft));
+}
+
+.result-title {
+  text-align: center;
+  font-size: 31px;
+  padding: 1rem;
+  background-color: white;
 }

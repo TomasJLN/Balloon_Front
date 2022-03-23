@@ -21,11 +21,14 @@ const Login = () => {
 
   useEffect(() => {
     token && !error && usuario.role === "admin" && navigate("/dashboard");
-    token && !error && usuario.role === "user" && navigate("/profile");
+    token && !error && usuario.role === "user" && navigate(-1);
   }, [token, error, navigate, usuario.role]);
 
   useEffect(() => {
     error && toast.error(error);
+    return () => {
+      setError(null);
+    };
   }, [error]);
 
   const handleLogin = async (e) => {
@@ -41,42 +44,46 @@ const Login = () => {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <h1>Cargando...</h1>
       ) : (
         <div>
           <form onSubmit={handleLogin} className="generalForm">
             <VscAccount size="5rem" />
-            <input
-              className="generalInput"
-              type="text"
-              id="email-login"
-              value={email}
-              name="email-login"
-              placeholder="email"
-              size="40"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              onFocus={() => setEmail("")}
-            />
-            <input
-              className="generalInput"
-              type="password"
-              id="password-login"
-              value={password}
-              name="password-login"
-              size="40"
-              autoComplete="off"
-              placeholder="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              onFocus={() => {
-                setPassword("");
-                setError(null);
-              }}
-            />
-
+            <div>
+              <label htmlFor="email-login">Email</label>
+              <input
+                className="generalInput"
+                type="text"
+                id="email-login"
+                value={email}
+                name="email-login"
+                placeholder="email"
+                size="40"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                onFocus={() => setEmail("")}
+              />
+            </div>
+            <div>
+              <label htmlFor="contrasena-login">Contraseña</label>
+              <input
+                className="generalInput"
+                type="password"
+                id="contrasena-login"
+                value={password}
+                name="password-login"
+                size="40"
+                autoComplete="off"
+                placeholder="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                onFocus={() => {
+                  setPassword("");
+                }}
+              />
+            </div>
             <button type="submit" value="Login" className="generalButton">
               Login
             </button>

@@ -3,6 +3,54 @@
   margin: 20vw 0;
 }
 
-.gestores{
+.gestores {
   background-color: #ffc400;
+}
+.data-dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+  background-color: whitesmoke;
+}
+
+.dashboard-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+}
+
+.btn-dashboard-back {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 2px;
+  border: none;
+  border-radius: 20%;
+}
+
+.data-dashboard > h3 {
+  height: 3rem;
+  padding: 1rem;
+}
+
+.best-exp-item {
+  font-size: 0.7rem;
+  padding: 0 6px;
+  margin-left: 1rem;
+  cursor: pointer;
+  line-height: 1.7;
+}
+
+.best-exp-item:hover {
+  font-weight: bold;
 }

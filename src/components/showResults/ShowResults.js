@@ -5,7 +5,7 @@ import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
 import "./show-results.css";
 
-const ShowResults = () => {
+const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
   const location = useLocation();
 
   const [btnMore, setBtnMore] = useState(false);
@@ -16,6 +16,16 @@ const ShowResults = () => {
   const q = location.search;
 
   let query = q;
+
+  let resultTitle = "Nuestras experiencias destacadas...";
+
+  if (searchCat) {
+    resultTitle = `Categoría ${searchCat}`;
+  } else if (toSearch) {
+    resultTitle = `Resultado de búsqueda para: ${toSearch}`;
+  } else if (!toSearch) {
+    resultTitle = "Experiencias destacadas";
+  }
 
   query.length < 1 ? (query = "?experience=&active=1&featured=1") : (query = q);
 
@@ -57,21 +67,26 @@ const ShowResults = () => {
   return (
     <>
       {loading ? (
-        <div className="spinner-container">
-          <h1>Loading...</h1>
+        <div className="loading">
+          <h1>Cargando...</h1>
         </div>
       ) : (
         <>
+          {pagFiltered.length > 0 && (
+            <h2 className="result-title">{resultTitle}</h2>
+          )}
           <div className="card-deck fade_in">
             {pagFiltered.length > 0 ? (
               pagFiltered.map((exp) => (
                 <ExperienceCard key={exp.id} exp={exp} />
               ))
             ) : (
-              <h1 className="info fade_in">No se encontraron resultados</h1>
+              <h2 className="info show_no_results">
+                No se encontraron resultados
+              </h2>
             )}
           </div>
-          {btnMore && (
+          {btnMore && pagFiltered.length > 0 && (
             <button onClick={handleLoadMore} className="show-more">
               Cargar más...
             </button>

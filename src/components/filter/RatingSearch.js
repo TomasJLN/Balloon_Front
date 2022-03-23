@@ -3,13 +3,16 @@ import { Rating } from "react-simple-star-rating";
 const RatingSearch = ({ rating, setRating }) => {
 	return (
 		<div className="ratingSearch">
-			<Rating
-				fillColor="black"
-				tooltipDefaultText="Por puntos"
-				onClick={setRating}
-				ratingValue={rating}
-				size={25}
-			/>
+			<p>Valoración</p>
+			<div className="generalFilter">
+				<Rating
+					fillColor="rgb(var(--primary-color-hard))"
+					tooltipDefaultText="Por puntos"
+					onClick={setRating}
+					ratingValue={rating}
+					size={25}
+				/>
+			</div>
 		</div>
 	);
 };

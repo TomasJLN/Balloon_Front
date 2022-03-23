@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import fetcher from '../../helpers/fetcher';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import './footer.css';
+import { useEffect, useState } from "react";
+import fetcher from "../../helpers/fetcher";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "./footer.css";
 
 const Footer = () => {
-  const [mail, setMail] = useState({ email: '' });
+  const [mail, setMail] = useState({ email: "" });
   const [checkbox, setCheckbox] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
@@ -24,15 +24,15 @@ const Footer = () => {
     setResult(null);
     setError(null);
     if (checkbox) {
-      await fetcher(setResult, setError, setLoading, 'newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      await fetcher(setResult, setError, setLoading, "newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(mail),
       });
     } else {
-      toast.error('Debes aceptar la política de privacidad');
+      toast.error("Debes aceptar la política de privacidad");
     }
-    setMail({ email: '' });
+    setMail({ email: "" });
     resetCheck();
   };
 
@@ -48,7 +48,7 @@ const Footer = () => {
     <footer className="footer">
       <section className="newsletter">
         <form className="sendEmail" onSubmit={createNewsletter}>
-          <h2>NEWSLETTER</h2>
+          <h2 className="news-letter-tit"> Apúntate al newsletter!!!</h2>
           <div>
             <input
               type="text"
@@ -68,7 +68,7 @@ const Footer = () => {
 
           <div className="terminosConditions">
             <input
-              className='checkboxBox'
+              className="checkboxBox"
               type="checkbox"
               id="politica"
               name="politica"

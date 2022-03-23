@@ -52,10 +52,10 @@ const Editpassword = () => {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <h1>Cargando...</h1>
       ) : (
         <form className="generalForm" onSubmit={handlepassword}>
-          <h2>Cambiar mis datos</h2>
+          <h2 id="datos">Cambiar mis datos</h2>
           <label className="generalLabel" htmlFor="name">
             Nombre:
           </label>
@@ -104,6 +104,7 @@ const Editpassword = () => {
             autoComplete="off"
             onChange={(e) => setNewPassword(e.target.value)}
           ></input>
+
           <button className="generalButton" type="submit">
             Guardar
           </button>

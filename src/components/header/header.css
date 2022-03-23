@@ -1,6 +1,17 @@
+@font-face {
+  font-family: "balloonparty";
+  src: local("balloonparty"),
+    url(../../fonts/balloonparty.ttf) format("truetype");
+}
+
 #main_header {
   display: flex;
   justify-content: space-between;
+
+
+  width: 100%;
+  color: rgb(var(--primary-color-hard));
+
 
   align-items: center;
   font-size: 3rem;
@@ -8,28 +19,27 @@
 }
 
 .menuprincipal {
- color: #ff553a;
-
+  color: rgb(var(--primary-color-hard));
+  margin-left: 1rem;
 }
 
-@media screen and (min-width: 768px) { 
-  .hamb-menu{
-    display: none;
-  }
-
-  .menuescritorio {
-    display: flex;
-    flex-wrap: wrap;
-   
-
-  }
-  .menucategory {
-    position: absolute;
-    z-index: 3;
-    margin-top:  5rem;
-    
-  }
-  
+.doggy-logo {
+  font-size: "60px";
+  font-family: "balloonparty";
+  color: rgb(var(--primary-color-hard));
+  display: flex;
+  justify-content: space-between;
+  gap: 10;
+  align-items: center;
 }
 
+
+@media screen and (min-width: 1400px) {
+  .user-avatar-menu {
+    margin-right: 66px;
+  }
+
+  .main-menu-group {
+  }
+}
 
