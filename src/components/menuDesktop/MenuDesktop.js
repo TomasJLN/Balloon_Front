@@ -51,7 +51,7 @@ const {categories } = useGetCategories();
 		<div className='menucategory'>
 
 {isActive && (
-	<div >
+	<div className='contenenedormenucategory'>
 		{categories.map((category) => (
 			<li
 				className="itemmenucategory"
