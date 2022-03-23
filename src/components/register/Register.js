@@ -87,9 +87,9 @@ const Register = () => {
   }, [error]);
 
   return (
-    <form className="generalForm" onSubmit={register}>
-      <h1 className="generalTítulo1">Registro</h1>
-      <div className="register-form">
+    <div className="form-wrapper">
+      <form className="generalForm" onSubmit={register}>
+        <h1 className="generalTítulo1">Registro</h1>
         <label className="generalLabel" htmlFor="nameReg">
           Nombre:&nbsp;
           {errorsFormulario.name && (
@@ -185,26 +185,26 @@ const Register = () => {
           autoComplete="off"
           required
         ></input>
-      </div>
-      <div className="terminosConditions">
-        <input
-          className="checkboxBox"
-          type="checkbox"
-          name="terminos"
-          id="terminos"
-          checked={checkboxValidation}
-          onChange={() => {
-            setCheckboxValidation(!checkboxValidation);
-          }}
-        />
-        <label htmlFor="terminos">
-          Acepto los <Link to="/conditions">términos y condiciones</Link>
-        </label>
-      </div>
-      <button className="generalButton " type="submit">
-        Enviar
-      </button>
-    </form>
+        <div className="terminosConditions">
+          <input
+            className="checkboxBox"
+            type="checkbox"
+            name="terminos"
+            id="terminos"
+            checked={checkboxValidation}
+            onChange={() => {
+              setCheckboxValidation(!checkboxValidation);
+            }}
+          />
+          <label htmlFor="terminos">
+            Acepto los <Link to="/conditions">términos y condiciones</Link>
+          </label>
+        </div>
+        <button className="generalButton " type="submit">
+          Enviar
+        </button>
+      </form>
+    </div>
   );
 };
 

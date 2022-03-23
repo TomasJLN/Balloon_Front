@@ -4,6 +4,7 @@ import { useFiltered } from "../../hooks/useFiltered";
 import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
 import "./show-results.css";
+import { PopupRegisterOk } from "../popupRegisterOk/PopupRegisterOk";
 
 const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
   const location = useLocation();
@@ -12,10 +13,18 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
   const [expByPage, setExpByPage] = useState(6);
   const [lastIndex, setLastIndex] = useState(expByPage);
   const [windowWidth, setWindowWidth] = useState(window.outerWidth);
+  const [registerOk, setRegisterOk] = useState(false);
 
   const q = location.search;
 
   let query = q;
+
+  useEffect(() => {
+    if (q.includes("?register=ok")) setRegisterOk(true);
+    return () => {
+      setRegisterOk(false);
+    };
+  }, []);
 
   let resultTitle = "Nuestras experiencias destacadas...";
 
@@ -72,6 +81,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
         </div>
       ) : (
         <>
+          {registerOk && <PopupRegisterOk setRegisterOk={setRegisterOk} />}
           {pagFiltered.length > 0 && (
             <h2 className="result-title">{resultTitle}</h2>
           )}

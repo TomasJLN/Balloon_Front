@@ -174,7 +174,7 @@ const Booking = () => {
 						</div>
 						<div style={{ padding: "2rem" }}>
 							<div className="title-description">
-								<h1>{title}</h1>
+								<h1>Reserva de {title}</h1>
 								<p className="description-text">{description}</p>
 								<div className="exp-location">
 									En{" "}

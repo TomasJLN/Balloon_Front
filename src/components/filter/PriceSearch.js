@@ -6,10 +6,16 @@ const PriceSearch = ({ setSearchPrice, searchPrice }) => {
 	return (
 		<div className="priceSearch">
 			<p>Precio</p>
-			<div className="generalFilter">
+			<div style={{ display: "flex", width: "140px" }}>
 				<Slider
-					color="secondary"
-					sx={{ marginLeft: "15px", marginRight: "15px", width: "200px" }}
+					sx={{
+						paddingTop: "0px",
+						marginLeft: "15px",
+						marginRight: "15px",
+						"& .MuiSlider-root": {
+							padding: "15px",
+						},
+					}}
 					min={0}
 					max={1000}
 					step={25}

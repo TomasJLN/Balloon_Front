@@ -1,7 +1,6 @@
 import { Formik, Form, Field } from "formik";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import ToggleButton from "../toggleButton/ToggleButton";
 import SearchBar from "./SearchBar";
 import RatingSearch from "./RatingSearch";
 import DateSearch from "./DateSearch";
@@ -10,7 +9,6 @@ import LocationSearch from "./LocationSearch";
 import PriceSearch from "./PriceSearch";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import "./filter.css";
-import { AiOutlineControl } from "react-icons/ai";
 
 const Filter = ({
 	toSearchTit,
@@ -129,7 +127,6 @@ const Filter = ({
 							/>
 							<RatingSearch rating={rating} setRating={setRating} />
 							<div className="clear-filter">
-								<p>&thinsp;</p>
 								<button
 									className="filterButton"
 									onClick={(e) => {

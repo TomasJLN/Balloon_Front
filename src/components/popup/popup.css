@@ -6,13 +6,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(var(--secondary-color-soft), 0.7);
+  background-color: rgba(var(--primary-color-hard), 0.7);
   width: 100vw;
   height: 100vh;
 }
 
 #popup-fg {
-  background-color: rgba(var(--primary-color-soft), 0.9);
+  background-color: rgb(var(--primary-color-soft));
   width: 80%;
   max-width: 560px;
   height: 30%;
@@ -31,7 +31,8 @@
   gap: 10px;
 }
 
-#popup-fg h3 {
+#popup-fg h3,
+#popup-fg h2 {
   text-align: center;
 }
 

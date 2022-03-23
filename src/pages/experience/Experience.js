@@ -79,7 +79,7 @@ const Experience = () => {
 						<p>{description}</p>
 
 						<div>
-							<p className="exp-date">
+							<div className="exp-date">
 								<a
 									href={url}
 									target="_blank"
@@ -94,7 +94,7 @@ const Experience = () => {
 										<strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
 									</div>
 								</a>
-							</p>
+							</div>
 						</div>
 
 						<div className="ratin-buy-button">
