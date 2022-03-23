@@ -19,17 +19,15 @@
 menu a {
 	color: white;
 	display: flex;
+	font-size: 1rem;
 }
 
 menu a:hover {
-
-
-	color: rgb(237, 245, 191);
+	color: grey;
 }
 
 @media screen and (min-width: 1400px) {
 	.nav-user {
 		right: auto;
 	}
-
 }

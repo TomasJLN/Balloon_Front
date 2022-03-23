@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./menuDesktop.css";
+import "../header/header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetCategories } from "../../hooks/useGetCategories";
 
-const MenuDesktop = ({ setShowNavBar }) => {
+const MenuDesktop = ({ setSearchCat }) => {
 	const [isActive, setIsActive] = useState(false);
 
 	const navigate = useNavigate();
@@ -33,7 +34,9 @@ const MenuDesktop = ({ setShowNavBar }) => {
 									className="itemmenucategory"
 									key={category.id}
 									category={category}
-									onClick={() => {
+									onClick={(e) => {
+										setSearchCat(category.title);
+
 										navigate(`/allFilter?category=${category.title}`);
 									}}
 								>
