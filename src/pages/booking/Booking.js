@@ -16,6 +16,7 @@ import { Reviews } from "../../components/reviews/Reviews";
 import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimilar";
 import Mapa from "../../components/Mapa";
 import moment from "moment";
+import PopUpBooking from "./PopUpBooking";
 
 const Booking = () => {
 	const { id } = useParams();
@@ -55,6 +56,7 @@ const Booking = () => {
 	const [usuario, setUsuario] = useContext(UserContext);
 	const [pay, setPay] = useState(null);
 	const [avgRatin, setAvgRatin] = useState(0);
+	const [popUp, setPopUp] = useState(false);
 
 	let maxFreePlaces = 10;
 
@@ -285,7 +287,7 @@ const Booking = () => {
 									<div className="right-align">
 										<button
 											className="generalButton"
-											onClick={handleNewBooking}
+											onClick={() => setPopUp(true)}
 										>
 											RESERVAR
 										</button>
@@ -326,6 +328,17 @@ const Booking = () => {
 								idCategory={idCategory}
 							/>
 						</div>
+					</div>
+					<div className="booking-popup">
+						{popUp && (
+							<PopUpBooking
+								bookingInfo={{
+									price: price,
+									location: location,
+									title: title,
+								}}
+							/>
+						)}
 					</div>
 				</div>
 			)}
