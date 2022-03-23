@@ -150,6 +150,18 @@ header {
 	cursor: pointer;
 }
 
+.generalButton-disabled {
+	background-color: #a2a2a2;
+	color: white;
+	font-size: 1rem;
+	text-transform: uppercase;
+	width: 7rem;
+	border-radius: 20px;
+	height: 2rem;
+	border: none;
+	letter-spacing: 1px;
+}
+
 .generalButton:hover {
 	background-color: rgb(255, 85, 58);
 	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);

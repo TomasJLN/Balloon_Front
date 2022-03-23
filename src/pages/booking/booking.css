@@ -224,6 +224,7 @@
 	align-items: center;
 	padding: 3rem;
 	border-radius: 9px;
+	max-width: 500px;
 }
 
 #popup-booking-container {
@@ -234,7 +235,15 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(0, 31, 19, 0.721);
+	background-color: rgba(var(--primary-color-hard), 0.7);
 	align-items: center;
 	justify-content: center;
+	z-index: 3;
+}
+
+.pop-up-button-set {
+	display: flex;
+	width: 75%;
+	justify-content: space-evenly;
+	padding: 1rem;
 }

@@ -57,6 +57,7 @@ const Booking = () => {
 	const [pay, setPay] = useState(null);
 	const [avgRatin, setAvgRatin] = useState(0);
 	const [popUp, setPopUp] = useState(false);
+	const [disable, setDisable] = useState(true);
 
 	let maxFreePlaces = 10;
 
@@ -99,9 +100,7 @@ const Booking = () => {
 	};
 
 	const handleNewBooking = (e) => {
-		e.preventDefault();
 		setResult("");
-
 		if (pay) {
 			const createBooking = async () => {
 				await fetcher(setResult, setError, setLoading, "booking", {
@@ -258,10 +257,13 @@ const Booking = () => {
 										<p>Forma de pago</p>
 										<div
 											className="pay-option"
-											onChange={(e) => setPay(e.target.value)}
+											onChange={(e) => {
+												setPay(e.target.value);
+												setDisable(false);
+											}}
 										>
 											<select className="booking-select">
-												<option disabled>Elegir forma de pago</option>
+												<option value="">Seleccionar</option>
 												<option id="paypal" name="payMethod" value="paypal">
 													Paypal
 												</option>
@@ -285,12 +287,25 @@ const Booking = () => {
 									</p>
 
 									<div className="right-align">
-										<button
-											className="generalButton"
-											onClick={() => setPopUp(true)}
-										>
-											RESERVAR
-										</button>
+										{disable ? (
+											<button
+												className={
+													disable ? "generalButton-disabled" : "generalButton"
+												}
+												disabled={disable}
+												onClick={() => setPopUp(true)}
+											>
+												Reservar
+											</button>
+										) : (
+											<button
+												className="generalButton"
+												disabled={disable}
+												onClick={() => setPopUp(true)}
+											>
+												RESERVAR
+											</button>
+										)}
 									</div>
 								</div>
 							</div>
@@ -339,6 +354,8 @@ const Booking = () => {
 									photo: photo,
 									numTickets: numTickets,
 								}}
+								setPopUp={setPopUp}
+								handleNewBooking={handleNewBooking}
 							/>
 						)}
 					</div>

@@ -76,7 +76,7 @@ const Mapa = ({ photo, title, coords, url }) => {
 					id="targetLocation"
 					center={splittedCoords}
 					zoom={12}
-					style={{ width: "100%", height: "300px" }}
+					style={{ zIndex: 3, width: "100%", height: "300px" }}
 				>
 					<TileLayer
 						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
