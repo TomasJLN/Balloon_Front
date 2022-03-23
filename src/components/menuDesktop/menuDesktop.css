@@ -1,70 +1,62 @@
- .menuescritorio{
-    background-color: rgb(82, 79, 79);
-    color: black;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  display: none;
-   
+.menuescritorio {
+	background-color: rgb(82, 79, 79);
+	color: black;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	display: none;
 }
 
-.itemmenuescritorio{
-    color: black;
-    list-style: none;
-    font-size: 1.5rem;
-    margin: 2rem;
-    display: flex;
-  flex-direction: column;
-    font-weight: bold;
-    cursor: pointer;
- 
+.itemmenuescritorio {
+	color: black;
+	list-style: none;
+	font-size: 1.5rem;
+	margin: 2rem;
+	display: flex;
+	flex-direction: column;
+	font-weight: bold;
+	cursor: pointer;
 }
 
-
-.menunavegacionDesktop{
-  color: purple;
-  display: flex;
-  flex-direction: row;
-
+.menunavegacionDesktop {
+	display: flex;
+	flex-direction: row;
 }
 .itemmenucategory {
-  list-style: none;
-  /* display: flex; */
-  /* justify-content: center; */
-  font-size: 1.5rem;
-  width: 100%;
-  padding: 1rem;
-  font-weight: bold;
-  background-color: aqua;
-
-
-
-  
+	list-style: none;
+	cursor: pointer;
+	font-size: 1.5rem;
+	width: 100%;
+	padding: 1rem;
+	font-weight: bold;
 }
-.menucategory {
-  display: flex;
-
-background-color: rgb(27, 153, 27);
-  justify-content: center;
-
- position: relative;
- width: 20rem;
-
-}
-
-
-
 
 .itemmenucategory:hover {
+	background-color: white;
+	color: black;
+}
 
-  opacity: 90%;
-  display: flex;
-  transition: all;
-  cursor: pointer;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-  color: rgb(85, 82, 82); 
-  background-color: red;
-  
+.menucategory {
+	display: flex;
+	background-color: rgb(82, 79, 79);
+	justify-content: center;
+
+	position: relative;
+}
+
+.drop-cat {
+	display: flex;
+	position: absolute;
+	top: 10rem;
+	flex-direction: column;
+	z-index: 3;
+	color: white;
+	background-color: #514f50;
+}
+
+.both {
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
 }
