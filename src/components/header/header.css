@@ -8,8 +8,10 @@
   display: flex;
   justify-content: space-between;
 
+
   width: 100%;
   color: rgb(var(--primary-color-hard));
+
 
   align-items: center;
   font-size: 3rem;
@@ -31,6 +33,7 @@
   align-items: center;
 }
 
+
 @media screen and (min-width: 1400px) {
   .user-avatar-menu {
     margin-right: 66px;
@@ -39,3 +42,4 @@
   .main-menu-group {
   }
 }
+

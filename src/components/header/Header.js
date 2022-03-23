@@ -11,7 +11,9 @@ import fetcher from "../../helpers/fetcher";
 import { Avatar } from "../avatar/Avatar";
 import NavBar from "../navBar/navBar";
 import NavUser from "../navUser/NavUser";
+import MenuDesktop from "../menuDesktop/MenuDesktop";
 import "./header.css";
+
 
 export const Header = ({
   toSearch,
@@ -27,6 +29,7 @@ export const Header = ({
   const [usuario, setUsuario] = useContext(UserContext);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -48,6 +51,7 @@ export const Header = ({
     navigate("/");
     refreshPage();
   };
+
 
   return (
     <>
@@ -104,4 +108,5 @@ export const Header = ({
       )}
     </>
   );
+
 };

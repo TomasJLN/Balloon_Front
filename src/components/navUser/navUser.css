@@ -22,6 +22,8 @@ menu a {
 }
 
 menu a:hover {
+
+
 	color: rgb(237, 245, 191);
 }
 
@@ -29,4 +31,5 @@ menu a:hover {
 	.nav-user {
 		right: auto;
 	}
+
 }
