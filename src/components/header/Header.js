@@ -87,7 +87,10 @@ export const Header = ({
 					</nav>
 
 					<MenuDesktop setSearchCat={setSearchCat} />
-					<div className="doggy-logo">Balloon</div>
+					<div className="doggy-logo">
+						<GiAirBalloon />
+						Balloon
+					</div>
 
 					<div className="user-avatar-menu">
 						{userMenu && (

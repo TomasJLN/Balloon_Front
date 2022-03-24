@@ -18,21 +18,20 @@ const PopUpBooking = ({ bookingInfo, setPopUp, handleNewBooking }) => {
 				/>
 				Unidades: {bookingInfo.numTickets} | Total:{" "}
 				{(bookingInfo.price * bookingInfo.numTickets).toFixed(2)} €
-				<form
-					onSubmit={(e) => {
-						setPopUp(false);
-						handleNewBooking();
-					}}
-					className="pop-up-button-set"
-					id="popup-bookin-form"
-				>
-					<button type="submit" className="generalButton">
+				<div className="pop-up-button-set" id="popup-bookin-form">
+					<button
+						onClick={(e) => {
+							setPopUp(false);
+							handleNewBooking();
+						}}
+						className="generalButton"
+					>
 						Confirmar
 					</button>
 					<button onClick={() => setPopUp(false)} className="generalButton">
 						Cancelar
 					</button>
-				</form>
+				</div>
 			</article>
 		</section>
 	);

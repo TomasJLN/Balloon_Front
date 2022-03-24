@@ -4,19 +4,36 @@
 }
 
 .wrap-content {
-	padding: 2rem 1rem;
 	background-color: white;
 }
 
+.initial-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .accordion-section {
-	padding: 1rem 0;
 	border: none;
 }
 
 .precio-unidad {
 	display: flex;
-	justify-content: end;
+	justify-content: center;
+	align-items: center;
 	font-size: 1.4rem;
+	color: rgb(var(--primary-color-hard));
+	margin-top: 1rem;
+	padding: 1rem;
+	border: 1px solid rgb(var(--primary-color-hard));
+	width: 35%;
+}
+
+.normatives-price {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .precio-total {
@@ -43,7 +60,6 @@
 }
 
 .experience-data {
-	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
@@ -106,6 +122,7 @@
 	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
+	padding: 2rem;
 }
 
 .img-top {
@@ -163,8 +180,10 @@
 .check-out {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
+	justify-content: center;
+	align-items: center;
+
+	padding: 2rem 0;
 }
 
 .booking-select {
@@ -182,33 +201,40 @@
 		height: 300px;
 	}
 
-	.experience-data {
+	.normatives-price {
+		align-items: flex-start;
+	}
+
+	.initial-wrap {
 		flex-direction: row;
-		padding: 3rem;
+		height: 450px;
 	}
 
 	.title-description {
+		align-items: flex-start;
 		text-align: left;
+		padding: 2rem;
 	}
 
 	#select-date,
 	.tickets-booking,
 	.pay-method {
-		width: 33%;
+		width: 25%;
 		border: none;
 		align-items: center;
 
 		flex-direction: column;
 		padding: 0.5rem 0;
-		background-color: white;
 	}
 
 	.booking-form {
 		flex-direction: row;
+
 		height: 100%;
 		width: 100%;
 		align-items: center;
-		background-color: white;
+		background-color: rgb(var(--primary-color-soft));
+		padding: 1rem;
 	}
 
 	.info-checkout-container {
