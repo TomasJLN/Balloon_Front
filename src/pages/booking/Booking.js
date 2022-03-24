@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import Accordion from "../../components/accordion/Accordion";
+import { scrollToTop } from "../../helpers/scrollToTop";
 import { useExperience } from "../../hooks/useExperience";
 import fetcher from "../../helpers/fetcher";
 import { TokenContext } from "../../contexts/TokenContext";
@@ -10,13 +10,21 @@ import { UserContext } from "../../contexts/UserContext";
 import { toast } from "react-toastify";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import "./booking.css";
+import "../experience/experience.css";
+import { useGetReviews } from "../../hooks/useGetReviews";
+import { Reviews } from "../../components/reviews/Reviews";
+import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimilar";
+import Mapa from "../../components/Mapa";
 import moment from "moment";
+import PopUpBooking from "./PopUpBooking";
 
 const Booking = () => {
 	const { id } = useParams();
+	const { reviews } = useGetReviews(id);
 
 	const {
-		category,
+		idCategory,
+
 		title,
 		description,
 		price,
@@ -30,6 +38,12 @@ const Booking = () => {
 		normatives,
 	} = useExperience(id);
 
+	let url = `https://www.google.es/maps/@${coords},19z`;
+
+	url = url.replace(/ +/g, "");
+
+	console.log("url", url);
+
 	const [numTickets, setNumTickets] = useState(1);
 	const [bookingDate, setBookingDate] = useState(
 		new DateObject().add(1, "days")
@@ -41,6 +55,9 @@ const Booking = () => {
 	const [token, setToken] = useContext(TokenContext);
 	const [usuario, setUsuario] = useContext(UserContext);
 	const [pay, setPay] = useState(null);
+	const [avgRatin, setAvgRatin] = useState(0);
+	const [popUp, setPopUp] = useState(false);
+	const [disable, setDisable] = useState(true);
 
 	let maxFreePlaces = 10;
 
@@ -83,9 +100,7 @@ const Booking = () => {
 	};
 
 	const handleNewBooking = (e) => {
-		e.preventDefault();
 		setResult("");
-
 		if (pay) {
 			const createBooking = async () => {
 				await fetcher(setResult, setError, setLoading, "booking", {
@@ -124,6 +139,18 @@ const Booking = () => {
 		};
 	}, [error]);
 
+	useEffect(() => {
+		reviews.length !== 0 &&
+			setAvgRatin(
+				reviews.reduce((acc, exp) => acc + exp.score, 0) / reviews.length
+			);
+		reviews.length === 0 && setAvgRatin(0);
+	}, [reviews]);
+
+	useEffect(() => {
+		scrollToTop();
+	}, [id]);
+
 	return (
 		<>
 			{loading ? (
@@ -150,14 +177,26 @@ const Booking = () => {
 							<div className="title-description">
 								<h1>Reserva de {title}</h1>
 								<p className="description-text">{description}</p>
+								<div className="exp-location">
+									En{" "}
+									<a href={url} target="blank">
+										<strong>{location}</strong>
+									</a>{" "}
+									desde{" "}
+									<strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
+									hasta <strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
+								</div>
 								<div className="accordion-section">
 									<ul className="normatives">
 										{infoExperience.map(({ title, content }) => (
-											<li>
+											<li key={title}>
 												<strong>{title}</strong>: {content}
 											</li>
 										))}
 									</ul>
+									<div className="check-out">
+										<p className="precio-unidad">Precio ticket: {price} €</p>
+									</div>
 								</div>
 							</div>
 							<div className="info-checkout-container">
@@ -218,9 +257,13 @@ const Booking = () => {
 										<p>Forma de pago</p>
 										<div
 											className="pay-option"
-											onChange={(e) => setPay(e.target.value)}
+											onChange={(e) => {
+												setPay(e.target.value);
+												setDisable(false);
+											}}
 										>
 											<select className="booking-select">
+												<option value="">Seleccionar</option>
 												<option id="paypal" name="payMethod" value="paypal">
 													Paypal
 												</option>
@@ -238,19 +281,34 @@ const Booking = () => {
 										</div>
 									</div>
 								</form>
-							</div>
-						</div>
-					</div>
-					<div className="check-out">
-						<p className="precio-unidad">Precio ticket: {price} €</p>
-						<p className="precio-total">
-							Total: {(price * numTickets).toFixed(2)} €
-						</p>
+								<div className="check-out">
+									<p className="precio-total">
+										Total: {(price * numTickets).toFixed(2)} €
+									</p>
 
-						<div className="right-align">
-							<button className="generalButton" onClick={handleNewBooking}>
-								RESERVAR
-							</button>
+									<div className="right-align">
+										{disable ? (
+											<button
+												className={
+													disable ? "generalButton-disabled" : "generalButton"
+												}
+												disabled={disable}
+												onClick={() => setPopUp(true)}
+											>
+												Reservar
+											</button>
+										) : (
+											<button
+												className="generalButton"
+												disabled={disable}
+												onClick={() => setPopUp(true)}
+											>
+												RESERVAR
+											</button>
+										)}
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -263,6 +321,43 @@ const Booking = () => {
 						>
 							↩️ back
 						</button>
+					</div>
+					<div className="ratin-info">
+						{avgRatin !== 0 ? (
+							<Reviews id={id} reviews={reviews} />
+						) : (
+							<h2 id="ex-sim">Experiencia sin valoraraciones</h2>
+						)}
+					</div>
+					<h2 id="map-title">¿Cómo llegar?</h2>
+					<Mapa photo={photo} title={title} coords={coords} url={url} />
+					<div className="exp-info-container"></div>
+
+					<div>
+						<h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
+						<div>
+							<CarouselSimilar
+								id={id}
+								reviews={reviews}
+								avgRatin={avgRatin}
+								idCategory={idCategory}
+							/>
+						</div>
+					</div>
+					<div className="booking-popup">
+						{popUp && pay && (
+							<PopUpBooking
+								bookingInfo={{
+									price: price,
+									location: location,
+									title: title,
+									photo: photo,
+									numTickets: numTickets,
+								}}
+								setPopUp={setPopUp}
+								handleNewBooking={handleNewBooking}
+							/>
+						)}
 					</div>
 				</div>
 			)}
