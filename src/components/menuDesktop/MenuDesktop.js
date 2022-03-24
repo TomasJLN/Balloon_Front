@@ -13,7 +13,13 @@ const MenuDesktop = ({ setSearchCat }) => {
 	return (
 		<div className="menuescritorio">
 			<menu className="menunavegacionDesktop">
-				<li className="itemmenuescritorio">
+				<li
+					onClick={() => {
+						navigate("/");
+						window.location.reload(false);
+					}}
+					className="itemmenuescritorio"
+				>
 					<Link to="/">INICIO</Link>
 				</li>
 				<li className="itemmenuescritorio">
