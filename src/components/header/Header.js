@@ -87,7 +87,7 @@ export const Header = ({
 					</nav>
 
 					<MenuDesktop setSearchCat={setSearchCat} />
-					<div className="doggy-logo">
+					<div onClick={handleClick} className="doggy-logo">
 						<GiAirBalloon />
 						Balloon
 					</div>

@@ -178,26 +178,26 @@ const Booking = () => {
 							<div className="title-description">
 								<h1>{title}</h1>
 								<p className="description-text">{description}</p>
-								<div className="exp-location">
-									En{" "}
-									<a href={url} target="blank">
-										<strong>{location}</strong>
-									</a>{" "}
-									desde{" "}
-									<strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
-									hasta <strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
-								</div>
-								<div className="normatives-price">
-									<ul className="normatives">
-										{infoExperience.map(({ title, content }) => (
-											<li key={title}>
-												<strong>{title}</strong>: {content}
-											</li>
-										))}
-									</ul>
-									<div className="precio-unidad">
-										<p>{price} €</p>
-									</div>
+								<ul className="normatives-list">
+									<li>
+										En{" "}
+										<a href={url} target="blank">
+											<strong>{location}</strong>
+										</a>{" "}
+										desde{" "}
+										<strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
+										hasta{" "}
+										<strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
+									</li>
+
+									{infoExperience.map(({ title, content }) => (
+										<li key={title}>
+											<strong>{title}</strong>: {content}
+										</li>
+									))}
+								</ul>
+								<div className="precio-unidad">
+									<p>{price} €</p>
 								</div>
 							</div>
 						</div>
@@ -225,7 +225,7 @@ const Booking = () => {
 								</div>
 								<div className="tickets-booking">
 									<div id="select-quantity">
-										<label htmlFor="quantity">Nº Tickets</label>
+										<label htmlFor="quantity">Tickets:</label>
 										<button
 											type="button"
 											className="button-quantity"
