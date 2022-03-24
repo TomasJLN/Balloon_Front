@@ -158,24 +158,25 @@ const Booking = () => {
 			) : (
 				<div className="wrap-content">
 					<div className="experience-data">
-						<div className="photo-thumbnail">
-							{photo ? (
-								<img
-									src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
-									alt={title}
-									className="exp-pic"
-								/>
-							) : (
-								<img
-									src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-									alt={title}
-									className="exp-pic"
-								/>
-							)}
-						</div>
-						<div style={{ padding: "2rem" }}>
+						<div className="initial-wrap">
+							<div className="photo-thumbnail">
+								{photo ? (
+									<img
+										src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
+										alt={title}
+										className="exp-pic"
+									/>
+								) : (
+									<img
+										src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+										alt={title}
+										className="exp-pic"
+									/>
+								)}
+							</div>
+
 							<div className="title-description">
-								<h1>Reserva de {title}</h1>
+								<h1>{title}</h1>
 								<p className="description-text">{description}</p>
 								<div className="exp-location">
 									En{" "}
@@ -186,7 +187,7 @@ const Booking = () => {
 									<strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
 									hasta <strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
 								</div>
-								<div className="accordion-section">
+								<div className="normatives-price">
 									<ul className="normatives">
 										{infoExperience.map(({ title, content }) => (
 											<li key={title}>
@@ -194,121 +195,110 @@ const Booking = () => {
 											</li>
 										))}
 									</ul>
-									<div className="check-out">
-										<p className="precio-unidad">Precio ticket: {price} €</p>
+									<div className="precio-unidad">
+										<p>{price} €</p>
 									</div>
 								</div>
 							</div>
-							<div className="info-checkout-container">
-								<form className="booking-form">
-									<div id="select-date">
-										<label htmlFor="date">Escoger Fecha</label>
-										<DatePicker
-											style={{
-												display: "flex",
-												alignItems: "center",
-												width: "120px",
-												textAlign: "center",
-												fontSize: "1.1rem",
-												border: "none",
-												boxShadow: "2px 2px 4px grey",
-											}}
-											id="date"
-											value={bookingDate}
-											onChange={setBookingDate}
-											editable={false}
-											minDate={new Date(startDate)}
-											maxDate={new Date(endDate)}
+						</div>
+						<div className="info-checkout-container">
+							<form className="booking-form">
+								<div id="select-date">
+									<label htmlFor="date">Escoger Fecha</label>
+									<DatePicker
+										style={{
+											display: "flex",
+											alignItems: "center",
+											width: "120px",
+											textAlign: "center",
+											fontSize: "1.1rem",
+											border: "none",
+											boxShadow: "2px 2px 4px grey",
+										}}
+										id="date"
+										value={bookingDate}
+										onChange={setBookingDate}
+										editable={false}
+										minDate={new Date(startDate)}
+										maxDate={new Date(endDate)}
+									/>
+								</div>
+								<div className="tickets-booking">
+									<div id="select-quantity">
+										<label htmlFor="quantity">Nº Tickets</label>
+										<button
+											type="button"
+											className="button-quantity"
+											onClick={handleSubtractTicket}
+										>
+											-
+										</button>
+										<input
+											type="text"
+											name="quantity"
+											id="quantity"
+											className="input-quantity"
+											value={numTickets}
+											onChange={handleTicket}
 										/>
+										<button
+											type="button"
+											className="button-quantity"
+											onClick={handleAddTicket}
+										>
+											+
+										</button>
 									</div>
-									<div className="tickets-booking">
-										<div id="select-quantity">
-											<label htmlFor="quantity">Nº Tickets</label>
-											<button
-												type="button"
-												className="button-quantity"
-												onClick={handleSubtractTicket}
+									{
+										<h5 style={{ textAlign: "center" }}>
+											Máximas plazas disponibles: {maxFreePlaces}
+										</h5>
+									}
+								</div>
+								<div className="pay-method">
+									<p>Forma de pago</p>
+									<div
+										className="pay-option"
+										onChange={(e) => {
+											setPay(e.target.value);
+											setDisable(false);
+										}}
+									>
+										<select className="booking-select">
+											<option value="">Seleccionar</option>
+											<option id="paypal" name="payMethod" value="paypal">
+												Paypal
+											</option>
+											<option
+												id="creditCard"
+												name="payMethod"
+												value="creditCard"
 											>
-												-
-											</button>
-											<input
-												type="text"
-												name="quantity"
-												id="quantity"
-												className="input-quantity"
-												value={numTickets}
-												onChange={handleTicket}
-											/>
-											<button
-												type="button"
-												className="button-quantity"
-												onClick={handleAddTicket}
-											>
-												+
-											</button>
-										</div>
-										{
-											<h5 style={{ textAlign: "center" }}>
-												Máximas plazas disponibles: {maxFreePlaces}
-											</h5>
-										}
+												Targeta de crédito
+											</option>
+											<option id="bizum" name="payMethod" value="bizum">
+												Bizum
+											</option>
+										</select>
 									</div>
-									<div className="pay-method">
-										<p>Forma de pago</p>
-										<div
-											className="pay-option"
-											onChange={(e) => {
-												setPay(e.target.value);
-												setDisable(false);
+								</div>
+								<div className="check-out">
+									<div className="right-align">
+										<button
+											className={
+												disable ? "generalButton-disabled" : "generalButton"
+											}
+											disabled={disable}
+											onClick={(e) => {
+												e.preventDefault();
+												setPopUp(true);
 											}}
 										>
-											<select className="booking-select">
-												<option value="">Seleccionar</option>
-												<option id="paypal" name="payMethod" value="paypal">
-													Paypal
-												</option>
-												<option
-													id="creditCard"
-													name="payMethod"
-													value="creditCard"
-												>
-													Targeta de crédito
-												</option>
-												<option id="bizum" name="payMethod" value="bizum">
-													Bizum
-												</option>
-											</select>
-										</div>
-									</div>
-								</form>
-								<div className="check-out">
-									<p className="precio-total">
-										Total: {(price * numTickets).toFixed(2)} €
-									</p>
-
-									<div className="right-align">
-										{disable ? (
-											<button
-												className={
-													disable ? "generalButton-disabled" : "generalButton"
-												}
-												disabled={disable}
-												onClick={() => setPopUp(true)}
-											>
-												Reservar
-											</button>
-										) : (
-											<button
-												className="generalButton"
-												disabled={disable}
-												onClick={() => setPopUp(true)}
-											>
-												RESERVAR
-											</button>
-										)}
+											Reservar
+										</button>
 									</div>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 
