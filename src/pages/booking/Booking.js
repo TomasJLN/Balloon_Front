@@ -287,20 +287,21 @@ const Booking = () => {
 									</div>
 								</div>
 								<div className="check-out">
-									<div className="right-align">
-										<button
-											className={
-												disable ? "generalButton-disabled" : "generalButton"
-											}
-											disabled={disable}
-											onClick={(e) => {
-												e.preventDefault();
-												setPopUp(true);
-											}}
-										>
-											Reservar
-										</button>
+									<div style={{ display: "flex" }}>
+										<p>Total :</p> {(price * numTickets).toFixed(2)} €
 									</div>
+									<button
+										className={
+											disable ? "generalButton-disabled" : "generalButton"
+										}
+										disabled={disable}
+										onClick={(e) => {
+											e.preventDefault();
+											setPopUp(true);
+										}}
+									>
+										Reservar
+									</button>
 								</div>
 							</form>
 						</div>

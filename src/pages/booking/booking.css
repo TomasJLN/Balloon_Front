@@ -42,6 +42,10 @@
 	margin-bottom: 10px;
 }
 
+.normatives-list a {
+	color: black;
+}
+
 .precio-total {
 	padding: 1rem 0;
 	display: flex;
