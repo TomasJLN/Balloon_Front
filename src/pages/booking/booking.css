@@ -10,6 +10,7 @@
 .initial-wrap {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	padding: 2rem;
 }
@@ -38,8 +39,7 @@
 .normatives-list li {
 	list-style: none;
 	text-align: left;
-	margin-bottom: 1rem;
-	margin-top: 1rem;
+	margin-bottom: 10px;
 }
 
 .precio-total {
@@ -79,7 +79,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	width: 100%;
+
 	text-align: center;
 	align-items: center;
 }
@@ -89,11 +89,13 @@
 	flex-direction: column;
 	justify-items: center;
 	background-color: rgb(var(--primary-color-soft));
+	justify-content: center;
 }
 
 #select-date {
 	padding: 1rem 0;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	border-bottom: 2px solid rgba(214, 210, 210, 0.594);
@@ -137,12 +139,7 @@
 }
 
 .button-quantity {
-	width: 1.8rem;
-	height: 1.8rem;
-	background-color: black;
-	color: white;
-	font-weight: bold;
-	border-radius: 50%;
+	width: 1rem;
 }
 
 .tickets-booking {
@@ -207,8 +204,13 @@
 
 	.exp-pic {
 		object-fit: cover;
-		width: 450px;
-		height: 300px;
+		width: 500px;
+		height: 400px;
+	}
+
+	.exp-pic-pop {
+		width: 400px;
+		height: 320px;
 	}
 
 	.normatives-price {
@@ -230,12 +232,11 @@
 	.tickets-booking,
 	.pay-method,
 	.check-out {
-		width: 25%;
 		border: none;
 		align-items: center;
-
 		flex-direction: column;
 		padding: 0.5rem 0;
+		margin-right: 4rem;
 	}
 
 	#booking-select {
@@ -276,7 +277,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(var(--primary-color-hard), 0.7);
+	background-color: rgba(var(--primary-color-hard), 0.9);
 	align-items: center;
 	justify-content: center;
 	z-index: 3;

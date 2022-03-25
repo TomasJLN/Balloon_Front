@@ -176,18 +176,26 @@ const Booking = () => {
 							</div>
 
 							<div className="title-description">
-								<h1>{title}</h1>
+								<h1 className="title-center">Reservar experiencia</h1>
+								<h2>{title}</h2>
 								<p className="description-text">{description}</p>
 								<ul className="normatives-list">
 									<li>
-										En{" "}
+										<strong>Localización:</strong>
 										<a href={url} target="blank">
-											<strong>{location}</strong>
-										</a>{" "}
-										desde{" "}
+											{" "}
+											{location}
+										</a>
+									</li>
+									<li>
+										<strong>Disponibilidad:</strong> Desde{" "}
 										<strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
 										hasta{" "}
 										<strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
+									</li>
+
+									<li>
+										<strong>Plazas disponibles</strong>: {maxFreePlaces}
 									</li>
 
 									{infoExperience.map(({ title, content }) => (
@@ -224,8 +232,8 @@ const Booking = () => {
 									/>
 								</div>
 								<div className="tickets-booking">
+									<label htmlFor="quantity">Tickets:</label>
 									<div id="select-quantity">
-										<label htmlFor="quantity">Tickets:</label>
 										<button
 											type="button"
 											className="button-quantity"
@@ -249,11 +257,7 @@ const Booking = () => {
 											+
 										</button>
 									</div>
-									{
-										<h5 style={{ textAlign: "center" }}>
-											Máximas plazas disponibles: {maxFreePlaces}
-										</h5>
-									}
+									{}
 								</div>
 								<div className="pay-method">
 									<p>Forma de pago</p>

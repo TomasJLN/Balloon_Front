@@ -93,7 +93,7 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 								/>
 							)}
 							<div className="card-details">
-								<h2 className="card-title">{exp.title}</h2>
+								<h2 className="card-title-similar">{exp.title}</h2>
 								{
 									<p>
 										<MdLocationPin className="icon-search" />

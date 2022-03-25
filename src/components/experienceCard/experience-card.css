@@ -52,6 +52,7 @@
 	width: auto;
 	align-items: center;
 	font-size: 0.8rem;
+	color: black;
 }
 
 .card-rating {
@@ -66,11 +67,6 @@
 	position: absolute;
 	bottom: 0px;
 	right: 0;
-}
-
-a {
-	text-decoration: none;
-	color: black;
 }
 
 .icon-search {

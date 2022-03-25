@@ -19,10 +19,18 @@
 }
 
 .dropdown-btn:hover {
-	background-color: white;
 	opacity: 90%;
 	transition: all;
 	cursor: pointer;
-	color: black;
+	color: white;
+	font-weight: 600;
+}
 
+.dropdown-content {
+	list-style: none;
+}
+
+li.dropdown-btn > a {
+	color: white;
+	text-decoration: none;
 }

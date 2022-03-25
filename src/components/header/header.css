@@ -64,24 +64,37 @@
 	flex-direction: column;
 	font-weight: bold;
 	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.itemmenuescritorio:hover {
+	/* border-bottom: 2px solid rgb(var(--primary-color-hard)); */
+
+	transform: scale(1.1);
 }
 
 .menunavegacionDesktop {
 	display: flex;
 	flex-direction: row;
 }
+
+.menunavegacionDesktop a {
+	color: rgb(var(--primary-color-hard));
+	text-decoration: none;
+}
 .itemmenucategory {
 	list-style: none;
 	cursor: pointer;
-	font-size: 1.5rem;
-
+	font-size: 15px;
+	text-align: center;
 	padding: 1rem;
 	font-weight: bold;
+	text-transform: uppercase;
 }
 
 .itemmenucategory:hover {
-	background-color: white;
-	color: black;
+	background-color: rgb(var(--primary-color-hard));
+	color: white;
 }
 
 .drop-cat {

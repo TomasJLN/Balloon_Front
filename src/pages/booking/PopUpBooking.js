@@ -14,7 +14,7 @@ const PopUpBooking = ({ bookingInfo, setPopUp, handleNewBooking }) => {
 				<img
 					src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${bookingInfo.photo}`}
 					alt={bookingInfo.title}
-					className="exp-pic"
+					className="exp-pic-pop"
 				/>
 				Participantes: {bookingInfo.numTickets} | Total:{" "}
 				{(bookingInfo.price * bookingInfo.numTickets).toFixed(2)} €

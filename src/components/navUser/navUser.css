@@ -3,27 +3,39 @@
 	right: 0;
 	display: flex;
 	flex-direction: column;
-	margin-top: 4.7rem;
+	margin-top: 3.6rem;
 	z-index: 3;
-	background-color: rgb(var(--primary-color-hard));
+	background-color: rgb(var(--primary-color-soft));
 	opacity: 95%;
 }
 .nav-user ul li {
-	font-size: 1.2rem;
-	font-weight: bold;
 	list-style: none;
+	cursor: pointer;
+	font-size: 17px;
+	text-align: center;
 	padding: 1rem;
+	font-weight: bold;
+	color: rgb(var(--primary-color-hard));
+}
+
+.nav-user ul li:hover {
+	background-color: rgb(var(--primary-color-hard));
 	color: white;
 }
 
-menu a {
-	color: white;
-	display: flex;
-	font-size: 1rem;
+.nav-user a {
+	color: rgb(var(--primary-color-hard));
+	text-decoration: none;
+	list-style: none;
+	cursor: pointer;
+	font-size: 17px;
+	text-align: center;
+	padding: 1rem;
+	font-weight: bold;
 }
 
-menu a:hover {
-	color: grey;
+.nav-user a:hover {
+	color: white;
 }
 
 @media screen and (min-width: 1400px) {

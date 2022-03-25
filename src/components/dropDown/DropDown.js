@@ -5,6 +5,7 @@ import { FaArrowUp } from "react-icons/fa";
 import { useGetCategories } from "../../hooks/useGetCategories";
 import { useNavigate } from "react-router-dom";
 import "./dropDown.css";
+import "../navBar/navBar.css";
 
 //Traemos el mostrar Menu (setShowNavBar) para ocultarlo una vez se haga click en una categoría
 const Dropdown = ({
@@ -22,7 +23,7 @@ const Dropdown = ({
 	const { categories } = useGetCategories();
 
 	return (
-		<ul className="dropdown">
+		<>
 			<li className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
 				CATEGORIAS{" "}
 				{isActive ? (
@@ -49,7 +50,7 @@ const Dropdown = ({
 					))}
 				</div>
 			)}
-		</ul>
+		</>
 	);
 };
 
