@@ -271,6 +271,7 @@
 	padding: 3rem;
 	border-radius: 9px;
 	max-width: 500px;
+	max-height: 95vh;
 }
 
 #popup-booking-container {
@@ -284,7 +285,7 @@
 	background-color: rgba(var(--primary-color-hard), 0.9);
 	align-items: center;
 	justify-content: center;
-	z-index: 3;
+	z-index: 5;
 }
 
 .pop-up-button-set {
