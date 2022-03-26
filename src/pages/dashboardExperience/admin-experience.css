@@ -1,28 +1,35 @@
+.admin-exp-wrapper {
+	background-color: white;
+}
 
 #title-admin-cat {
-  margin: 20px 0 40px;
-  text-align: center;
+	text-align: center;
+	background-color: white;
 }
 
 .input-search {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 #link-create-cat {
-  margin: 16px;
-  display: flex;
-  justify-content: center;
+	margin: 16px;
+	display: flex;
+	justify-content: center;
 }
 
 .error-info {
-  margin: 5rem 0;
-  text-align: center;
-  width: 100%;
-  font-size: 2rem;
+	margin: 5rem 0;
+	text-align: center;
+	width: 100%;
+	font-size: 2rem;
 }
 
 .form-wrap {
-  margin: 20px 0;
-  margin-bottom: 50px;
+	margin: 20px 0;
+	margin-bottom: 50px;
+}
+
+.create-exp a {
+	text-decoration: none;
 }

@@ -63,8 +63,8 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 						width: 768,
 						slidesPerView: 2,
 					},
-					375: {
-						width: 375,
+					390: {
+						width: 390,
 						slidesPerView: 1,
 					},
 				}}

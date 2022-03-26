@@ -313,7 +313,7 @@
 	padding: 2rem 0 2rem 0;
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 390px) {
 	.swiper-container {
 		width: 100vw;
 	}
