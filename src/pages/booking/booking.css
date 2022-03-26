@@ -270,10 +270,12 @@
 	background-color: rgb(var(--primary-color-soft));
 	justify-content: center;
 	align-items: center;
-	padding: 3rem;
 	border-radius: 9px;
-	max-width: 500px;
-	max-height: 95vh;
+	font-size: 10px;
+}
+
+.exp-pic-pop {
+	max-width: 150px;
 }
 
 #popup-booking-container {
@@ -286,8 +288,9 @@
 	right: 0;
 	background-color: rgba(var(--primary-color-hard), 0.9);
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	z-index: 5;
+	padding: 3rem;
 }
 
 .pop-up-button-set {

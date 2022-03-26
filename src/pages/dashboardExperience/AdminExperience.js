@@ -7,72 +7,70 @@ import "./admin-experience.css";
 // import { ToTop } from "../../components/toTop/ToTop.js";
 
 export const AdminExperience = () => {
-  const [toSearch, setToSearch] = useState("");
+	const [toSearch, setToSearch] = useState("");
 
-  const { filtered, error, loading } = useFiltered(`?experience=${toSearch}`);
+	const { filtered, error, loading } = useFiltered(`?experience=${toSearch}`);
 
-  const ref = useRef(null);
-  const navigate = useNavigate();
+	const ref = useRef(null);
+	const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setToSearch(ref.current.value);
-  };
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setToSearch(ref.current.value);
+	};
 
-  useEffect(() => {
-    error && toast.error(error);
-  }, [error]);
+	useEffect(() => {
+		error && toast.error(error);
+	}, [error]);
 
-  return (
-    <div>
-      {/* <ToTop /> */}
-      <h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
-        GESTOR de Experiencias
-      </h1>
-      <form onSubmit={handleSubmit}>
-        <div className="barrabusquedacategory">
-          <label htmlFor="findCat">Experiencia</label>
-          <input
-            type="text"
-            ref={ref}
-            placeholder="Búsqueda por Título / Descripción"
-            onChange={handleSubmit}
-            value={toSearch}
-          />
-        </div>
-        <button
-          className="btn-back"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ↩️ back
-        </button>
-        <div>
-          <Link
-            to="/dashboard/adminExperience/createExperience"
-            id="link-create-cat"
-          > <button className="generalButton">
-          crear experiencia
-          </button>
-      
-          </Link>
-        </div>
-      </form>
-      {filtered.length < 1 ? (
-        <div className="error-info fade_in">No hay resultados a mostrar</div>
-      ) : (
-        <div className="form-wrap">
-          <hr />
-          {filtered.map((exp) => (
-            <ExperienceAdminCard
-              key={exp.id}
-              exp={exp}
-              setToSearch={setToSearch}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
+	return (
+		<div className="admin-exp-wrapper">
+			{/* <ToTop /> */}
+			<h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
+				Gestionar experiencias
+			</h1>
+			<form onSubmit={handleSubmit}>
+				<div className="barrabusquedacategory">
+					<input
+						type="text"
+						ref={ref}
+						placeholder="Búsqueda por Título / Descripción"
+						onChange={handleSubmit}
+						value={toSearch}
+					/>
+				</div>
+				<button
+					className="btn-back"
+					onClick={() => {
+						navigate(-1);
+					}}
+				>
+					↩️ back
+				</button>
+				<div className="create-exp">
+					<Link
+						to="/dashboard/adminExperience/createExperience"
+						id="link-create-cat"
+					>
+						{" "}
+						<button className="generalButton">crear experiencia</button>
+					</Link>
+				</div>
+			</form>
+			{filtered.length < 1 ? (
+				<div className="error-info fade_in">No hay resultados a mostrar</div>
+			) : (
+				<div className="form-wrap">
+					<hr />
+					{filtered.map((exp) => (
+						<ExperienceAdminCard
+							key={exp.id}
+							exp={exp}
+							setToSearch={setToSearch}
+						/>
+					))}
+				</div>
+			)}
+		</div>
+	);
 };
