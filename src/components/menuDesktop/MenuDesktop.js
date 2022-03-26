@@ -20,10 +20,10 @@ const MenuDesktop = ({ setSearchCat }) => {
 					}}
 					className="itemmenuescritorio"
 				>
-					<Link to="/">INICIO</Link>
+					<Link to="/">Inicio</Link>
 				</li>
 				<li className="itemmenuescritorio">
-					<Link to="/account">MI CUENTA</Link>
+					<Link to="/account">Cuenta</Link>
 				</li>
 				<div
 					onMouseOver={(e) => setIsActive(true)}
@@ -31,7 +31,7 @@ const MenuDesktop = ({ setSearchCat }) => {
 					className="both"
 					style={{ display: "flex", flexDirection: "column-reverse" }}
 				>
-					<li className="itemmenuescritorio">CATEGORIAS</li>
+					<li className="itemmenuescritorio">Categorías</li>
 
 					{isActive && (
 						<div className="drop-cat">
@@ -53,10 +53,10 @@ const MenuDesktop = ({ setSearchCat }) => {
 					)}
 				</div>
 				<li className="itemmenuescritorio">
-					<Link to="/contact-form">CONTACTO</Link>
+					<Link to="/contact-form">Contacto</Link>
 				</li>
 				<li className="itemmenuescritorio">
-					<Link to="/faq">FAQ</Link>
+					<Link to="/faq">Faq</Link>
 				</li>
 			</menu>
 			<div className="menucategory"></div>

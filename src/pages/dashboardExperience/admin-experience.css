@@ -16,6 +16,7 @@
 	margin: 16px;
 	display: flex;
 	justify-content: center;
+	text-decoration: none;
 }
 
 .error-info {
@@ -28,6 +29,8 @@
 .form-wrap {
 	margin: 20px 0;
 	margin-bottom: 50px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .create-exp a {

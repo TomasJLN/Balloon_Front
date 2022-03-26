@@ -115,6 +115,7 @@
 	font-size: 1.5rem;
 	border: none;
 	letter-spacing: 2px;
+	border-radius: 9px;
 }
 
 .input-search:focus {
