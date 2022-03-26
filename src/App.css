@@ -151,6 +151,7 @@ header {
 	cursor: pointer;
 	border-radius: 9px;
 	border: none;
+	margin: 5px;
 }
 
 .generalButton-disabled {
