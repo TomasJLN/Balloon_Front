@@ -34,7 +34,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 	}, [error]);
 
 	return (
-		<div className="card-category fade_in">
+		<div className="card-category fade_in card">
 			<figure className="card-figure-category">
 				{cat.photo ? (
 					<img

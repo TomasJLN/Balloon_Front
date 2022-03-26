@@ -1,0 +1,12 @@
+h1#title-edit-profile {
+	margin: 20px 0;
+	text-align: center;
+	background-color: white;
+	height: 10rem;
+	padding: 4rem;
+	margin-bottom: 0;
+}
+
+.edit-profile-wrapper {
+	background-color: white;
+}

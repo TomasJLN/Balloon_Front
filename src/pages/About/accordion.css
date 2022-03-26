@@ -51,7 +51,7 @@
 	button
 	span.icon-wrapper
 	span.minus {
-	content: url('../../../public/imgs/accordion-icons/line.svg');
+	content: url("../../../public/imgs/accordion-icons/line.svg");
 	width: 24px;
 	height: 24px;
 }
@@ -62,7 +62,7 @@
 	button
 	span.icon-wrapper
 	span.plus {
-	content: url('../../../public/imgs/accordion-icons/plus.svg');
+	content: url("../../../public/imgs/accordion-icons/plus.svg");
 	width: 24px;
 	height: 24px;
 	transform: rotate(90deg);
@@ -95,6 +95,14 @@
 	height: auto;
 	transition-timing-function: ease-in;
 	transition: all 0.2s;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.accordion-img {
+	width: 400px;
 }
 
 .accordion-wrapper .accordion-item .accordion-panel p {
