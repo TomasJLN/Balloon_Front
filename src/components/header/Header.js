@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
 import { GiAirBalloon } from "react-icons/gi";
+import mainLogo from "../../mainlogo/balloon-logo.png";
 
 import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
@@ -88,8 +89,11 @@ export const Header = ({
 
 					<MenuDesktop setSearchCat={setSearchCat} />
 					<div onClick={handleClick} className="doggy-logo">
-						<GiAirBalloon />
-						Balloon
+						<img
+							src={mainLogo}
+							style={{ maxWidth: "150px" }}
+							alt="balloon-logo"
+						/>
 					</div>
 
 					<div className="user-avatar-menu">

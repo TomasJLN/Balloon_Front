@@ -11,6 +11,11 @@
 	font-family: "balloonparty";
 	src: local("balloonparty"), url(./fonts/balloonparty.ttf) format("truetype");
 }
+
+@font-face {
+	font-family: "buffalo";
+	src: local("buffalo"), url(./fonts/buffalo.otf) format("opentype");
+}
 /* VARIABLES */
 :root {
 	--primary-color-soft: 238, 237, 222;
@@ -139,33 +144,27 @@ header {
 }
 
 .generalButton {
-	background-color: #000000;
+	background-color: rgb(var(--primary-color-hard));
 	color: white;
-	font-size: 1rem;
-	text-transform: uppercase;
-	width: 7rem;
-	border-radius: 20px;
-	height: 2rem;
-	border: none;
+	padding: 5px 15px;
 	letter-spacing: 1px;
 	cursor: pointer;
+	border-radius: 9px;
+	border: none;
 }
 
 .generalButton-disabled {
 	background-color: #a2a2a2;
 	color: white;
-	font-size: 1rem;
-	text-transform: uppercase;
-	width: 7rem;
-	border-radius: 20px;
-	height: 2rem;
-	border: none;
+	padding: 5px 15px;
 	letter-spacing: 1px;
+	cursor: pointer;
+	border-radius: 9px;
+	border: none;
 }
 
 .generalButton:hover {
 	background-color: rgb(255, 85, 58);
-	box-shadow: 5px 10px 30px 5px rgba(76, 74, 74, 0.39);
 }
 
 .generalTitulo1 {

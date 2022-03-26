@@ -12,8 +12,8 @@ import "leaflet/dist/leaflet.css";
 import "../pages/experience/experience.css";
 
 const icon = new Icon({
-	iconUrl: "/imgs/balloon-map.png",
-	iconSize: [50, 50],
+	iconUrl: "/imgs/balloon-map-marker.png",
+	iconSize: [30, 30],
 });
 
 function LocationMarker({ splittedCoords, url, title, photo }) {

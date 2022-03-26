@@ -6,7 +6,7 @@
 
 #main_header {
 	display: grid;
-	grid-template-columns: 15% 70% 15%;
+	grid-template-columns: 20% 60% 20%;
 	grid-template-rows: 1fr;
 	grid-template-areas: "a b c";
 
@@ -33,12 +33,10 @@
 }
 
 .doggy-logo {
-	font-size: "60px";
-	font-family: "balloonparty";
-	color: rgb(var(--primary-color-hard));
+	max-width: 150px;
 	display: flex;
 	grid-area: a;
-	gap: 10;
+
 	align-items: center;
 	cursor: pointer;
 }

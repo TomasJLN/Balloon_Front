@@ -2,7 +2,7 @@
 	display: flex;
 
 	justify-content: space-between;
-	margin: 20px 0;
+	padding: 2rem;
 }
 .stars-count-opinions {
 	margin: 0;
