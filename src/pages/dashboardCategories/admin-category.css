@@ -30,6 +30,7 @@
 	margin: 1rem;
 	font-size: 1.2rem;
 	text-align: center;
+	border-radius: 9px;
 }
 #link-create-cat {
 	display: flex;
@@ -50,3 +51,7 @@
   width: 100%;
   font-size: 1.2rem;
 }  */
+
+.admin-category-wrapper {
+	background-color: white;
+}

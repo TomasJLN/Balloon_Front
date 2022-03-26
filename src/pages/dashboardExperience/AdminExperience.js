@@ -26,15 +26,13 @@ export const AdminExperience = () => {
 	return (
 		<div className="admin-exp-wrapper">
 			{/* <ToTop /> */}
-			<h1 id="title-admin-cat" onClick={() => navigate(`/dashboard`)}>
-				Gestionar experiencias
-			</h1>
+			<h1 id="title-admin-cat">Gestionar experiencias</h1>
 			<form onSubmit={handleSubmit}>
 				<div className="barrabusquedacategory">
 					<input
 						type="text"
 						ref={ref}
-						placeholder="Búsqueda por Título / Descripción"
+						placeholder="Búsqueda por título y descripción"
 						onChange={handleSubmit}
 						value={toSearch}
 					/>
@@ -61,7 +59,6 @@ export const AdminExperience = () => {
 				<div className="error-info fade_in">No hay resultados a mostrar</div>
 			) : (
 				<div className="form-wrap">
-					<hr />
 					{filtered.map((exp) => (
 						<ExperienceAdminCard
 							key={exp.id}

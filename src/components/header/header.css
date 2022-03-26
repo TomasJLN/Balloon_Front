@@ -91,7 +91,6 @@
 	text-align: center;
 	padding: 1rem;
 	font-weight: bold;
-	text-transform: uppercase;
 }
 
 .itemmenucategory:hover {
@@ -117,7 +116,6 @@
 }
 
 .menuescritorio {
-	background-color: rgb(var(--primary-color-soft));
 	color: black;
 
 	display: flex;

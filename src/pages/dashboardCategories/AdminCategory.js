@@ -26,21 +26,18 @@ export const AdminCategory = () => {
 
 	return (
 		<>
-			<div>
+			<div className="admin-category-wrapper">
 				{/* <ToTop /> */}
-				<h1 id="title-admin-cat" onClick={() => navigate(`/dashboard/`)}>
-					Gestionar categorías
-				</h1>
+				<h1 id="title-admin-cat">Gestionar categorías</h1>
 				<form onSubmit={handleSubmit}>
 					<div className="barrabusquedacategory">
-						<label htmlFor="findCat">Buscar Categoría</label>
 						<input
 							// id="input-search-field"
 							type="text"
 							ref={ref}
 							onChange={handleSubmit}
 							value={toSearch}
-							placeholder="Búsqueda por ID / Categoría"
+							placeholder="Búsqueda por Id y nombre"
 						/>
 					</div>
 					<button
@@ -64,7 +61,6 @@ export const AdminCategory = () => {
 					<div className="error-info fade_in">No hay resultados a mostrar</div>
 				) : (
 					<div className="form-wrap">
-						<hr />
 						{categories.map((cat) => (
 							<CategoryAdminCard
 								key={cat.id}

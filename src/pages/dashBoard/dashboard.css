@@ -92,3 +92,9 @@
 	padding: 2rem;
 	background-color: rgb(var(--primary-color-soft));
 }
+
+/* @media screen and (min-width: 1200px) {
+	.dashboard-container {
+		height: 50vh;
+	}
+} */
