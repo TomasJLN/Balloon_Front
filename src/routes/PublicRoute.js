@@ -10,7 +10,7 @@ import { UserRoute } from "./UserRoute";
 import { UserContext } from "../contexts/UserContext";
 import Experience from "../pages/experience/Experience";
 import RecoveryPassword from "../components/recoveryPassword/RecoveryPassword";
-import Faq from "../pages/faq/Faq";
+import About from "../pages/About/About.js";
 import Privacity from "../pages/privacity/Privacity";
 import Conditions from "../pages/conditions/Conditions";
 import Footer from "../components/footer/Footer";
@@ -161,10 +161,10 @@ export const PublicRoute = ({
 					}
 				/>
 				<Route
-					path="faq"
+					path="about"
 					element={
 						<>
-							<Faq />
+							<About />
 							<Footer />
 						</>
 					}

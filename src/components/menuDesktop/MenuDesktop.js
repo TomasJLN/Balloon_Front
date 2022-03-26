@@ -56,7 +56,7 @@ const MenuDesktop = ({ setSearchCat }) => {
 					<Link to="/contact-form">Contacto</Link>
 				</li>
 				<li className="itemmenuescritorio">
-					<Link to="/faq">Faq</Link>
+					<Link to="/about">About</Link>
 				</li>
 			</menu>
 			<div className="menucategory"></div>
