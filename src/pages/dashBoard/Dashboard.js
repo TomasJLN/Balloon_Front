@@ -43,7 +43,7 @@ export const Dashboard = () => {
 
 	return usuario.role === "admin" ? (
 		<div className="dashboard-container">
-			<h1>Mi dashboard</h1>
+			<h1 id="title-edit-profile">Mi dashboard</h1>
 			<div className="list-container">
 				{actions.map((act) => (
 					<ul>
@@ -80,32 +80,4 @@ export const Dashboard = () => {
 			<h1>No tienes acceso a la zona de Administración</h1>
 		</div>
 	);
-
-	/* (
-    <section className="dashboard-section">
-      
-      <div className="data-dashboard">
-        <h3>Nº Categorías: {categories.length}</h3>
-        <h3>Nº Experiencias: {filtered.length}</h3>
-        <h3>Nº Usuarios: {totalUsers.nUsers - 1}</h3>
-        <h3>
-          Facturado {month.format("MMMM")}: {charged.totalCharged} €
-        </h3>
-        <h3>Ranking Experiencias mejor valoradas: </h3>
-        {bestExp.map((exp) => (
-          <p
-            key={exp.title}
-            className="best-exp-item"
-            onClick={() => navigate(`/experience/${exp.idExperience}`)}
-          >
-            - {exp.title}
-          </p>
-        ))}
-      </div>
-    </section>
-  ) : (
-    <div className="not-allowed">
-      <h1>No tienes acceso a la zona de Administración</h1>
-    </div>
-  ); */
 };

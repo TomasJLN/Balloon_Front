@@ -52,11 +52,10 @@
 	align-items: center;
 }
 
-.title-exp {
-	padding-left: 10px;
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	flex-grow: 1;
+.title-exp-edit {
 	font-size: 14px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 75%;
 }

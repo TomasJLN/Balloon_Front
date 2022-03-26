@@ -40,14 +40,7 @@ export const AdminCategory = () => {
 							placeholder="Búsqueda por Id y nombre"
 						/>
 					</div>
-					<button
-						className="btn-back"
-						onClick={() => {
-							navigate(-1);
-						}}
-					>
-						↩️ back
-					</button>
+
 					<div>
 						<Link
 							to="/dashboard/adminCategory/createCategory"

@@ -33,7 +33,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 	}, [error]);
 
 	return (
-		<div className="card-category fade_in">
+		<div className="card-category fade_in card">
 			<figure className="card-figure-category">
 				{exp.photo ? (
 					<img
@@ -56,8 +56,8 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 				)}
 			</figure>
 			<div className="title-card-category">
-				<span className="id-exp">{exp.id}</span>
-				<span className="title-exp">{exp.title}</span>
+				<span className="id-exp">ID: {exp.id}</span>
+				<span className="title-exp-edit">{exp.title}</span>
 			</div>
 
 			<div className="row-button-category">
