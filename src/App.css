@@ -58,8 +58,8 @@ header {
 .footer {
 	font-size: 0.8rem;
 	width: 100%;
-	height: 250px;
-	padding: 1em 0;
+
+	padding-top: 1rem;
 	color: white;
 	background-color: rgb(var(--primary-color-soft));
 	display: flex;

@@ -3,6 +3,11 @@
 	width: 100%;
 }
 
+.exp-pic-pop {
+	object-fit: cover;
+	width: 100%;
+}
+
 .wrap-content {
 	background-color: white;
 }
@@ -275,7 +280,7 @@
 }
 
 .exp-pic-pop {
-	max-width: 150px;
+	padding: 2rem;
 }
 
 #popup-booking-container {
@@ -288,7 +293,7 @@
 	right: 0;
 	background-color: rgba(var(--primary-color-hard), 0.9);
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
 	z-index: 5;
 	padding: 3rem;
 }
