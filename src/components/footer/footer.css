@@ -16,6 +16,11 @@
 .footer .links {
 	font-size: 0.6rem;
 	line-height: 1rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(var(--primary-color-hard));
 }
 
 .footer .links ul li {
@@ -70,7 +75,7 @@
 
 .footer a:visited,
 .footer a:link {
-	color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
 }
 
 .footer a:hover {

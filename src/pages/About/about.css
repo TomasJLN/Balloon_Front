@@ -3,7 +3,7 @@ div.faq-container {
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
-	padding: 3rem 20rem 3rem 20rem;
+	/* padding: 3rem 20rem 3rem 20rem; */
 }
 .profile-thumbnail {
 	width: 300px;
