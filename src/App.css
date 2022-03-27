@@ -36,7 +36,8 @@
 }
 html {
 	background-image: url("../public/imgs/paper-texture.jpg");
-	scroll-behavior: smooth;
+	/* 	scroll-behavior: smooth;
+ */
 }
 
 body {

@@ -2,40 +2,46 @@ import "./about.css";
 import "./accordion.css";
 import Accordion from "./Accordion";
 import AccordionWrap from "./AccordionWrap";
+import fotodani from "../../mainlogo/dani.jpg";
+import React, { useEffect } from "react";
 
 const Faq = () => {
 	const info = [
 		{
 			title: "Dani Pereira",
-			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a consequat nibh. Mauris suscipit arcu at fermentum convallis. Pellentesque consectetur mi in felis maximus posuere.",
+			photo: fotodani,
 		},
 		{
-			title: "Laia",
+			title: "Laia March",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie tellus a maximus tempus. Duis vel leo iaculis, porttitor erat et, posuere erat. Ut blandit.",
 		},
 		{
-			title: "Támara",
+			title: "Támara Raya",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia, nibh imperdiet tempus pharetra, arcu risus aliquet arcu, a auctor ex lacus efficitur purus. Morbi.",
 		},
 		{
-			title: "Tomás",
+			title: "Tomás J. Lago",
 			description:
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat lobortis nibh, eu molestie est placerat non. Donec ornare nisl erat, non imperdiet elit porta.",
 		},
 	];
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<div className="faq-container">
-			<h1>About</h1>
+			<h1 style={{ marginBottom: "1rem" }}>¿Quienes somos?</h1>
 			<AccordionWrap>
 				{info.map((item, index) => (
 					<Accordion
 						key={index}
 						index={index}
 						title={item.title}
-						description={item.description}
+						photo={item.photo}
 					/>
 				))}
 			</AccordionWrap>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { AccordionContext } from "./AccordionWrap";
 import profileImage from "../../../src/mainlogo/balloon-logo.png";
 import { FaLinkedin } from "react-icons/fa";
-
+import "./about.css";
 const AccordionItem = (props) => {
 	let indexPlus;
 
@@ -43,10 +43,11 @@ const AccordionItem = (props) => {
 					className={active === props.index ? "panel-open" : "panel-close"}
 				>
 					<img
-						className="accordion-img"
-						src={profileImage}
+						className="profile-thumbnail"
+						src={props.photo}
 						alt="profileimage"
 					/>
+					<p>lorem ipsum...</p>
 					<div
 						style={{ display: "flex", fontSize: "25px" }}
 						className="contact-icons"

@@ -2,6 +2,11 @@ div.faq-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	padding: 3rem;
+	text-align: center;
+	padding: 3rem 20rem 3rem 20rem;
+}
+.profile-thumbnail {
+	width: 300px;
+	height: 300px;
+	object-fit: cover;
 }
