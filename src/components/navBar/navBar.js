@@ -31,14 +31,15 @@ const NavBar = ({
 		<menu id="slide" ref={ref} className="navbar">
 			<li className="dropdown-btn">
 				<Link to="/" onClick={(s) => setShowNavBar(!s)}>
-					INICIO
+					Inicio
 				</Link>
 			</li>
 			<li className="dropdown-btn">
-				<Link to="/account" onClick={(s) => setShowNavBar(!s)}>
-					MI CUENTA
+				<Link to="/about" onClick={(s) => setShowNavBar(!s)}>
+					Nosotrxs
 				</Link>
 			</li>
+
 			<Dropdown
 				toSearch={toSearch}
 				setToSearch={setToSearch}
@@ -48,16 +49,6 @@ const NavBar = ({
 				setSearchCat={setSearchCat}
 				setShowNavBar={setShowNavBar}
 			/>
-			<li className="dropdown-btn">
-				<Link to="/contact-form" onClick={(s) => setShowNavBar(!s)}>
-					CONTACTO
-				</Link>
-			</li>
-			<li className="dropdown-btn">
-				<Link to="/about" onClick={(s) => setShowNavBar(!s)}>
-					ABOUT
-				</Link>
-			</li>
 		</menu>
 	);
 };

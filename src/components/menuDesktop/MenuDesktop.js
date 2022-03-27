@@ -23,8 +23,9 @@ const MenuDesktop = ({ setSearchCat }) => {
 					<Link to="/">Inicio</Link>
 				</li>
 				<li className="itemmenuescritorio">
-					<Link to="/account">Cuenta</Link>
+					<Link to="/about">Nosotrxs</Link>
 				</li>
+
 				<div
 					onMouseOver={(e) => setIsActive(true)}
 					onMouseLeave={(e) => setIsActive(false)}
@@ -52,12 +53,6 @@ const MenuDesktop = ({ setSearchCat }) => {
 						</div>
 					)}
 				</div>
-				<li className="itemmenuescritorio">
-					<Link to="/contact-form">Contacto</Link>
-				</li>
-				<li className="itemmenuescritorio">
-					<Link to="/about">About</Link>
-				</li>
 			</menu>
 			<div className="menucategory"></div>
 		</div>

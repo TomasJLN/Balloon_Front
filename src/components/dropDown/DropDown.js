@@ -25,7 +25,7 @@ const Dropdown = ({
 	return (
 		<>
 			<li className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-				CATEGORIAS{" "}
+				Categorías{" "}
 				{isActive ? (
 					<FaArrowUp className="arrowdown" />
 				) : (

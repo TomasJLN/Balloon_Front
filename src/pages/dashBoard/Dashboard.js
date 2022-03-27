@@ -56,23 +56,29 @@ export const Dashboard = () => {
 					</ul>
 				))}
 			</div>
-			<div className="general-data">
-				<p>Nº Categorías: {categories.length}</p>
-				<p>Nº Experiencias: {filtered.length}</p>
-				<p>Nº Usuarios: {totalUsers.nUsers - 1}</p>
-				<p>
-					Facturado {month.format("MMMM")}: {charged.totalCharged} €
-				</p>
-				<p>Ranking Experiencias mejor valoradas: </p>
-				{bestExp.map((exp) => (
-					<p
-						key={exp.title}
-						className="best-exp-item"
-						onClick={() => navigate(`/booking/${exp.idExperience}`)}
-					>
-						- {exp.title}
-					</p>
-				))}
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th>Categorías</th>
+							<th>Experiencias</th>
+							<th>Usuarios</th>
+							<th>Mejor experiencia</th>
+							<th>Facturación {month.format("MMMM")}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{categories.length}</td>
+							<td>{filtered.length}</td>
+							<td>{totalUsers.nUsers - 1}</td>
+							{bestExp.map((exp) => (
+								<td>ID: {exp.idExperience}</td>
+							))}
+							<td>{charged.totalCharged} €</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	) : (
