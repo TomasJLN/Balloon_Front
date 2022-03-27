@@ -41,6 +41,10 @@ export const Dashboard = () => {
 		totalCharged();
 	}, []);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return usuario.role === "admin" ? (
 		<div className="dashboard-container">
 			<h1 id="title-edit-profile">Mi dashboard</h1>
