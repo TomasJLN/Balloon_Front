@@ -47,15 +47,7 @@ export const PublicRoute = ({
 						</>
 					}
 				/>
-				<Route
-					path="contact-form"
-					element={
-						<>
-							<ContactForm />
-							<Footer />
-						</>
-					}
-				/>
+
 				<Route
 					path="account"
 					element={
