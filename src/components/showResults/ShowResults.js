@@ -75,7 +75,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, []);
+	}, [location]);
 
 	return (
 		<>

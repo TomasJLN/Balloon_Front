@@ -23,6 +23,10 @@ export const AdminExperience = () => {
 		error && toast.error(error);
 	}, [error]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<div className="admin-exp-wrapper">
 			{/* <ToTop /> */}
