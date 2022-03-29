@@ -3,6 +3,7 @@ import "./menuDesktop.css";
 import "../header/header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetCategories } from "../../hooks/useGetCategories";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 const MenuDesktop = ({ setSearchCat }) => {
 	const [isActive, setIsActive] = useState(false);
@@ -22,9 +23,6 @@ const MenuDesktop = ({ setSearchCat }) => {
 				>
 					<Link to="/">Inicio</Link>
 				</li>
-				<li className="itemmenuescritorio">
-					<Link to="/about">Nosotrxs</Link>
-				</li>
 
 				<div
 					onMouseOver={(e) => setIsActive(true)}
@@ -32,7 +30,9 @@ const MenuDesktop = ({ setSearchCat }) => {
 					className="both"
 					style={{ display: "flex", flexDirection: "column-reverse" }}
 				>
-					<li className="itemmenuescritorio">Categorías</li>
+					<li className="itemmenuescritorio">
+						Categorías {isActive ? <AiOutlineMinus /> : <AiOutlinePlus />}
+					</li>
 
 					{isActive && (
 						<div className="drop-cat">
@@ -53,6 +53,9 @@ const MenuDesktop = ({ setSearchCat }) => {
 						</div>
 					)}
 				</div>
+				<li className="itemmenuescritorio">
+					<Link to="/about">Nosotrxs</Link>
+				</li>
 			</menu>
 			<div className="menucategory"></div>
 		</div>

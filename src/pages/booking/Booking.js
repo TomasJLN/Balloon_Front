@@ -119,13 +119,15 @@ const Booking = () => {
 					}),
 				});
 			};
-			!usuario.role && navigate("/account");
-			usuario.role === "user" && createBooking();
-			usuario.role === "admin" &&
-				toast.error("Un administrador no puede\nhacer reservas...");
-		} else {
-			toast.error("Debes seleccionar un método de pago");
+			createBooking();
 		}
+	};
+	const handlePopUp = () => {
+		!usuario.role && navigate("/account");
+
+		usuario.role === "user" && setPopUp(true);
+		usuario.role === "admin" &&
+			toast.error("Un administrador no puede\nhacer reservas...");
 	};
 
 	useEffect(() => {
@@ -297,7 +299,7 @@ const Booking = () => {
 										disabled={disable}
 										onClick={(e) => {
 											e.preventDefault();
-											setPopUp(true);
+											handlePopUp();
 										}}
 									>
 										Reservar
