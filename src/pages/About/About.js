@@ -28,13 +28,13 @@ const Faq = () => {
 		},
 	];
 
-	useEffect(() => {
+	/* 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-
+ */
 	return (
 		<div className="faq-container">
-			<h1 style={{ marginBottom: "1rem" }}>¿Quienes somos?</h1>
+			<h1 id="title-about">¿Quienes somos?</h1>
 			<AccordionWrap>
 				{info.map((item, index) => (
 					<Accordion
