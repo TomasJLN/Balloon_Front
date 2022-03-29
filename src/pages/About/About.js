@@ -12,13 +12,9 @@ const Faq = () => {
 
 	const info = [
 		{
-			title: "Dani Pereira",
-			photo: fotodani,
-		},
-		{
-			title: "Laia March",
+			title: "Tomás J. Lago",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie tellus a maximus tempus. Duis vel leo iaculis, porttitor erat et, posuere erat. Ut blandit.",
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat lobortis nibh, eu molestie est placerat non. Donec ornare nisl erat, non imperdiet elit porta.",
 		},
 		{
 			title: "Támara Raya",
@@ -26,9 +22,14 @@ const Faq = () => {
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia, nibh imperdiet tempus pharetra, arcu risus aliquet arcu, a auctor ex lacus efficitur purus. Morbi.",
 		},
 		{
-			title: "Tomás J. Lago",
+			title: "Laia March",
 			description:
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat lobortis nibh, eu molestie est placerat non. Donec ornare nisl erat, non imperdiet elit porta.",
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie tellus a maximus tempus. Duis vel leo iaculis, porttitor erat et, posuere erat. Ut blandit.",
+		},
+
+		{
+			title: "Dani Pereira",
+			photo: fotodani,
 		},
 	];
 
