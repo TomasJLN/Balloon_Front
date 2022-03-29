@@ -418,6 +418,11 @@ header {
 		margin: 25px auto 5rem auto;
 	}
 
+	.generalAbout {
+		width: 300px;
+		margin: 25px auto 5rem auto;
+	}
+
 	#slide {
 		position: absolute;
 		left: -100%;
@@ -469,6 +474,11 @@ header {
 
 	.generalForm {
 		width: 500px;
+		margin: 25px auto 5rem auto;
+	}
+
+	.generalAbout {
+		width: 600px;
 		margin: 25px auto 5rem auto;
 	}
 }

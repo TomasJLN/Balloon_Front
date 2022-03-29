@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { AccordionContext } from "./AccordionWrap";
 import profileImage from "../../../src/mainlogo/balloon-logo.png";
-import { FaLinkedin } from "react-icons/fa";
+import { FaLinkedin, FaRegPaperPlane } from "react-icons/fa";
 import "./about.css";
 const AccordionItem = (props) => {
 	let indexPlus;
@@ -38,23 +38,33 @@ const AccordionItem = (props) => {
 				</button>
 			</h3>
 			<div className="accordion-panel">
-				<div
-					id={"sect-" + indexCount(props.index)}
-					className={active === props.index ? "panel-open" : "panel-close"}
-				>
-					<img
-						className="profile-thumbnail"
-						src={props.photo}
-						alt="profileimage"
-					/>
-					<p>lorem ipsum...</p>
+				<div style={{ display: "flex" }}>
 					<div
-						style={{ display: "flex", fontSize: "25px" }}
-						className="contact-icons"
+						id={"sect-" + indexCount(props.index)}
+						className={active === props.index ? "panel-open" : "panel-close"}
 					>
-						<FaLinkedin />
-						<FaLinkedin />
-						<FaLinkedin />
+						<img
+							className="profile-thumbnail"
+							src={props.photo}
+							alt="profileimage"
+						/>
+						<p
+							style={{
+								marginTop: "1rem",
+								marginBottom: "1rem",
+							}}
+						>
+							{props.description}
+						</p>
+
+						<div
+							style={{ display: "flex", fontSize: "25px" }}
+							className="contact-icons"
+						>
+							<a href={props.link} target="blank">
+								<FaLinkedin />
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

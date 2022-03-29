@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 export const AccordionContext = createContext({
 	active: 0,
@@ -15,7 +15,7 @@ const AccordionWrap = (props) => {
 				setActive,
 			}}
 		>
-			<div className='accordion-wrapper'>
+			<div className="accordion-wrapper">
 				<form>{props.children}</form>
 			</div>
 		</AccordionContext.Provider>
