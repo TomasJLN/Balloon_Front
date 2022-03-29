@@ -7,31 +7,33 @@ import "../../dashBoard/dashboard.css";
 const Editmenu = () => {
 	const [usuario, setUsuario] = useContext(UserContext);
 	return (
-		<div className="profile-container">
-			<h1 id="title-edit-profile">Editar perfil</h1>
-			<div className="list-container">
-				<ul>
-					<a href="#foto">
-						<li>
-							<FaUserCircle /> Cambiar mi foto
-						</li>
-					</a>
-					<a href="#datos">
-						<li>
-							<FaLock /> Cambiar mis datos
-						</li>
-					</a>
-					{usuario.role === "user" && (
-						<a href="#reservas">
-							{" "}
+		<section>
+			<div className="profile-container">
+				<h1 id="create-title">Editar perfil</h1>
+				<div className="list-container">
+					<ul>
+						<a href="#foto">
 							<li>
-								<FaCalendarAlt /> Mis reservas
+								<FaUserCircle /> Cambiar mi foto
 							</li>
 						</a>
-					)}
-				</ul>
+						<a href="#datos">
+							<li>
+								<FaLock /> Cambiar mis datos
+							</li>
+						</a>
+						{usuario.role === "user" && (
+							<a href="#reservas">
+								{" "}
+								<li>
+									<FaCalendarAlt /> Mis reservas
+								</li>
+							</a>
+						)}
+					</ul>
+				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 

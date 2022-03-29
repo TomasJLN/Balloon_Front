@@ -11,7 +11,7 @@
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	border-bottom: 1px solid black;
+	cursor: pointer;
 	font-size: 1.2rem;
 	font-weight: bold;
 	list-style-type: none;
@@ -19,6 +19,10 @@
 	padding: 2rem;
 	height: 100px;
 	opacity: 1;
+}
+
+.editmenu li:hover {
+	border-bottom: 1px solid white;
 }
 
 .editmenu div {

@@ -1,7 +1,9 @@
- .inputForm {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+.inputForm {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	text-align: left;
 }
 /* 
 .btn-back{
@@ -20,6 +22,15 @@
 	margin-top: 1rem;
 	} */
 
-  .edit-sect-activar{
-    margin-top: 20px;
-  }
+.edit-sect-activar {
+	margin-top: 20px;
+}
+
+h1#create-title {
+	text-align: center;
+	font-size: 2em;
+	height: 10rem;
+	padding: 4rem;
+	margin-bottom: 0;
+	color: white;
+}

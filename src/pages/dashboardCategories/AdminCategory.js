@@ -30,9 +30,9 @@ export const AdminCategory = () => {
 
 	return (
 		<>
-			<div className="admin-category-wrapper">
+			<div className="form-wrapper">
 				{/* <ToTop /> */}
-				<h1 id="title-admin-cat">Gestionar categorías</h1>
+				<h1 id="create-title">Gestionar categorías</h1>
 				<form onSubmit={handleSubmit}>
 					<div className="barrabusquedacategory">
 						<input
@@ -54,20 +54,23 @@ export const AdminCategory = () => {
 						</Link>
 					</div>
 				</form>
-				{categories.length < 1 ? (
-					<div className="error-info fade_in">No hay resultados a mostrar</div>
-				) : (
-					<div className="form-wrap">
-						{categories.map((cat) => (
-							<CategoryAdminCard
-								key={cat.id}
-								cat={cat}
-								setToSearch={setToSearch}
-							/>
-						))}
-					</div>
-				)}
 			</div>
+			{categories.length < 1 ? (
+				<div className="error-info fade_in">No hay resultados a mostrar</div>
+			) : (
+				<div
+					style={{ width: "100%", backgroundColor: "white" }}
+					className="form-wrap"
+				>
+					{categories.map((cat) => (
+						<CategoryAdminCard
+							key={cat.id}
+							cat={cat}
+							setToSearch={setToSearch}
+						/>
+					))}
+				</div>
+			)}
 		</>
 	);
 };

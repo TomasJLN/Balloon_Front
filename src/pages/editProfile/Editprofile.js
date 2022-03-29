@@ -12,15 +12,20 @@ const Editprofile = () => {
 		window.scrollTo(0, 0);
 	}, []);
 	return (
-		<div className="edit-profile-wrapper">
-			<div className="edit-profile-links">
-				<Editmenu />
-			</div>
+		<>
+			<div className="form-wrapper">
+				<div className="edit-profile-links">
+					<Editmenu />
+				</div>
 
-			<Editavatar />
-			<Editpassword />
-			{usuario.role === "user" && <Editbooking />}
-		</div>
+				<Editavatar />
+				<Editpassword />
+			</div>
+			<div style={{ backgroundColor: "white" }}>
+				{usuario.role === "user" && <Editbooking />}
+			</div>
+			);
+		</>
 	);
 };
 

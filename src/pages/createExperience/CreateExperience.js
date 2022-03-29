@@ -28,9 +28,6 @@ export const CreateExperience = () => {
 		normatives: "N/A",
 	});
 
-
-
-
 	const [photoExp, setPhotoExp] = useState(null);
 	const [result, setResult] = useState(null);
 	const [error, setError] = useState(null);
@@ -99,24 +96,13 @@ export const CreateExperience = () => {
 
 	return (
 		<>
-			<section>
+			<section className="form-wrapper">
+				<h1 id="create-title" style={{ textAlign: "center", color: "white" }}>
+					Crear Experiencia
+				</h1>
 				{getID && <h1>Experiencia creada: {getID}</h1>}
 				{error && <h1 style={{ color: "red" }}>{error}</h1>}
-				<div className="title-back">
-					<h1 className="title">Crear Experiencia</h1>
-					<div className="back-div">
-						<button
-							className="btn-back"
-							onClick={() => {
-								navigate(-1);
-							}}
-						>
-							↩️ back
-						</button>
-					</div>
-				</div>
-				<br />
-				<hr />
+
 				<form onSubmit={handleNewExperience} className="generalForm">
 					<div>
 						<div>
@@ -192,7 +178,6 @@ export const CreateExperience = () => {
 						/>
 						<p>Fecha de inicio</p>
 						<DatePicker
-
 							value={expData.startDate}
 							onChange={(e) => {
 								setExpData({ ...expData, startDate: e.format() });
@@ -207,7 +192,6 @@ export const CreateExperience = () => {
 							onChange={(e) => setExpData({ ...expData, endDate: e.format() })}
 							editable={false}
 						/>
-
 
 						<input
 							className="generalInput"

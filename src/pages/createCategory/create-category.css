@@ -1,14 +1,9 @@
-.hola{
-  
-    border-radius: 20px;
-	background-color: rgba(235, 203, 62, 0.829);
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-	padding: 0.5rem 0;
-	min-height: 200px;
-	margin: 40px;
-
+h1#create-title {
+	margin: 20px 0;
+	text-align: center;
+	font-size: 2em;
+	height: 10rem;
+	padding: 4rem;
+	margin-bottom: 0;
+	color: white;
 }
-
