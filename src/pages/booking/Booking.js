@@ -149,10 +149,6 @@ const Booking = () => {
 		reviews.length === 0 && setAvgRatin(0);
 	}, [reviews]);
 
-	useEffect(() => {
-		scrollToTop(0, 0);
-	}, []);
-
 	return (
 		<>
 			{loading ? (
@@ -328,7 +324,6 @@ const Booking = () => {
 					</div>
 					<h2 id="map-title">¿Cómo llegar?</h2>
 					<Mapa photo={photo} title={title} coords={coords} url={url} />
-					<div className="exp-info-container"></div>
 
 					<div>
 						<h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
