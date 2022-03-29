@@ -149,6 +149,10 @@ const Booking = () => {
 		reviews.length === 0 && setAvgRatin(0);
 	}, [reviews]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<>
 			{loading ? (
