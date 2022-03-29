@@ -75,6 +75,10 @@ export const CreateCategory = () => {
 		result && setGetID(result);
 	}, [result, navigate]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	//
 
 	return (

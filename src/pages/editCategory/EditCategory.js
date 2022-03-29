@@ -81,6 +81,10 @@ export const EditCategory = () => {
 			navigate("/dashboard/adminCategory");
 	}, [result, navigate]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<>
 			{loading ? (

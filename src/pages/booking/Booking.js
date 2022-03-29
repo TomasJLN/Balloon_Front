@@ -150,8 +150,8 @@ const Booking = () => {
 	}, [reviews]);
 
 	useEffect(() => {
-		scrollToTop();
-	}, [id]);
+		scrollToTop(0, 0);
+	}, []);
 
 	return (
 		<>

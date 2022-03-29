@@ -24,7 +24,6 @@ const Editprofile = () => {
 			<div style={{ backgroundColor: "white" }}>
 				{usuario.role === "user" && <Editbooking />}
 			</div>
-			);
 		</>
 	);
 };

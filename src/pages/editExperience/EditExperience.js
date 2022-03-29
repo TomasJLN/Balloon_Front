@@ -121,6 +121,10 @@ export const EditExperience = () => {
 			navigate("/dashboard/adminExperience");
 	}, [result, navigate]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<section className="form-wrapper">
 			{error && <h1>{error}</h1>}
