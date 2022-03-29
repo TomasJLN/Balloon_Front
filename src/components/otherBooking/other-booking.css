@@ -25,10 +25,6 @@
   margin: 12px 0;
 }
 
-.option-booking{
-  bottom: 0;
-}
-
 .photo-booking {
   display: flex;
   justify-content: center;
@@ -40,16 +36,21 @@
   object-fit:cover;
 }
 
-
-.btns-bookings {
+.options-booking{
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  min-width: 300px;
-  cursor: pointer;
-  
+  flex-direction: column;
 }
+
+
+.btns-booking {
+  position: relative;
+  width: 100%;
+  display: flex;
+  
+
+} 
+
 
 .btn-booking {
   display: flex;
@@ -59,9 +60,19 @@
   color: white;
   background-color: black;
   padding: 25px 15px;
-  width: auto;
+  width: 33.33%;
   height: 2.2rem;
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+
+  
+
+}
+
+@media screen and (min-width: 1400px) {
+	
 }
 

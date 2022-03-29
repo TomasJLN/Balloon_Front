@@ -10,7 +10,7 @@
 }
 
  #vota {
-  background-color: rgb(219, 209, 209);
+  background-color: rgb(var(--secondary-color-soft));
   color: black;
 }
 

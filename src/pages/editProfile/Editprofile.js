@@ -5,17 +5,18 @@ import Editavatar from "./editavatar/Editavatar";
 import Editpassword from "./editpassword/Editpassword";
 import Editbooking from "./editbooking/Editbooking";
 import { TokenContext } from "../../contexts/TokenContext";
+import "./editprofile.css";
 
 const Editprofile = () => {
   const [token, setToken] = useContext(TokenContext);
   const [usuario, setUsuario] = useContext(UserContext);
   return (
-    <>
+    <div className="editcontainer">
       <Editmenu />
       <Editavatar />
       <Editpassword />
       {usuario.role === "user" && <Editbooking />}
-    </>
+    </div>
   );
 };
 

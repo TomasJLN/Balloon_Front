@@ -29,7 +29,7 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
             />
           )}
         </figure>
-        <div className="btns-bookings">
+        <div className='btns-booking'>
           <button
             className="btn-booking"
             onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
@@ -49,7 +49,7 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
           >
             Cancelar
           </button>
-        </div>
+          </div>
       </div>
        
       </div>
