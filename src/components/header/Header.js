@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
-import { GiAirBalloon } from "react-icons/gi";
+
 import mainLogo from "../../mainlogo/balloon-logo.png";
 
 import { useNavigate } from "react-router-dom";
