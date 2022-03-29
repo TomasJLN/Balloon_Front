@@ -12,18 +12,17 @@
 
 .dropdown-btn {
 	list-style: none;
-	font-size: 1.5rem;
+	font-size: 17px;
 	font-weight: bold;
 	padding: 1rem;
-	color: white;
+	color: rgb(var(--primary-color-hard));
 }
 
 .dropdown-btn:hover {
 	opacity: 90%;
 	transition: all;
 	cursor: pointer;
-	color: white;
-	font-weight: 600;
+	color: rgb(var(--primary-color-hard));
 }
 
 .dropdown-content {
@@ -31,6 +30,6 @@
 }
 
 li.dropdown-btn > a {
-	color: white;
+	color: rgb(var(--primary-color-hard));
 	text-decoration: none;
 }

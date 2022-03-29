@@ -6,8 +6,9 @@
 
 .dropdown-item {
 	padding: 1rem;
-	color: rgb(255, 255, 255);
-	font-size: 1.5rem;
+	color: rgb(var(--primary-color-hard));
+	font-size: 15px;
+	font-weight: 400;
 }
 .dropdown-item:hover {
 	opacity: 90%;

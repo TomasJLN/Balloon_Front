@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import Dropdown from "../dropDown/DropDown";
 import "./navBar.css";
+import "../header/header.css";
 
 const NavBar = ({
 	toSearch,
