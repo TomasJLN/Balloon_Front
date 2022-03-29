@@ -90,6 +90,19 @@ header {
 	color: white;
 }
 
+.generalForm-admin {
+	border-radius: 9px;
+	background-color: rgb(var(--primary-color-hard));
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0.5rem 10px;
+	height: auto;
+	max-height: 100%;
+	color: white;
+}
+
 .generalLabel {
 	display: flex;
 	justify-content: left;
@@ -114,8 +127,35 @@ header {
 	font-weight: 300;
 }
 
-.generalTextarea {
+.generalInput-admin {
+	display: flex;
+	width: 100%;
+	max-width: 400px;
+	justify-content: left;
+	height: 2rem;
+	border: none;
+	margin: 0.5rem 0;
+	padding-left: 6px;
+	border-bottom: 0.5px solid rgb(225, 225, 225);
+	color: rgb(0, 0, 0);
+}
+
+.generalTextarea-admin {
 	padding: 1rem;
+	border: none;
+	border-bottom: 0.5px solid rgb(225, 225, 225);
+	width: 50%;
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	height: 100%;
+	color: rgb(0, 0, 0);
+	font-weight: 300;
+}
+
+.generalTextarea {
+	padding-left: 6px;
 	border: none;
 	border-bottom: 0.5px solid rgb(225, 225, 225);
 	width: 50%;
@@ -127,6 +167,13 @@ header {
 	background-color: transparent;
 	color: white;
 	font-weight: 300;
+}
+
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: rgb(255, 255, 255);
+	font-weight: 300;
+	opacity: 1; /* Firefox */
 }
 
 .form-wrapper {
@@ -153,7 +200,7 @@ header {
 
 .generalPhoto {
 	border: none;
-	border-radius: 30px;
+	border-radius: 9px;
 	max-width: 250px;
 	max-height: 100;
 }
@@ -415,9 +462,9 @@ header {
 }
 
 @media screen and (min-width: 768px) {
-	.form-wrapper {
+	/* .form-wrapper {
 		padding: 4rem 25%;
-	}
+	} */
 
 	.generalForm {
 		width: 500px;

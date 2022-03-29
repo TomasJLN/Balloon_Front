@@ -46,45 +46,47 @@ export const Dashboard = () => {
 	}, []);
 
 	return usuario.role === "admin" ? (
-		<div className="dashboard-container">
-			<h1 id="title-edit-profile">Mi dashboard</h1>
-			<div className="list-container">
-				{actions.map((act) => (
-					<ul>
-						<li
-							style={{ listStyle: "none" }}
-							onClick={() => navigate(`/dashboard/${act.route}`)}
-						>
-							<FaEdit /> {act.title}
-						</li>
-					</ul>
-				))}
+		<section className="form-wrapper">
+			<div className="dashboard-container">
+				<h1 id="create-title">Dashboard</h1>
+				<div className="list-container">
+					{actions.map((act) => (
+						<ul>
+							<li
+								style={{ listStyle: "none" }}
+								onClick={() => navigate(`/dashboard/${act.route}`)}
+							>
+								<FaEdit /> {act.title}
+							</li>
+						</ul>
+					))}
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Categorías</th>
+								<th>Experiencias</th>
+								<th>Usuarios</th>
+								<th>Mejor experiencia</th>
+								<th>Facturación {month.format("MMMM")}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{categories.length}</td>
+								<td>{filtered.length}</td>
+								<td>{totalUsers.nUsers - 1}</td>
+								{bestExp.map((exp) => (
+									<td>ID: {exp.idExperience}</td>
+								))}
+								<td>{charged.totalCharged} €</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-			<div>
-				<table>
-					<thead>
-						<tr>
-							<th>Categorías</th>
-							<th>Experiencias</th>
-							<th>Usuarios</th>
-							<th>Mejor experiencia</th>
-							<th>Facturación {month.format("MMMM")}</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>{categories.length}</td>
-							<td>{filtered.length}</td>
-							<td>{totalUsers.nUsers - 1}</td>
-							{bestExp.map((exp) => (
-								<td>ID: {exp.idExperience}</td>
-							))}
-							<td>{charged.totalCharged} €</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+		</section>
 	) : (
 		<div className="not-allowed">
 			<h1>No tienes acceso a la zona de Administración</h1>

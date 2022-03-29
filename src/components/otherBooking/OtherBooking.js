@@ -5,8 +5,8 @@ import "./other-booking.css";
 export const OtherBooking = ({ oq, handleCancelBooking }) => {
 	const navigate = useNavigate();
 	return (
-		<div className="card fade_in margin-cards">
-			<figure className="card-thumbnail">
+		<div className="card-category fade_in card">
+			<figure className="card-figure-category">
 				{oq.photo ? (
 					<img
 						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${oq.photo}`}
@@ -24,35 +24,35 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
 				)}
 			</figure>
 			<div
-				className="header-booking padding-general"
+				className="title-card-category"
 				onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
 			>
 				<p>Reserva: {oq.ticket}</p>
 				<p>Fecha Reserva: {moment(oq.dateExperience).format("YYYY-MM-DD")}</p>
 			</div>
 			<p
-				className="title-booking padding-general"
+				className="title-exp-edit"
 				onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
 			>
 				{oq.title.length > 100 ? `${oq.title.slice(0, 100)}...` : oq.title}
 			</p>
 
-			<div className="btns-bookings">
+			<div className="row-button-category">
 				<button
-					className="btn-booking"
+					className="btn-category-option"
 					onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
 				>
 					Detalles
 				</button>
 				<button
 					id={moment().format() > oq.dateExperience ? "vota" : "no-vota"}
-					className="btn-booking"
+					className="btn-category-option"
 					onClick={(e) => navigate(`/review/${oq.ticket}`)}
 				>
 					Valorar
 				</button>
 				<button
-					className="btn-booking"
+					className="btn-category-option"
 					onClick={(e) => handleCancelBooking(e, oq.ticket)}
 				>
 					Cancelar

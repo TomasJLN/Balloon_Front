@@ -46,12 +46,13 @@ const Editavatar = () => {
 			{loading ? (
 				<h1>Cargando...</h1>
 			) : (
-				<section id="foto" className="Editavatar">
+				<section id="foto" className="generalForm">
 					<h2>Cambiar mi foto</h2>
 					<img
 						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
 						alt={usuario.avatar}
 						onClick={handlePictureClick}
+						style={{ borderRadius: "50%" }}
 					/>
 					<p className="title-center">Pulsa en la imagen para cambiarla</p>
 					<input

@@ -28,41 +28,46 @@ export const AdminExperience = () => {
 	}, []);
 
 	return (
-		<div className="admin-exp-wrapper">
-			{/* <ToTop /> */}
-			<h1 id="title-admin-cat">Gestionar experiencias</h1>
-			<form onSubmit={handleSubmit}>
-				<div className="barrabusquedacategory">
-					<input
-						type="text"
-						ref={ref}
-						placeholder="Búsqueda por título y descripción"
-						onChange={handleSubmit}
-						value={toSearch}
-					/>
-				</div>
-				<button
-					className="btn-back"
-					onClick={() => {
-						navigate(-1);
-					}}
-				>
-					↩️ back
-				</button>
-				<div className="create-exp">
-					<Link
-						to="/dashboard/adminExperience/createExperience"
-						id="link-create-cat"
+		<>
+			<div className="form-wrapper">
+				{/* <ToTop /> */}
+				<h1 id="create-title">Gestionar experiencias</h1>
+				<form onSubmit={handleSubmit}>
+					<div className="barrabusquedacategory">
+						<input
+							type="text"
+							ref={ref}
+							placeholder="Búsqueda por título y descripción"
+							onChange={handleSubmit}
+							value={toSearch}
+						/>
+					</div>
+					<button
+						className="btn-back"
+						onClick={() => {
+							navigate(-1);
+						}}
 					>
-						{" "}
-						<button className="generalButton">crear experiencia</button>
-					</Link>
-				</div>
-			</form>
+						↩️ back
+					</button>
+					<div className="create-exp">
+						<Link
+							to="/dashboard/adminExperience/createExperience"
+							id="link-create-cat"
+						>
+							{" "}
+							<button className="generalButton">crear experiencia</button>
+						</Link>
+					</div>
+				</form>
+			</div>
 			{filtered.length < 1 ? (
 				<div className="error-info fade_in">No hay resultados a mostrar</div>
 			) : (
-				<div className="form-wrap">
+				<div
+					style={{ width: "100%", backgroundColor: "white" }}
+					className="form-wrap"
+				>
 					{filtered.map((exp) => (
 						<ExperienceAdminCard
 							key={exp.id}
@@ -72,6 +77,7 @@ export const AdminExperience = () => {
 					))}
 				</div>
 			)}
-		</div>
+			);
+		</>
 	);
 };
