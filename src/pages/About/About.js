@@ -21,7 +21,7 @@ const Faq = () => {
 			link: "https://www.linkedin.com/in/tom%C3%A1s-j-l-a99107196/",
 		},
 		{
-			title: "Támara Raya",
+			title: "Tamara Raya",
 			photo: fototamara,
 			description:
 				"Estudiante Full Stack Developer | HTML5 | CSS3 | SQL | JavaScript | NodeJS | ReactJS",

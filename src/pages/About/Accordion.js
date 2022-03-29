@@ -52,6 +52,7 @@ const AccordionItem = (props) => {
 							style={{
 								marginTop: "1rem",
 								marginBottom: "1rem",
+								color: "white",
 							}}
 						>
 							{props.description}
@@ -61,7 +62,7 @@ const AccordionItem = (props) => {
 							style={{ display: "flex", fontSize: "25px" }}
 							className="contact-icons"
 						>
-							<a href={props.link} target="blank">
+							<a href={props.link} target="blank" style={{ color: "white" }}>
 								<FaLinkedin />
 							</a>
 						</div>

@@ -39,6 +39,7 @@
 	display: block;
 	position: relative;
 	width: 100%;
+	font-weight: 400;
 }
 
 .accordion-wrapper .accordion-item h3.accordion-title button span.icon-wrapper {
@@ -89,7 +90,7 @@
 
 .accordion-wrapper .accordion-item .accordion-panel .panel-open {
 	overflow: hidden;
-	background-color: rgb(var(--primary-color-soft));
+	background-color: rgb(var(--primary-color-hard), 0.7);
 	/*background: #e0e0e0;*/
 	padding: 1rem;
 	box-sizing: border-box;
