@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { AccordionContext } from "./AccordionWrap";
 import profileImage from "../../../src/mainlogo/balloon-logo.png";
-import { FaLinkedin, FaRegPaperPlane } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { GoMarkGithub } from "react-icons/go";
+
 import "./about.css";
 const AccordionItem = (props) => {
 	let indexPlus;
@@ -63,7 +65,7 @@ const AccordionItem = (props) => {
 							className="contact-icons"
 						>
 							<a href={props.link} target="blank" style={{ color: "white" }}>
-								<FaLinkedin />
+								<FaLinkedin /> <GoMarkGithub />
 							</a>
 						</div>
 					</div>

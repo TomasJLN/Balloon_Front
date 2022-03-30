@@ -280,7 +280,7 @@ const Booking = () => {
 												name="payMethod"
 												value="creditCard"
 											>
-												Targeta de crédito
+												Tarjeta de crédito
 											</option>
 											<option id="bizum" name="payMethod" value="bizum">
 												Bizum
