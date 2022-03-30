@@ -27,7 +27,7 @@ const Register = () => {
 
   useEffect(() => {
     token && navigate("/");
-  }, []);
+  }, [token]);
 
   const register = async (e) => {
     e.preventDefault();
