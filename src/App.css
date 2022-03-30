@@ -24,7 +24,7 @@
   --secondary-color-hard: 20, 30, 39;
   --primary-font-color: 255, 255, 255;
   --secondary-font-color: 0, 0, 0;
-  --error-font-color: 192, 4, 4;
+  --error-font-color: 255, 217, 0;
   --primary-font: "babyballoon";
 }
 /* FIN VARIABLES */
@@ -228,7 +228,8 @@ header {
 }
 
 .errorValidation {
-  color: rgb(var(--error-font-color));
+  /* color: rgb(var(--error-font-color)); */
+  color: rgb(255, 217, 0);
   font-weight: lighter;
   font-size: 0.8em;
 }
