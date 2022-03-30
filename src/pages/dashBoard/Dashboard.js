@@ -68,7 +68,7 @@ export const Dashboard = () => {
 								<th>Categorías</th>
 								<th>Experiencias</th>
 								<th>Usuarios</th>
-								<th>Mejor experiencia</th>
+
 								<th>Facturación {month.format("MMMM")}</th>
 							</tr>
 						</thead>
@@ -77,11 +77,25 @@ export const Dashboard = () => {
 								<td>{categories.length}</td>
 								<td>{filtered.length}</td>
 								<td>{totalUsers.nUsers - 1}</td>
-								{bestExp.map((exp) => (
-									<td>ID: {exp.idExperience}</td>
-								))}
+
 								<td>{charged.totalCharged} €</td>
 							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Mejores experiencias</th>
+							</tr>
+						</thead>
+						<tbody>
+							{bestExp.map((exp) => (
+								<tr>
+									<td className="best-exp">{exp.title}</td>
+								</tr>
+							))}
 						</tbody>
 					</table>
 				</div>

@@ -75,7 +75,7 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 						<div
 							className="card fade_in"
 							onClick={(e) => {
-								window.removeEventListener("scroll", onclick);
+								window.scrollTo(0, 0);
 								navigate(`/booking/${exp.id}`);
 							}}
 						>

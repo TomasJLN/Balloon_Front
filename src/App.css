@@ -438,6 +438,11 @@ header {
     margin: 25px auto 5rem auto;
   }
 
+  .generalAbout {
+    width: 300px;
+    margin: 25px auto 5rem auto;
+  }
+
   #slide {
     position: absolute;
     left: -100%;
@@ -496,5 +501,10 @@ header {
   .generalLabel,
   .generalTextarea {
     width: 50%;
+  }
+
+  .generalAbout {
+    width: 600px;
+    margin: 25px auto 5rem auto;
   }
 }

@@ -150,8 +150,8 @@ const Booking = () => {
 	}, [reviews]);
 
 	useEffect(() => {
-		scrollToTop();
-	}, [id]);
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>
@@ -328,7 +328,6 @@ const Booking = () => {
 					</div>
 					<h2 id="map-title">¿Cómo llegar?</h2>
 					<Mapa photo={photo} title={title} coords={coords} url={url} />
-					<div className="exp-info-container"></div>
 
 					<div>
 						<h2 id="ex-sim">Otras experiencias que podrían interesarte</h2>
