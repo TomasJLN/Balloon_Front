@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import fetcher from "../../helpers/fetcher";
 import "./popup.css";
 
@@ -12,7 +13,6 @@ export const Popup = ({ setShowPopup }) => {
 
   const handleRecoveryPassword = async (e) => {
     e.preventDefault();
-    setError(null);
     await fetcher(setResult, setError, setLoading, "user/password/recover", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -21,16 +21,13 @@ export const Popup = ({ setShowPopup }) => {
   };
 
   useEffect(() => {
+    error && toast.error(error);
     !error && result.includes("comprueba tu email") && navigate("/recovery");
     return () => {
       setResult("");
       setError(null);
     };
-  }, [result]);
-
-  // useEffect(() => {
-  //   error && console.log(error);
-  // }, [error]);
+  }, [result, error]);
 
   return (
     <section id="popup-bg" onClick={() => setShowPopup(false)}>
@@ -41,10 +38,11 @@ export const Popup = ({ setShowPopup }) => {
             Email
           </label>
           <input
-            className="generalInput"
+            className="generalInput popup-text"
             type="text"
             id="email-recovery"
-            size="30"
+            size="50"
+            required
             onChange={(e) => {
               setEmailRecovery(e.target.value);
             }}
