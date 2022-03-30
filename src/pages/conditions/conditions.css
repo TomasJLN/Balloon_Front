@@ -1,12 +1,14 @@
 div.conditions-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: calc(100vh - 211px);
 }
 
 div.conditions-container p {
-	color: rgb(0, 0, 0);
-	line-height: 1;
-	padding: 3rem;
+  color: rgb(0, 0, 0);
+  line-height: 1;
+  padding: 3rem;
 }
