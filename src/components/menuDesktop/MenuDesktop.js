@@ -45,6 +45,7 @@ const MenuDesktop = ({ setSearchCat }) => {
 										setSearchCat(category.title);
 
 										navigate(`/allFilter?category=${category.title}`);
+										setIsActive(false);
 									}}
 								>
 									{category.title}
