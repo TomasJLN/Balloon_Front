@@ -7,25 +7,25 @@ import Editbooking from "./editbooking/Editbooking";
 import "./editprofile.css";
 
 const Editprofile = () => {
-	const [usuario, setUsuario] = useContext(UserContext);
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-	return (
-		<>
-			<div className="form-wrapper">
-				<div className="edit-profile-links">
-					<Editmenu />
-				</div>
+  const [usuario, setUsuario] = useContext(UserContext);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return (
+    <>
+      <div className="form-wrapper">
+        <div className="edit-profile-links">
+          <Editmenu />
+        </div>
 
-				<Editavatar />
-				<Editpassword />
-			</div>
-			<div style={{ backgroundColor: "white" }}>
-				{usuario.role === "user" && <Editbooking />}
-			</div>
-		</>
-	);
+        <Editavatar />
+        <Editpassword />
+      </div>
+      <div style={{ backgroundColor: "white" }}>
+        {usuario.role === "user" && <Editbooking />}
+      </div>
+    </>
+  );
 };
 
 export default Editprofile;

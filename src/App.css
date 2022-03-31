@@ -24,7 +24,7 @@
   --secondary-color-hard: 20, 30, 39;
   --primary-font-color: 255, 255, 255;
   --secondary-font-color: 0, 0, 0;
-  --error-font-color: 192, 4, 4;
+  --error-font-color: 255, 217, 0;
   --primary-font: "babyballoon";
 }
 /* FIN VARIABLES */
@@ -46,7 +46,7 @@ body {
   letter-spacing: 0.03em;
   line-height: 1.6em;
   height: 100vh;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 
 header {
@@ -79,7 +79,7 @@ header {
 .footer {
   font-size: 0.8rem;
   width: 100%;
-  padding-top: 1rem;
+  padding-top: 16px;
   color: white;
   background-color: rgb(var(--primary-color-soft));
   display: flex;
@@ -206,6 +206,7 @@ header {
   background-attachment: fixed;
   z-index: 1;
   height: 100%;
+  min-height: calc(100vh - 312px);
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.461);
 }
 
@@ -227,7 +228,8 @@ header {
 }
 
 .errorValidation {
-  color: rgb(var(--error-font-color));
+  /* color: rgb(var(--error-font-color)); */
+  color: rgb(255, 217, 0);
   font-weight: lighter;
   font-size: 0.8em;
 }
@@ -309,6 +311,14 @@ header {
   display: flex;
   justify-content: left;
   align-items: center;
+}
+
+.terms-conditions {
+  color: rgb(var(--primary-font-color));
+}
+.terms-conditions a:visited,
+.terms-conditions a:active {
+  color: rgb(var(--primary-font-color));
 }
 
 .checkboxBox {

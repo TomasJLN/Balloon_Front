@@ -1,43 +1,47 @@
 #popup-bg {
-	display: flex;
-	flex-direction: column;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(var(--primary-color-hard), 0.7);
-	align-items: center;
-	justify-content: center;
-	z-index: 3;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(var(--primary-color-hard), 0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
 
 #popup-fg {
-	display: flex;
-	flex-direction: column;
-	background-color: rgb(var(--primary-color-soft));
-	justify-content: center;
-	align-items: center;
-	padding: 3rem;
-	border-radius: 9px;
-	max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(var(--primary-color-soft));
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  border-radius: 9px;
+  max-width: 500px;
 }
 
 #popup-form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 #popup-fg h3,
 #popup-fg h2 {
-	text-align: center;
+  text-align: center;
 }
 
 #email-recovery {
-	height: 1.7rem;
-	border: none;
-	padding-left: 7px;
-	box-shadow: 2px 2px 3px grey;
+  height: 1.7rem;
+  border: none;
+  padding-left: 7px;
+  box-shadow: 2px 2px 3px grey;
+}
+
+.popup-text {
+  color: #555555 !important;
 }
