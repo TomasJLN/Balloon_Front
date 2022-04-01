@@ -12,6 +12,8 @@ const NavBar = ({
 	searchCat,
 	setSearchCat,
 	setShowNavBar,
+	isFilterOn,
+	setIsFilterOn,
 }) => {
 	const ref = useRef(null);
 
@@ -49,6 +51,8 @@ const NavBar = ({
 				searchCat={searchCat}
 				setSearchCat={setSearchCat}
 				setShowNavBar={setShowNavBar}
+				isFilterOn={isFilterOn}
+				setIsFilterOn={setIsFilterOn}
 			/>
 		</menu>
 	);

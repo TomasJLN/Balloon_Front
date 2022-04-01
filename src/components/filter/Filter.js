@@ -17,6 +17,8 @@ const Filter = ({
 	setToSearch,
 	searchCat,
 	setSearchCat,
+	isFilterOn,
+	setIsFilterOn,
 }) => {
 	const datePickerRef = useRef();
 	const navigate = useNavigate();
@@ -24,12 +26,8 @@ const Filter = ({
 	const [rating, setRating] = useState("");
 	const [searchLoc, setSearchLoc] = useState("");
 	const [searchPrice, setSearchPrice] = useState([1, 1000]);
-	const [isToggleOn, setIsToggleOn] = useState(false);
-	const [isButtonToggleOn, setIsButtonToggleOn] = useState(false);
 	const [searchDate, setSearchDate] = useState("");
 	const [order, setOrder] = useState("");
-	const [windowWidth, setWindowWidth] = useState(window.outerWidth);
-	const [scroll, setScroll] = useState();
 
 	const messagesEndRef = useRef(null);
 
@@ -48,18 +46,15 @@ const Filter = ({
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		resetFilter();
-		setIsButtonToggleOn(true);
+
 		setToSearchTit(true);
 		navigate(`/allFilter?experience=${toSearch}`);
 
 		scrollToBottom();
+		setIsFilterOn(true);
 	};
 
 	let query = "/";
-
-	/* if (toSearch.length < 1) {
-		navigate(-1);
-	} */
 
 	useEffect(() => {
 		query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
@@ -93,52 +88,41 @@ const Filter = ({
 									setSearchDate={setSearchDate}
 								/>
 							</div>
-							{/* <div className="toggleContainer">
-								{!isToggleOn ? (
-									<button className="filterButton" onClick={handleToggle}>
-										Más filtros
-										<AiOutlineControl style={{ fontSize: "25px" }} />
-									</button>
-								) : (
-									<button className="filterButton" onClick={handleToggle}>
-										Cerrar filtros{" "}
-										<AiOutlineControl style={{ fontSize: "25px" }} />
-									</button>
-								)}
-							</div> */}
 						</div>
 
-						<div
-							ref={messagesEndRef}
-							className="filterContainer slideInDownfade_in"
-						>
-							<CategorySearch
-								searchCat={searchCat}
-								setSearchCat={setSearchCat}
-							/>
+						{isFilterOn && (
+							<div
+								ref={messagesEndRef}
+								className="filterContainer slideInDownfade_in"
+							>
+								<CategorySearch
+									searchCat={searchCat}
+									setSearchCat={setSearchCat}
+								/>
 
-							<LocationSearch
-								searchLoc={searchLoc}
-								setSearchLoc={setSearchLoc}
-							/>
-							<PriceSearch
-								searchPrice={searchPrice}
-								setSearchPrice={setSearchPrice}
-							/>
-							<RatingSearch rating={rating} setRating={setRating} />
-							<div className="clear-filter">
-								<button
-									className="filterButton"
-									onClick={(e) => {
-										e.preventDefault();
-										resetFilter();
-										setToSearch("");
-									}}
-								>
-									resetear
-								</button>
+								<LocationSearch
+									searchLoc={searchLoc}
+									setSearchLoc={setSearchLoc}
+								/>
+								<PriceSearch
+									searchPrice={searchPrice}
+									setSearchPrice={setSearchPrice}
+								/>
+								<RatingSearch rating={rating} setRating={setRating} />
+								<div className="clear-filter">
+									<button
+										className="filterButton"
+										onClick={(e) => {
+											e.preventDefault();
+											resetFilter();
+											setToSearch("");
+										}}
+									>
+										Limpiar filtro
+									</button>
+								</div>
 							</div>
-						</div>
+						)}
 						<div
 							style={{
 								display: "flex",

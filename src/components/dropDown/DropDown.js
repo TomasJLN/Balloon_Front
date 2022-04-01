@@ -10,7 +10,8 @@ import "../navBar/navBar.css";
 //Traemos el mostrar Menu (setShowNavBar) para ocultarlo una vez se haga click en una categoría
 const Dropdown = ({
 	setToSearch,
-
+	isFilterOn,
+	setIsFilterOn,
 	setToSearchTit,
 	searchCat,
 	setSearchCat,
@@ -43,6 +44,7 @@ const Dropdown = ({
 								setSearchCat(category.title);
 								setShowNavBar(false);
 								navigate(`/allFilter?category=${category.title}`);
+								setIsFilterOn(true);
 							}}
 						>
 							{category.title}

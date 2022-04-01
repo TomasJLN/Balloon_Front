@@ -23,6 +23,8 @@ export const PublicRoute = ({
 	setToSearch,
 	searchCat,
 	setSearchCat,
+	setIsFilterOn,
+	isFilterOn,
 }) => {
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -75,15 +77,7 @@ export const PublicRoute = ({
 						</>
 					}
 				/>
-				{/*  <Route
-          path="experience/:id"
-          element={
-            <>
-              <Experience />
-              <Footer />
-            </>
-          }
-        /> */}
+
 				<Route
 					path="booking/:id"
 					element={
@@ -104,6 +98,8 @@ export const PublicRoute = ({
 								setToSearch={setToSearch}
 								searchCat={searchCat}
 								setSearchCat={setSearchCat}
+								setIsFilterOn={setIsFilterOn}
+								isFilterOn={isFilterOn}
 							/>
 							<ShowResults
 								toSearchTit={toSearchTit}
@@ -148,6 +144,8 @@ export const PublicRoute = ({
 								setToSearch={setToSearch}
 								searchCat={searchCat}
 								setSearchCat={setSearchCat}
+								setIsFilterOn={setIsFilterOn}
+								isFilterOn={isFilterOn}
 							/>
 							<ShowResults
 								toSearchTit={toSearchTit}

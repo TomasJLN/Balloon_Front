@@ -5,9 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useGetCategories } from "../../hooks/useGetCategories";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-const MenuDesktop = ({ setSearchCat }) => {
+const MenuDesktop = ({ setSearchCat, setIsFilterOn }) => {
 	const [isActive, setIsActive] = useState(false);
-
 	const navigate = useNavigate();
 	const { categories } = useGetCategories();
 
@@ -45,6 +44,7 @@ const MenuDesktop = ({ setSearchCat }) => {
 										setSearchCat(category.title);
 
 										navigate(`/allFilter?category=${category.title}`);
+										setIsFilterOn(true);
 										setIsActive(false);
 									}}
 								>

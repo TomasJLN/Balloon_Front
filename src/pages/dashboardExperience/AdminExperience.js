@@ -77,7 +77,6 @@ export const AdminExperience = () => {
 					))}
 				</div>
 			)}
-			);
 		</>
 	);
 };

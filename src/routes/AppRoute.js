@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const AppRoute = () => {
 	const [isVisible, setIsVisible] = useState(false);
+	const [isFilterOn, setIsFilterOn] = useState(null);
 
 	const [searchCat, setSearchCat] = useState("");
 	const [toSearch, setToSearch] = useState("");
@@ -26,6 +27,8 @@ export const AppRoute = () => {
 						setToSearch={setToSearch}
 						toSearchTit={toSearchTit}
 						setToSearchTit={setToSearchTit}
+						isFilterOn={isFilterOn}
+						setIsFilterOn={setIsFilterOn}
 					/>
 					<ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
 					<Routes>
@@ -39,6 +42,8 @@ export const AppRoute = () => {
 									setToSearchTit={setToSearchTit}
 									toSearch={toSearch}
 									setToSearch={setToSearch}
+									setIsFilterOn={setIsFilterOn}
+									isFilterOn={isFilterOn}
 								/>
 							}
 						/>
