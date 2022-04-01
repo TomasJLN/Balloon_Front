@@ -1,8 +1,13 @@
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import "./other-booking.css";
+import React, { useEffect } from "react";
 
 export const OtherBooking = ({ oq, handleCancelBooking }) => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [oq]);
+
 	const navigate = useNavigate();
 	return (
 		<div className="card-category fade_in card">

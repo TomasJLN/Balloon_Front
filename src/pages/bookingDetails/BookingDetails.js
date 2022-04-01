@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { OtherBooking } from "../../components/otherBooking/OtherBooking";
 import { QrTicket } from "../../components/qr_ticket/QrTicket";
 import { TokenContext } from "../../contexts/TokenContext";
@@ -22,7 +22,6 @@ export const BookingDetails = () => {
 	const exDetails = useBookingDetails(ticket, token);
 	const QRs = useBookingQRs(ticket, token);
 	const othersBookings = useUserBookings(ticket, token);
-	const navigate = useNavigate();
 
 	const handleCancelBooking = (e, ticket) => {
 		e.preventDefault();
