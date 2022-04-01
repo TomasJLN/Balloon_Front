@@ -9,6 +9,8 @@ import { useBookingDetails } from "../../hooks/useBookingDetails";
 import { useBookingQRs } from "../../hooks/useBookingQRs";
 import { useUserBookings } from "../../hooks/useUserBookings";
 import { toast } from "react-toastify";
+import { HashLink as Link } from "react-router-hash-link";
+
 import "./booking-details.css";
 import "../booking/booking.css";
 
@@ -98,13 +100,9 @@ export const BookingDetails = () => {
 			<hr />
 			<br />
 			<div className="back-to-profile">
-				<button
-					onClick={() => {
-						navigate(`/profile`);
-					}}
-				>
-					🎟️ Mis reservas
-				</button>
+				<Link to="/profile#reservas">
+					<button className="generalButton">Mis reservas</button>
+				</Link>
 			</div>
 			<br />
 			<div>

@@ -2,7 +2,7 @@ import { downloadImage } from "../../helpers/downloadImage";
 import "./qr-ticket.css";
 export const QrTicket = ({ q, i }) => {
 	return q.qrPicture ? (
-		<figure>
+		<figure className="qrFigure">
 			<figcaption>Ref.: {q.qrPicture.split(".")[0]}</figcaption>
 			<img
 				src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${q.qrPicture}`}

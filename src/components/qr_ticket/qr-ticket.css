@@ -1,4 +1,11 @@
 .qr-picture {
-  height: 140px;
-  margin: 12px;
+	height: 140px;
+	margin: 12px;
+}
+
+.qrFigure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
