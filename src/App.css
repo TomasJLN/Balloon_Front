@@ -38,6 +38,7 @@ html {
 	background-image: url("../public/imgs/paper-texture.jpg");
 	/* 	scroll-behavior: smooth;
  */
+	scroll-padding-top: 100px;
 }
 
 body {
@@ -46,7 +47,6 @@ body {
 	letter-spacing: 0.03em;
 	line-height: 1.6em;
 	height: 100vh;
-	/* margin-top: 100px; */
 }
 
 header {

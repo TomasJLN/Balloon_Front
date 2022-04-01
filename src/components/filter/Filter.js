@@ -29,10 +29,10 @@ const Filter = ({
 	const [searchDate, setSearchDate] = useState("");
 	const [order, setOrder] = useState("");
 
-	const messagesEndRef = useRef(null);
+	const filterResults = useRef(null);
 
 	const scrollToBottom = () => {
-		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+		filterResults.current?.scrollIntoView({ behavior: "smooth" });
 	};
 
 	const resetFilter = () => {
@@ -49,9 +49,8 @@ const Filter = ({
 
 		setToSearchTit(true);
 		navigate(`/allFilter?experience=${toSearch}`);
-
-		scrollToBottom();
 		setIsFilterOn(true);
+		scrollToBottom();
 	};
 
 	let query = "/";
@@ -89,12 +88,9 @@ const Filter = ({
 								/>
 							</div>
 						</div>
-
+						<div ref={filterResults}></div>
 						{isFilterOn && (
-							<div
-								ref={messagesEndRef}
-								className="filterContainer slideInDownfade_in"
-							>
+							<div className="filterContainer slideInDownfade_in">
 								<CategorySearch
 									searchCat={searchCat}
 									setSearchCat={setSearchCat}
