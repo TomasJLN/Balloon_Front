@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
 import { MdLocationPin } from "react-icons/md";
 import "../experienceCard/experience-card.css";
-import "swiper/css";
+import "swiper/css/bundle";
 import "./carouselSimilar.css";
 // Styles must use direct files imports
 
@@ -39,18 +39,16 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 		<div>
 			<Swiper
 				pagination={{ clickable: true }}
-				navigation={true}
 				loop={true}
 				autoplay={{
 					delay: 3000,
 				}}
 				breakpoints={{
-					// when window width is >= 640px
 					1400: {
 						width: 1400,
 						slidesPerView: 5,
 					},
-					// when window width is >= 768px
+
 					1280: {
 						width: 1280,
 						slidesPerView: 3,
@@ -102,8 +100,6 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 						</div>
 					</SwiperSlide>
 				))}
-				<div className="swiper-button-prev"></div>
-				<div className="swiper-button-next"></div>
 			</Swiper>
 		</div>
 	);

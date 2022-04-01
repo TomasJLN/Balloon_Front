@@ -5,8 +5,7 @@
 	overflow: hidden;
 	cursor: pointer;
 	background-color: white;
-	margin-left: auto;
-	margin-right: auto;
+	min-height: 234px;
 	width: 95%;
 	max-width: 340px;
 	display: flex;
