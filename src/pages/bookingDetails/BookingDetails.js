@@ -61,7 +61,7 @@ export const BookingDetails = () => {
 				</div>
 				<div className="title-description">
 					<h1 className="title-center">Resumen de tu pedido</h1>
-					<h2 className="title-center">
+					<h2>
 						{exDetails?.title}, {exDetails?.location}
 					</h2>
 
