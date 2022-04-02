@@ -3,7 +3,7 @@
 	box-shadow: 2px 3px 20px rgba(0, 0, 0, 0.2);
 	overflow: hidden;
 	cursor: pointer;
-	background-color: chartreuse;
+	
 	width: 80%;
 	max-width: 360px;
 	display: flex;
@@ -48,10 +48,8 @@
 	cursor: pointer;
 }
 
-.btn-category-option:hover {
-	background-color: rgb(255, 85, 58);
-}
+
 
 #btn-active {
-	background-color: rgb(255, 85, 58);
+	background-color: grey;
 }

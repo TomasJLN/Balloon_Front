@@ -62,7 +62,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 
 			<div className="row-button-category">
 				<button
-					className="btn-category-option"
+					className="generalButton"
 					onClick={async (e) => {
 						e.preventDefault();
 						setError(null);
@@ -85,7 +85,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 					Borrar
 				</button>
 				<button
-					className="btn-category-option"
+					className="generalButton"
 					onClick={() =>
 						navigate(`/dashboard/adminExperience/editExperience/${exp.id}`)
 					}
@@ -94,7 +94,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 				</button>
 				{active && (
 					<button
-						className="btn-category-option"
+						className="generalButton"
 						id="btn-desactive"
 						onClick={() => {
 							setActive(!active);
@@ -105,7 +105,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 				)}
 				{!active && (
 					<button
-						className="btn-category-option"
+						className="generalButton"
 						id="btn-active"
 						onClick={(e) => {
 							setActive(!active);

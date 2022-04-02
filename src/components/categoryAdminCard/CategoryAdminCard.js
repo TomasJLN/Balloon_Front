@@ -57,7 +57,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 
 			<div className="row-button-category">
 				<button
-					className="btn-category-option"
+					className="generalButton"
 					onClick={async (e) => {
 						e.preventDefault();
 						setError(null);
@@ -80,7 +80,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 					Borrar
 				</button>
 				<button
-					className="btn-category-option"
+					className="generalButton"
 					onClick={() =>
 						navigate(`/dashboard/adminCategory/editCategory/${cat.id}`)
 					}
@@ -89,7 +89,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 				</button>
 				{active && (
 					<button
-						className="btn-category-option btn-active"
+						className="generalButton"
 						id="btn-desactive"
 						onClick={() => {
 							setActive(!active);
@@ -100,7 +100,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 				)}
 				{!active && (
 					<button
-						className="btn-category-option"
+						className="generalButton"
 						id="btn-active"
 						onClick={(e) => {
 							setActive(!active);

@@ -44,20 +44,20 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
 
 			<div className="row-button-category">
 				<button
-					className="btn-category-option"
+					className="generalButton"
 					onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
 				>
 					Detalles
 				</button>
 				<button
 					id={moment().format() > oq.dateExperience ? "vota" : "no-vota"}
-					className="btn-category-option"
+					className="generalButton"
 					onClick={(e) => navigate(`/review/${oq.ticket}`)}
 				>
 					Valorar
 				</button>
 				<button
-					className="btn-category-option"
+					className="generalButton"
 					onClick={(e) => handleCancelBooking(e, oq.ticket)}
 				>
 					Cancelar

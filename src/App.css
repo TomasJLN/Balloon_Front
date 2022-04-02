@@ -542,3 +542,9 @@ header {
 		margin: 25px auto 5rem auto;
 	}
 }
+
+input[type=checkbox] {
+	accent-color: rgb(var(--main-color));
+	color:white;
+  }
+

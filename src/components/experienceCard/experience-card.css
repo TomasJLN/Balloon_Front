@@ -11,6 +11,8 @@
 	display: flex;
 	flex-direction: column;
 	border: 0.5px solid rgb(129, 129, 129);
+	border-radius: 0 9px;
+    box-shadow: 3px 3px 20px rgb(0 0 0 / 25%);
 }
 
 .card-thumbnail {
@@ -81,7 +83,7 @@
 	transition: all 110ms ease-in-out;
 	box-shadow:
     -40px -40px 0 -35px rgb(var(--second-color)),
-    0 0 0 0 rgb(var(--main-color));
+    40px 40px 0 -35px rgb(var(--main-color));
 }
 
 .stars-count {

@@ -10,11 +10,11 @@
 }
 
 #vota {
-	background-color: green;
+	background-color: rgb(var(--main-color));
 }
 
 #no-vota {
-	background-color: rebeccapurple;
+	background-color: grey;
 }
 
 .btn-other-bookings {

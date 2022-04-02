@@ -35,6 +35,15 @@ const ContactForm = () => {
 		toast.success("Formulario envíado. Gracias por tu consulta");
 	};
 
+	document
+		.querySelector("form")
+
+		.addEventListener("submit", (e) => {
+			e.preventDefault();
+			const data = Object.fromEntries(new FormData(e.target));
+			console.log("DATA", data);
+		});
+
 	return (
 		<div className="form-wrapper">
 			<Formik

@@ -50,7 +50,17 @@ export const AppRoute = () => {
 					</Routes>
 				</UserContextProvider>
 			</TokenContextProvider>
-			<ToastContainer position="top-center" autoClose={4000} limit={2} />
+			<ToastContainer
+				toastStyle={{
+					backgroundColor: "rgb(var(--main-color))",
+				}}
+				position="top-center"
+				autoClose={3000}
+				limit={2}
+				hideProgressBar={false}
+				draggable
+				theme="colored"
+			/>
 		</Router>
 	);
 };
