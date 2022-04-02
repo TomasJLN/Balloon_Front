@@ -65,7 +65,7 @@ const ContactForm = () => {
 						)}
 
 						<label className="generalLabel">Teléfono:</label>
-						<Field className="generalInput" name="tel" type="tlf" />
+						<Field className="generalInput" name="tel" type="number" />
 						<ErrorMessage className="errorValidation" name="tel" />
 
 						<label className="generalLabel">Tipo de consulta:</label>
