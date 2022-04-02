@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import "../../pages/Contact/Contact.css";
 import { GiAirBalloon } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 const validateName = (value) => {
 	let error;
@@ -27,6 +28,8 @@ const validateEmail = (value) => {
 };
 
 const ContactForm = () => {
+	const navigate = useNavigate();
+
 	return (
 		<div className="form-wrapper">
 			<Formik
@@ -96,9 +99,10 @@ const ContactForm = () => {
 							type="submit"
 							className="generalButton"
 							onClick={() =>
-								validateForm().then(() =>
-									toast.error("Hay errores en el formulario")
-								)
+								validateForm().then(() => {
+									toast.success("Formulario enviado con éxito");
+									navigate("/");
+								})
 							}
 						>
 							Enviar
