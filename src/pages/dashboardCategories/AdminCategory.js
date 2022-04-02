@@ -36,6 +36,7 @@ export const AdminCategory = () => {
 				<form onSubmit={handleSubmit}>
 					<div className="barrabusquedacategory">
 						<input
+							className="change"
 							// id="input-search-field"
 							type="text"
 							ref={ref}

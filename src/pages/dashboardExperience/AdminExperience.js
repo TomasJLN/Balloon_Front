@@ -35,6 +35,7 @@ export const AdminExperience = () => {
 				<form onSubmit={handleSubmit}>
 					<div className="barrabusquedacategory">
 						<input
+							className="change"
 							type="text"
 							ref={ref}
 							placeholder="Búsqueda por título y descripción"

@@ -82,12 +82,7 @@ export const Header = ({
 								}}
 							/>
 						) : (
-							<GrClose
-								className="menuprincipal"
-								style={{
-									color: "rgb(var(--primary-color-hard))",
-								}}
-							/>
+							<GrClose className="menuprincipal" />
 						)}
 					</nav>
 

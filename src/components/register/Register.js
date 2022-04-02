@@ -29,6 +29,11 @@ const Register = () => {
 		token && navigate("/");
 	}, [token]);
 
+	const handleSuccess = () => {
+		navigate("/account");
+		toast.success("Todo correcto. Revisa tu correo electrónico");
+	};
+
 	const register = async (e) => {
 		e.preventDefault();
 		if (checkboxValidation) {
@@ -40,7 +45,7 @@ const Register = () => {
 				body: JSON.stringify(newUser),
 			});
 
-			!error && navigate("/account");
+			!error && handleSuccess();
 		} else {
 			toast.error("Debes aceptar los términos y condiciones");
 		}

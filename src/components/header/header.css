@@ -27,7 +27,7 @@
 }
 
 .menuprincipal {
-	color: rgb(var(--menu-font-color));
+	color: black;
 	margin-left: 1rem;
 	grid-area: a;
 }

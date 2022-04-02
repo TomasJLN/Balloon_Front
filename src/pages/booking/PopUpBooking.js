@@ -16,8 +16,10 @@ const PopUpBooking = ({ bookingInfo, setPopUp, handleNewBooking }) => {
 					alt={bookingInfo.title}
 					className="exp-pic-pop"
 				/>
-				Participantes: {bookingInfo.numTickets} | Total:{" "}
-				{(bookingInfo.price * bookingInfo.numTickets).toFixed(2)} €
+				<h3>
+					Participantes: {bookingInfo.numTickets} | Total:{" "}
+					{(bookingInfo.price * bookingInfo.numTickets).toFixed(2)} €
+				</h3>
 				<div className="pop-up-button-set" id="popup-bookin-form">
 					<button
 						onClick={(e) => {
