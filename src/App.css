@@ -338,11 +338,14 @@ header {
 }
 
 .terms-conditions {
-	color: rgb(var(--primary-font-color));
+	color: black;
+	font-weight:600;
+
 }
 .terms-conditions a:visited,
 .terms-conditions a:active {
-	color: rgb(var(--primary-font-color));
+	color: black;
+	font-weight:600;
 }
 
 .checkboxBox {
