@@ -1,142 +1,142 @@
 @font-face {
-  font-family: "balloonparty";
-  src: local("balloonparty"),
-    url(../../fonts/balloonparty.ttf) format("truetype");
+	font-family: "balloonparty";
+	src: local("balloonparty"),
+		url(../../fonts/balloonparty.ttf) format("truetype");
 }
 
 #main_header {
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  grid-template-rows: 1fr;
-  grid-template-areas: "a b c";
+	display: grid;
+	grid-template-columns: 20% 60% 20%;
+	grid-template-rows: 1fr;
+	grid-template-areas: "a b c";
 
-  color: rgb(var(--primary-color-hard));
-  justify-items: center;
-  align-items: center;
-  font-size: 2rem;
-  min-height: 80px;
-  position: sticky;
-  top: 0;
-  max-width: 1400px;
-  z-index: 4;
+	color: rgb(var(--menu-font-color));
+	justify-items: center;
+	align-items: center;
+	font-size: 2rem;
+	min-height: 80px;
+	position: sticky;
+	top: 0;
+	max-width: 1400px;
+	z-index: 4;
 }
 
 .user-avatar-menu {
-  margin-right: 66px;
-  grid-area: c;
+	margin-right: 66px;
+	grid-area: c;
 }
 
 .menuprincipal {
-  color: rgb(var(--primary-color-hard));
-  margin-left: 1rem;
-  grid-area: a;
+	color: rgb(var(--menu-font-color));
+	margin-left: 1rem;
+	grid-area: a;
 }
 
 .doggy-logo {
-  max-width: 150px;
-  display: flex;
-  grid-area: a;
+	max-width: 150px;
+	display: flex;
+	grid-area: a;
 
-  align-items: center;
-  cursor: pointer;
+	align-items: center;
+	cursor: pointer;
 }
 
 @media screen and (min-width: 1400px) {
-  .user-avatar-menu {
-    margin-right: 66px;
-  }
+	.user-avatar-menu {
+		margin-right: 66px;
+	}
 }
 
 @media screen and (min-width: 820px) {
-  .menuprincipal {
-    display: none;
-  }
+	.menuprincipal {
+		display: none;
+	}
 
-  .doggy-logo {
-    grid-area: a;
-  }
+	.doggy-logo {
+		grid-area: a;
+	}
 }
 
 .itemmenuescritorio {
-  color: black;
-  list-style: none;
-  font-size: 1rem;
-  margin: 2rem;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+	color: rgb(var(--menu-font-color));
+	list-style: none;
+	font-size: 1rem;
+	margin: 2rem;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 
 .itemmenuescritorio:hover {
-  /* border-bottom: 2px solid rgb(var(--primary-color-hard)); */
+	/* border-bottom: 2px solid rgb(var(--primary-color-hard)); */
 
-  transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .menunavegacionDesktop {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .menunavegacionDesktop a {
-  color: rgb(var(--primary-color-hard));
-  text-decoration: none;
+	color: rgb(var(--menu-font-color));
+	text-decoration: none;
 }
 .itemmenucategory {
-  list-style: none;
-  cursor: pointer;
-  font-size: 15px;
-  text-align: center;
-  padding: 1rem;
-  font-weight: bold;
-  width: 150px;
+	list-style: none;
+	cursor: pointer;
+	font-size: 15px;
+	text-align: center;
+	padding: 1rem;
+	font-weight: bold;
+	width: 150px;
+	transition: all 0.3s ease-in-out;
 }
 
 .itemmenucategory:hover {
-  background-color: rgb(var(--primary-color-hard));
-  color: white;
+	transform: scale(1.1);
 }
 
 .drop-cat {
-  display: flex;
-  position: absolute;
-  top: 5rem;
-  flex-direction: column;
-  z-index: 3;
-  color: rgb(var(--primary-color-hard));
-  background-color: rgb(var(--primary-color-soft));
+	display: flex;
+	position: absolute;
+	top: 5.9rem;
+	flex-direction: column;
+	z-index: 3;
+	color: black;
+	background-color: rgb(var(--primary-color-soft));
 }
 
 .both {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  align-items: center;
+	align-items: center;
 }
 
 .menuescritorio {
-  color: black;
+	color: black;
 
-  display: flex;
-  justify-content: space-around;
-  grid-area: b;
+	display: flex;
+	justify-content: space-around;
+	grid-area: b;
 }
 
 @media screen and (max-width: 820px) {
-  .menuescritorio {
-    display: none;
-  }
+	.menuescritorio {
+		display: none;
+	}
 
-  #main-header {
-    grid-template-columns: 15% 70% 15%;
-  }
+	#main-header {
+		grid-template-columns: 15% 70% 15%;
+	}
 
-  .menuprincipal {
-    grid-area: a;
-  }
-  .doggy-logo {
-    grid-area: b;
-  }
+	.menuprincipal {
+		grid-area: a;
+	}
+	.doggy-logo {
+		grid-area: b;
+	}
 }

@@ -131,7 +131,7 @@ const Filter = ({
 						>
 							<label>Ordenar por:</label>
 							<Field
-								className="order"
+								className="generalFilter"
 								value={order}
 								onChange={(e) => {
 									setOrder(e.target.value);

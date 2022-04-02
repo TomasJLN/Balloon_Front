@@ -18,14 +18,20 @@
 }
 /* VARIABLES */
 :root {
-	--primary-color-soft: 238, 237, 222;
-	--secondary-color-soft: 224, 221, 170;
-	--primary-color-hard: 32, 50, 57;
+	--primary-color-soft: 246, 246, 248;
+	--secondary-color-soft: 250, 229, 150;
+	--primary-color-hard: 23, 62, 67;
 	--secondary-color-hard: 20, 30, 39;
 	--primary-font-color: 255, 255, 255;
 	--secondary-font-color: 0, 0, 0;
 	--error-font-color: 255, 217, 0;
 	--primary-font: "babyballoon";
+	--main-color: 63, 176, 172;
+	--second-color: 71, 139, 214, 1;
+	--hover-color: 23, 62, 67;
+	--secondary-button-color: 250, 229, 150;
+	--menu-font-color: 255, 255, 255;
+	--button-font-color: 255, 255, 255;
 }
 /* FIN VARIABLES */
 
@@ -51,7 +57,12 @@ body {
 
 header {
 	width: 100%;
-	background-color: rgb(var(--primary-color-soft));
+	background-image: linear-gradient(
+		132.6deg,
+		rgba(71, 139, 214, 1) 23.3%,
+		rgba(37, 216, 211, 1) 84.7%
+	);
+
 	height: 100px;
 }
 
@@ -99,7 +110,7 @@ header {
 
 .generalForm {
 	border-radius: 9px;
-	background-color: rgb(var(--primary-color-hard), 0.7);
+	background-color: white;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -107,12 +118,14 @@ header {
 	padding: 0.5rem 10px;
 	height: auto;
 	max-height: 100%;
-	color: white;
+	color: black;
+	width: 400px;
+	margin: 25px auto 5rem auto;
 }
 
 .generalForm-admin {
 	border-radius: 9px;
-	background-color: rgb(var(--primary-color-hard));
+	background-color: white;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -120,7 +133,7 @@ header {
 	padding: 0.5rem 10px;
 	height: auto;
 	max-height: 100%;
-	color: white;
+	color: black;
 }
 
 .generalLabel {
@@ -191,7 +204,7 @@ header {
 
 ::placeholder {
 	/* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 	font-weight: 300;
 	opacity: 1; /* Firefox */
 }
@@ -208,11 +221,6 @@ header {
 	height: 100%;
 
 	box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.461);
-}
-
-.generalForm {
-	width: 400px;
-	margin: 25px auto 5rem auto;
 }
 
 .generalForm h2 {
@@ -235,7 +243,7 @@ header {
 }
 
 .generalButton {
-	background-color: rgb(var(--primary-color-hard));
+	background-color: rgb(var(--second-color));
 	color: white;
 	padding: 5px 15px;
 	letter-spacing: 1px;
@@ -243,6 +251,7 @@ header {
 	border-radius: 9px;
 	border: none;
 	margin: 5px;
+	transition: all 0.3s ease-in-out;
 }
 
 .generalButton-disabled {
@@ -256,7 +265,7 @@ header {
 }
 
 .generalButton:hover {
-	background-color: rgb(255, 85, 58);
+	transform: scale(1.1);
 }
 
 .generalTítulo1 {
@@ -459,7 +468,7 @@ header {
 		left: -100%;
 		height: auto;
 		min-height: 100%;
-		top: 0;
+		top: 1.4rem;
 		background-color: rgb(var(--primary-color-soft));
 		-webkit-animation: slide 0.01s;
 		border: none;

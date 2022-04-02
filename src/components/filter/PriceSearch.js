@@ -9,6 +9,7 @@ const PriceSearch = ({ setSearchPrice, searchPrice }) => {
 			<div style={{ display: "flex", width: "140px" }}>
 				<Slider
 					sx={{
+						color: "rgb(var(--hover-color))",
 						paddingTop: "0px",
 						marginLeft: "15px",
 						marginRight: "15px",

@@ -6,5 +6,5 @@
 	cursor: pointer;
 	object-position: center;
 	object-fit: fit;
-	color: rgb(var(--primary-color-hard));
+	color: rgb(var(--menu-font-color));
 }

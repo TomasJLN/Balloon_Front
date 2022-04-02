@@ -22,13 +22,8 @@
 }
 
 .accordion-wrapper .accordion-item h3.accordion-title button.active {
-	background-color: rgb(var(--primary-color-hard));
+	background-color: rgba(var(--second-color));
 	color: #ffffff;
-}
-
-.accordion-wrapper .accordion-item h3.accordion-title button:hover {
-	background-color: rgb(var(--primary-color-hard));
-	color: white;
 }
 
 .accordion-wrapper
@@ -90,7 +85,7 @@
 
 .accordion-wrapper .accordion-item .accordion-panel .panel-open {
 	overflow: hidden;
-	background-color: rgb(var(--primary-color-hard), 0.7);
+	background-color: white;
 	/*background: #e0e0e0;*/
 	padding: 1rem;
 	box-sizing: border-box;
@@ -120,7 +115,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	color: white;
+	color: rgb(0, 0, 0);
 	background-color: transparent;
 	margin: auto;
 }

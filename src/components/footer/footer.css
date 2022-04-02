@@ -1,91 +1,95 @@
 .footer h2 {
-  text-align: center;
-  padding: 1rem;
-  font-size: 25px;
-  font-weight: 500;
-  color: black;
+	text-align: center;
+	padding: 1rem;
+	font-size: 25px;
+	font-weight: 500;
+	color: black;
 }
 
 .footer .newsletter {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .footer .links {
-  font-size: 0.6rem;
-  line-height: 1rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(var(--primary-color-hard));
+	font-size: 0.6rem;
+	line-height: 1rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: linear-gradient(
+		132.6deg,
+		rgba(var(--second-color)) 23.3%,
+		rgba(var(--main-color)) 84.7%
+	);
 }
 
 .footer .links ul li {
-  list-style-type: none;
-  letter-spacing: 0;
+	list-style-type: none;
+	letter-spacing: 0;
 }
 
 .footer .links ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 .footer .links li {
-  padding-top: 0.5rem;
-  margin: 0.5rem;
-  font-size: 0.7rem;
-  text-align: center;
+	padding-top: 0.5rem;
+	margin: 0.5rem;
+	font-size: 0.7rem;
+	text-align: center;
 }
 
 .footer #email {
-  border-radius: 9px 0 0 9px;
-  height: 3rem;
-  padding: 1rem;
-  border: 2px solid slategray;
-  border-right: none;
+	border-radius: 9px 0 0 9px;
+	height: 35px;
+	padding: 1rem;
+
+	border-right: none;
 }
 
 .footer .enviar {
-  background-color: rgb(var(--primary-color-hard));
-  color: white;
-  font-size: 1 rem;
-  text-transform: uppercase;
-  border-radius: 0 9px 9px 0;
-  height: 3rem;
-  border: none;
-  cursor: pointer;
-  width: 5rem;
+	background-color: rgb(var(--second-color));
+	color: white;
+	font-size: 1 rem;
+	text-transform: uppercase;
+	border-radius: 0 9px 9px 0;
+	height: 35px;
+	transition: all 0.3s ease-in-out;
+
+	cursor: pointer;
+	width: 5rem;
 }
 
 .footer .enviar:hover {
-  background-color: rgb(255, 85, 58);
-  box-shadow: 0 20px 20px 0 rgb(76 74 74 / 39%);
+	transform: scale(1.1);
 }
 
 .footer label {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: black;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	color: black;
 }
 
 .footer a:visited,
 .footer a:link {
-  color: rgb(255, 255, 255);
+	color: rgb(255, 255, 255);
 }
 
 .footer a:hover {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .newsletter .sendEmail {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
