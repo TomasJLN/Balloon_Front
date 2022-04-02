@@ -293,3 +293,26 @@ div.ratingSearch > p {
 		height: 450px;
 	}
 }
+
+.change::-webkit-input-placeholder {
+	/* WebKit, Blink, Edge */
+	color: #fff;
+	font-weight: 200;
+}
+.change:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #fff;
+	opacity: 0.2;
+	font-weight: 200;
+}
+.change::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #fff;
+	opacity: 0.2;
+	font-weight: 200;
+}
+.change:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #fff;
+	font-weight: 200;
+}

@@ -5,7 +5,7 @@ const SearchBar = ({ toSearch, setToSearch }) => {
 	return (
 		<div className="searchBar">
 			<Field
-				className="input-search"
+				className="input-search change"
 				type="text"
 				name="searchText"
 				value={toSearch}
