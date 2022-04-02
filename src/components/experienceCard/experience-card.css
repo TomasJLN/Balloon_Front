@@ -10,8 +10,7 @@
 	margin-right: auto;
 	display: flex;
 	flex-direction: column;
-	border: 2px solid rgb(var(--primary-color-soft));
-	border-radius: 9px;
+	border: 0.5px solid rgb(129, 129, 129);
 }
 
 .card-thumbnail {
@@ -79,8 +78,10 @@
 }
 
 .card:hover {
-	background: rgb(var(--primary-color-soft));
-	transition: all 330ms ease-in-out;
+	transition: all 110ms ease-in-out;
+	box-shadow:
+    -40px -40px 0 -35px rgb(var(--second-color)),
+    0 0 0 0 rgb(var(--main-color));
 }
 
 .stars-count {
