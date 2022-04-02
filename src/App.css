@@ -251,7 +251,7 @@ header {
 
 .errorValidation {
 	/* color: rgb(var(--error-font-color)); */
-	color: rgb(255, 217, 0);
+	color: rgb(75, 75, 75);
 	font-weight: lighter;
 	font-size: 0.8em;
 }
