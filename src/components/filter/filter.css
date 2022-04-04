@@ -154,6 +154,10 @@
 	justify-content: center;
 }
 
+.generalFilter {
+	font-size: 0.75rem;
+}
+
 .button-toggle {
 	padding: 10px 15px;
 	background-color: black;

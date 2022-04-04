@@ -49,6 +49,7 @@
 
 .best-exp-item:hover {
   font-weight: bold;
+  font-size: 0.75rem;
 }
 
 .dashboard-container {
@@ -128,6 +129,10 @@ a {
   background-color: rgb(var(--primary-color-soft));
 }
 
+.info-best-exp {
+ cursor: pointer;
+}
+
 @media screen and (min-width: 820px) {
   .profile-list-container {
     display: none;
@@ -186,14 +191,14 @@ th {
     border: 1px solid #ccc;
   }
 
-  td {
+  .info-table td {
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50%;
   }
 
-  td:before {
+  .info-table td:before {
     position: absolute;
     top: 6px;
     left: 6px;
@@ -202,23 +207,27 @@ th {
     white-space: nowrap;
   }
 
-  td:nth-of-type(1):before {
+  .info-table td:nth-of-type(1):before {
     content: "Nº Cat";
   }
-  td:nth-of-type(2):before {
+  .info-table td:nth-of-type(2):before {
     content: "Nº Exp";
   }
-  td:nth-of-type(3):before {
+  .info-table td:nth-of-type(3):before {
     content: "Nº Users";
   }
   td:nth-of-type(4):before {
     content: "Mejor Exp";
   }
-  td:nth-of-type(5):before {
-    content: "Fact Mes";
-  }
 
-  td.best-exp:nth-of-type(1):before {
-    content: "Top exp";
+   .info-table td:nth-of-type(4):before {
+    content: "Mes Actual"; 
   }
+  /* td.best-exp:nth-of-type(1):before {
+    content: "Top exp";
+  } */
+.info-best-exp {
+  font-size: 0.7rem;
 }
+
+  } 
