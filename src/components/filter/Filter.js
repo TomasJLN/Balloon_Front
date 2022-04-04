@@ -25,7 +25,7 @@ const Filter = ({
 
   const [rating, setRating] = useState("");
   const [searchLoc, setSearchLoc] = useState("");
-  const [searchPrice, setSearchPrice] = useState([1, 1000]);
+  const [searchPrice, setSearchPrice] = useState([1, 300]);
   const [searchDate, setSearchDate] = useState("");
   const [order, setOrder] = useState("");
 
