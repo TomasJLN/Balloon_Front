@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
-  transition: background-color.5s;
+  transition: background-color .5s;
 }
 
 .link-to a:visited,
