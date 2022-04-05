@@ -61,13 +61,13 @@ const Register = () => {
           },
           body: JSON.stringify(newUser),
         });
+        handleSuccess();
       } else {
         toast.error("Las contraseñas deben coincidir");
       }
     } else {
       toast.error("Debes aceptar los términos y condiciones");
     }
-    handleSuccess();
   };
 
   const handleChange = (e) => {
