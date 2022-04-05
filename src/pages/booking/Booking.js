@@ -42,12 +42,6 @@ const Booking = () => {
 
   url = url.replace(/ +/g, "");
 
-  // console.log("url", url);
-
-  const [numTickets, setNumTickets] = useState(1);
-  const [bookingDate, setBookingDate] = useState(
-    new DateObject().add(1, "days")
-  );
   const [places, setPlaces] = useState([]);
   const [result, setResult] = useState("");
   const [error, setError] = useState(null);
@@ -58,19 +52,29 @@ const Booking = () => {
   const [avgRatin, setAvgRatin] = useState(0);
   const [popUp, setPopUp] = useState(false);
   const [disable, setDisable] = useState(true);
+  const [storage, setStorage] = useState({
+    selectDate:
+      JSON.parse(sessionStorage.getItem("selectDate")) ||
+      new DateObject().add(1, "days"),
+    nTickets: JSON.parse(sessionStorage.getItem("nTickets")) || 1,
+  });
+  const [numTickets, setNumTickets] = useState(storage.nTickets);
+  const [bookingDate, setBookingDate] = useState(storage.selectDate);
 
   let maxFreePlaces = 10;
 
   useEffect(() => {
+    const dateF = moment(bookingDate).format("YYYY/MM/DD");
     fetcher(
       setPlaces,
       setError,
       setLoading,
-      `filters/occupied?experienceID=${id}&date=${bookingDate}`,
+      `filters/occupied?experienceID=${id}&date=${dateF}`,
       {}
     );
-    setNumTickets(1);
-  }, [bookingDate, id, maxFreePlaces]);
+    // sessionStorage.removeItem("selectDate");
+    sessionStorage.setItem("selectDate", JSON.stringify(bookingDate));
+  }, [bookingDate, setBookingDate, id, maxFreePlaces]);
 
   const { occupied } = places[0] || { occupied: 0 };
 
@@ -85,19 +89,31 @@ const Booking = () => {
   const navigate = useNavigate();
 
   const handleSubtractTicket = () => {
-    if (numTickets > 1) setNumTickets(numTickets - 1);
+    if (numTickets > 1) {
+      setNumTickets(numTickets - 1);
+    }
   };
 
   const handleAddTicket = () => {
-    if (numTickets < maxFreePlaces) setNumTickets(numTickets + 1);
+    if (numTickets < maxFreePlaces) {
+      setNumTickets(numTickets + 1);
+    }
   };
 
   const handleTicket = (e) => {
-    if (e.target.value > maxFreePlaces) setNumTickets(maxFreePlaces);
-    else {
+    if (e.target.value > maxFreePlaces) {
+      setNumTickets(maxFreePlaces);
+    } else {
       setNumTickets(e.target.value.replace(/\D/, ""));
     }
   };
+
+  useEffect(() => {
+    sessionStorage.setItem("nTickets", JSON.stringify(numTickets));
+    return () => {
+      sessionStorage.removeItem("nTickets");
+    };
+  }, [numTickets, setNumTickets]);
 
   const handleNewBooking = (e) => {
     setResult("");
@@ -132,6 +148,10 @@ const Booking = () => {
 
   useEffect(() => {
     result.length > 1 && navigate(`/bookingDetail/${result}`);
+    return () => {
+      // sessionStorage.removeItem("selectDate");
+      // sessionStorage.removeItem("nTickets");
+    };
   }, [result, setResult, navigate]);
 
   useEffect(() => {
