@@ -45,7 +45,7 @@ export const CreateCategory = () => {
       toast.error("Categoría ya creada");
     }
   };
-  //
+
   const handlePictureChange = async (e) => {
     setLoading(true);
     setError(null);
@@ -72,8 +72,16 @@ export const CreateCategory = () => {
   }, [setPhotoCat, photoCat, error, setCatData]);
 
   useEffect(() => {
+    error && toast.error(error.message);
+  }, [error]);
+
+  useEffect(() => {
     result && setGetID(result);
   }, [result, navigate]);
+
+  useEffect(() => {
+    getID && toast.info(`Categoria creada: ${getID}`);
+  }, [getID]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -87,11 +95,9 @@ export const CreateCategory = () => {
         <h1 id="create-title" onClick={() => navigate(`/dashboard`)}>
           Crear categoría
         </h1>
-
-        {getID && <h1>Categoria creada: {getID}</h1>}
-        {error && <h1 style={{ color: "red" }}>{error}</h1>}
-
         <form className="generalForm" onSubmit={newCategory}>
+          <h3>Activar</h3>
+          <Switch checked={catData.activeCat} onChange={handleActiveChange} />
           <label className="generalLabel" htmlFor="category">
             Nombre categoría:{" "}
           </label>
@@ -109,16 +115,15 @@ export const CreateCategory = () => {
             Descripción categoría:{" "}
           </label>
           <textarea
-            className="generalTextarea-admin"
+            className="generalTextarea"
             type="text"
             id="description"
             name="description"
+            rows="6"
             onChange={(e) => {
               setCatData({ ...catData, description: e.target.value });
             }}
           />
-          <h3>Activar</h3>
-          <Switch checked={catData.activeCat} onChange={handleActiveChange} />
           <br />
           {!error && getID && (
             <div>
