@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
-import { BtnDashboard } from "../../components/btnDashboard/BtnDashboard";
+
 import { UserContext } from "../../contexts/UserContext";
 import { useGetCategories } from "../../hooks/useGetCategories";
 import { useFiltered } from "../../hooks/useFiltered.js";
@@ -96,7 +96,7 @@ export const Dashboard = () => {
             </thead>
             <tbody>
               {bestExp.map((exp) => (
-                <tr>
+                <tr key={exp.idExperience}>
                   <td
                     key={exp.idExperience}
                     onClick={() =>
