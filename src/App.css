@@ -168,7 +168,7 @@ header {
 	border: none;
 	margin: 0.5rem 0;
 	padding-left: 6px;
-	border-bottom: 0.5px solid rgb(225, 225, 225);
+	border-bottom: 0.5px solid rgb(var(--second-color));
 	background-color: transparent;
 	color: black;
 	font-weight: 300;
@@ -183,14 +183,14 @@ header {
 	border: none;
 	margin: 0.5rem 0;
 	padding-left: 6px;
-	border-bottom: 0.5px solid rgb(225, 225, 225);
+	border-bottom: 0.5px solid rgb(var(--second-color));
 	color: rgb(0, 0, 0);
 }
 
 .generalTextarea-admin {
 	padding: 1rem;
 	border: none;
-	border-bottom: 0.5px solid rgb(225, 225, 225);
+	border-bottom: 0.5px solid rgb(var(--second-color));
 	width: 50%;
 	margin-bottom: 1rem;
 	display: flex;
@@ -204,7 +204,7 @@ header {
 .generalTextarea {
 	padding-left: 6px;
 	border: none;
-	border-bottom: 0.5px solid rgb(225, 225, 225);
+	border-bottom: 0.5px solid rgb(var(--second-color));
 	width: 75%;
 	margin-bottom: 1rem;
 	display: flex;

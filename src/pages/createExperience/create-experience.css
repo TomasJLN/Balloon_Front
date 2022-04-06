@@ -34,3 +34,26 @@ h1#create-title {
 	margin-bottom: 0;
 	color: white;
 }
+
+.rmdp-input {
+	min-width: 244px;
+	margin-top: 1px;
+	text-align: center;
+	display: flex;
+	width: 75%;
+	max-width: 400px;
+	justify-content: left;
+	height: 2rem;
+	border: none;
+	margin: 0.5rem 0;
+	padding-left: 6px;
+	border-bottom: 0.5px solid rgb(225, 225, 225);
+	background-color: transparent;
+	color: black;
+	font-weight: 300;
+}
+
+::placeholder{
+	color: grey;
+	opacity: 1;
+}
