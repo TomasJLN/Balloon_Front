@@ -154,10 +154,11 @@ export const EditExperience = () => {
 				<div className="edit-sect-activar">
 					<p>Activar</p>
 					<Switch checked={expData.active} onChange={handleActiveChange} />
-					<p>Destacado</p>
+					<p>Destacar</p>
 					<Switch checked={expData.featured} onChange={handleFeaturedChange} />
 				</div>
-
+				<label className="generalLabel" htmlFor="edit-exp-name">
+							Nombre de la experiencia: </label>	
 				<input
 					className="generalInput"
 					type="text"
@@ -167,8 +168,9 @@ export const EditExperience = () => {
 					onChange={(e) => {
 						setExpData({ ...expData, title: e.target.value });
 					}}
-					placeholder="Nombre categoría"
 				/>
+				<label className="generalLabel" htmlFor="edit-exp-description">
+							Descripción de la experiencia: </label>	
 				<textarea
 					className="generalTextarea"
 					type="text"
@@ -178,8 +180,9 @@ export const EditExperience = () => {
 					onChange={(e) => {
 						setExpData({ ...expData, description: e.target.value });
 					}}
-					placeholder="Descripción de la experiencia"
 				/>
+				<label className="generalLabel" htmlFor="price">
+							Precio de la experiencia: </label>	
 				<input
 					className="generalInput"
 					type="text"
@@ -189,8 +192,9 @@ export const EditExperience = () => {
 					onChange={(e) => {
 						setExpData({ ...expData, price: e.target.value });
 					}}
-					placeholder="Precio de la experiencia"
 				/>
+				<label className="generalLabel" htmlFor="edit-places-exp">
+							Plazas por día: </label>	
 				<input
 					className="generalInput"
 					type="text"
@@ -202,6 +206,8 @@ export const EditExperience = () => {
 					}}
 					placeholder="Plazas por día"
 				/>
+				<label className="generalLabel" htmlFor="edit-location-exp">
+							Lugar de la experiencia: </label>	
 				<input
 					className="generalInput"
 					type="text"
@@ -211,8 +217,9 @@ export const EditExperience = () => {
 					onChange={(e) => {
 						setExpData({ ...expData, location: e.target.value });
 					}}
-					placeholder="Lugar de la experiencia"
 				/>
+				<label className="generalLabel" htmlFor="edit-coords-exp">
+							Coordenadas: </label>	
 				<input
 					className="generalInput"
 					type="text"
@@ -222,52 +229,27 @@ export const EditExperience = () => {
 					onChange={(e) => {
 						setExpData({ ...expData, coords: e.target.value });
 					}}
-					placeholder="Coordenadas"
+
 				/>
-				<div className="input-text-field-row">
-					<label htmlFor="edit-startDate-exp">Fecha Inicio: </label>
-					<div id="edit-startDate-exp">
-						<DatePicker
-							style={{
-								borderRadius: "30px",
-								textAlign: "center",
-								height: "2.5rem",
-								width: "250px",
-								border: "none",
-								boxShadow: "2px 2px 4px gray",
-								marginBottom: "1rem",
-								marginTop: "1rem",
-							}}
-							id="date"
-							value={expData?.startDate}
-							onChange={(e) => {
-								setExpData({ ...expData, startDate: e.format() });
-							}}
+				<label className="generalLabel" htmlFor="fechainicio">Fecha Inicio: </label>
+					<DatePicker
+						id="fechainicio"
+						value={expData?.startDate}
+						onChange={(e) => {
+							setExpData({ ...expData, startDate: e.format() });
+						}}
 							editable={false}
 						/>
-					</div>
-					<label htmlFor="edit-endDate-exp">Fecha Final: </label>
-					<div id="edit-endDate-exp">
-						<DatePicker
-							style={{
-								borderRadius: "30px",
-								textAlign: "center",
-								height: "2.5rem",
-								width: "250px",
-								border: "none",
-								boxShadow: "2px 2px 4px gray",
-								marginBottom: "1rem",
-								marginTop: "1rem",
-							}}
-							id="date"
-							value={expData?.endDate}
-							onChange={(e) => {
-								setExpData({ ...expData, endDate: e.format() });
-							}}
-							editable={false}
+				<label className="generalLabel" htmlFor="fechafin">Fecha Final: </label>
+					<DatePicker
+						id="date"
+						value={expData?.endDate}
+						onChange={(e) => {
+							setExpData({ ...expData, endDate: e.format() });
+						}}
+						editable={false}
 						/>
-					</div>
-				</div>
+				<label className="generalLabel" htmlFor="edit-conditions-exp">Condiciones: </label>
 				<textarea
 					className="generalTextarea"
 					type="text"
@@ -277,8 +259,8 @@ export const EditExperience = () => {
 					onChange={(e) => {
 						setExpData({ ...expData, conditions: e.target.value });
 					}}
-					placeholder="Condiciones de la experiencia"
 				/>
+				<label className="generalLabel" htmlFor="edit-normatives-exp">Normativas: </label>
 				<textarea
 					className="generalTextarea"
 					type="text"
@@ -288,7 +270,6 @@ export const EditExperience = () => {
 					onChange={(e) => {
 						setExpData({ ...expData, normatives: e.target.value });
 					}}
-					placeholder="Normativas de la experiencia"
 				/>
 				<div className="input-text-field"></div>
 

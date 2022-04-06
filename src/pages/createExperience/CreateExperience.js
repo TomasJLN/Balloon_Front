@@ -135,7 +135,7 @@ export const CreateExperience = () => {
             <div className="edit-sect-activar">
               <p className="Active">Activar</p>
               <Switch checked={expData.active} onChange={handleActiveChange} />
-              <p>Destacado</p>
+              <p>Destacar</p>
               <Switch
                 checked={expData.featured}
                 onChange={handleFeaturedChange}
@@ -143,27 +143,35 @@ export const CreateExperience = () => {
             </div>
           </div>
           <div className="inputForm">
+            <label className="generalLabel" htmlFor="creat-exp-name">
+              Título de la experiencia:{" "}
+            </label>
             <input
               className="generalInput"
               type="text"
-              id="edit-exp-name"
+              id="creat-exp-name"
               name="experience"
               value={expData.title}
               onChange={(e) => {
                 setExpData({ ...expData, title: e.target.value });
               }}
-              placeholder="Título de la experiencia"
             />
+            <label className="generalLabel" htmlFor="creat-text-exp">
+              Descripción de la experiencia:{" "}
+            </label>
             <textarea
               className="generalTextarea"
+              id="creat-text-exp"
               type="text"
               name="description"
               value={expData.description}
               onChange={(e) => {
                 setExpData({ ...expData, description: e.target.value });
               }}
-              placeholder="Descripción de la experiencia"
             />
+            <label className="generalLabel" htmlFor="price">
+              Precio de la experiencia:{" "}
+            </label>
             <input
               className="generalInput"
               type="text"
@@ -172,20 +180,25 @@ export const CreateExperience = () => {
               onChange={(e) => {
                 setExpData({ ...expData, price: e.target.value });
               }}
-              placeholder="Precio de la experiencia"
             />
+            <label className="generalLabel" htmlFor="totalplaces">
+              Plazas por día:{" "}
+            </label>
             <input
               className="generalInput"
               type="text"
+              id="totalplaces"
               name="totalPlaces"
               value={expData.totalPlaces}
               onChange={(e) => {
                 setExpData({ ...expData, totalPlaces: e.target.value });
               }}
-              placeholder="Plazas por día"
             />
-            <p>Fecha de inicio</p>
+            <label className="generalLabel" htmlFor="fechainicio">
+              Fecha de inicio:{" "}
+            </label>
             <DatePicker
+              id="fechainicio"
               value={expData.startDate}
               onChange={(e) => {
                 setExpData({ ...expData, startDate: e.format() });
@@ -193,53 +206,67 @@ export const CreateExperience = () => {
               minDate={new DateObject().add(1, "days")}
               editable={false}
             />
-            <label>Fecha fin</label>
-
+            <label className="generalLabel" htmlFor="fechafin">
+              Fecha de fin:{" "}
+            </label>
             <DatePicker
+              id="fechafin"
               value={expData.endDate}
               onChange={(e) => setExpData({ ...expData, endDate: e.format() })}
               editable={false}
             />
-
+            <label className="generalLabel" htmlFor="location">
+              Lugar de la experiencia:{" "}
+            </label>
             <input
               className="generalInput"
               type="text"
+              id="location"
               name="location"
               value={expData.location}
               onChange={(e) => {
                 setExpData({ ...expData, location: e.target.value });
               }}
-              placeholder="Lugar de la experiencia"
+              placeholder="40°25′13″N 3°42′21″O"
             />
+            <label className="generalLabel" htmlFor="coords">
+              Coordenadas:{" "}
+            </label>
             <input
               className="generalInput"
               type="text"
+              id="coords"
               name="coords"
               value={expData.coords}
               onChange={(e) => {
                 setExpData({ ...expData, coords: e.target.value });
               }}
-              placeholder="coordenadas"
             />
+            <label className="generalLabel" htmlFor="normatives">
+              Normativa de la experiencia:{" "}
+            </label>
             <input
               className="generalInput"
               type="text"
-              name="condiciones"
-              value={expData.conditions}
-              onChange={(e) => {
-                setExpData({ ...expData, conditions: e.target.value });
-              }}
-              placeholder="Condiciones de la experiencia"
-            />
-            <input
-              className="generalInput"
-              type="text"
+              id="normatives"
               name="normatives"
               value={expData.normatives}
               onChange={(e) => {
                 setExpData({ ...expData, normatives: e.target.value });
               }}
-              placeholder="Normativas de la experiencia"
+            />
+            <label className="generalLabel" htmlFor="condiciones">
+              Condiciones de la experiencia:{" "}
+            </label>
+            <input
+              className="generalInput"
+              type="text"
+              id="condiciones"
+              name="condiciones"
+              value={expData.conditions}
+              onChange={(e) => {
+                setExpData({ ...expData, conditions: e.target.value });
+              }}
             />
           </div>
           <br />
