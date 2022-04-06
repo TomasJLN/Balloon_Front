@@ -56,7 +56,7 @@ const Filter = ({
   let query = "/";
 
   useEffect(() => {
-    query = toSearch ? `/allFilter?experience=${toSearch}` : `/?`;
+    query = toSearch ? `/allFilter?experience=${toSearch}&active=1` : `/?`;
     query += order ? `&direction=${order}` : "";
     query += searchPrice[0] === 1 ? "" : `&start_price=${searchPrice[0]}`;
     query += searchPrice[1] === 300 ? "" : `&end_price=${searchPrice[1]}`;

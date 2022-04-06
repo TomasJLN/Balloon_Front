@@ -53,7 +53,7 @@ h1#create-title {
 	font-weight: 300;
 }
 
-::placeholder{
+.generalInput::placeholder{
 	color: grey;
 	opacity: 1;
 }

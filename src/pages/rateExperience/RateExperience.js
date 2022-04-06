@@ -66,7 +66,7 @@ export const RateExperience = () => {
   return token ? (
     <div className="rate-experience">
       {review.voted === 1 ? (
-        <header id="rate-exp-header-voted">
+        <h1 className="title-center" id="rate-exp-header-voted">
           EXPERIENCIA VALORADA{" "}
           <button
             className="btn-back"
@@ -76,9 +76,9 @@ export const RateExperience = () => {
           >
             ↩️ back
           </button>
-        </header>
+        </h1>
       ) : (
-        <header id="rate-exp-header-unvoted">
+        <h1 className="title-center" id="rate-exp-header-unvoted">
           EXPERIENCIA POR VALORAR{" "}
           <button
             className="btn-back"
@@ -88,7 +88,7 @@ export const RateExperience = () => {
           >
             ↩️ back
           </button>
-        </header>
+        </h1>
       )}
 
       <section id="rate-exp">

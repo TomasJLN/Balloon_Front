@@ -8,10 +8,3 @@
 	object-fit: fit;
 	color: rgb(var(--menu-font-color));
 }
-
-@media screen and (min-width: 768px) {
-	.user-avatar{
-	max-height: 2.5em;
-	max-width: 2.5em;
-	}
-}
