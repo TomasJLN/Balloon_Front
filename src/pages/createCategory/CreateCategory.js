@@ -90,6 +90,8 @@ export const CreateCategory = () => {
 				{error && <h1 style={{ color: "red" }}>{error}</h1>}
 
 				<form className="generalForm" onSubmit={newCategory}>
+					<label className="generalLabel" htmlFor="category">
+						Nombre categoría: </label>
 					<input
 						className="generalInput"
 						type="text"
@@ -99,17 +101,17 @@ export const CreateCategory = () => {
 						onChange={(e) => {
 							setCatData({ ...catData, title: e.target.value });
 						}}
-						placeholder="Nombre categoría"
 					/>
+					<label className="generalLabel" htmlFor="description">
+						Descripción categoría: </label>
 					<textarea
-						className="generalTextarea"
+						className="generalTextarea-admin"
 						type="text"
 						id="description"
 						name="description"
 						onChange={(e) => {
 							setCatData({ ...catData, description: e.target.value });
 						}}
-						placeholder="Descripcion categoría"
 					/>
 					<h3>Activar</h3>
 					<Switch checked={catData.activeCat} onChange={handleActiveChange} />
@@ -146,7 +148,7 @@ export const CreateCategory = () => {
 					)}
 					{!getID && (
 						<button type="submit" className="generalButton">
-							Crear Experiencia
+							Crear Categoría
 						</button>
 					)}
 					{getID && (

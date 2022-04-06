@@ -95,6 +95,8 @@ export const EditCategory = () => {
 					{error && <h1>{error}</h1>}
 
 					<form onSubmit={handleUpdateCategory} className="generalForm">
+				    <label className="generalLabel" htmlFor="edit-cat-name">
+						Nombre categoría: </label>
 						<input
 							className="generalInput"
 							type="text"
@@ -110,6 +112,8 @@ export const EditCategory = () => {
 							<p>Activar</p>
 							<Switch checked={activeCat} onChange={handleActiveChange} />
 						</div>
+						<label className="generalLabel" htmlFor="edit-cat-name">
+						Descripción categoría: </label>
 						<textarea
 							className="generalTextarea"
 							type="text"
