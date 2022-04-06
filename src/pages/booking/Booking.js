@@ -1,22 +1,21 @@
+import { useState } from "react";
 import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
-import { scrollToTop } from "../../helpers/scrollToTop";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import { toast } from "react-toastify";
+import moment from "moment";
+import { TokenContext } from "../../contexts/TokenContext";
+import { UserContext } from "../../contexts/UserContext";
 import { useExperience } from "../../hooks/useExperience";
 import fetcher from "../../helpers/fetcher";
-import { TokenContext } from "../../contexts/TokenContext";
-import DatePicker, { DateObject } from "react-multi-date-picker";
-import { UserContext } from "../../contexts/UserContext";
-import { toast } from "react-toastify";
-import "react-multi-date-picker/styles/layouts/mobile.css";
-import "./booking.css";
-import "../experience/experience.css";
 import { useGetReviews } from "../../hooks/useGetReviews";
 import { Reviews } from "../../components/reviews/Reviews";
 import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimilar";
 import Mapa from "../../components/Mapa";
-import moment from "moment";
 import PopUpBooking from "./PopUpBooking";
+import "react-multi-date-picker/styles/layouts/mobile.css";
+import "./booking.css";
+import "../experience/experience.css";
 
 const Booking = () => {
   const { id } = useParams();
@@ -24,7 +23,6 @@ const Booking = () => {
 
   const {
     idCategory,
-
     title,
     description,
     price,
@@ -64,7 +62,7 @@ const Booking = () => {
   let maxFreePlaces = 10;
 
   useEffect(() => {
-    const dateF = moment(bookingDate).format("YYYY/MM/DD");
+    const dateF = new DateObject(bookingDate).format();
     fetcher(
       setPlaces,
       setError,
@@ -72,9 +70,8 @@ const Booking = () => {
       `filters/occupied?experienceID=${id}&date=${dateF}`,
       {}
     );
-    // sessionStorage.removeItem("selectDate");
     sessionStorage.setItem("selectDate", JSON.stringify(bookingDate));
-  }, [bookingDate, setBookingDate, id, maxFreePlaces]);
+  }, [bookingDate, id, maxFreePlaces]);
 
   const { occupied } = places[0] || { occupied: 0 };
 
@@ -110,9 +107,6 @@ const Booking = () => {
 
   useEffect(() => {
     sessionStorage.setItem("nTickets", JSON.stringify(numTickets));
-    return () => {
-      sessionStorage.removeItem("nTickets");
-    };
   }, [numTickets, setNumTickets]);
 
   const handleNewBooking = (e) => {
@@ -126,10 +120,7 @@ const Booking = () => {
             Authorization: token,
           },
           body: JSON.stringify({
-            dateExperience:
-              typeof bookingDate === "string"
-                ? bookingDate
-                : bookingDate.format(),
+            dateExperience: new DateObject(bookingDate).format(),
             quantity: numTickets,
             idExperience: id,
           }),
@@ -140,7 +131,6 @@ const Booking = () => {
   };
   const handlePopUp = () => {
     !usuario.role && navigate("/account");
-
     usuario.role === "user" && setPopUp(true);
     usuario.role === "admin" &&
       toast.error("Un administrador no puede\nhacer reservas...");
@@ -148,10 +138,6 @@ const Booking = () => {
 
   useEffect(() => {
     result.length > 1 && navigate(`/bookingDetail/${result}`);
-    return () => {
-      // sessionStorage.removeItem("selectDate");
-      // sessionStorage.removeItem("nTickets");
-    };
   }, [result, setResult, navigate]);
 
   useEffect(() => {
