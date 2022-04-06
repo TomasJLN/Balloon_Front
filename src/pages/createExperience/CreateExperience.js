@@ -24,8 +24,8 @@ export const CreateExperience = () => {
     active: true,
     featured: true,
     totalPlaces: "",
-    conditions: "N/A",
-    normatives: "N/A",
+    conditions: "",
+    normatives: "",
   });
 
   const [photoExp, setPhotoExp] = useState(null);
@@ -164,6 +164,7 @@ export const CreateExperience = () => {
               id="creat-text-exp"
               type="text"
               name="description"
+              rows="6"
               value={expData.description}
               onChange={(e) => {
                 setExpData({ ...expData, description: e.target.value });
@@ -227,7 +228,6 @@ export const CreateExperience = () => {
               onChange={(e) => {
                 setExpData({ ...expData, location: e.target.value });
               }}
-              placeholder="40°25′13″N 3°42′21″O"
             />
             <label className="generalLabel" htmlFor="coords">
               Coordenadas:{" "}
@@ -238,6 +238,7 @@ export const CreateExperience = () => {
               id="coords"
               name="coords"
               value={expData.coords}
+              placeholder="0,0"
               onChange={(e) => {
                 setExpData({ ...expData, coords: e.target.value });
               }}

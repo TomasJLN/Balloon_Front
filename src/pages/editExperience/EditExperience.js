@@ -180,6 +180,7 @@ export const EditExperience = () => {
           type="text"
           id="edit-exp-description"
           name="description"
+          rows="6"
           value={expData.description}
           onChange={(e) => {
             setExpData({ ...expData, description: e.target.value });
@@ -268,6 +269,7 @@ export const EditExperience = () => {
           type="text"
           id="edit-conditions-exp"
           name="condiciones"
+          rows="6"
           value={expData.conditions}
           onChange={(e) => {
             setExpData({ ...expData, conditions: e.target.value });
@@ -281,6 +283,7 @@ export const EditExperience = () => {
           type="text"
           id="edit-normatives-exp"
           name="normatives"
+          rows="6"
           value={expData.normatives}
           onChange={(e) => {
             setExpData({ ...expData, normatives: e.target.value });

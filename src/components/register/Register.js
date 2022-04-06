@@ -107,6 +107,10 @@ const Register = () => {
     return errorsForm;
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="form-wrapper">
       <form className="generalForm" onSubmit={register}>

@@ -15,107 +15,107 @@ import "./booking-details.css";
 import "../booking/booking.css";
 
 export const BookingDetails = () => {
-	const { ticket } = useParams();
-	const [token, setToken] = useContext(TokenContext);
-	const [cancelStatus, setCancelStatus] = useState(null);
+  const { ticket } = useParams();
+  const [token, setToken] = useContext(TokenContext);
+  const [cancelStatus, setCancelStatus] = useState(null);
 
-	const exDetails = useBookingDetails(ticket, token);
-	const QRs = useBookingQRs(ticket, token);
-	const othersBookings = useUserBookings(ticket, token);
+  const exDetails = useBookingDetails(ticket, token);
+  const QRs = useBookingQRs(ticket, token);
+  const othersBookings = useUserBookings(ticket, token);
 
-	const handleCancelBooking = (e, ticket) => {
-		e.preventDefault();
-		const cancelBooking = async () => {
-			setCancelStatus(
-				await miniFetcher(`booking/${ticket}`, {
-					method: "DELETE",
-					headers: { Authorization: token },
-				})
-			);
-		};
-		cancelBooking();
-	};
+  const handleCancelBooking = (e, ticket) => {
+    e.preventDefault();
+    const cancelBooking = async () => {
+      setCancelStatus(
+        await miniFetcher(`booking/${ticket}`, {
+          method: "DELETE",
+          headers: { Authorization: token },
+        })
+      );
+    };
+    cancelBooking();
+  };
 
-	useEffect(() => {
-		cancelStatus && toast.success(cancelStatus);
-		setCancelStatus(null);
-	}, [cancelStatus]);
+  useEffect(() => {
+    cancelStatus && toast.success(cancelStatus);
+    setCancelStatus(null);
+  }, [cancelStatus]);
 
-	return (
-		<div className="wrap-content">
-			<div className="initial-wrap">
-				<div className="photo-thumbnail">
-					{exDetails?.photo ? (
-						<img
-							src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo}`}
-							alt={exDetails?.title}
-							className="exp-pic"
-						/>
-					) : (
-						<img
-							src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-							alt={exDetails?.title}
-							className="exp-pic"
-						/>
-					)}
-				</div>
-				<div className="title-description">
-					<h1 className="title-center">Resumen de tu pedido</h1>
-					<h2>
-						{exDetails?.title}, {exDetails?.location}
-					</h2>
+  return (
+    <div className="wrap-content">
+      <div className="initial-wrap">
+        <div className="photo-thumbnail">
+          {exDetails?.photo ? (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo}`}
+              alt={exDetails?.title}
+              className="exp-pic"
+            />
+          ) : (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+              alt={exDetails?.title}
+              className="exp-pic"
+            />
+          )}
+        </div>
+        <div className="title-description">
+          <h1 className="title-center">Resumen de tu pedido</h1>
+          <h2>
+            {exDetails?.title}, {exDetails?.location}
+          </h2>
 
-					<div className="booking-details">
-						<p>
-							{" "}
-							<strong>
-								<span>Nº de pedido: </span>
-							</strong>
-							{exDetails?.ticket}
-						</p>
+          <div className="booking-details">
+            <p>
+              {" "}
+              <strong>
+                <span>Nº de pedido: </span>
+              </strong>
+              {exDetails?.ticket}
+            </p>
 
-						<p>
-							<strong>Descripción:</strong> {exDetails?.description}
-						</p>
-						<p>
-							<strong>Fecha experiencia: </strong>
-							{moment(exDetails?.dateExperience).format("YYYY-MM-DD")}
-						</p>
-						<p>
-							<strong> Fecha de la reserva: </strong>
-							{moment(exDetails?.createdAt).format("YYYY-MM-DD")}
-						</p>
-					</div>
-				</div>
-			</div>
-			<hr />
-			<h2 className="title-center">Descargar códigos QR para participantes</h2>
-			<h3 className="title-center">No olvides apuntar las referencias</h3>
-			<div className="qr-booking">
-				{QRs.map((q, index) => (
-					<QrTicket key={index} q={q} />
-				))}
-			</div>
-			<hr />
-			<br />
-			<div className="back-to-profile">
-				<Link to="/profile#reservas">
-					<button className="generalButton">Mis reservas</button>
-				</Link>
-			</div>
-			<br />
-			<div>
-				<h2 className="title-center"> Otras reservas del usuario</h2>
-				<div className="other-bookings-wrap">
-					{othersBookings.map((oq) => (
-						<OtherBooking
-							oq={oq}
-							key={oq.id}
-							handleCancelBooking={handleCancelBooking}
-						/>
-					))}
-				</div>
-			</div>
-		</div>
-	);
+            <p>
+              <strong>Descripción:</strong> {exDetails?.description}
+            </p>
+            <p>
+              <strong>Fecha experiencia: </strong>
+              {moment(exDetails?.dateExperience).format("YYYY-MM-DD")}
+            </p>
+            <p>
+              <strong> Fecha de la reserva: </strong>
+              {moment(exDetails?.createdAt).format("YYYY-MM-DD")}
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <h2 className="title-center">Descargar códigos QR para participantes</h2>
+      <h3 className="title-center">No olvides apuntar las referencias</h3>
+      <div className="qr-booking">
+        {QRs.map((q, index) => (
+          <QrTicket key={index} q={q} />
+        ))}
+      </div>
+      <hr />
+      <br />
+      <div className="back-to-profile">
+        <Link to="/profile#reservas">
+          <button className="generalButton">Mis reservas</button>
+        </Link>
+      </div>
+      <br />
+      <div>
+        <h2 className="title-center"> Otras reservas del usuario</h2>
+        <div className="other-bookings-wrap">
+          {othersBookings.map((oq) => (
+            <OtherBooking
+              oq={oq}
+              key={oq.id}
+              handleCancelBooking={handleCancelBooking}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };

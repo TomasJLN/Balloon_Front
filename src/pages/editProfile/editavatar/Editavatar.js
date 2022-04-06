@@ -52,7 +52,7 @@ const Editavatar = () => {
             src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
             alt={usuario.avatar}
             onClick={handlePictureClick}
-            style={{ borderRadius: "50%" }}
+            style={{ borderRadius: "50%", cursor: "pointer" }}
           />
           <p className="title-center">Pulsa en la imagen para cambiarla</p>
           <input
