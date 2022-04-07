@@ -9,7 +9,7 @@
   transition: background-color .5s;
 }
 
-.link-to a:visited,
+.link-to a, .link-to a:visited,
 .link-to a:active {
   color: white;
 }
