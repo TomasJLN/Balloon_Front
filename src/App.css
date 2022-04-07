@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,500;1,400&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap");
+
 @font-face {
 	font-family: "balloon";
 	src: local("balloon"), url(./fonts/balloon.ttf) format("truetype");
@@ -16,35 +17,30 @@
 	font-family: "buffalo";
 	src: local("buffalo"), url(./fonts/buffalo.otf) format("opentype");
 }
+
 /* VARIABLES */
 :root {
 	--primary-color-soft: 246, 246, 248;
-	--secondary-color-soft: 250, 229, 150;
 	--primary-color-hard: 23, 62, 67;
 	--secondary-color-hard: 20, 30, 39;
 	--primary-font-color: 255, 255, 255;
 	--secondary-font-color: 0, 0, 0;
-	--error-font-color: 255, 217, 0;
 	--primary-font: "babyballoon";
 	--main-color: 63, 176, 172;
 	--second-color: 71, 139, 214, 1;
 	--hover-color: 23, 62, 67;
-	--secondary-button-color: 250, 229, 150;
 	--menu-font-color: 255, 255, 255;
-	--button-font-color: 255, 255, 255;
 }
-/* FIN VARIABLES */
+/* END VARIABLES */
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
+
 html {
 	background-image: url("../public/imgs/paper-texture.jpg");
-	/* 	scroll-behavior: smooth;
- */
-	scroll-padding-top: 100px;
 }
 
 body {
@@ -52,7 +48,6 @@ body {
 	font-family: "Roboto", sans-serif;
 	letter-spacing: 0.03em;
 	line-height: 1.6em;
-	height: 100vh;
 }
 
 header {
@@ -64,25 +59,12 @@ header {
 	);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
-
 	height: 100px;
 }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
 .custom-select {
-	color: whitesmoke;
-	background-color: rgb(var(--primary-color-hard), 0.1) !important;
+	color: rgb(var(--secondary-font-color));
+	background-color: rgb(var(--primary-font-color), 0.1) !important;
 	outline: none;
 	cursor: pointer;
 	-webkit-appearance: none;
@@ -93,19 +75,11 @@ header {
 
 .custom-select option {
 	font-size: 1rem;
-	background-color: rgb(var(--primary-color-hard), 0.7) !important;
+	background-color: rgb(var(--primary-font-color), 0.7) !important;
 }
 
-.opt-hover:hover {
-	background: rgb(69, 63, 151) !important;
-}
-
-/*  */
 .footer {
-	font-size: 0.8rem;
-	width: 100%;
 	padding-top: 16px;
-	color: white;
 	background-color: rgb(var(--primary-color-soft));
 	display: flex;
 	flex-direction: column;
@@ -119,7 +93,6 @@ header {
 	flex-direction: column;
 	margin-top: 4.7rem;
 	z-index: 3;
-	background-color: rgb(var(--primary-color-hard));
 }
 
 .generalForm {
@@ -127,94 +100,52 @@ header {
 	background-color: white;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
 	align-items: center;
 	padding: 0.5rem 10px;
-	height: auto;
-	max-height: 100%;
+	/* height: auto;
 	color: black;
-	width: 400px;
-	margin: 25px auto 5rem auto;
-}
-
-.generalForm-admin {
-	border-radius: 9px;
-	background-color: white;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 0.5rem 10px;
-	height: auto;
-	max-height: 100%;
-	color: black;
+	width: 400px; 
+	margin: 25px auto 5rem auto; */
 }
 
 .generalLabel {
+	padding-left: 10px ;
 	display: flex;
 	justify-content: left;
 	width: 75%;
-	max-width: 400px;
-	margin-top: 2rem;
-	font-size: 1rem;
-	font-weight: 300;
+	/* max-width: 400px; */
+	/* margin-top: 1rem; */
+	/* font-weight: 300; */
 }
 
 .generalInput {
 	display: flex;
 	width: 75%;
-	max-width: 400px;
+	/* max-width: 400px; */
 	justify-content: left;
-	height: 2rem;
+	height: 1.6rem;
 	border: none;
 	margin: 0.5rem 0;
-	padding-left: 6px;
-	margin-bottom: 20px;
-	border-bottom: 0.5px solid rgb(var(--second-color));
-	background-color: transparent;
+	padding-left: 10px;
+	margin-bottom: 26px;
+	border-bottom: 0.6px solid rgb(var(--second-color));
+	/* background-color: transparent; */
 	color: black;
 	font-weight: 300;
 }
 
-.generalInput-admin {
-	display: flex;
-	width: 100%;
-	max-width: 400px;
-	justify-content: left;
-	height: 2rem;
-	border: none;
-	margin: 0.5rem 0;
-	padding-left: 6px;
-	border-bottom: 0.5px solid rgb(var(--second-color));
-	color: rgb(0, 0, 0);
-}
-
-.generalTextarea-admin {
-	padding: 1rem;
-	border: none;
-	border-bottom: 0.5px solid rgb(var(--second-color));
-	width: 50%;
-	margin-bottom: 1rem;
-	display: flex;
-	flex-direction: column;
-	height: auto;
-	height: 100%;
-	color: rgb(0, 0, 0);
-	font-weight: 300;
-}
-
 .generalTextarea {
-	padding-left: 6px;
+	padding-left: 10px;
 	padding-top: 10px;
 	border: none;
 	border-bottom: 0.5px solid rgb(var(--second-color));
 	width: 75%;
-	margin-bottom: 1rem;
+	margin-bottom: 26px;
 	display: flex;
 	flex-direction: column;
 	/* height: auto;
 	height: 100%; */
-	background-color: transparent;
+	/* background-color: transparent; */
 	color: black;
 	font-weight: 300;
 }
@@ -236,7 +167,6 @@ header {
 	background-attachment: fixed;
 	z-index: 1;
 	height: 100%;
-
 	box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.461);
 }
 
@@ -253,7 +183,6 @@ header {
 }
 
 .errorValidation {
-	/* color: rgb(var(--error-font-color)); */
 	color: rgb(75, 75, 75);
 	font-weight: lighter;
 	font-size: 0.8em;
@@ -353,18 +282,28 @@ header {
 
 .checkboxBox {
 	height: 50px;
-	width: 20px;
+	width: 12px;
 	margin-top: auto;
 	margin-right: 10px;
 }
 
-/* @media screen and (max-width: 600px) {
-	body {
-		margin-right: 20%;
-		margin-left: 20%;
-	}
-  
-  */
+#order-by{
+	display: flex;
+	gap: 10px;
+}
+
+/* ANIMATIONS */
+
+  .slideInDown {
+	-webkit-animation-name: slideInDown;
+	animation-name: slideInDown;
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+
 @keyframes fadeInAnimation {
 	0% {
 		opacity: 0;
@@ -373,14 +312,19 @@ header {
 		opacity: 1;
 	}
 }
-.slideInDown {
-	-webkit-animation-name: slideInDown;
-	animation-name: slideInDown;
-	-webkit-animation-duration: 0.5s;
-	animation-duration: 0.5s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
+
 @-webkit-keyframes slideInDown {
 	0% {
 		-webkit-transform: translateY(-100%);
@@ -413,6 +357,9 @@ header {
 	text-align: center;
 	line-height: normal;
 }
+
+
+/* MEDIA QUERIES */
 
 @media screen and (max-width: 768px) {
 	#principal > h1 {
@@ -528,9 +475,6 @@ header {
 }
 
 @media screen and (min-width: 768px) {
-	/* .form-wrapper {
-		padding: 4rem 25%;
-	} */
 
 	.generalForm {
 		width: 500px;

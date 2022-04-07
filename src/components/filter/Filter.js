@@ -129,24 +129,26 @@ const Filter = ({
               }}
               className="order"
             >
-              <label>Ordenar por:</label>
-              <Field
-                className="generalFilter"
-                value={order}
-                onChange={(e) => {
-                  setOrder(e.target.value);
-                }}
-                name="locationfilter"
-                as="select"
-              >
-                <option className="order" value="ASC">
-                  Mas baratos primero
-                </option>
+              <div id="order-by">
+                <label>Ordenar por:</label>
+                <Field
+                  className="generalFilter"
+                  value={order}
+                  onChange={(e) => {
+                    setOrder(e.target.value);
+                  }}
+                  name="locationfilter"
+                  as="select"
+                >
+                  <option className="order" value="ASC">
+                    Mas baratos primero
+                  </option>
 
-                <option className="order" value="DESC">
-                  Mas caros primero
-                </option>
-              </Field>
+                  <option className="order" value="DESC">
+                    Mas caros primero
+                  </option>
+                </Field>
+              </div>
             </div>
           </Form>
         )}

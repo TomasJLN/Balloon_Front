@@ -36,7 +36,7 @@
 
 .searchContainer {
 	display: flex;
-	min-width: 350px;
+	min-width: 330px;
 	justify-content: center;
 }
 
@@ -257,6 +257,15 @@ div.ratingSearch > p {
 	#principal > h1 {
 		font-size: 21px;
 	}
+
+.searchBar{
+	width: 80%;
+}
+
+.input-search{
+	max-width: 90%;
+}
+
 }
 
 @media screen and (min-width: 820px) {
