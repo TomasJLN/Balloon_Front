@@ -7,6 +7,9 @@
 }
 
 .exp-pic-pop {
+  position: relative;
+  top: 0;
+  left: 0;
   object-fit: cover;
   width: 100%;
 }
@@ -144,6 +147,7 @@
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .img-top {
@@ -307,4 +311,22 @@
   width: 75%;
   justify-content: space-evenly;
   padding: 1rem;
+}
+
+.sold-out {
+  z-index: 3;
+  position:absolute; 
+  top: 10%;
+  height: 80%;
+  transition: .5s ease;
+  opacity:1;
+}
+
+.available-places {
+  z-index: 3;
+  position:absolute; 
+  top: 10%;
+  height: 80%;
+  transition: .5s ease;
+  opacity:0;
 }

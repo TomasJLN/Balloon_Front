@@ -58,10 +58,19 @@ const Booking = () => {
   });
   const [numTickets, setNumTickets] = useState(storage.nTickets);
   const [bookingDate, setBookingDate] = useState(storage.selectDate);
+  const [soldOut, setSoldOut] = useState(false);
+  const navigate = useNavigate();
 
   let maxFreePlaces = 10;
 
+  const { occupied } = places[0] || { occupied: 0 };
+
+  occupied > 0
+    ? (maxFreePlaces = totalPlaces - occupied)
+    : (maxFreePlaces = totalPlaces);
+
   useEffect(() => {
+    setDisable(true);
     const dateF = new DateObject(bookingDate).format();
     fetcher(
       setPlaces,
@@ -71,19 +80,26 @@ const Booking = () => {
       {}
     );
     sessionStorage.setItem("selectDate", JSON.stringify(bookingDate));
-  }, [bookingDate, id, maxFreePlaces]);
+    soldOut && sessionStorage.removeItem("nTickets", JSON.stringify(1));
+  }, [bookingDate, id, soldOut]);
 
-  const { occupied } = places[0] || { occupied: 0 };
+  useEffect(() => {
+    maxFreePlaces > 0 &&
+      numTickets > maxFreePlaces &&
+      toast.info("Plazas insuficientes en este día");
+  }, [maxFreePlaces, numTickets]);
 
-  occupied > 0
-    ? (maxFreePlaces = totalPlaces - occupied)
-    : (maxFreePlaces = totalPlaces);
+  useEffect(() => {
+    sessionStorage.setItem("nTickets", JSON.stringify(numTickets));
+  }, [numTickets, setNumTickets]);
+
+  useEffect(() => {
+    maxFreePlaces < 1 ? setSoldOut(true) : setSoldOut(false);
+  }, [soldOut, maxFreePlaces]);
 
   let infoExperience = [];
   infoExperience.push({ title: "Condiciones", content: conditions });
   infoExperience.push({ title: "Normativas", content: normatives });
-
-  const navigate = useNavigate();
 
   const handleSubtractTicket = () => {
     if (numTickets > 1) {
@@ -104,10 +120,6 @@ const Booking = () => {
       setNumTickets(e.target.value.replace(/\D/, ""));
     }
   };
-
-  useEffect(() => {
-    sessionStorage.setItem("nTickets", JSON.stringify(numTickets));
-  }, [numTickets, setNumTickets]);
 
   const handleNewBooking = (e) => {
     setResult("");
@@ -169,17 +181,31 @@ const Booking = () => {
             <div className="initial-wrap">
               <div className="photo-thumbnail">
                 {photo ? (
-                  <img
-                    src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
-                    alt={title}
-                    className="exp-pic"
-                  />
+                  <>
+                    <img
+                      src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
+                      alt={title}
+                      className="exp-pic"
+                    />
+                    <img
+                      src={"/imgs/soldout.png"}
+                      alt={title}
+                      className={`${soldOut ? "sold-out" : "available-places"}`}
+                    />
+                  </>
                 ) : (
-                  <img
-                    src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-                    alt={title}
-                    className="exp-pic"
-                  />
+                  <>
+                    <img
+                      src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+                      alt={title}
+                      className="exp-pic"
+                    />
+                    <img
+                      src={"/imgs/soldout.png"}
+                      alt={title}
+                      className={`${soldOut ? "sold-out" : "available-places"}`}
+                    />
+                  </>
                 )}
               </div>
 
@@ -203,7 +229,8 @@ const Booking = () => {
                   </li>
 
                   <li>
-                    <strong>Plazas disponibles</strong>: {maxFreePlaces}
+                    <strong>Plazas disponibles</strong>:{" "}
+                    {maxFreePlaces < 1 ? "AGOTADAS" : maxFreePlaces}
                   </li>
 
                   {infoExperience.map(({ title, content }) => (
@@ -273,7 +300,9 @@ const Booking = () => {
                     className="pay-option"
                     onChange={(e) => {
                       setPay(e.target.value);
-                      setDisable(false);
+                      !soldOut &&
+                        maxFreePlaces >= numTickets &&
+                        setDisable(false);
                     }}
                   >
                     <select className="booking-select">
