@@ -32,31 +32,31 @@ const NavUser = ({ setUserMenu, usuario }) => {
   };
 
   return (
-    <menu
-      ref={ref}
-      className="nav-user"
-      onClick={(e) => setUserMenu((s) => !s)}
-    >
-      <ul>
+    <nav ref={ref} className="nav-user" onClick={(e) => setUserMenu((s) => !s)}>
+      <menu>
         {token && role === "admin" && (
-          <li>
+          <li className="dropdown-btn">
             <Link to="/dashboard">Dashboard</Link>
           </li>
         )}
         {token && (
-          <li>
+          <li className="dropdown-btn">
             <Link to="/profile">Perfil</Link>
           </li>
         )}
 
         {!token && (
-          <li>
+          <li className="dropdown-btn">
             <Link to="/register">Registro</Link>
           </li>
         )}
-        {token && <li onClick={handleLogout}>Log out</li>}
+        {token && (
+          <li className="dropdown-btn" onClick={handleLogout}>
+            <Link to="">Log out</Link>
+          </li>
+        )}
         {!token && (
-          <li>
+          <li className="dropdown-btn">
             <Link to="/account">Log in</Link>
           </li>
         )}
@@ -65,8 +65,8 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/recovery">Recuperar contraseña</Link>
           </li>
         )} */}
-      </ul>
-    </menu>
+      </menu>
+    </nav>
   );
 };
 

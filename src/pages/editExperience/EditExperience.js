@@ -137,6 +137,7 @@ export const EditExperience = () => {
         <select
           name="categorias"
           id="id-cat-exp"
+          className="generalFilter"
           onChange={(e) => {
             setExpData({ ...expData, idCategory: e.target.value });
           }}

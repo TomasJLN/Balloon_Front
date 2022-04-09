@@ -35,9 +35,10 @@
 }
 
 .searchContainer {
+	min-width: 320px;
 	display: flex;
-	min-width: 350px;
 	justify-content: center;
+	align-items: cen;
 }
 
 .filterContainer {
@@ -54,6 +55,7 @@
 .searchBar {
 	display: flex;
 	justify-content: center;
+	max-width: 80%;
 }
 .priceSearch,
 .categorySearch,
@@ -109,8 +111,9 @@
 }
 
 .input-search {
+	width: 100%;
 	color: white;
-	padding: 5px 15px;
+	padding: 8px 18px;
 	background-color: rgba(0, 0, 0, 0.6);
 	font-size: 1.5rem;
 	border: none;
@@ -139,7 +142,6 @@
 	border: none;
 	color: white;
 	background-color: transparent;
-
 	font-size: 2rem;
 	cursor: pointer;
 }
@@ -155,7 +157,12 @@
 }
 
 .generalFilter {
-	font-size: 0.75rem;
+	/* font-size: 0.7rem; */
+	/* padding: 4px 10px; */
+}
+
+.order{
+	text-align: center;
 }
 
 .button-toggle {
@@ -185,14 +192,23 @@
 .generalFilter {
 	display: flex;
 	justify-content: center;
-
 	border-radius: 9px;
-	text-align: center;
-	height: 25px;
-	width: 140px;
+	height: 30px;
+	min-width: 140px;
+	max-width: 170px;
 	border: none;
 	box-shadow: 2px 2px 4px gray;
 	background-color: white;
+	margin: 10px 0;
+	padding: 0 12px;
+}
+
+.generalFilter option {
+	text-align: left;
+}
+
+.generalFilter option:active {
+ background-color: rgb(174, 0, 255);
 }
 
 .custom-input {
@@ -233,6 +249,15 @@ div.ratingSearch > p {
 	border-radius: 4px;
 	background-color: rgba(0, 0, 0, 0.274);
 } */
+
+.order-by{
+	font-size: 0.7rem;
+   display: flex;
+   align-items: center;
+   gap: 0.7rem;
+   background-color: white;
+   padding: 1rem 5%;
+}
 
 @media screen and (max-width: 520px) {
 	.priceSearch,

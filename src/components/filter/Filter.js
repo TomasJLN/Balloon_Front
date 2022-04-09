@@ -119,17 +119,8 @@ const Filter = ({
                 </div>
               </div>
             )}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                backgroundColor: "white",
-                padding: "1rem",
-              }}
-              className="order"
-            >
-              <label>Ordenar por:</label>
+            <div className="order-by">
+              <label>Ordenar por</label>
               <Field
                 className="generalFilter"
                 value={order}
