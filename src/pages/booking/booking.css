@@ -118,6 +118,7 @@
 
 #select-quantity {
   display: flex;
+  margin-top: 8px;
 }
 
 .tickets-booking {
@@ -264,7 +265,6 @@
 
   .booking-form {
     flex-direction: row;
-
     height: 100%;
     width: 100%;
     align-items: center;

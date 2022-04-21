@@ -306,7 +306,7 @@ const Booking = () => {
                     }}
                   >
                     <select className="booking-select">
-                      <option value="">Seleccionar</option>
+                      <option value=""> Seleccionar</option>
                       <option id="paypal" name="payMethod" value="paypal">
                         Paypal
                       </option>
