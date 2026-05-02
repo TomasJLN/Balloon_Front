@@ -13,10 +13,15 @@ export const fileUpload = async (url, key, setError, file, token) => {
       const data = await resp.json();
       return data;
     } else {
-      setError(await resp.json());
-      return 'error';
+      const contentType = resp.headers.get('content-type') || '';
+      const error = contentType.includes('application/json')
+        ? await resp.json()
+        : { message: 'No se pudo subir la imagen. Revisa el tamaño del archivo.' };
+      setError(error);
+      return null;
     }
   } catch (error) {
-    setError(error);
+    setError({ message: error.message || 'No se pudo conectar con el servidor.' });
+    return null;
   }
 };

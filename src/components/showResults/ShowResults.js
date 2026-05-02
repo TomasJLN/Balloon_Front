@@ -88,8 +88,8 @@ const ShowResults = () => {
 					)}
 					<div className="card-deck fade_in">
 						{pagFiltered.length > 0 ? (
-							pagFiltered.map((exp) => (
-								<ExperienceCard key={exp.id} exp={exp} />
+							pagFiltered.map((exp, index) => (
+								<ExperienceCard key={exp.id} exp={exp} priority={index === 0} />
 							))
 						) : (
 							<h2 className="info show_no_results">

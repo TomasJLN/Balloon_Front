@@ -28,7 +28,7 @@ const Editavatar = () => {
     const key = "avatar";
     if (file) {
       const resp = await fileUpload(url, key, setError, file, token);
-      setNewAvatar(resp.data);
+      if (resp?.data) setNewAvatar(resp.data);
     }
     setLoading(false);
   };

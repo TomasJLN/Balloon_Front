@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
 import { FilterContext } from '../../contexts/FilterContext';
-import mainLogo from '../../mainlogo/logo_balloon_v2.png';
+import mainLogo from '../../mainlogo/logo_balloon_v2_80.webp';
 import { useNavigate } from 'react-router';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import fetcher from '../../helpers/fetcher';
@@ -77,7 +77,7 @@ export const Header = () => {
               className="doggy-logo"
               aria-label="Ir a la página de inicio"
             >
-              <img src={mainLogo} alt="balloon-logo" />
+              <img src={mainLogo} alt="balloon-logo" width="80" height="80" />
             </button>
 
             <div className="user-avatar-menu">
