@@ -13,15 +13,6 @@
   margin-top: 1rem;
 }
 
-.register-turnstile {
-  display: flex;
-  justify-content: center;
-  grid-column: 1 / -1;
-  width: 100%;
-  min-height: 65px;
-  margin: 12px 0 4px;
-}
-
 .auth-page {
   min-height: calc(100vh - 72px);
   display: flex;

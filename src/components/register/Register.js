@@ -22,9 +22,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [errorsFormulario, setErrorsFormulario] = useState({});
   const [checkboxValidation, setCheckboxValidation] = useState(false);
-  const [turnstileToken, setTurnstileToken] = useState("");
   const navigate = useNavigate();
-  const turnstileSiteKey = process.env.REACT_APP_TURNSTILE_SITE_KEY;
 
   // Cuando llega el token, guardarlo y redirigir
   useEffect(() => {
@@ -37,50 +35,11 @@ const Register = () => {
 
   useEffect(() => {
     error && toast.error(error);
-    if (error && turnstileSiteKey && window.turnstile) {
-      window.turnstile.reset();
-      setTurnstileToken("");
-    }
-  }, [error, turnstileSiteKey]);
+  }, [error]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  useEffect(() => {
-    if (!turnstileSiteKey) return undefined;
-
-    const renderTurnstile = () => {
-      const container = document.getElementById("register-turnstile");
-
-      if (!container || !window.turnstile || container.dataset.rendered) return;
-
-      window.turnstile.render(container, {
-        sitekey: turnstileSiteKey,
-        callback: (token) => setTurnstileToken(token),
-        "expired-callback": () => setTurnstileToken(""),
-        "error-callback": () => setTurnstileToken(""),
-      });
-
-      container.dataset.rendered = "true";
-    };
-
-    if (window.turnstile) {
-      renderTurnstile();
-      return undefined;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-    script.async = true;
-    script.defer = true;
-    script.onload = renderTurnstile;
-    document.body.appendChild(script);
-
-    return () => {
-      script.onload = null;
-    };
-  }, [turnstileSiteKey]);
 
   const register = async (e) => {
     e.preventDefault();
@@ -92,14 +51,10 @@ const Register = () => {
       toast.error("Las contraseñas deben coincidir");
       return;
     }
-    if (turnstileSiteKey && !turnstileToken) {
-      toast.error("Completa la verificación anti-bots");
-      return;
-    }
     await fetcher(setResult, setError, setLoading, "user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...newUser, turnstileToken }),
+      body: JSON.stringify(newUser),
     });
   };
 
@@ -231,14 +186,6 @@ const Register = () => {
             </Link>
           </label>
         </div>
-
-        {turnstileSiteKey && (
-          <div
-            id="register-turnstile"
-            className="register-turnstile"
-            aria-label="Verificación anti-bots"
-          />
-        )}
 
         <button className="auth-submit" type="submit" disabled={loading}>
           <FaUserPlus />
