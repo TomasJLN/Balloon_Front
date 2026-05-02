@@ -1,5 +1,6 @@
-import moment from "moment";
-import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../helpers/formatDate";
+import { useNavigate } from "react-router";
+import { FaCalendarAlt, FaInfoCircle, FaStar, FaTicketAlt, FaTimes } from "react-icons/fa";
 import "./other-booking.css";
 import React, { useEffect } from "react";
 
@@ -9,63 +10,71 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
   }, [oq]);
 
   const navigate = useNavigate();
-  return (
-    <div className="card-category fade_in card">
-      <figure className="card-figure-category">
-        {oq.photo ? (
-          <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${oq.photo}`}
-            alt={oq?.title}
-            className="card-thumbnail"
-            onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
-          />
-        ) : (
-          <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-            alt={oq?.title}
-            className="img-card-otherbooking"
-            onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
-          />
-        )}
-      </figure>
-      <div
-        className="title-card-category"
-        onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
-      >
-        <p>Reserva: {oq.ticket}</p>
-        <p>Fecha Reserva: {moment(oq.dateExperience).format("YYYY-MM-DD")}</p>
-      </div>
-      <p
-        className="title-exp-edit"
-        onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
-      >
-        {oq.title.length > 100 ? `${oq.title.slice(0, 100)}...` : oq.title}
-      </p>
+  const isPastExperience = new Date(oq.dateExperience) < new Date();
+  const bookingDetailPath = `/bookingDetail/${oq.ticket}`;
+  const reviewPath = `/review/${oq.ticket}`;
 
-      <div className="row-button-category">
-        <button
-          className="generalButton"
-          onClick={(e) => navigate(`/bookingDetail/${oq.ticket}`)}
+  return (
+    <article className="booking-card fade_in">
+      <figure className="booking-card-media" onClick={() => navigate(bookingDetailPath)}>
+        <img
+          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${oq.photo || "NA.png"}`}
+          alt={oq?.title}
+          className="booking-card-image"
+        />
+        <figcaption
+          className={`booking-card-badge ${
+            isPastExperience ? "booking-card-badge-review" : "booking-card-badge-upcoming"
+          }`}
         >
+          {isPastExperience ? "Experiencia por valorar" : "Reserva próxima"}
+        </figcaption>
+      </figure>
+
+      <div className="booking-card-body" onClick={() => navigate(bookingDetailPath)}>
+        <h3 className="booking-card-title">
+          {oq.title.length > 100 ? `${oq.title.slice(0, 100)}...` : oq.title}
+        </h3>
+
+        <div className="booking-card-meta">
+          <span>
+            <FaTicketAlt aria-hidden="true" />
+            Reserva {oq.ticket}
+          </span>
+          <span>
+            <FaCalendarAlt aria-hidden="true" />
+            {formatDate(oq.dateExperience, "yyyy-MM-dd")}
+          </span>
+        </div>
+      </div>
+
+      <div className="booking-card-actions">
+        <button
+          className="booking-card-button booking-card-button-secondary"
+          onClick={() => navigate(bookingDetailPath)}
+        >
+          <FaInfoCircle aria-hidden="true" />
           Detalles
         </button>
         <button
-          id={moment().format() > oq.dateExperience ? "vota" : "no-vota"}
-          className="generalButton"
-          onClick={(e) => navigate(`/review/${oq.ticket}`)}
+          id={new Date().toISOString() > oq.dateExperience ? "vota" : "no-vota"}
+          className="booking-card-button booking-card-button-primary"
+          onClick={() => navigate(reviewPath)}
         >
+          <FaStar aria-hidden="true" />
           Valorar
         </button>
         <button
-          className="generalButton"
+          className="booking-card-button booking-card-button-danger"
           onClick={(e) => {
             handleCancelBooking(e, oq.ticket);
             navigate(`/profile#reservas`);
           }}
         >
+          <FaTimes aria-hidden="true" />
           Cancelar
         </button>
       </div>
-    </div>
+    </article>
   );
 };

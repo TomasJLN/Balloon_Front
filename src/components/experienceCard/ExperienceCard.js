@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useGetReviews } from "../../hooks/useGetReviews";
 import { Rating } from "react-simple-star-rating";
 import { MdLocationPin } from "react-icons/md";

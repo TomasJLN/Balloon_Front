@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 
+import { FilterContext } from "../../contexts/FilterContext";
 import { useGetCategories } from "../../hooks/useGetCategories";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import "./dropDown.css";
 import "../navBar/navBar.css";
 
 //Traemos el mostrar Menu (setShowNavBar) para ocultarlo una vez se haga click en una categoría
-const Dropdown = ({
-	setToSearch,
-	isFilterOn,
-	setIsFilterOn,
-	setToSearchTit,
-	searchCat,
-	setSearchCat,
-	setShowNavBar,
-}) => {
+const Dropdown = ({ setShowNavBar }) => {
+	const { setSearchCat, setIsFilterOn } = useContext(FilterContext);
 	const [isActive, setIsActive] = useState(false);
 	//Declaramos una constante para poder usar el useNavigate en la página
 	const navigate = useNavigate();

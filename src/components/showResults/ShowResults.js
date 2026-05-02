@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { FilterContext } from "../../contexts/FilterContext";
 import { useFiltered } from "../../hooks/useFiltered";
 import { ExperienceCard } from "../experienceCard/ExperienceCard";
 import { toast } from "react-toastify";
 import "./show-results.css";
 import { PopupRegisterOk } from "../popupRegisterOk/PopupRegisterOk";
 
-const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
+const ShowResults = () => {
+	const { toSearchTit, toSearch, searchCat, setSearchCat } = useContext(FilterContext);
 	const location = useLocation();
 
 	const [btnMore, setBtnMore] = useState(false);
@@ -16,7 +18,6 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 	const [registerOk, setRegisterOk] = useState(false);
 
 	const q = location.search;
-
 	let query = q;
 
 	useEffect(() => {
@@ -26,7 +27,7 @@ const ShowResults = ({ toSearchTit, toSearch, searchCat, setSearchCat }) => {
 		};
 	}, []);
 
-	let resultTitle = "Nuestras experiencias destacadas...";
+	let resultTitle;
 
 	if (searchCat) {
 		resultTitle = `Categoría ${searchCat}`;

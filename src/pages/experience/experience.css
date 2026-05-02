@@ -126,6 +126,97 @@
 	color: #fff;
 	box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
 }
+
+.balloon-location-marker {
+	background: transparent;
+	border: none;
+}
+
+.balloon-marker {
+	position: relative;
+	width: 48px;
+	height: 64px;
+	filter: drop-shadow(0 10px 14px rgba(20, 48, 58, 0.28));
+	transform-origin: 50% 100%;
+	animation: balloonMarkerFloat 2.8s ease-in-out infinite;
+}
+
+.balloon-marker-envelope {
+	position: absolute;
+	top: 0;
+	left: 7px;
+	width: 34px;
+	height: 42px;
+	border: 2px solid rgba(255, 255, 255, 0.92);
+	border-radius: 50% 50% 46% 46%;
+	background:
+		radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.78) 0 10%, transparent 11%),
+		linear-gradient(135deg, #478bd6 0%, #3fb0ac 58%, #1a6b7a 100%);
+	box-shadow: inset -9px -10px 18px rgba(9, 57, 68, 0.2);
+}
+
+.balloon-marker-envelope::before,
+.balloon-marker-envelope::after {
+	content: "";
+	position: absolute;
+	top: 4px;
+	bottom: 7px;
+	width: 1px;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.balloon-marker-envelope::before {
+	left: 11px;
+}
+
+.balloon-marker-envelope::after {
+	right: 11px;
+}
+
+.balloon-marker-shine {
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	width: 8px;
+	height: 13px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.5);
+	transform: rotate(25deg);
+}
+
+.balloon-marker-basket {
+	position: absolute;
+	top: 43px;
+	left: 19px;
+	width: 10px;
+	height: 8px;
+	border-radius: 2px 2px 4px 4px;
+	background: #173e43;
+	box-shadow:
+		-5px -7px 0 -4px rgba(23, 62, 67, 0.75),
+		5px -7px 0 -4px rgba(23, 62, 67, 0.75);
+}
+
+.balloon-marker-pin {
+	position: absolute;
+	left: 20px;
+	bottom: 0;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #173e43;
+	box-shadow: 0 0 0 6px rgba(63, 176, 172, 0.16);
+}
+
+@keyframes balloonMarkerFloat {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-4px);
+	}
+}
 .buttonback {
 	position: fixed;
 	background-color: black;

@@ -1,39 +1,24 @@
 import { useContext } from "react";
 import { FaLock, FaCalendarAlt, FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext";
-/* import "./editmenu.css"; */
-import "../../dashBoard/dashboard.css";
+import "./editmenu.css";
 
 const Editmenu = () => {
-  const [usuario, setUsuario] = useContext(UserContext);
+  const [usuario] = useContext(UserContext);
   return (
-    <section>
-      <div className="profile-container">
-        <h1 id="create-title">Editar perfil</h1>
-        <div className="list-container">
-          <ul>
-            <a href="#foto">
-              <li>
-                <FaUserCircle /> Cambiar mi foto
-              </li>
-            </a>
-            <a href="#datos">
-              <li>
-                <FaLock /> Cambiar mis datos
-              </li>
-            </a>
-            {usuario.role === "user" && (
-              <a href="#reservas">
-                <li>
-                  <FaCalendarAlt id="foto" /> Mis reservas
-                </li>
-              </a>
-            )}
-          </ul>
-        </div>
-      </div>
-    </section>
+    <nav className="editmenu" aria-label="Secciones de perfil">
+      <a href="#foto">
+        <FaUserCircle /> Cambiar mi foto
+      </a>
+      <a href="#datos">
+        <FaLock /> Cambiar mis datos
+      </a>
+      {usuario.role === "user" && (
+        <a href="#reservas">
+          <FaCalendarAlt /> Mis reservas
+        </a>
+      )}
+    </nav>
   );
 };
 

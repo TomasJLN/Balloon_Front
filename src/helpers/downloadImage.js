@@ -1,9 +1,5 @@
-export const downloadImage = (url) => {
-  return fetch(url)
-    .then((response) => {
-      return response.blob();
-    })
-    .then((blob) => {
-      return URL.createObjectURL(blob);
-    });
+export const downloadImage = async (url) => {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return URL.createObjectURL(blob);
 };

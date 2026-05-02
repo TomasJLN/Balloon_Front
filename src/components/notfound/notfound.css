@@ -1,14 +1,269 @@
-.info-page {
+/* ── CRT base ─────────────────────────────────────────────── */
+.crt-page {
+  min-height: 100vh;
+  background: #05080f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: text;
+}
+
+/* scanlines overlay */
+.crt-scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+  pointer-events: none;
+  z-index: 20;
+  animation: crt-flicker 9s infinite;
+}
+
+/* vignette */
+.crt-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+  pointer-events: none;
+  z-index: 21;
+}
+
+@keyframes crt-flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.88; }
+  21%           { opacity: 0.95; }
+}
+
+/* ── Terminal wrapper ─────────────────────────────────────── */
+.crt-terminal {
+  position: relative;
+  z-index: 5;
+  width: min(700px, 94vw);
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.8rem;
+  padding: 3rem 0 2rem;
 }
 
-.img_notfound {
-  margin: 15px;
-  width: 60%;
+/* ── Glitch 404 ───────────────────────────────────────────── */
+.crt-glitch-wrap {
+  position: relative;
+  line-height: 1;
+  text-align: center;
 }
 
-.volver-inicio {
-  margin: 15px;
+.crt-404 {
+  display: block;
+  font-size: clamp(5.5rem, 20vw, 12rem);
+  font-weight: 900;
+  color: #22d3ee;
+  letter-spacing: -0.04em;
+  text-shadow:
+    0 0 8px #22d3ee,
+    0 0 25px #22d3ee,
+    0 0 60px rgba(34, 211, 238, 0.45);
+  animation: glitch-main 5s infinite;
+  position: relative;
+  user-select: none;
+}
+
+.crt-404::before,
+.crt-404::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-align: center;
+}
+
+.crt-404::before {
+  color: #ff0055;
+  animation: glitch-red 5s infinite;
+  clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%);
+}
+
+.crt-404::after {
+  color: #00ffff;
+  animation: glitch-cyan 5s infinite;
+  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+}
+
+@keyframes glitch-main {
+  0%, 85%, 100% { transform: translate(0); }
+  86%  { transform: translate(-4px, 2px) skewX(-1deg); }
+  87%  { transform: translate(4px, -2px) skewX(1deg); }
+  88%  { transform: translate(0); }
+  92%  { transform: translate(-2px, 3px); }
+  93%  { transform: translate(2px, -1px); }
+  94%  { transform: translate(0); }
+}
+
+@keyframes glitch-red {
+  0%, 85%, 100% { transform: translate(0); opacity: 0; }
+  86%  { transform: translate(5px, -2px); opacity: 0.85; }
+  87%  { transform: translate(-5px, 2px); opacity: 0.85; }
+  88%  { opacity: 0; }
+  92%  { transform: translate(4px, 0); opacity: 0.6; }
+  93%  { opacity: 0; }
+}
+
+@keyframes glitch-cyan {
+  0%, 85%, 100% { transform: translate(0); opacity: 0; }
+  86%  { transform: translate(-5px, 2px); opacity: 0.7; }
+  88%  { opacity: 0; }
+  92%  { transform: translate(-3px, 1px); opacity: 0.5; }
+  94%  { opacity: 0; }
+}
+
+/* alert badge */
+.crt-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ff4d6d;
+  border: 1px solid #ff4d6d;
+  border-radius: 3px;
+  padding: 0.2rem 0.65rem;
+  text-shadow: 0 0 8px rgba(255, 77, 109, 0.7);
+  box-shadow: 0 0 10px rgba(255, 77, 109, 0.25);
+  animation: badge-pulse 1.8s ease-in-out infinite;
+  margin-bottom: 0.4rem;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Screen panel ─────────────────────────────────────────── */
+.crt-screen {
+  width: 100%;
+  background: rgba(0, 8, 20, 0.85);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 4px;
+  padding: 1.25rem 1.6rem 1.4rem;
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.06),
+    inset 0 0 40px rgba(34, 211, 238, 0.03),
+    0 8px 40px rgba(0, 0, 0, 0.6);
+  min-height: 200px;
+}
+
+/* ── Lines ────────────────────────────────────────────────── */
+.crt-line {
+  font-size: 0.8rem;
+  line-height: 1.85;
+  color: rgba(34, 211, 238, 0.8);
+  white-space: pre-wrap;
+}
+
+.crt-line.crt-ok {
+  color: #4ade80;
+}
+
+.crt-line.crt-fail,
+.crt-line.crt-error {
+  color: #ff4d6d;
+  text-shadow: 0 0 6px rgba(255, 77, 109, 0.4);
+}
+
+.crt-line.crt-fatal {
+  color: #ff4d6d;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-shadow: 0 0 12px rgba(255, 77, 109, 0.6);
+  letter-spacing: 0.03em;
+}
+
+.crt-line.crt-dim {
+  color: rgba(34, 211, 238, 0.35);
+}
+
+.crt-line.crt-hint {
+  color: rgba(255, 255, 255, 0.65);
+  font-style: italic;
+}
+
+.crt-line.crt-cmd {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.crt-line.crt-warn {
+  color: #fbbf24;
+}
+
+.crt-line.crt-success-cmd {
+  color: #4ade80;
+}
+
+/* ── Input row ────────────────────────────────────────────── */
+.crt-input-row {
+  display: flex;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+
+.crt-prompt {
+  color: #4ade80;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.crt-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  flex: 1;
+  caret-color: #22d3ee;
+  min-width: 0;
+}
+
+/* ── Blinking cursor (typewriter) ─────────────────────────── */
+.crt-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 0.9em;
+  background: #22d3ee;
+  vertical-align: text-bottom;
+  box-shadow: 0 0 6px #22d3ee;
+  animation: blink 1s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .crt-terminal {
+    padding: 2rem 0 1.5rem;
+    gap: 1.2rem;
+  }
+
+  .crt-screen {
+    padding: 1rem 1.1rem;
+  }
+
+  .crt-line {
+    font-size: 0.72rem;
+  }
 }

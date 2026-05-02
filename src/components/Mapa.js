@@ -7,13 +7,24 @@ import {
 	TileLayer,
 	useMapEvents,
 } from "react-leaflet";
-import { Icon } from "leaflet";
+import { DivIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../pages/experience/experience.css";
 
-const icon = new Icon({
-	iconUrl: "/imgs/balloon-map-marker.png",
-	iconSize: [30, 30],
+const icon = new DivIcon({
+	className: "balloon-location-marker",
+	html: `
+		<div class="balloon-marker">
+			<div class="balloon-marker-envelope">
+				<span class="balloon-marker-shine"></span>
+			</div>
+			<div class="balloon-marker-basket"></div>
+			<div class="balloon-marker-pin"></div>
+		</div>
+	`,
+	iconSize: [48, 64],
+	iconAnchor: [24, 58],
+	popupAnchor: [0, -58],
 });
 
 function LocationMarker({ splittedCoords, url, title, photo }) {

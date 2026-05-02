@@ -1,0 +1,220 @@
+/* ── Fondo oscuro compartido por todas las secciones del dashboard ── */
+.dashboard-page {
+  background: #0f172a;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.dashboard-page .form-wrapper {
+  background: #0f172a;
+}
+
+/* ── Contenedor principal ── */
+.admin-panel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  padding: 1rem 2rem 2rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Cabecera: título + contador ── */
+.admin-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-panel-header h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin: 0;
+  color: #fff; /* override global h1 rule — garantiza 12:1 sobre el fondo degradado */
+  transition: opacity 0.15s;
+}
+
+.admin-panel-header h1:hover {
+  opacity: 0.75;
+}
+
+/* ── Barra de herramientas: buscador + botones ── */
+.admin-panel-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.admin-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.55rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.admin-search::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.admin-search:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ── Contador KPI pequeño ── */
+.admin-kpi {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+.admin-kpi strong {
+  font-size: 1rem;
+  color: #fff;
+  margin-left: 0.25rem;
+}
+
+/* ── Grid de tarjetas ── */
+.admin-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0 2rem 2rem;
+}
+
+/* ── Estado vacío ── */
+.admin-empty {
+  margin: 5rem auto;
+  text-align: center;
+  width: 100%;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Tabla de usuarios ── */
+.admin-users-table-wrap {
+  width: 100%;
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+}
+
+.admin-users-table th {
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: none;
+  font-weight: 600;
+}
+
+.admin-users-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.admin-users-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Avatar / iniciales (solo en tabla de usuarios — no afecta al avatar del header) */
+.admin-users-table .user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-initials {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-admin {
+  background: rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+}
+
+.badge-user {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.badge-active {
+  background: rgba(16, 185, 129, 0.25);
+  color: #6ee7b7;
+}
+
+.badge-inactive {
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+}
+
+/* Botón toggle compacto */
+.btn-toggle {
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-toggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

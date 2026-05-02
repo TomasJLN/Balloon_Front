@@ -7,7 +7,16 @@ export const useUserBookings = (ticket, token) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetcher(setOtherBookings, setError, setLoading, `booking/view`, {
+    if (!token) {
+      setOtherBookings([]);
+      return;
+    }
+
+    const setNormalizedOtherBookings = (data) => {
+      setOtherBookings(Array.isArray(data) ? data : []);
+    };
+
+    fetcher(setNormalizedOtherBookings, setError, setLoading, `booking/view`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

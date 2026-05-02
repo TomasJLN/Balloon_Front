@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import "../../pages/Contact/Contact.css";
 import { GiAirBalloon } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useEffect } from "react";
 
 const validateName = (value) => {

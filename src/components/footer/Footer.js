@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import fetcher from "../../helpers/fetcher";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { toast } from "react-toastify";
 import "./footer.css";
 

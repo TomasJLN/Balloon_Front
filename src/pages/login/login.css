@@ -1,15 +1,37 @@
-.link-to {
-  color: white;
-  font-weight: bold;
-  text-decoration: underline;
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color .5s;
+.login-links,
+.login-links:visited,
+.login-links:active {
+  color: #1a6b7a;
+  font-size: var(--text-sm);
+  font-weight: 900;
+  text-decoration: none;
 }
 
-.link-to a, .link-to a:visited,
-.link-to a:active {
-  color: white;
+.password-recovery-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border: 1px solid rgba(26, 107, 122, 0.18);
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  color: #1a6b7a;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 900;
+  letter-spacing: 0;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.password-recovery-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(63, 176, 172, 0.45);
+  box-shadow: var(--shadow-md);
 }

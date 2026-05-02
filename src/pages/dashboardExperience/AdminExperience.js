@@ -1,23 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { ExperienceAdminCard } from "../../components/experienceAdminCard/ExperienceAdminCard.js";
 import { useFiltered } from "../../hooks/useFiltered.js";
+import { UserContext } from "../../contexts/UserContext";
 import { toast } from "react-toastify";
-import "./admin-experience.css";
-// import { ToTop } from "../../components/toTop/ToTop.js";
+import { FaGlobe, FaPlus, FaArrowLeft } from "react-icons/fa";
+import "../../styles/admin-panel.css";
 
 export const AdminExperience = () => {
   const [toSearch, setToSearch] = useState("");
-
   const { filtered, error, loading } = useFiltered(`?experience=${toSearch}`);
-
-  const ref = useRef(null);
+  const [usuario] = useContext(UserContext);
+  const isViewer = usuario?.role === "viewer";
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setToSearch(ref.current.value);
-  };
 
   useEffect(() => {
     error && toast.error(error);
@@ -28,58 +23,57 @@ export const AdminExperience = () => {
   }, []);
 
   return (
-    <>
-      <div className="form-wrapper">
-        {/* <ToTop /> */}
-        <h1 id="create-title" onClick={() => navigate(`/dashboard`)}>
-          Gestionar experiencias
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <div className="barrabusquedacategory">
+    <div className="dashboard-page">
+      <section className="form-wrapper">
+        <div className="admin-panel-container">
+          <div className="admin-panel-header">
+            <h1 onClick={() => navigate("/dashboard")}>
+              <FaGlobe /> Gestionar Experiencias
+            </h1>
+            <span className="admin-kpi">
+              Total <strong>{filtered.length}</strong>
+            </span>
+          </div>
+
+          <div className="admin-panel-toolbar">
             <input
-              className="change"
+              className="admin-search"
               type="text"
-              ref={ref}
-              placeholder="Búsqueda por título y descripción"
-              onChange={handleSubmit}
               value={toSearch}
+              onChange={(e) => setToSearch(e.target.value)}
+              placeholder="Buscar por título o descripción..."
             />
-          </div>
-          <button
-            className="btn-back"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            ↩️ back
-          </button>
-          <div className="create-exp">
-            <Link
-              to="/dashboard/adminExperience/createExperience"
-              id="link-create-cat"
+            {!isViewer && (
+              <button
+                className="dash-nav-btn"
+                onClick={() =>
+                  navigate("/dashboard/adminExperience/createExperience")
+                }
+              >
+                <FaPlus /> Nueva experiencia
+              </button>
+            )}
+            <button
+              className="dash-nav-btn"
+              onClick={() => navigate("/dashboard")}
             >
-              {" "}
-              <button className="generalButton">crear experiencia</button>
-            </Link>
+              <FaArrowLeft /> Dashboard
+            </button>
           </div>
-        </form>
-      </div>
-      {filtered.length < 1 ? (
-        <div className="error-info fade_in">No hay resultados a mostrar</div>
+        </div>
+      </section>
+
+      {loading ? (
+        <div className="admin-empty">Cargando...</div>
+      ) : filtered.length < 1 ? (
+        <div className="admin-empty">No hay resultados a mostrar</div>
       ) : (
-        <div
-          style={{ width: "100%", backgroundColor: "white" }}
-          className="form-wrap"
-        >
+        <div className="admin-cards-grid">
           {filtered.map((exp) => (
-            <ExperienceAdminCard
-              key={exp.id}
-              exp={exp}
-              setToSearch={setToSearch}
-            />
+            <ExperienceAdminCard key={exp.id} exp={exp} setToSearch={setToSearch} />
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };

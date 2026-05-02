@@ -1,6 +1,6 @@
-/* import moment from "moment";
+/* import { format } from "date-fns";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { useExperience } from "../../hooks/useExperience";
 import { useGetReviews } from "../../hooks/useGetReviews";
 import { Reviews } from "../../components/reviews/Reviews";
@@ -89,9 +89,9 @@ const Experience = () => {
 									{" "}
 									<div className="exp-location">
 										En <strong>{location}</strong> desde{" "}
-										<strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
+										<strong>{format(new Date(startDate), "dd-MM-yyyy")}</strong>{" "}
 										hasta{" "}
-										<strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
+										<strong>{format(new Date(endDate), "dd-MM-yyyy")}</strong>
 									</div>
 								</a>
 							</div>

@@ -1,20 +1,26 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import { TokenContext } from "../../contexts/TokenContext";
+import { UserContext } from "../../contexts/UserContext";
 import { toast } from "react-toastify";
 import fetcher from "../../helpers/fetcher";
+import { FaTags } from "react-icons/fa";
 import "./category-admin-card.css";
 
 export const CategoryAdminCard = ({ cat, setToSearch }) => {
-	const [token, setToken] = useContext(TokenContext);
+	const [token] = useContext(TokenContext);
+	const [usuario] = useContext(UserContext);
+	const isViewer = usuario?.role === "viewer";
 	const [active, setActive] = useState(cat.active === 1 ? true : false);
-	const [result, setResult] = useState("");
+	const [, setResult] = useState("");
 	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [, setLoading] = useState(false);
 	const navigate = useNavigate();
+	const isMounted = useRef(false);
 
-	// Trae los resultados de las categorias
 	useEffect(() => {
+		if (!isMounted.current) { isMounted.current = true; return; }
+		if (isViewer) return;
 		setLoading(true);
 		fetcher(setResult, setError, setLoading, `category/${cat.id}`, {
 			method: "PUT",
@@ -26,7 +32,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 				active: active ? "1" : "0",
 			}),
 		});
-	}, [active, cat.id, token]);
+	}, [active, cat.id, isViewer, token]);
 
 	// Un alert en cuanto el estado de error cambie de null
 	useEffect(() => {
@@ -34,82 +40,82 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 	}, [error]);
 
 	return (
-		<div className="card-category fade_in card">
-			<figure className="card-figure-category">
-				{cat.photo ? (
-					<img
-						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`}
-						alt={cat.title}
-						className="card-thumbnail-category"
-					/>
-				) : (
-					<img
-						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-						alt={cat.title}
-						className="card-thumbnail-category"
-					/>
-				)}
+		<article
+			className="admin-category-card fade_in"
+			onClick={() => navigate(`/dashboard/adminCategory/editCategory/${cat.id}`)}
+		>
+			<figure className="admin-category-media">
+				<img
+					src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo || "NA.png"}`}
+					alt={cat.title}
+					className="admin-category-image"
+				/>
+				<div className="admin-category-badges">
+					<span className={active ? "status-badge active" : "status-badge inactive"}>
+						{active ? "Activa" : "Inactiva"}
+					</span>
+				</div>
 			</figure>
-			<div className="title-card-category">
-				<span>ID: {cat.id}</span>
-				<span>Categoría: {cat.title}</span>
+
+			<div className="admin-category-body">
+				<span className="admin-category-id">ID {cat.id}</span>
+				<h2>
+					<FaTags aria-hidden="true" />
+					{cat.title}
+				</h2>
+				<p>
+					{cat.description?.length > 135
+						? `${cat.description.slice(0, 135)}...`
+						: cat.description || "Sin descripción"}
+				</p>
 			</div>
 
-			<div className="row-button-category">
-				<button
-					className="generalButton"
-					onClick={async (e) => {
-						e.preventDefault();
-						setError(null);
-						setToSearch(" ");
-						await fetcher(
-							setResult,
-							setError,
-							setLoading,
-							`category/${cat.id}`,
-							{
-								method: "DELETE",
-								headers: {
-									Authorization: token,
-								},
-							}
-						);
-						setToSearch("");
-					}}
-				>
-					Borrar
-				</button>
-				<button
-					className="generalButton"
-					onClick={() =>
-						navigate(`/dashboard/adminCategory/editCategory/${cat.id}`)
-					}
-				>
-					Editar
-				</button>
-				{active && (
+			{!isViewer && (
+				<div className="admin-category-actions">
 					<button
-						className="generalButton"
-						id="btn-desactive"
-						onClick={() => {
-							setActive(!active);
+						className="admin-category-action danger"
+						onClick={async (e) => {
+							e.stopPropagation();
+							e.preventDefault();
+							setError(null);
+							setToSearch(" ");
+							await fetcher(
+								setResult,
+								setError,
+								setLoading,
+								`category/${cat.id}`,
+								{
+									method: "DELETE",
+									headers: {
+										Authorization: token,
+									},
+								}
+							);
+							setToSearch("");
 						}}
 					>
-						Desactivar
+						Borrar
 					</button>
-				)}
-				{!active && (
-					<button
-						className="generalButton"
-						id="btn-active"
-						onClick={(e) => {
-							setActive(!active);
-						}}
-					>
-						Activar
-					</button>
-				)}
-			</div>
-		</div>
+					{active && (
+						<button
+							className="admin-category-action secondary"
+							id="btn-desactive"
+							onClick={(e) => { e.stopPropagation(); setActive(!active); }}
+						>
+							Desactivar
+						</button>
+					)}
+					{!active && (
+						<button
+							className="admin-category-action primary"
+							id="btn-active"
+							onClick={(e) => { e.stopPropagation(); setActive(!active); }}
+						>
+							Activar
+						</button>
+					)}
+				</div>
+			)}
+		</article>
 	);
 };

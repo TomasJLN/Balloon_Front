@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import Switch from "@mui/material/Switch";
 import { TokenContext } from "../../contexts/TokenContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
+import { useNavigate, useParams } from "react-router";
+import { FaArrowLeft, FaImage, FaSave, FaTags } from "react-icons/fa";
 import { useAdminCat } from "../../hooks/useAdminCat";
 import fetcher from "../../helpers/fetcher";
 import { fileUpload } from "../../helpers/fileUpload";
@@ -16,7 +18,9 @@ export const EditCategory = () => {
   const [result, setResult] = useState("null");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [token, setToken] = useContext(TokenContext);
+  const [token] = useContext(TokenContext);
+  const [usuario] = useContext(UserContext);
+  const isViewer = usuario?.role === "viewer";
   const navigate = useNavigate();
   const { id } = useParams();
   const { cat } = useAdminCat(id, token, setLoading, setError);
@@ -86,85 +90,118 @@ export const EditCategory = () => {
   }, []);
 
   return (
-    <>
+    <section className="edit-category-page">
       {loading ? (
-        <h1>Cargando...</h1>
+        <div className="edit-category-empty">Cargando...</div>
       ) : (
-        <section className="form-wrapper">
-          <h1 id="create-title" onClick={() => navigate(`/dashboard`)}>
-            Editar Categoría
-          </h1>
-          {error && <h1>{error}</h1>}
+        <div className="edit-category-container">
+          {error && <div className="edit-category-error">{String(error?.message || error)}</div>}
 
-          <form onSubmit={handleUpdateCategory} className="generalForm">
-            <div className="edit-sect-activar">
-              <p>Activar</p>
-              <Switch checked={activeCat} onChange={handleActiveChange} />
-            </div>
-            <label className="generalLabel" htmlFor="edit-cat-name">
-              Nombre categoría:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="edit-cat-name"
-              name="category"
-              value={nameCategory}
-              onChange={(e) => {
-                setNameCategory(e.target.value);
-              }}
-              placeholder="Nombre categoría"
-            />
-            <label className="generalLabel" htmlFor="edit-cat-name">
-              Descripción categoría:{" "}
-            </label>
-            <textarea
-              className="generalTextarea"
-              rows="6"
-              type="text"
-              name="description"
-              value={descriptionCategory}
-              onChange={(e) => {
-                setDescriptionCategory(e.target.value);
-              }}
-              placeholder="Descripcion categoría"
-            />
-
-            {!error && <p className="title-center">Imagen de la categoría</p>}
-
-            <div className="photo-figure-category">
-              {photoCat ? (
-                <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoCat}`}
-                  alt={cat.title}
-                  className="generalPhoto"
-                  onClick={handlePictureClick}
-                />
-              ) : (
-                <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-                  alt={cat.title}
-                  onClick={handlePictureClick}
-                  className="generalPhoto"
-                />
-              )}
-            </div>
-
-            <input
-              className="generalInput"
-              type="file"
-              id="fileSelector"
-              style={{ display: "none" }}
-              onChange={handlePictureChange}
-            />
+          <header className="edit-category-header">
             <div>
-              <button type="submit" className="generalButton">
-                Actualizar
-              </button>
+              <p className="edit-category-kicker">
+                {isViewer ? "Vista de solo lectura" : "Panel de administración"}
+              </p>
+              <h1 onClick={() => navigate(`/dashboard`)}>
+                {isViewer ? "Ver categoría" : "Editar categoría"}
+              </h1>
+            </div>
+            <button
+              type="button"
+              className="edit-category-back"
+              onClick={() => navigate("/dashboard/adminCategory")}
+            >
+              <FaArrowLeft /> Volver
+            </button>
+          </header>
+
+          <form onSubmit={handleUpdateCategory} className="edit-category-layout">
+            <aside className="edit-category-side">
+              <figure className="edit-category-photo" onClick={isViewer ? undefined : handlePictureClick}>
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoCat || "NA.png"}`}
+                  alt={cat.title}
+                />
+                {!isViewer && (
+                  <figcaption>
+                    <FaImage /> Cambiar imagen
+                  </figcaption>
+                )}
+              </figure>
+
+              <input
+                type="file"
+                id="fileSelector"
+                style={{ display: "none" }}
+                onChange={handlePictureChange}
+              />
+
+              <div className="edit-category-status-card">
+                <div className="edit-category-status-row">
+                  <span>Activa</span>
+                  <Switch checked={activeCat} onChange={handleActiveChange} disabled={isViewer} />
+                </div>
+              </div>
+            </aside>
+
+            <div className="edit-category-form-panel">
+              <section className="edit-category-section">
+                <div className="edit-category-section-title">
+                  <FaTags />
+                  <h2>Información de categoría</h2>
+                </div>
+
+                <div className="edit-category-grid">
+                  <label className="edit-category-field edit-category-field-full" htmlFor="edit-cat-name">
+                    <span>Nombre categoría</span>
+                    <input
+                      type="text"
+                      id="edit-cat-name"
+                      name="category"
+                      value={nameCategory}
+                      onChange={(e) => {
+                        setNameCategory(e.target.value);
+                      }}
+                      placeholder="Nombre categoría"
+                      disabled={isViewer}
+                    />
+                  </label>
+
+                  <label className="edit-category-field edit-category-field-full" htmlFor="edit-cat-description">
+                    <span>Descripción categoría</span>
+                    <textarea
+                      id="edit-cat-description"
+                      rows="7"
+                      name="description"
+                      value={descriptionCategory}
+                      onChange={(e) => {
+                        setDescriptionCategory(e.target.value);
+                      }}
+                      placeholder="Descripción categoría"
+                      disabled={isViewer}
+                    />
+                  </label>
+                </div>
+              </section>
+
+              <div className="edit-form-actions">
+                {!isViewer && (
+                  <button type="submit" className="edit-category-submit" disabled={loading}>
+                    <FaSave /> {loading ? "Actualizando..." : "Actualizar"}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="edit-category-secondary"
+                  onClick={() => navigate("/dashboard/adminCategory")}
+                >
+                  <FaArrowLeft /> Volver
+                </button>
+              </div>
             </div>
           </form>
-        </section>
+        </div>
       )}
-    </>
+    </section>
   );
 };

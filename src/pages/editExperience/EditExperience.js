@@ -1,10 +1,22 @@
 import Switch from "@mui/material/Switch";
-import moment from "moment";
+import { formatDate } from "../../helpers/formatDate";
 import DatePicker from "react-multi-date-picker";
 import { toast } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
+import {
+  FaArrowLeft,
+  FaCalendarAlt,
+  FaEuroSign,
+  FaImage,
+  FaMapMarkerAlt,
+  FaSave,
+  FaStar,
+  FaTags,
+  FaUsers,
+} from "react-icons/fa";
+import { useNavigate, useParams } from "react-router";
 import fetcher from "../../helpers/fetcher";
 import { fileUpload } from "../../helpers/fileUpload";
 import { useEditExperience } from "../../hooks/useEditExperience";
@@ -34,8 +46,10 @@ export const EditExperience = () => {
   const [photoExp, setPhotoExp] = useState(null);
   const [result, setResult] = useState("");
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [token, setToken] = useContext(TokenContext);
+  const [loading, setLoading] = useState(false);
+  const [token] = useContext(TokenContext);
+  const [usuario] = useContext(UserContext);
+  const isViewer = usuario?.role === "viewer";
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -51,8 +65,8 @@ export const EditExperience = () => {
         price: experience?.price,
         location: experience?.location,
         coords: experience?.coords,
-        startDate: moment(experience?.startDate).format("YYYY-MM-DD"),
-        endDate: moment(experience?.endDate).format("YYYY-MM-DD"),
+        startDate: formatDate(experience?.startDate, "yyyy-MM-dd"),
+        endDate: formatDate(experience?.endDate, "yyyy-MM-dd"),
         active: experience?.active === 1 ? true : false,
         featured: experience?.featured === 1 ? true : false,
         totalPlaces: experience?.totalPlaces,
@@ -126,203 +140,281 @@ export const EditExperience = () => {
   }, []);
 
   return (
-    <section className="form-wrapper">
-      {error && <h1>{error}</h1>}
-      <h1 id="create-title" onClick={() => navigate(`/dashboard`)}>
-        Editar Experiencia
-      </h1>
+    <section className="edit-experience-page">
+      {error && <div className="edit-experience-error">{String(error?.message || error)}</div>}
 
-      <form className="generalForm" onSubmit={handleUpdateCategory}>
-        <label htmlFor="id-cat-exp">Categoría: </label>
-        <select
-          name="categorias"
-          id="id-cat-exp"
-          className="generalFilter"
-          onChange={(e) => {
-            setExpData({ ...expData, idCategory: e.target.value });
-          }}
-        >
-          {categories.map((cat) => {
-            return cat.id === expData.idCategory ? (
-              <option selected value={cat.id} key={cat.id}>
-                {cat.title}
-              </option>
-            ) : (
-              <option value={cat.id} key={cat.id}>
-                {cat.title}
-              </option>
-            );
-          })}
-        </select>
-        <div className="edit-sect-activar">
-          <p>Activar</p>
-          <Switch checked={expData.active} onChange={handleActiveChange} />
-          <p>Destacar</p>
-          <Switch checked={expData.featured} onChange={handleFeaturedChange} />
-        </div>
-        <label className="generalLabel" htmlFor="edit-exp-name">
-          Nombre de la experiencia:{" "}
-        </label>
-        <input
-          className="generalInput"
-          type="text"
-          id="edit-exp-name"
-          name="experience"
-          value={expData.title}
-          onChange={(e) => {
-            setExpData({ ...expData, title: e.target.value });
-          }}
-        />
-        <label className="generalLabel" htmlFor="edit-exp-description">
-          Descripción de la experiencia:{" "}
-        </label>
-        <textarea
-          className="generalTextarea"
-          type="text"
-          id="edit-exp-description"
-          name="description"
-          rows="6"
-          value={expData.description}
-          onChange={(e) => {
-            setExpData({ ...expData, description: e.target.value });
-          }}
-        />
-        <label className="generalLabel" htmlFor="price">
-          Precio de la experiencia:{" "}
-        </label>
-        <input
-          className="generalInput"
-          type="text"
-          id="edit-price-exp"
-          name="price"
-          value={expData.price}
-          onChange={(e) => {
-            setExpData({ ...expData, price: e.target.value });
-          }}
-        />
-        <label className="generalLabel" htmlFor="edit-places-exp">
-          Plazas por día:{" "}
-        </label>
-        <input
-          className="generalInput"
-          type="text"
-          name="totalPlaces"
-          id="edit-places-exp"
-          value={expData.totalPlaces}
-          onChange={(e) => {
-            setExpData({ ...expData, totalPlaces: e.target.value });
-          }}
-          placeholder="Plazas por día"
-        />
-        <label className="generalLabel" htmlFor="edit-location-exp">
-          Lugar de la experiencia:{" "}
-        </label>
-        <input
-          className="generalInput"
-          type="text"
-          id="edit-location-exp"
-          name="location"
-          value={expData.location}
-          onChange={(e) => {
-            setExpData({ ...expData, location: e.target.value });
-          }}
-        />
-        <label className="generalLabel" htmlFor="edit-coords-exp">
-          Coordenadas:{" "}
-        </label>
-        <input
-          className="generalInput"
-          type="text"
-          id="edit-coords-exp"
-          name="coords"
-          value={expData.coords}
-          onChange={(e) => {
-            setExpData({ ...expData, coords: e.target.value });
-          }}
-        />
-        <label className="generalLabel" htmlFor="fechainicio">
-          Fecha Inicio:{" "}
-        </label>
-        <DatePicker
-          id="fechainicio"
-          value={expData?.startDate}
-          onChange={(e) => {
-            setExpData({ ...expData, startDate: e.format() });
-          }}
-          editable={false}
-        />
-        <label className="generalLabel" htmlFor="fechafin">
-          Fecha Final:{" "}
-        </label>
-        <DatePicker
-          id="date"
-          value={expData?.endDate}
-          onChange={(e) => {
-            setExpData({ ...expData, endDate: e.format() });
-          }}
-          editable={false}
-        />
-        <label className="generalLabel" htmlFor="edit-conditions-exp">
-          Condiciones:{" "}
-        </label>
-        <textarea
-          className="generalTextarea"
-          type="text"
-          id="edit-conditions-exp"
-          name="condiciones"
-          rows="6"
-          value={expData.conditions}
-          onChange={(e) => {
-            setExpData({ ...expData, conditions: e.target.value });
-          }}
-        />
-        <label className="generalLabel" htmlFor="edit-normatives-exp">
-          Normativas:{" "}
-        </label>
-        <textarea
-          className="generalTextarea"
-          type="text"
-          id="edit-normatives-exp"
-          name="normatives"
-          rows="6"
-          value={expData.normatives}
-          onChange={(e) => {
-            setExpData({ ...expData, normatives: e.target.value });
-          }}
-        />
-        <div className="input-text-field"></div>
-
-        {!error && <p className="title-center">Imagen de la categoría</p>}
-
-        <figure className="photo-figure-category">
-          {photoExp ? (
-            <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp}`}
-              alt={expData.title}
-              className="generalPhoto"
-              onClick={handlePictureClick}
-            />
-          ) : (
-            <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-              alt={expData.title}
-              onClick={handlePictureClick}
-              className="generalPhoto"
-            />
-          )}
-        </figure>
-        <input
-          type="file"
-          id="fileSelector"
-          style={{ display: "none" }}
-          onChange={handlePictureChange}
-        />
-        <div className="btn-update-exp">
-          <button type="submit" className="generalButton">
-            Actualizar
+      <div className="edit-experience-container">
+        <header className="edit-experience-header">
+          <div>
+            <p className="edit-experience-kicker">
+              {isViewer ? "Vista de solo lectura" : "Panel de administración"}
+            </p>
+            <h1 onClick={() => navigate(`/dashboard`)}>
+              {isViewer ? "Ver experiencia" : "Editar experiencia"}
+            </h1>
+          </div>
+          <button
+            type="button"
+            className="edit-experience-back"
+            onClick={() => navigate("/dashboard/adminExperience")}
+          >
+            <FaArrowLeft /> Volver
           </button>
-        </div>
-      </form>
+        </header>
+
+        <form className="edit-experience-layout" onSubmit={handleUpdateCategory}>
+          <aside className="edit-experience-side">
+            <figure className="edit-experience-photo" onClick={isViewer ? undefined : handlePictureClick}>
+              {photoExp ? (
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp}`}
+                  alt={expData.title}
+                />
+              ) : (
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+                  alt={expData.title}
+                />
+              )}
+              {!isViewer && (
+                <figcaption>
+                  <FaImage /> Cambiar imagen
+                </figcaption>
+              )}
+            </figure>
+
+            <input
+              type="file"
+              id="fileSelector"
+              style={{ display: "none" }}
+              onChange={handlePictureChange}
+            />
+
+            <div className="edit-experience-status-card">
+              <div className="edit-experience-status-row">
+                <span>Activa</span>
+                <Switch checked={expData.active} onChange={handleActiveChange} disabled={isViewer} />
+              </div>
+              <div className="edit-experience-status-row">
+                <span>
+                  <FaStar /> Destacada
+                </span>
+                <Switch checked={expData.featured} onChange={handleFeaturedChange} disabled={isViewer} />
+              </div>
+            </div>
+          </aside>
+
+          <div className="edit-experience-form-panel">
+            <section className="edit-experience-section">
+              <div className="edit-experience-section-title">
+                <FaTags />
+                <h2>Información principal</h2>
+              </div>
+
+              <div className="edit-experience-grid">
+                <label className="edit-field edit-field-full" htmlFor="edit-exp-name">
+                  <span>Nombre de la experiencia</span>
+                  <input
+                    type="text"
+                    id="edit-exp-name"
+                    name="experience"
+                    value={expData.title}
+                    onChange={(e) => {
+                      setExpData({ ...expData, title: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+
+                <label className="edit-field" htmlFor="id-cat-exp">
+                  <span>Categoría</span>
+                  <select
+                    name="categorias"
+                    id="id-cat-exp"
+                    value={expData.idCategory || ""}
+                    onChange={(e) => {
+                      setExpData({ ...expData, idCategory: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  >
+                    <option value="">Selecciona categoría</option>
+                    {categories.map((cat) => (
+                      <option value={cat.id} key={cat.id}>
+                        {cat.title}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="edit-field" htmlFor="edit-price-exp">
+                  <span>
+                    <FaEuroSign /> Precio
+                  </span>
+                  <input
+                    type="text"
+                    id="edit-price-exp"
+                    name="price"
+                    value={expData.price}
+                    onChange={(e) => {
+                      setExpData({ ...expData, price: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+
+                <label className="edit-field" htmlFor="edit-places-exp">
+                  <span>
+                    <FaUsers /> Plazas por día
+                  </span>
+                  <input
+                    type="text"
+                    name="totalPlaces"
+                    id="edit-places-exp"
+                    value={expData.totalPlaces}
+                    onChange={(e) => {
+                      setExpData({ ...expData, totalPlaces: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+
+                <label className="edit-field edit-field-full" htmlFor="edit-exp-description">
+                  <span>Descripción</span>
+                  <textarea
+                    id="edit-exp-description"
+                    name="description"
+                    rows="5"
+                    value={expData.description}
+                    onChange={(e) => {
+                      setExpData({ ...expData, description: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <section className="edit-experience-section">
+              <div className="edit-experience-section-title">
+                <FaMapMarkerAlt />
+                <h2>Ubicación y fechas</h2>
+              </div>
+
+              <div className="edit-experience-grid">
+                <label className="edit-field" htmlFor="edit-location-exp">
+                  <span>Lugar</span>
+                  <input
+                    type="text"
+                    id="edit-location-exp"
+                    name="location"
+                    value={expData.location}
+                    onChange={(e) => {
+                      setExpData({ ...expData, location: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+
+                <label className="edit-field" htmlFor="edit-coords-exp">
+                  <span>Coordenadas</span>
+                  <input
+                    type="text"
+                    id="edit-coords-exp"
+                    name="coords"
+                    value={expData.coords}
+                    onChange={(e) => {
+                      setExpData({ ...expData, coords: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+
+                <label className="edit-field" htmlFor="fechainicio">
+                  <span>
+                    <FaCalendarAlt /> Fecha inicio
+                  </span>
+                  <DatePicker
+                    id="fechainicio"
+                    value={expData?.startDate}
+                    onChange={(e) => {
+                      setExpData({ ...expData, startDate: e.format() });
+                    }}
+                    editable={false}
+                    disabled={isViewer}
+                  />
+                </label>
+
+                <label className="edit-field" htmlFor="fechafin">
+                  <span>
+                    <FaCalendarAlt /> Fecha final
+                  </span>
+                  <DatePicker
+                    id="fechafin"
+                    value={expData?.endDate}
+                    onChange={(e) => {
+                      setExpData({ ...expData, endDate: e.format() });
+                    }}
+                    editable={false}
+                    disabled={isViewer}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <section className="edit-experience-section">
+              <div className="edit-experience-section-title">
+                <FaImage />
+                <h2>Condiciones y normativas</h2>
+              </div>
+
+              <div className="edit-experience-grid">
+                <label className="edit-field edit-field-full" htmlFor="edit-conditions-exp">
+                  <span>Condiciones</span>
+                  <textarea
+                    id="edit-conditions-exp"
+                    name="condiciones"
+                    rows="4"
+                    value={expData.conditions}
+                    onChange={(e) => {
+                      setExpData({ ...expData, conditions: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+
+                <label className="edit-field edit-field-full" htmlFor="edit-normatives-exp">
+                  <span>Normativas</span>
+                  <textarea
+                    id="edit-normatives-exp"
+                    name="normatives"
+                    rows="4"
+                    value={expData.normatives}
+                    onChange={(e) => {
+                      setExpData({ ...expData, normatives: e.target.value });
+                    }}
+                    disabled={isViewer}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <div className="edit-form-actions">
+              {!isViewer && (
+                <button type="submit" className="edit-experience-submit" disabled={loading}>
+                  <FaSave /> {loading ? "Actualizando..." : "Actualizar"}
+                </button>
+              )}
+              <button
+                type="button"
+                className="edit-experience-secondary"
+                onClick={() => navigate("/dashboard/adminExperience")}
+              >
+                <FaArrowLeft /> Volver
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };

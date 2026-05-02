@@ -1,20 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useEffect, useRef } from "react";
 import Dropdown from "../dropDown/DropDown";
 import "./navBar.css";
 import "../header/header.css";
 
-const NavBar = ({
-  toSearch,
-  setToSearch,
-  toSearchTit,
-  setToSearchTit,
-  searchCat,
-  setSearchCat,
-  setShowNavBar,
-  isFilterOn,
-  setIsFilterOn,
-}) => {
+const NavBar = ({ setShowNavBar }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -43,17 +33,7 @@ const NavBar = ({
         </Link>
       </li>
 
-      <Dropdown
-        toSearch={toSearch}
-        setToSearch={setToSearch}
-        toSearchTit={toSearchTit}
-        setToSearchTit={setToSearchTit}
-        searchCat={searchCat}
-        setSearchCat={setSearchCat}
-        setShowNavBar={setShowNavBar}
-        isFilterOn={isFilterOn}
-        setIsFilterOn={setIsFilterOn}
-      />
+      <Dropdown setShowNavBar={setShowNavBar} />
     </menu>
   );
 };

@@ -1,8 +1,9 @@
-import moment from "moment";
+import { formatDate } from "../../helpers/formatDate";
 import { toast } from "react-toastify";
 import { Rating } from "react-simple-star-rating";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
+import { FaArrowLeft, FaCalendarAlt, FaCheckCircle, FaRegStar } from "react-icons/fa";
 import { TokenContext } from "../../contexts/TokenContext";
 import { useBookingDetails } from "../../hooks/useBookingDetails";
 import { useGetExperienceOpinion } from "../../hooks/useGetExperienceOpinion";
@@ -11,7 +12,7 @@ import "./rate-experience.css";
 
 export const RateExperience = () => {
   const { ticket } = useParams();
-  const [token, setToken] = useContext(TokenContext);
+  const [token] = useContext(TokenContext);
   const exDetails = useBookingDetails(ticket, token);
   const [result, setResult] = useState(null);
   const { dataReview, load, err } = useGetExperienceOpinion(ticket);
@@ -65,75 +66,93 @@ export const RateExperience = () => {
 
   return token ? (
     <div className="rate-experience">
-      {review.voted === 1 ? (
-        <h1 className="title-center" id="rate-exp-header-voted">
-          EXPERIENCIA VALORADA{" "}
-          <button
-            className="btn-back"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            ↩️ back
-          </button>
-        </h1>
-      ) : (
-        <h1 className="title-center" id="rate-exp-header-unvoted">
-          EXPERIENCIA POR VALORAR{" "}
-          <button
-            className="btn-back"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            ↩️ back
-          </button>
-        </h1>
-      )}
-
-      <section id="rate-exp">
-        <h3 className="title-rate-exp">{exDetails?.title}</h3>
-        <h4>
-          Fecha experiencia:{" "}
-          {moment(exDetails?.dateExperience).format("YYYY-MM-DD")}
-        </h4>
-
-        <form onSubmit={handleNewReview}>
-          <textarea
-            type="text"
-            name="opinion"
-            value={review?.description}
-            className="rateExperience-textarea"
-            onChange={(e) => {
-              setReview({ ...review, description: e.target.value });
-            }}
-            placeholder="Opina sobre tu experiencia"
-          ></textarea>
-          <Rating
-            className="stars-rate-experience"
-            onClick={handleRating}
-            ratingValue={review?.score}
-            showTooltip
-            tooltipArray={[
-              "Agónico",
-              "Mal",
-              "Normal",
-              "Fantástico",
-              "Memorable",
-            ]}
-          />
-
-          <div className="btn-bottom">
-            <button
-              type="submit"
-              className="generalButton"
-              onClick={handleNewReview}
-            >
-              Enviar
-            </button>
+      <div className="rate-experience-container">
+        <header className="rate-experience-header">
+          <div>
+            <p className="rate-experience-kicker">
+              {review?.voted === 1 ? "Opinión registrada" : "Experiencia por valorar"}
+            </p>
+            <h1 id={review?.voted === 1 ? "rate-exp-header-voted" : "rate-exp-header-unvoted"}>
+              {review?.voted === 1 ? "Experiencia valorada" : "Cuéntanos cómo fue"}
+            </h1>
           </div>
-        </form>
-      </section>
+          <button
+            className="rate-experience-back"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            <FaArrowLeft aria-hidden="true" />
+            Volver
+          </button>
+        </header>
+
+        <section id="rate-exp" className="rate-experience-card">
+          <figure className="rate-experience-media">
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo || "NA.png"}`}
+              alt={exDetails?.title}
+            />
+          </figure>
+
+          <div className="rate-experience-content">
+            <div className="rate-experience-summary">
+              <span className="rate-experience-status">
+                {review?.voted === 1 ? (
+                  <FaCheckCircle aria-hidden="true" />
+                ) : (
+                  <FaRegStar aria-hidden="true" />
+                )}
+                {review?.voted === 1 ? "Ya valorada" : "Pendiente de valoración"}
+              </span>
+
+              <h2 className="title-rate-exp">{exDetails?.title}</h2>
+              <p className="rate-experience-date">
+                <FaCalendarAlt aria-hidden="true" />
+                Fecha experiencia: {formatDate(exDetails?.dateExperience, "yyyy-MM-dd")}
+              </p>
+            </div>
+
+            <form className="rate-experience-form" onSubmit={handleNewReview}>
+              <label htmlFor="rate-opinion">Tu opinión</label>
+              <textarea
+                id="rate-opinion"
+                type="text"
+                name="opinion"
+                value={review?.description || ""}
+                className="rateExperience-textarea"
+                onChange={(e) => {
+                  setReview({ ...review, description: e.target.value });
+                }}
+                placeholder="Opina sobre tu experiencia"
+              ></textarea>
+
+              <div className="rate-experience-rating">
+                <span>Tu puntuación</span>
+                <Rating
+                  className="stars-rate-experience"
+                  onClick={handleRating}
+                  ratingValue={review?.score || 0}
+                  showTooltip
+                  tooltipArray={[
+                    "Agónico",
+                    "Mal",
+                    "Normal",
+                    "Fantástico",
+                    "Memorable",
+                  ]}
+                />
+              </div>
+
+              <div className="btn-bottom">
+                <button type="submit" className="generalButton" disabled={loading}>
+                  {loading ? "Enviando..." : "Enviar valoración"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
     </div>
   ) : (
     <div className="form-wrapper">

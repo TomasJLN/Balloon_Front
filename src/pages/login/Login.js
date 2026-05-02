@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
@@ -8,11 +8,11 @@ import { Popup } from "../../components/popup/Popup";
 import "../../components/register/register.css";
 import "./login.css";
 import { PopupRegisterOk } from "../../components/popupRegisterOk/PopupRegisterOk";
-import { GiAirBalloon } from "react-icons/gi";
+import { FaLock, FaSignInAlt, FaUserPlus } from "react-icons/fa";
 
 const Login = () => {
   const [token, setToken] = useContext(TokenContext);
-  const [usuario, setUsuario] = useContext(UserContext);
+  const [usuario] = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -25,17 +25,15 @@ const Login = () => {
 
   const q = location.search;
 
-  let query = q;
-
   useEffect(() => {
-    query.includes("register=ok") ? setRegisterOk(true) : setRegisterOk(false);
+    q.includes("register=ok") ? setRegisterOk(true) : setRegisterOk(false);
     return () => {
       setRegisterOk(false);
     };
-  }, []);
+  }, [q]);
 
   useEffect(() => {
-    token && !error && usuario.role === "admin" && navigate("/dashboard");
+    token && !error && (usuario.role === "admin" || usuario.role === "viewer") && navigate("/dashboard");
     token && !error && usuario.role === "user" && navigate(-1);
     return () => {
       setError(null);
@@ -66,62 +64,71 @@ const Login = () => {
   return (
     <>
       {loading ? (
-        <h1>Cargando...</h1>
+        <section className="auth-page">
+          <p className="auth-loading">Cargando...</p>
+        </section>
       ) : (
-        <div className="form-wrapper">
+        <section className="auth-page">
           {registerOk && <PopupRegisterOk setRegisterOk={setRegisterOk} />}
-          <form onSubmit={handleLogin} className="generalForm">
-            <h1 className="generalTítulo1">Log in</h1>
+          <form onSubmit={handleLogin} className="auth-card">
+            <p className="auth-kicker">Acceso privado</p>
+            <h1>Log in</h1>
 
-            <label className="generalLabel" htmlFor="generalLabel">
-              Email
+            <label className="auth-field" htmlFor="email-login">
+              <span>Email</span>
+              <input
+                type="text"
+                id="email-login"
+                value={email}
+                name="email-login"
+                size="40"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                onFocus={() => setEmail("")}
+              />
             </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="email-login"
-              value={email}
-              name="email-login"
-              size="40"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              onFocus={() => setEmail("")}
-            />
 
-            <label className="generalLabel" htmlFor="generalLabel">
-              Contraseña
+            <label className="auth-field" htmlFor="contrasena-login">
+              <span>
+                <FaLock /> Contraseña
+              </span>
+              <input
+                type="password"
+                id="contrasena-login"
+                value={password}
+                name="password-login"
+                size="40"
+                autoComplete="off"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                onFocus={() => {
+                  setPassword("");
+                }}
+              />
             </label>
-            <input
-              className="generalInput"
-              type="password"
-              id="contrasena-login"
-              value={password}
-              name="password-login"
-              size="40"
-              autoComplete="off"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              onFocus={() => {
-                setPassword("");
-              }}
-            />
 
-            <button type="submit" value="Login" className="generalButton">
+            <button type="submit" value="Login" className="auth-submit">
+              <FaSignInAlt />
               Login
             </button>
+
+            <div className="auth-links">
+              <Link to="/register" className="login-links">
+                <FaUserPlus /> Crear una cuenta
+              </Link>
+              <button
+                type="button"
+                className="password-recovery-link"
+                onClick={() => setShowPopup(true)}
+              >
+                Recuperar contraseña
+              </button>
+            </div>
           </form>
-          <div className="link-to">
-            <Link to="/register" className="login-links">
-              Crear una cuenta
-            </Link>
-          </div>
-          <div className="link-to">
-            <p onClick={() => setShowPopup(true)}>Recuperar contraseña</p>
-          </div>
           {showPopup && <Popup setShowPopup={setShowPopup} />}
-        </div>
+        </section>
       )}
     </>
   );

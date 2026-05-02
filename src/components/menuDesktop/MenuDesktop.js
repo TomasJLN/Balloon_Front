@@ -1,36 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./menuDesktop.css";
 import "../header/header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router";
+import { FilterContext } from "../../contexts/FilterContext";
 import { useGetCategories } from "../../hooks/useGetCategories";
-import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { FaChevronDown } from "react-icons/fa";
 
-const MenuDesktop = ({ setSearchCat, setIsFilterOn }) => {
+const MenuDesktop = () => {
+  const { setSearchCat, setIsFilterOn } = useContext(FilterContext);
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { categories } = useGetCategories();
 
   return (
     <div className="menuescritorio">
       <menu className="menunavegacionDesktop">
-        <li
-          onClick={() => {
-            navigate("/");
-            window.location.reload(false);
-          }}
-          className="itemmenuescritorio"
-        >
+        <li className={`itemmenuescritorio${pathname === "/" ? " active" : ""}`}>
           <Link to="/">Inicio</Link>
         </li>
 
         <div
-          onMouseOver={(e) => setIsActive(true)}
-          onMouseLeave={(e) => setIsActive(false)}
+          onMouseEnter={() => setIsActive(true)}
+          onMouseLeave={() => setIsActive(false)}
           className="both"
-          style={{ display: "flex", flexDirection: "column-reverse" }}
         >
-          <li className="itemmenuescritorio">
-            Categorías {isActive ? <AiOutlineMinus /> : <AiOutlinePlus />}
+          <li className={`itemmenuescritorio${pathname.startsWith("/allFilter") ? " active" : ""}`}>
+            Categorías
+            <FaChevronDown
+              style={{
+                fontSize: "0.7rem",
+                transition: "transform 0.2s ease",
+                transform: isActive ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
           </li>
 
           {isActive && (
@@ -39,10 +42,8 @@ const MenuDesktop = ({ setSearchCat, setIsFilterOn }) => {
                 <li
                   className="itemmenucategory"
                   key={category.id}
-                  category={category}
-                  onClick={(e) => {
+                  onClick={() => {
                     setSearchCat(category.title);
-
                     navigate(`/allFilter?category=${category.title}`);
                     setIsFilterOn(true);
                     setIsActive(false);
@@ -54,11 +55,11 @@ const MenuDesktop = ({ setSearchCat, setIsFilterOn }) => {
             </div>
           )}
         </div>
-        <li className="itemmenuescritorio">
+
+        <li className={`itemmenuescritorio${pathname === "/about" ? " active" : ""}`}>
           <Link to="/about">Nosotras</Link>
         </li>
       </menu>
-      <div className="menucategory"></div>
     </div>
   );
 };

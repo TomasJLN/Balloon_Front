@@ -1,16 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { TokenContext } from "../../../contexts/TokenContext";
 import { miniFetcher } from "../../../helpers/fetcher";
 import { useUserBookings } from "../../../hooks/useUserBookings";
 import { OtherBooking } from "../../../components/otherBooking/OtherBooking";
+import { FaArrowLeft, FaCalendarAlt } from "react-icons/fa";
 import "./editbooking.css";
 
 const Editbooking = () => {
 	const navigate = useNavigate();
 	const { ticket } = useParams();
-	const [token, setToken] = useContext(TokenContext);
+	const [token] = useContext(TokenContext);
 	const [cancelStatus, setCancelStatus] = useState(null);
 	const othersBookings = useUserBookings(ticket, token);
 
@@ -33,13 +34,14 @@ const Editbooking = () => {
 	}, [cancelStatus]);
 
 	return (
-		<section>
-			<h2 className="result-title" style={{ color: "black" }} id="reservas">
-				Mis reservas
-			</h2>
-			<div className="general">
+		<section className="profile-bookings-card" id="reservas">
+			<div className="profile-card-title">
+				<FaCalendarAlt />
+				<h2>Mis reservas</h2>
+			</div>
+			<div className="profile-bookings-grid">
 				{othersBookings.length < 1 ? (
-					<p className="title-center">No dispone de ninguna reserva</p>
+					<p className="profile-empty">No dispone de ninguna reserva</p>
 				) : (
 					othersBookings.map((oq) => (
 						<OtherBooking
@@ -51,12 +53,13 @@ const Editbooking = () => {
 				)}
 			</div>
 
-			<p
-				className="title-center link-text big-font"
+			<button
+				type="button"
+				className="profile-secondary"
 				onClick={() => navigate("/")}
 			>
-				Volver al Inicio
-			</p>
+				<FaArrowLeft /> Volver al Inicio
+			</button>
 		</section>
 	);
 };

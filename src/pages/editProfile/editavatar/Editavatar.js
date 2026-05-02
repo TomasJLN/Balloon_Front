@@ -3,10 +3,11 @@ import { toast } from "react-toastify";
 import { TokenContext } from "../../../contexts/TokenContext";
 import { UserContext } from "../../../contexts/UserContext";
 import { fileUpload } from "../../../helpers/fileUpload";
+import { FaCamera, FaImage } from "react-icons/fa";
 import "./editavatar.css";
 
 const Editavatar = () => {
-  const [token, setToken] = useContext(TokenContext);
+  const [token] = useContext(TokenContext);
   const [usuario, setUsuario] = useContext(UserContext);
   const [newAvatar, setNewAvatar] = useState("");
   const [error, setError] = useState(null);
@@ -37,32 +38,42 @@ const Editavatar = () => {
   };
 
   useEffect(() => {
-    newAvatar && !error && setUsuario({ ...usuario, avatar: newAvatar });
+    newAvatar && !error && setUsuario((currentUser) => ({ ...currentUser, avatar: newAvatar }));
     error && toast.error(error.message);
-  }, [setNewAvatar, newAvatar, error]);
+  }, [newAvatar, error, setUsuario]);
 
   return (
     <>
-      {loading ? (
-        <h1>Cargando...</h1>
-      ) : (
-        <section className="generalForm">
+      <section className="profile-card profile-avatar-card" id="foto">
+        <div className="profile-card-title">
+          <FaImage />
           <h2>Cambiar mi foto</h2>
-          <img
-            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
-            alt={usuario.avatar}
-            onClick={handlePictureClick}
-            style={{ borderRadius: "50%", cursor: "pointer" }}
-          />
-          <p className="title-center">Pulsa en la imagen para cambiarla</p>
+        </div>
+
+        {loading ? (
+          <p className="profile-loading">Cargando...</p>
+        ) : (
+          <>
+            <button type="button" className="profile-avatar-button" onClick={handlePictureClick}>
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
+                alt={usuario.avatar || usuario.name}
+              />
+              <span>
+                <FaCamera /> Cambiar imagen
+              </span>
+            </button>
+            <p>Usa una imagen clara para identificar mejor tu perfil.</p>
+          </>
+        )}
+
           <input
             type="file"
             id="file-selector"
             style={{ display: "none" }}
             onChange={handleAvatar}
           />
-        </section>
-      )}
+      </section>
     </>
   );
 };

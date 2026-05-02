@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { TokenContextProvider } from "../contexts/TokenContext";
 import { UserContextProvider } from "../contexts/UserContext";
+import { FilterContextProvider } from "../contexts/FilterContext";
 import { Header } from "../components/header/Header";
 import { PublicRoute } from "./PublicRoute";
 import { ToastContainer } from "react-toastify";
@@ -10,44 +11,21 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const AppRoute = () => {
 	const [isVisible, setIsVisible] = useState(false);
-	const [isFilterOn, setIsFilterOn] = useState(null);
-
-	const [searchCat, setSearchCat] = useState("");
-	const [toSearch, setToSearch] = useState("");
-	const [toSearchTit, setToSearchTit] = useState(false);
 
 	return (
 		<Router>
 			<TokenContextProvider>
 				<UserContextProvider>
-					<Header
-						searchCat={searchCat}
-						setSearchCat={setSearchCat}
-						toSearch={toSearch}
-						setToSearch={setToSearch}
-						toSearchTit={toSearchTit}
-						setToSearchTit={setToSearchTit}
-						isFilterOn={isFilterOn}
-						setIsFilterOn={setIsFilterOn}
-					/>
-					<ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
-					<Routes>
-						<Route
-							path="/*"
-							element={
-								<PublicRoute
-									searchCat={searchCat}
-									setSearchCat={setSearchCat}
-									toSearchTit={toSearchTit}
-									setToSearchTit={setToSearchTit}
-									toSearch={toSearch}
-									setToSearch={setToSearch}
-									setIsFilterOn={setIsFilterOn}
-									isFilterOn={isFilterOn}
-								/>
-							}
-						/>
-					</Routes>
+					<FilterContextProvider>
+						<Header />
+						<ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
+						<Routes>
+							<Route
+								path="/*"
+								element={<PublicRoute />}
+							/>
+						</Routes>
+					</FilterContextProvider>
 				</UserContextProvider>
 			</TokenContextProvider>
 			<ToastContainer

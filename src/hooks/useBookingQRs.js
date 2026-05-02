@@ -7,7 +7,16 @@ export const useBookingQRs = (ticket, token) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetcher(setBookingQRs, setError, setLoading, `booking/view/qr/${ticket}`, {
+    if (!ticket || !token) {
+      setBookingQRs([]);
+      return;
+    }
+
+    const setNormalizedBookingQRs = (data) => {
+      setBookingQRs(Array.isArray(data) ? data : []);
+    };
+
+    fetcher(setNormalizedBookingQRs, setError, setLoading, `booking/view/qr/${ticket}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

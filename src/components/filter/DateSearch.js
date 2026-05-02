@@ -13,10 +13,13 @@ const DateSearch = ({ searchDate, setSearchDate, datePickerRef }) => {
 				minDate={new DateObject().subtract(-1, "days")}
 			/>
 
-			<VscCalendar
+			<button
+				type="button"
 				className="calendar-button"
 				onClick={() => datePickerRef.current.openCalendar()}
-			/>
+			>
+				<VscCalendar /> Fecha
+			</button>
 		</div>
 	);
 };

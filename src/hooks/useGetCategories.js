@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import fetcher from "../helpers/fetcher";
 
-export const useGetCategories = (category = "") => {
+export const useGetCategories = (category = "", includeInactive = false) => {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -11,13 +11,13 @@ export const useGetCategories = (category = "") => {
       setCategories,
       setError,
       setLoading,
-      `filters/categories?title=${category}`,
+      `filters/categories?title=${category}&includeInactive=${includeInactive ? "1" : "0"}`,
       {}
     );
     return () => {
       setCategories([]);
     };
-  }, [category]);
+  }, [category, includeInactive]);
 
   return { categories, loading, error };
 };

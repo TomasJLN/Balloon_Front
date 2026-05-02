@@ -1,21 +1,23 @@
-import { useState } from "react";
-import { useContext, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import DatePicker, { DateObject } from "react-multi-date-picker";
-import { toast } from "react-toastify";
-import moment from "moment";
-import { TokenContext } from "../../contexts/TokenContext";
-import { UserContext } from "../../contexts/UserContext";
-import { useExperience } from "../../hooks/useExperience";
-import fetcher from "../../helpers/fetcher";
-import { useGetReviews } from "../../hooks/useGetReviews";
-import { Reviews } from "../../components/reviews/Reviews";
-import { CarouselSimilar } from "../../components/carouselSimilar/CarouselSimilar";
-import Mapa from "../../components/Mapa";
-import PopUpBooking from "./PopUpBooking";
-import "react-multi-date-picker/styles/layouts/mobile.css";
-import "./booking.css";
-import "../experience/experience.css";
+import { useState } from 'react';
+import { useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import DatePicker, { DateObject } from 'react-multi-date-picker';
+import { toast } from 'react-toastify';
+import { formatDate } from '../../helpers/formatDate';
+import { TokenContext } from '../../contexts/TokenContext';
+import { UserContext } from '../../contexts/UserContext';
+import { useExperience } from '../../hooks/useExperience';
+import fetcher from '../../helpers/fetcher';
+import { useGetReviews } from '../../hooks/useGetReviews';
+import { Reviews } from '../../components/reviews/Reviews';
+import { CarouselSimilar } from '../../components/carouselSimilar/CarouselSimilar';
+import Mapa from '../../components/Mapa';
+import { FiArrowLeft } from 'react-icons/fi';
+import { FaCalendarAlt, FaEuroSign, FaMapMarkerAlt, FaTicketAlt, FaUsers } from 'react-icons/fa';
+import PopUpBooking from './PopUpBooking';
+import 'react-multi-date-picker/styles/layouts/mobile.css';
+import './booking.css';
+import '../experience/experience.css';
 
 const Booking = () => {
   const { id } = useParams();
@@ -36,12 +38,10 @@ const Booking = () => {
     normatives,
   } = useExperience(id);
 
-  let url = `https://www.google.es/maps/@${coords},19z`;
-
-  url = url.replace(/ +/g, "");
+  const url = `https://www.google.es/maps/@${coords},19z`.replace(/ +/g, '');
 
   const [places, setPlaces] = useState([]);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useContext(TokenContext);
@@ -52,22 +52,17 @@ const Booking = () => {
   const [disable, setDisable] = useState(true);
   const [storage, setStorage] = useState({
     selectDate:
-      JSON.parse(sessionStorage.getItem("selectDate")) ||
-      new DateObject().add(1, "days"),
-    nTickets: JSON.parse(sessionStorage.getItem("nTickets")) || 1,
+      JSON.parse(sessionStorage.getItem('selectDate')) ||
+      new DateObject().add(1, 'days'),
+    nTickets: JSON.parse(sessionStorage.getItem('nTickets')) || 1,
   });
   const [numTickets, setNumTickets] = useState(storage.nTickets);
   const [bookingDate, setBookingDate] = useState(storage.selectDate);
   const [soldOut, setSoldOut] = useState(false);
   const navigate = useNavigate();
 
-  let maxFreePlaces = 10;
-
-  const { occupied } = places[0] || { occupied: 0 };
-
-  occupied > 0
-    ? (maxFreePlaces = totalPlaces - occupied)
-    : (maxFreePlaces = totalPlaces);
+  const occupied = places[0]?.occupied ?? 0;
+  const maxFreePlaces = occupied > 0 ? totalPlaces - occupied : totalPlaces;
 
   useEffect(() => {
     setDisable(true);
@@ -77,29 +72,30 @@ const Booking = () => {
       setError,
       setLoading,
       `filters/occupied?experienceID=${id}&date=${dateF}`,
-      {}
+      {},
     );
-    sessionStorage.setItem("selectDate", JSON.stringify(bookingDate));
-    soldOut && sessionStorage.removeItem("nTickets", JSON.stringify(1));
+    sessionStorage.setItem('selectDate', JSON.stringify(bookingDate));
+    soldOut && sessionStorage.removeItem('nTickets', JSON.stringify(1));
   }, [bookingDate, id, soldOut]);
 
   useEffect(() => {
     maxFreePlaces > 0 &&
       numTickets > maxFreePlaces &&
-      toast.info("Plazas insuficientes en este día");
+      toast.info('Plazas insuficientes en este día');
   }, [maxFreePlaces, numTickets]);
 
   useEffect(() => {
-    sessionStorage.setItem("nTickets", JSON.stringify(numTickets));
+    sessionStorage.setItem('nTickets', JSON.stringify(numTickets));
   }, [numTickets, setNumTickets]);
 
   useEffect(() => {
     maxFreePlaces < 1 ? setSoldOut(true) : setSoldOut(false);
   }, [soldOut, maxFreePlaces]);
 
-  let infoExperience = [];
-  infoExperience.push({ title: "Condiciones", content: conditions });
-  infoExperience.push({ title: "Normativas", content: normatives });
+  const infoExperience = [
+    { title: 'Condiciones', content: conditions },
+    { title: 'Normativas', content: normatives },
+  ];
 
   const handleSubtractTicket = () => {
     if (numTickets > 1) {
@@ -117,18 +113,18 @@ const Booking = () => {
     if (e.target.value > maxFreePlaces) {
       setNumTickets(maxFreePlaces);
     } else {
-      setNumTickets(e.target.value.replace(/\D/, ""));
+      setNumTickets(e.target.value.replace(/\D/, ''));
     }
   };
 
   const handleNewBooking = (e) => {
-    setResult("");
+    setResult('');
     if (pay) {
       const createBooking = async () => {
-        await fetcher(setResult, setError, setLoading, "booking", {
-          method: "POST",
+        await fetcher(setResult, setError, setLoading, 'booking', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: token,
           },
           body: JSON.stringify({
@@ -142,10 +138,10 @@ const Booking = () => {
     }
   };
   const handlePopUp = () => {
-    !usuario.role && navigate("/account");
-    usuario.role === "user" && setPopUp(true);
-    usuario.role === "admin" &&
-      toast.error("Un administrador no puede\nhacer reservas...");
+    !usuario.role && navigate('/account');
+    usuario.role === 'user' && setPopUp(true);
+    usuario.role === 'admin' &&
+      toast.error('Un administrador no puede\nhacer reservas...');
   };
 
   useEffect(() => {
@@ -153,7 +149,7 @@ const Booking = () => {
   }, [result, setResult, navigate]);
 
   useEffect(() => {
-    if (error !== null) toast.error("algo salió mal... ", error);
+    if (error !== null) toast.error('algo salió mal... ', error);
     return () => {
       setError(null);
     };
@@ -162,7 +158,7 @@ const Booking = () => {
   useEffect(() => {
     reviews.length !== 0 &&
       setAvgRatin(
-        reviews.reduce((acc, exp) => acc + exp.score, 0) / reviews.length
+        reviews.reduce((acc, exp) => acc + exp.score, 0) / reviews.length,
       );
     reviews.length === 0 && setAvgRatin(0);
   }, [reviews]);
@@ -176,9 +172,9 @@ const Booking = () => {
       {loading ? (
         <h1 className="spinner-container">Cargando...</h1>
       ) : (
-        <div className="wrap-content">
+        <div className="wrap-content booking-page">
           <div className="experience-data">
-            <div className="initial-wrap">
+            <div className="initial-wrap experience-overview">
               <div className="photo-thumbnail">
                 {photo ? (
                   <>
@@ -188,9 +184,9 @@ const Booking = () => {
                       className="exp-pic"
                     />
                     <img
-                      src={"/imgs/soldout.png"}
+                      src={'/imgs/soldout.png'}
                       alt={title}
-                      className={`${soldOut ? "sold-out" : "available-places"}`}
+                      className={`${soldOut ? 'sold-out' : 'available-places'}`}
                     />
                   </>
                 ) : (
@@ -201,36 +197,50 @@ const Booking = () => {
                       className="exp-pic"
                     />
                     <img
-                      src={"/imgs/soldout.png"}
+                      src={'/imgs/soldout.png'}
                       alt={title}
-                      className={`${soldOut ? "sold-out" : "available-places"}`}
+                      className={`${soldOut ? 'sold-out' : 'available-places'}`}
                     />
                   </>
                 )}
               </div>
 
               <div className="title-description">
-                <h1 className="title-center">Reservar experiencia</h1>
+                <p className="experience-kicker">Ver experiencia</p>
                 <h2>{title}</h2>
                 <p className="description-text">{description}</p>
+                <div className="experience-highlights">
+                  <span>
+                    <FaMapMarkerAlt aria-hidden="true" />
+                    {location}
+                  </span>
+                  <span>
+                    <FaCalendarAlt aria-hidden="true" />
+                    {formatDate(startDate, 'dd-MM-yyyy')} -{' '}
+                    {formatDate(endDate, 'dd-MM-yyyy')}
+                  </span>
+                  <span>
+                    <FaUsers aria-hidden="true" />
+                    {maxFreePlaces < 1 ? 'Agotada' : `${maxFreePlaces} plazas`}
+                  </span>
+                </div>
                 <ul className="normatives-list">
                   <li>
                     <strong>Localización:</strong>
                     <a href={url} target="blank">
-                      {" "}
+                      {' '}
                       {location}
                     </a>
                   </li>
                   <li>
-                    <strong>Disponibilidad:</strong> Desde{" "}
-                    <strong>{moment(startDate).format("DD-MM-YYYY")}</strong>{" "}
-                    hasta{" "}
-                    <strong>{moment(endDate).format("DD-MM-YYYY")}</strong>
+                    <strong>Disponibilidad:</strong> Desde{' '}
+                    <strong>{formatDate(startDate, 'dd-MM-yyyy')}</strong> hasta{' '}
+                    <strong>{formatDate(endDate, 'dd-MM-yyyy')}</strong>
                   </li>
 
                   <li>
-                    <strong>Plazas disponibles</strong>:{" "}
-                    {maxFreePlaces < 1 ? "AGOTADAS" : maxFreePlaces}
+                    <strong>Plazas disponibles</strong>:{' '}
+                    {maxFreePlaces < 1 ? 'AGOTADAS' : maxFreePlaces}
                   </li>
 
                   {infoExperience.map(({ title, content }) => (
@@ -240,7 +250,8 @@ const Booking = () => {
                   ))}
                 </ul>
                 <div className="precio-unidad">
-                  <p>{price} €</p>
+                  <FaEuroSign aria-hidden="true" />
+                  <p>{price}</p>
                 </div>
               </div>
             </div>
@@ -250,13 +261,13 @@ const Booking = () => {
                   <label htmlFor="date">Escoger Fecha</label>
                   <DatePicker
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      width: "120px",
-                      textAlign: "center",
-                      fontSize: "1.1rem",
-                      border: "none",
-                      boxShadow: "2px 2px 4px grey",
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '120px',
+                      textAlign: 'center',
+                      fontSize: '1.1rem',
+                      border: 'none',
+                      boxShadow: '2px 2px 4px grey',
                     }}
                     id="date"
                     value={bookingDate}
@@ -267,7 +278,10 @@ const Booking = () => {
                   />
                 </div>
                 <div className="tickets-booking">
-                  <label htmlFor="quantity">Tickets:</label>
+                  <label htmlFor="quantity">
+                    <FaTicketAlt aria-hidden="true" />
+                    Tickets
+                  </label>
                   <div id="select-quantity">
                     <button
                       type="button"
@@ -324,12 +338,12 @@ const Booking = () => {
                   </div>
                 </div>
                 <div className="check-out">
-                  <div style={{ display: "flex" }}>
+                  <div style={{ display: 'flex' }}>
                     <p>Total :</p> {(price * numTickets).toFixed(2)} €
                   </div>
                   <button
                     className={
-                      disable ? "generalButton-disabled" : "generalButton"
+                      disable ? 'generalButton-disabled' : 'generalButton'
                     }
                     disabled={disable}
                     onClick={(e) => {
@@ -350,8 +364,10 @@ const Booking = () => {
               onClick={() => {
                 navigate(-1);
               }}
+              aria-label="Volver"
             >
-              ↩️ back
+              <FiArrowLeft className="btn-back-icon" />
+              <span className="btn-back-text">Volver</span>
             </button>
           </div>
           <div className="ratin-info">
@@ -379,11 +395,11 @@ const Booking = () => {
             {popUp && pay && (
               <PopUpBooking
                 bookingInfo={{
-                  price: price,
-                  location: location,
-                  title: title,
-                  photo: photo,
-                  numTickets: numTickets,
+                  price,
+                  location,
+                  title,
+                  photo,
+                  numTickets,
                 }}
                 setPopUp={setPopUp}
                 handleNewBooking={handleNewBooking}

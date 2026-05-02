@@ -2,16 +2,26 @@ import { useContext, useEffect, useState } from "react";
 import Switch from "@mui/material/Switch";
 import fetcher from "../../helpers/fetcher";
 import { TokenContext } from "../../contexts/TokenContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { fileUpload } from "../../helpers/fileUpload";
 import { toast } from "react-toastify";
 import { useGetCategories } from "../../hooks/useGetCategories";
 import "./create-experience.css";
 import DatePicker, { DateObject } from "react-multi-date-picker";
+import {
+  FaArrowLeft,
+  FaCalendarAlt,
+  FaEuroSign,
+  FaImage,
+  FaMapMarkerAlt,
+  FaPlus,
+  FaSave,
+  FaStar,
+  FaTags,
+  FaUsers,
+} from "react-icons/fa";
 
 export const CreateExperience = () => {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [expData, setExpData] = useState({
     idCategory: "",
     title: "",
@@ -31,10 +41,9 @@ export const CreateExperience = () => {
   const [photoExp, setPhotoExp] = useState(null);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [token, setToken] = useContext(TokenContext);
+  const [loading, setLoading] = useState(false);
+  const [token] = useContext(TokenContext);
   const [getID, setGetID] = useState("");
-  const [created, setCreated] = useState(false);
   const { categories } = useGetCategories();
 
   const navigate = useNavigate();
@@ -75,20 +84,23 @@ export const CreateExperience = () => {
       if (file) {
         const resp = await fileUpload(url, key, setError, file, token);
         setPhotoExp(resp.data);
+        toast.success("Imagen actualizada");
       }
     }
     setLoading(false);
-    navigate(-1);
   };
 
   const handlePictureClick = () => {
+    if (!getID) {
+      toast.info("Primero crea la experiencia para poder subir una imagen");
+      return;
+    }
     document.querySelector("#fileSelector").click();
   };
 
   useEffect(() => {
-    photoExp && !error && setExpData({ ...expData });
     error && toast.error(error.message);
-  }, [setPhotoExp, photoExp, error, setExpData]);
+  }, [error]);
 
   useEffect(() => {
     result && setGetID(result);
@@ -99,220 +111,269 @@ export const CreateExperience = () => {
   }, []);
 
   return (
-    <>
-      <section className="form-wrapper">
-        <h1
-          id="create-title"
-          style={{ textAlign: "center", color: "white" }}
-          onClick={() => navigate(`/dashboard`)}
-        >
-          Crear Experiencia
-        </h1>
-        {getID && <h1>Experiencia creada: {getID}</h1>}
-        {error && <h1 style={{ color: "red" }}>{error}</h1>}
+    <section className="create-experience-page">
+      {error && <div className="create-experience-error">{String(error?.message || error)}</div>}
 
-        <form onSubmit={handleNewExperience} className="generalForm">
+      <div className="create-experience-container">
+        <header className="create-experience-header">
           <div>
-            <div>
-              <label htmlFor="id-cat-exp">Categoría: </label>
-              <select
-                name="id-cat-exp"
-                id="id-cat-exp"
-                onChange={(e) =>
-                  setExpData({ ...expData, idCategory: e.target.value })
-                }
+            <p className="create-experience-kicker">Panel de administración</p>
+            <h1 onClick={() => navigate(`/dashboard`)}>Crear experiencia</h1>
+          </div>
+          <button
+            type="button"
+            className="create-experience-back"
+            onClick={() => navigate("/dashboard/adminExperience")}
+          >
+            <FaArrowLeft /> Volver
+          </button>
+        </header>
+
+        <form onSubmit={handleNewExperience} className="create-experience-layout">
+          <aside className="create-experience-side">
+            <figure
+              className={`create-experience-photo ${getID ? "" : "is-disabled"}`}
+              onClick={handlePictureClick}
+            >
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp || "NA.png"}`}
+                alt={expData.title || "Nueva experiencia"}
+              />
+              <figcaption>
+                <FaImage /> {getID ? "Cambiar imagen" : "Imagen tras crear"}
+              </figcaption>
+            </figure>
+
+            <input
+              type="file"
+              id="fileSelector"
+              style={{ display: "none" }}
+              onChange={handlePictureChange}
+            />
+
+            <div className="create-experience-status-card">
+              <div className="create-experience-status-row">
+                <span>Activa</span>
+                <Switch checked={expData.active} onChange={handleActiveChange} />
+              </div>
+              <div className="create-experience-status-row">
+                <span>
+                  <FaStar /> Destacada
+                </span>
+                <Switch checked={expData.featured} onChange={handleFeaturedChange} />
+              </div>
+              {getID && <p>Experiencia creada con ID {getID}</p>}
+            </div>
+          </aside>
+
+          <div className="create-experience-form-panel">
+            <section className="create-experience-section">
+              <div className="create-experience-section-title">
+                <FaTags />
+                <h2>Información principal</h2>
+              </div>
+
+              <div className="create-experience-grid">
+                <label className="create-field create-field-full" htmlFor="creat-exp-name">
+                  <span>Nombre de la experiencia</span>
+                  <input
+                    type="text"
+                    id="creat-exp-name"
+                    name="experience"
+                    value={expData.title}
+                    onChange={(e) => {
+                      setExpData({ ...expData, title: e.target.value });
+                    }}
+                  />
+                </label>
+
+                <label className="create-field" htmlFor="id-cat-exp">
+                  <span>Categoría</span>
+                  <select
+                    name="id-cat-exp"
+                    id="id-cat-exp"
+                    value={expData.idCategory}
+                    onChange={(e) =>
+                      setExpData({ ...expData, idCategory: e.target.value })
+                    }
+                  >
+                    <option value="">Selecciona categoría</option>
+                    {categories.map((cat) => (
+                      <option value={cat.id} key={cat.id}>
+                        {cat.title}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="create-field" htmlFor="price">
+                  <span>
+                    <FaEuroSign /> Precio
+                  </span>
+                  <input
+                    type="text"
+                    id="price"
+                    name="price"
+                    value={expData.price}
+                    onChange={(e) => {
+                      setExpData({ ...expData, price: e.target.value });
+                    }}
+                  />
+                </label>
+
+                <label className="create-field" htmlFor="totalplaces">
+                  <span>
+                    <FaUsers /> Plazas por día
+                  </span>
+                  <input
+                    type="text"
+                    id="totalplaces"
+                    name="totalPlaces"
+                    value={expData.totalPlaces}
+                    onChange={(e) => {
+                      setExpData({ ...expData, totalPlaces: e.target.value });
+                    }}
+                  />
+                </label>
+
+                <label className="create-field create-field-full" htmlFor="creat-text-exp">
+                  <span>Descripción</span>
+                  <textarea
+                    id="creat-text-exp"
+                    name="description"
+                    rows="5"
+                    value={expData.description}
+                    onChange={(e) => {
+                      setExpData({ ...expData, description: e.target.value });
+                    }}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <section className="create-experience-section">
+              <div className="create-experience-section-title">
+                <FaMapMarkerAlt />
+                <h2>Ubicación y fechas</h2>
+              </div>
+
+              <div className="create-experience-grid">
+                <label className="create-field" htmlFor="location">
+                  <span>Lugar</span>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={expData.location}
+                    onChange={(e) => {
+                      setExpData({ ...expData, location: e.target.value });
+                    }}
+                  />
+                </label>
+
+                <label className="create-field" htmlFor="coords">
+                  <span>Coordenadas</span>
+                  <input
+                    type="text"
+                    id="coords"
+                    name="coords"
+                    value={expData.coords}
+                    placeholder="0,0"
+                    onChange={(e) => {
+                      setExpData({ ...expData, coords: e.target.value });
+                    }}
+                  />
+                </label>
+
+                <label className="create-field" htmlFor="fechainicio">
+                  <span>
+                    <FaCalendarAlt /> Fecha inicio
+                  </span>
+                  <DatePicker
+                    id="fechainicio"
+                    value={expData.startDate}
+                    onChange={(e) => {
+                      setExpData({ ...expData, startDate: e.format() });
+                    }}
+                    minDate={new DateObject().add(1, "days")}
+                    editable={false}
+                  />
+                </label>
+
+                <label className="create-field" htmlFor="fechafin">
+                  <span>
+                    <FaCalendarAlt /> Fecha final
+                  </span>
+                  <DatePicker
+                    id="fechafin"
+                    value={expData.endDate}
+                    onChange={(e) => setExpData({ ...expData, endDate: e.format() })}
+                    editable={false}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <section className="create-experience-section">
+              <div className="create-experience-section-title">
+                <FaImage />
+                <h2>Condiciones y normativas</h2>
+              </div>
+
+              <div className="create-experience-grid">
+                <label className="create-field create-field-full" htmlFor="condiciones">
+                  <span>Condiciones</span>
+                  <textarea
+                    id="condiciones"
+                    name="condiciones"
+                    rows="4"
+                    value={expData.conditions}
+                    onChange={(e) => {
+                      setExpData({ ...expData, conditions: e.target.value });
+                    }}
+                  />
+                </label>
+
+                <label className="create-field create-field-full" htmlFor="normatives">
+                  <span>Normativas</span>
+                  <textarea
+                    id="normatives"
+                    name="normatives"
+                    rows="4"
+                    value={expData.normatives}
+                    onChange={(e) => {
+                      setExpData({ ...expData, normatives: e.target.value });
+                    }}
+                  />
+                </label>
+              </div>
+            </section>
+
+            <div className="create-form-actions">
+              {!getID ? (
+                <button type="submit" className="create-experience-submit" disabled={loading}>
+                  <FaPlus /> {loading ? "Creando..." : "Crear experiencia"}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="create-experience-submit"
+                  onClick={() => navigate("/dashboard/adminExperience")}
+                >
+                  <FaSave /> Finalizar
+                </button>
+              )}
+              <button
+                type="button"
+                className="create-experience-secondary"
+                onClick={() => navigate("/dashboard/adminExperience")}
               >
-                <option value={1} key={0}>
-                  Categoría
-                </option>
-                {categories.map((cat) => (
-                  <option value={cat.id} key={cat.id}>
-                    {cat.title}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="edit-sect-activar">
-              <p className="Active">Activar</p>
-              <Switch checked={expData.active} onChange={handleActiveChange} />
-              <p>Destacar</p>
-              <Switch
-                checked={expData.featured}
-                onChange={handleFeaturedChange}
-              />
+                <FaArrowLeft /> Volver
+              </button>
             </div>
           </div>
-          <div className="inputForm">
-            <label className="generalLabel" htmlFor="creat-exp-name">
-              Título de la experiencia:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="creat-exp-name"
-              name="experience"
-              value={expData.title}
-              onChange={(e) => {
-                setExpData({ ...expData, title: e.target.value });
-              }}
-            />
-            <label className="generalLabel" htmlFor="creat-text-exp">
-              Descripción de la experiencia:{" "}
-            </label>
-            <textarea
-              className="generalTextarea"
-              id="creat-text-exp"
-              type="text"
-              name="description"
-              rows="6"
-              value={expData.description}
-              onChange={(e) => {
-                setExpData({ ...expData, description: e.target.value });
-              }}
-            />
-            <label className="generalLabel" htmlFor="price">
-              Precio de la experiencia:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              name="price"
-              value={expData.price}
-              onChange={(e) => {
-                setExpData({ ...expData, price: e.target.value });
-              }}
-            />
-            <label className="generalLabel" htmlFor="totalplaces">
-              Plazas por día:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="totalplaces"
-              name="totalPlaces"
-              value={expData.totalPlaces}
-              onChange={(e) => {
-                setExpData({ ...expData, totalPlaces: e.target.value });
-              }}
-            />
-            <label className="generalLabel" htmlFor="fechainicio">
-              Fecha de inicio:{" "}
-            </label>
-            <DatePicker
-              id="fechainicio"
-              value={expData.startDate}
-              onChange={(e) => {
-                setExpData({ ...expData, startDate: e.format() });
-              }}
-              minDate={new DateObject().add(1, "days")}
-              editable={false}
-            />
-            <label className="generalLabel" htmlFor="fechafin">
-              Fecha de fin:{" "}
-            </label>
-            <DatePicker
-              id="fechafin"
-              value={expData.endDate}
-              onChange={(e) => setExpData({ ...expData, endDate: e.format() })}
-              editable={false}
-            />
-            <label className="generalLabel" htmlFor="location">
-              Lugar de la experiencia:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="location"
-              name="location"
-              value={expData.location}
-              onChange={(e) => {
-                setExpData({ ...expData, location: e.target.value });
-              }}
-            />
-            <label className="generalLabel" htmlFor="coords">
-              Coordenadas:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="coords"
-              name="coords"
-              value={expData.coords}
-              placeholder="0,0"
-              onChange={(e) => {
-                setExpData({ ...expData, coords: e.target.value });
-              }}
-            />
-            <label className="generalLabel" htmlFor="normatives">
-              Normativa de la experiencia:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="normatives"
-              name="normatives"
-              value={expData.normatives}
-              onChange={(e) => {
-                setExpData({ ...expData, normatives: e.target.value });
-              }}
-            />
-            <label className="generalLabel" htmlFor="condiciones">
-              Condiciones de la experiencia:{" "}
-            </label>
-            <input
-              className="generalInput"
-              type="text"
-              id="condiciones"
-              name="condiciones"
-              value={expData.conditions}
-              onChange={(e) => {
-                setExpData({ ...expData, conditions: e.target.value });
-              }}
-            />
-          </div>
-          <br />
-          {!error && getID && (
-            <div>
-              <p className="title-center">Imagen de la Experiencia</p>
-
-              <figure className="photo-figure-category">
-                {photoExp ? (
-                  <img
-                    src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp}`}
-                    alt={expData.title}
-                    className="photo-experience"
-                    onClick={handlePictureClick}
-                  />
-                ) : (
-                  <img
-                    src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-                    alt={expData.title}
-                    onClick={handlePictureClick}
-                    className="photo-experience"
-                  />
-                )}
-              </figure>
-
-              <input
-                type="file"
-                id="fileSelector"
-                style={{ display: "none" }}
-                onChange={handlePictureChange}
-              />
-            </div>
-          )}
-          {!getID && (
-            <button type="submit" className="generalButton">
-              Crear Experiencia
-            </button>
-          )}
-          {getID && (
-            <Link to="/dashboard">
-              <button className="generalButton">Volver a Dashboard</button>
-            </Link>
-          )}
         </form>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };

@@ -1,25 +1,24 @@
 import { Formik, Form, Field } from "formik";
-import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router";
+import { FilterContext } from "../../contexts/FilterContext";
 import SearchBar from "./SearchBar";
 import RatingSearch from "./RatingSearch";
 import DateSearch from "./DateSearch";
 import CategorySearch from "./CategorySearch";
 import LocationSearch from "./LocationSearch";
 import PriceSearch from "./PriceSearch";
+import { FaSlidersH, FaSort, FaTimes } from "react-icons/fa";
 import "react-multi-date-picker/styles/layouts/mobile.css";
 import "./filter.css";
 
-const Filter = ({
-  toSearchTit,
-  setToSearchTit,
-  toSearch,
-  setToSearch,
-  searchCat,
-  setSearchCat,
-  isFilterOn,
-  setIsFilterOn,
-}) => {
+const Filter = () => {
+  const {
+    toSearchTit, setToSearchTit,
+    toSearch, setToSearch,
+    searchCat, setSearchCat,
+    isFilterOn, setIsFilterOn,
+  } = useContext(FilterContext);
   const datePickerRef = useRef();
   const navigate = useNavigate();
 
@@ -53,10 +52,8 @@ const Filter = ({
     scrollToBottom();
   };
 
-  let query = "/";
-
   useEffect(() => {
-    query = toSearch ? `/allFilter?experience=${toSearch}&active=1` : `/?`;
+    let query = toSearch ? `/allFilter?experience=${toSearch}&active=1` : `/?`;
     query += order ? `&direction=${order}` : "";
     query += searchPrice[0] === 1 ? "" : `&start_price=${searchPrice[0]}`;
     query += searchPrice[1] === 300 ? "" : `&end_price=${searchPrice[1]}`;
@@ -91,52 +88,36 @@ const Filter = ({
             <div ref={filterResults}></div>
             {isFilterOn && (
               <div className="filterContainer slideInDownfade_in">
-                <CategorySearch
-                  searchCat={searchCat}
-                  setSearchCat={setSearchCat}
-                />
+                <div className="filter-pills-row">
+                  <span className="filter-label"><FaSlidersH /> Filtrar:</span>
 
-                <LocationSearch
-                  searchLoc={searchLoc}
-                  setSearchLoc={setSearchLoc}
-                />
-                <PriceSearch
-                  searchPrice={searchPrice}
-                  setSearchPrice={setSearchPrice}
-                />
-                <RatingSearch rating={rating} setRating={setRating} />
-                <div className="clear-filter">
+                  <CategorySearch searchCat={searchCat} setSearchCat={setSearchCat} />
+                  <LocationSearch searchLoc={searchLoc} setSearchLoc={setSearchLoc} />
+                  <PriceSearch searchPrice={searchPrice} setSearchPrice={setSearchPrice} />
+                  <RatingSearch rating={rating} setRating={setRating} />
+
                   <button
-                    className="filterButton"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      resetFilter();
-                      setToSearch("");
-                    }}
+                    className="filter-clear-btn"
+                    onClick={(e) => { e.preventDefault(); resetFilter(); setToSearch(""); }}
                   >
-                    Limpiar filtro
+                    <FaTimes /> Limpiar
                   </button>
                 </div>
               </div>
             )}
             <div className="order-by">
-              <label>Ordenar por</label>
+              <FaSort className="order-icon" />
+              <label htmlFor="order-select">Ordenar por</label>
               <Field
-                className="generalFilter"
+                id="order-select"
+                className="order-select"
                 value={order}
-                onChange={(e) => {
-                  setOrder(e.target.value);
-                }}
+                onChange={(e) => setOrder(e.target.value)}
                 name="locationfilter"
                 as="select"
               >
-                <option className="order" value="ASC">
-                  Mas baratos primero
-                </option>
-
-                <option className="order" value="DESC">
-                  Mas caros primero
-                </option>
+                <option value="ASC">Más baratos primero</option>
+                <option value="DESC">Más caros primero</option>
               </Field>
             </div>
           </Form>

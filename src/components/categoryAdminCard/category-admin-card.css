@@ -1,55 +1,171 @@
-.card-category {
-	border-radius: 10px;
-	box-shadow: 2px 3px 20px rgba(0, 0, 0, 0.2);
-	overflow: hidden;
-	cursor: pointer;
-	
-	width: 80%;
-	max-width: 360px;
+.admin-category-card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: start;
-	align-items: center;
-	min-height: 240px;
-	margin: 20px auto;
-}
-.card-figure-category {
 	overflow: hidden;
 	width: 100%;
-	height: 140px;
-}
-.card-thumbnail-category {
-	overflow: hidden;
-	width: 100%;
-	height: 140px;
-	object-fit: cover;
-}
-.title-card-category {
-	width: 100%;
-	display: flex;
-	justify-content: space-evenly;
-	margin: auto 6px;
-}
-
-.row-button-category {
-	width: 100%;
-	padding: 10px;
-	display: flex;
-	justify-content: space-around;
-}
-
-.btn-category-option {
-	width: 30%;
-	height: 2rem;
-	color: white;
-	background-color: rgb(var(--primary-color-hard));
-	border: none;
-	border-radius: 9px;
+	min-height: 360px;
+	border: 1px solid rgba(26, 107, 122, 0.1);
+	border-radius: var(--radius-md);
+	background: #ffffff;
+	box-shadow: var(--shadow-md);
 	cursor: pointer;
+	transition:
+		transform var(--transition-base),
+		box-shadow var(--transition-base),
+		border-color var(--transition-base);
 }
 
+.admin-category-card:hover {
+	transform: translateY(-6px);
+	border-color: rgba(63, 176, 172, 0.35);
+	box-shadow: var(--shadow-xl);
+}
 
+.admin-category-media {
+	position: relative;
+	width: 100%;
+	height: 180px;
+	overflow: hidden;
+	background: #eef7f7;
+}
 
-#btn-active {
-	background-color: grey;
+.admin-category-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--transition-slow);
+}
+
+.admin-category-card:hover .admin-category-image {
+	transform: scale(1.05);
+}
+
+.admin-category-badges {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	right: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.status-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 10px;
+	border-radius: var(--radius-full);
+	color: #ffffff;
+	font-size: var(--text-xs);
+	font-weight: 800;
+	line-height: 1;
+	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.status-badge.active {
+	background: #1a6b7a;
+}
+
+.status-badge.inactive {
+	background: #718096;
+}
+
+.admin-category-body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 12px;
+	padding: 18px;
+}
+
+.admin-category-id {
+	width: fit-content;
+	padding: 5px 9px;
+	border-radius: var(--radius-full);
+	background: rgba(26, 107, 122, 0.1);
+	color: #1a6b7a;
+	font-size: var(--text-xs);
+	font-weight: 800;
+	line-height: 1;
+}
+
+.admin-category-body h2 {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	color: var(--color-text);
+	font-size: var(--text-xl);
+	font-weight: 800;
+	letter-spacing: 0;
+	line-height: 1.25;
+}
+
+.admin-category-body h2 svg {
+	flex: 0 0 auto;
+	color: #1a6b7a;
+	font-size: 1rem;
+}
+
+.admin-category-body p {
+	display: -webkit-box;
+	margin: 0;
+	overflow: hidden;
+	color: var(--color-text-secondary);
+	font-size: var(--text-sm);
+	line-height: 1.6;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}
+
+.admin-category-actions {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+	padding: 12px 14px 16px;
+	border-top: 1px solid #edf2f7;
+	background: #fbfcfd;
+}
+
+.admin-category-action {
+	min-height: 38px;
+	padding: 8px 10px;
+	border: none;
+	border-radius: var(--radius-full);
+	color: #ffffff;
+	cursor: pointer;
+	font-size: var(--text-xs);
+	font-weight: 800;
+	line-height: 1;
+	transition:
+		transform var(--transition-fast),
+		box-shadow var(--transition-fast);
+}
+
+.admin-category-action:hover {
+	transform: translateY(-2px);
+}
+
+.admin-category-action.primary {
+	background: linear-gradient(135deg, #478bd6, #3fb0ac);
+	box-shadow: 0 4px 14px rgba(63, 176, 172, 0.24);
+}
+
+.admin-category-action.secondary {
+	background: #4a5568;
+	box-shadow: 0 4px 14px rgba(74, 85, 104, 0.18);
+}
+
+.admin-category-action.danger {
+	background: #9b2c2c;
+	box-shadow: 0 4px 14px rgba(155, 44, 44, 0.18);
+}
+
+@media screen and (max-width: 420px) {
+	.admin-category-actions {
+		grid-template-columns: 1fr;
+	}
 }

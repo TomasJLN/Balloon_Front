@@ -1,29 +1,27 @@
 import { useContext, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import { TokenContext } from "../../contexts/TokenContext";
+import { FaUser, FaChartBar, FaSignOutAlt, FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import "./navUser.css";
 
 const NavUser = ({ setUserMenu, usuario }) => {
   const [token, setToken] = useContext(TokenContext);
   const ref = useRef(null);
   const navigate = useNavigate();
-  const { role } = usuario;
+  const { role, name, surname, email, avatar } = usuario;
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
         e.stopPropagation();
-        setUserMenu((s) => !s);
+        setUserMenu(false);
       }
     };
     document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
+    return () => document.removeEventListener("click", handleClickOutside, true);
   }, [setUserMenu]);
 
   const handleLogout = () => {
-    sessionStorage.setItem("token", JSON.stringify(""));
     setToken("");
     sessionStorage.removeItem("selectDate");
     sessionStorage.removeItem("nTickets");
@@ -32,39 +30,55 @@ const NavUser = ({ setUserMenu, usuario }) => {
   };
 
   return (
-    <nav ref={ref} className="nav-user" onClick={(e) => setUserMenu((s) => !s)}>
-      <menu>
-        {token && role === "admin" && (
-          <li className="dropdown-btn">
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        )}
-        {token && (
-          <li className="dropdown-btn">
-            <Link to="/profile">Perfil</Link>
-          </li>
-        )}
+    <nav ref={ref} className="nav-user">
+      {token && (
+        <div className="nav-user-profile">
+          {avatar ? (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${avatar}`}
+              alt={name}
+              className="nav-user-avatar"
+            />
+          ) : (
+            <div className="nav-user-avatar nav-user-avatar--placeholder">
+              <FaUser />
+            </div>
+          )}
+          <div className="nav-user-info">
+            <span className="nav-user-name">{name} {surname}</span>
+            <span className="nav-user-email">{email}</span>
+          </div>
+        </div>
+      )}
 
-        {!token && (
-          <li className="dropdown-btn">
-            <Link to="/register">Registro</Link>
+      {token && <div className="nav-user-divider" />}
+
+      <menu>
+        {token && (role === "admin" || role === "viewer") && (
+          <li className="dropdown-btn" onClick={() => setUserMenu(false)}>
+            <Link to="/dashboard"><FaChartBar /> Dashboard</Link>
           </li>
         )}
         {token && (
-          <li className="dropdown-btn" onClick={handleLogout}>
-            <Link to="">Log out</Link>
+          <li className="dropdown-btn" onClick={() => setUserMenu(false)}>
+            <Link to="/profile"><FaUser /> Perfil</Link>
           </li>
         )}
         {!token && (
-          <li className="dropdown-btn">
-            <Link to="/account">Log in</Link>
+          <li className="dropdown-btn" onClick={() => setUserMenu(false)}>
+            <Link to="/account"><FaSignInAlt /> Iniciar sesión</Link>
           </li>
         )}
-        {/* {!token && (
-          <li>
-            <Link to="/recovery">Recuperar contraseña</Link>
+        {!token && (
+          <li className="dropdown-btn" onClick={() => setUserMenu(false)}>
+            <Link to="/register"><FaUserPlus /> Registrarse</Link>
           </li>
-        )} */}
+        )}
+        {token && (
+          <li className="dropdown-btn dropdown-btn--logout" onClick={handleLogout}>
+            <FaSignOutAlt /> Cerrar sesión
+          </li>
+        )}
       </menu>
     </nav>
   );

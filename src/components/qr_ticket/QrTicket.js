@@ -1,9 +1,9 @@
 import { downloadImage } from "../../helpers/downloadImage";
+import { FaDownload } from "react-icons/fa";
 import "./qr-ticket.css";
-export const QrTicket = ({ q, i }) => {
+export const QrTicket = ({ q }) => {
 	return q.qrPicture ? (
 		<figure className="qrFigure">
-			<figcaption>Ref.: {q.qrPicture.split(".")[0]}</figcaption>
 			<img
 				src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${q.qrPicture}`}
 				alt={q.qrPicture}
@@ -19,12 +19,23 @@ export const QrTicket = ({ q, i }) => {
 					document.body.removeChild(a);
 				}}
 			/>
+			<figcaption>
+				<span>Ref. {q.qrPicture.split(".")[0]}</span>
+				<strong>
+					<FaDownload /> Descargar
+				</strong>
+			</figcaption>
 		</figure>
 	) : (
-		<img
-			src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-			alt={q?.qrPicture}
-			className="qr-picture"
-		/>
+		<figure className="qrFigure">
+			<img
+				src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+				alt={q?.qrPicture}
+				className="qr-picture"
+			/>
+			<figcaption>
+				<span>QR no disponible</span>
+			</figcaption>
+		</figure>
 	);
 };

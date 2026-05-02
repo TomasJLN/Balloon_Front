@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import './btn-dashboard.css';
 
 export const BtnDashboard = ({ title, route }) => {

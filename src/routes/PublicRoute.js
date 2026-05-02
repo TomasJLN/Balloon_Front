@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import { Route, Routes } from "react-router";
 import { ErrorPage } from "../components/errorPage/ErrorPage";
 import Booking from "../pages/booking/Booking";
 import Login from "../pages/login/Login";
@@ -7,7 +7,6 @@ import Register from "../components/register/Register";
 import ShowResults from "../components/showResults/ShowResults";
 import ContactForm from "../forms/Contact_form/ContactForm";
 import { UserRoute } from "./UserRoute";
-import { UserContext } from "../contexts/UserContext";
 import Experience from "../pages/experience/Experience";
 import RecoveryPassword from "../components/recoveryPassword/RecoveryPassword";
 import About from "../pages/About/About.js";
@@ -16,16 +15,7 @@ import Conditions from "../pages/conditions/Conditions";
 import Footer from "../components/footer/Footer";
 import Filter from "../components/filter/Filter";
 
-export const PublicRoute = ({
-	toSearchTit,
-	setToSearchTit,
-	toSearch,
-	setToSearch,
-	searchCat,
-	setSearchCat,
-	setIsFilterOn,
-	isFilterOn,
-}) => {
+export const PublicRoute = () => {
 	const [isVisible, setIsVisible] = useState(false);
 
 	return (
@@ -91,26 +81,8 @@ export const PublicRoute = ({
 					path="allFilter"
 					element={
 						<>
-							<Filter
-								toSearchTit={toSearchTit}
-								setToSearchTit={setToSearchTit}
-								toSearch={toSearch}
-								setToSearch={setToSearch}
-								searchCat={searchCat}
-								setSearchCat={setSearchCat}
-								setIsFilterOn={setIsFilterOn}
-								isFilterOn={isFilterOn}
-							/>
-							<ShowResults
-								toSearchTit={toSearchTit}
-								setToSearchTit={setToSearchTit}
-								searchCat={searchCat}
-								setSearchCat={setSearchCat}
-								isVisible={isVisible}
-								setIsVisible={setIsVisible}
-								toSearch={toSearch}
-								setToSearch={setToSearch}
-							/>
+							<Filter />
+							<ShowResults />
 							<Footer />
 						</>
 					}
@@ -137,24 +109,8 @@ export const PublicRoute = ({
 					path=""
 					element={
 						<>
-							<Filter
-								toSearchTit={toSearchTit}
-								setToSearchTit={setToSearchTit}
-								toSearch={toSearch}
-								setToSearch={setToSearch}
-								searchCat={searchCat}
-								setSearchCat={setSearchCat}
-								setIsFilterOn={setIsFilterOn}
-								isFilterOn={isFilterOn}
-							/>
-							<ShowResults
-								toSearchTit={toSearchTit}
-								setToSearchTit={setToSearchTit}
-								searchCat={searchCat}
-								setSearchCat={setSearchCat}
-								isVisible={isVisible}
-								setIsVisible={setIsVisible}
-							/>
+							<Filter />
+							<ShowResults />
 							<Footer />
 						</>
 					}

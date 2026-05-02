@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import fetcher from "../../helpers/fetcher";
+import { FaLock, FaPaperPlane } from "react-icons/fa";
+import "../register/register.css";
 import "./recovery-password.css";
 
 const RecoveryPassword = () => {
@@ -28,7 +30,7 @@ const RecoveryPassword = () => {
 			setResult("");
 			setError(null);
 		};
-	}, [result]);
+	}, [result, navigate]);
 
 	useEffect(() => {
 		error && toast.error(error);
@@ -37,38 +39,40 @@ const RecoveryPassword = () => {
 	}, [error]);
 
 	return (
-		<div className="form-wrapper">
-			<form className="generalForm" onSubmit={handleSubmit}>
-				<h1 className="generalTítulo1">Recuperar contraseña</h1>
-				<label className="generalLabel" htmlFor="recoveryCode">
-					Código de recuperación:
+		<section className="auth-page">
+			<form className="auth-card" onSubmit={handleSubmit}>
+				<p className="auth-kicker">Acceso a cuenta</p>
+				<h1>Recuperar contraseña</h1>
+				<label className="auth-field" htmlFor="recoveryCode">
+					<span>Código de recuperación</span>
+					<input
+						type="text"
+						id="recoveryCode"
+						value={recoveryCode}
+						onFocus={() => setRecoveryCode("")}
+						onChange={(e) => setRecoveryCode(e.target.value)}
+						autoComplete="off"
+					/>
 				</label>
-				<input
-					className="generalInput"
-					type="text"
-					id="recoveryCode"
-					value={recoveryCode}
-					onFocus={() => setRecoveryCode("")}
-					onChange={(e) => setRecoveryCode(e.target.value)}
-					autoComplete="off"
-				/>
-				<label className="generalLabel" htmlFor="newPassword">
-					Nueva Contraseña:
+				<label className="auth-field" htmlFor="newPassword">
+					<span>
+						<FaLock /> Nueva contraseña
+					</span>
+					<input
+						type="password"
+						id="newPassword"
+						value={newPassword}
+						onFocus={() => setNewPassword("")}
+						onChange={(e) => setNewPassword(e.target.value)}
+						autoComplete="off"
+					/>
 				</label>
-				<input
-					className="generalInput"
-					type="password"
-					id="newPassword"
-					value={newPassword}
-					onFocus={() => setNewPassword("")}
-					onChange={(e) => setNewPassword(e.target.value)}
-					autoComplete="off"
-				/>
-				<button type="submit" onClick={handleSubmit} className="generalButton">
+				<button type="submit" className="auth-submit" disabled={loading}>
+					<FaPaperPlane />
 					Enviar
 				</button>
 			</form>
-		</div>
+		</section>
 	);
 };
 

@@ -5,7 +5,7 @@ export const fileUpload = async (url, key, setError, file, token) => {
     const resp = await fetch(url, {
       method: 'PUT',
       headers: {
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: formData,
     });
