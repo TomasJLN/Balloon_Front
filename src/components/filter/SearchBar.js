@@ -1,10 +1,9 @@
-import { Field } from "formik";
 import { FaSearch } from "react-icons/fa";
 
 const SearchBar = ({ toSearch, setToSearch }) => {
 	return (
 		<div className="searchBar">
-			<Field
+			<input
 				className="input-search change"
 				type="text"
 				name="searchText"

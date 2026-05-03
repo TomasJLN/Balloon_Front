@@ -1,4 +1,3 @@
-import { Formik, Form, Field } from "formik";
 import { useContext, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import { FilterContext } from "../../contexts/FilterContext";
@@ -66,64 +65,57 @@ const Filter = () => {
   }, [order, searchCat, searchLoc, searchPrice, searchDate, rating]);
 
   return (
-    <>
-      <Formik>
-        {() => (
-          <Form onSubmit={handleSubmit}>
-            <div className="hero">
-              <div id="principal">
-                <h1>Encuentra la experiencia que estabas buscando</h1>
-              </div>
+    <form onSubmit={handleSubmit}>
+      <div className="hero">
+        <div id="principal">
+          <h1>Encuentra la experiencia que estabas buscando</h1>
+        </div>
 
-              <div className="searchContainer">
-                <SearchBar toSearch={toSearch} setToSearch={setToSearch} />
+        <div className="searchContainer">
+          <SearchBar toSearch={toSearch} setToSearch={setToSearch} />
 
-                <DateSearch
-                  datePickerRef={datePickerRef}
-                  searchDate={searchDate}
-                  setSearchDate={setSearchDate}
-                />
-              </div>
-            </div>
-            <div ref={filterResults}></div>
-            {isFilterOn && (
-              <div className="filterContainer slideInDownfade_in">
-                <div className="filter-pills-row">
-                  <span className="filter-label"><FaSlidersH /> Filtrar:</span>
+          <DateSearch
+            datePickerRef={datePickerRef}
+            searchDate={searchDate}
+            setSearchDate={setSearchDate}
+          />
+        </div>
+      </div>
+      <div ref={filterResults}></div>
+      {isFilterOn && (
+        <div className="filterContainer slideInDownfade_in">
+          <div className="filter-pills-row">
+            <span className="filter-label"><FaSlidersH /> Filtrar:</span>
 
-                  <CategorySearch searchCat={searchCat} setSearchCat={setSearchCat} />
-                  <LocationSearch searchLoc={searchLoc} setSearchLoc={setSearchLoc} />
-                  <PriceSearch searchPrice={searchPrice} setSearchPrice={setSearchPrice} />
-                  <RatingSearch rating={rating} setRating={setRating} />
+            <CategorySearch searchCat={searchCat} setSearchCat={setSearchCat} />
+            <LocationSearch searchLoc={searchLoc} setSearchLoc={setSearchLoc} />
+            <PriceSearch searchPrice={searchPrice} setSearchPrice={setSearchPrice} />
+            <RatingSearch rating={rating} setRating={setRating} />
 
-                  <button
-                    className="filter-clear-btn"
-                    onClick={(e) => { e.preventDefault(); resetFilter(); setToSearch(""); }}
-                  >
-                    <FaTimes /> Limpiar
-                  </button>
-                </div>
-              </div>
-            )}
-            <div className="order-by">
-              <FaSort className="order-icon" />
-              <label htmlFor="order-select">Ordenar por</label>
-              <Field
-                id="order-select"
-                className="order-select"
-                value={order}
-                onChange={(e) => setOrder(e.target.value)}
-                name="locationfilter"
-                as="select"
-              >
-                <option value="ASC">Más baratos primero</option>
-                <option value="DESC">Más caros primero</option>
-              </Field>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </>
+            <button
+              className="filter-clear-btn"
+              onClick={(e) => { e.preventDefault(); resetFilter(); setToSearch(""); }}
+            >
+              <FaTimes /> Limpiar
+            </button>
+          </div>
+        </div>
+      )}
+      <div className="order-by">
+        <FaSort className="order-icon" />
+        <label htmlFor="order-select">Ordenar por</label>
+        <select
+          id="order-select"
+          className="order-select"
+          value={order}
+          onChange={(e) => setOrder(e.target.value)}
+          name="locationfilter"
+        >
+          <option value="ASC">Más baratos primero</option>
+          <option value="DESC">Más caros primero</option>
+        </select>
+      </div>
+    </form>
   );
 };
 
