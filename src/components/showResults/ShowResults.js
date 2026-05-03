@@ -77,8 +77,10 @@ const ShowResults = () => {
 	return (
 		<>
 			{loading ? (
-				<div className="loading">
-					<h1>Cargando...</h1>
+				<div className="card-deck" aria-busy="true" aria-label="Cargando experiencias">
+					{Array.from({ length: expByPage }).map((_, i) => (
+						<div key={i} className="card card-skeleton" aria-hidden="true" />
+					))}
 				</div>
 			) : (
 				<>
