@@ -151,7 +151,7 @@ export const Dashboard = () => {
   return hasAccess ? (
     <div className="dashboard-page">
       <div className="dashboard-container">
-        <h1 id="create-title">Dashboard</h1>
+        <h1 className="dashboard-title">Dashboard</h1>
 
         <div className="dash-nav">
           {actions.map((act) => (

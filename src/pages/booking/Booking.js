@@ -63,6 +63,8 @@ const Booking = () => {
 
   const occupied = places[0]?.occupied ?? 0;
   const maxFreePlaces = occupied > 0 ? totalPlaces - occupied : totalPlaces;
+  const experiencePhoto = photo || 'NA.png';
+  const isPlaceholderPhoto = !photo;
 
   useEffect(() => {
     setDisable(true);
@@ -176,33 +178,16 @@ const Booking = () => {
           <div className="experience-data">
             <div className="initial-wrap experience-overview">
               <div className="photo-thumbnail">
-                {photo ? (
-                  <>
-                    <img
-                      src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
-                      alt={title}
-                      className="exp-pic"
-                    />
-                    <img
-                      src={'/imgs/soldout.png'}
-                      alt={title}
-                      className={`${soldOut ? 'sold-out' : 'available-places'}`}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <img
-                      src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
-                      alt={title}
-                      className="exp-pic"
-                    />
-                    <img
-                      src={'/imgs/soldout.png'}
-                      alt={title}
-                      className={`${soldOut ? 'sold-out' : 'available-places'}`}
-                    />
-                  </>
-                )}
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${experiencePhoto}`}
+                  alt={title}
+                  className={`exp-pic${isPlaceholderPhoto ? ' exp-pic-placeholder' : ''}`}
+                />
+                <img
+                  src={'/imgs/soldout.png'}
+                  alt={title}
+                  className={`${soldOut ? 'sold-out' : 'available-places'}`}
+                />
               </div>
 
               <div className="title-description">
@@ -216,8 +201,16 @@ const Booking = () => {
                   </span>
                   <span>
                     <FaCalendarAlt aria-hidden="true" />
-                    {formatDate(startDate, 'dd-MM-yyyy')} -{' '}
-                    {formatDate(endDate, 'dd-MM-yyyy')}
+                    <span className="date-range">
+                      <span>
+                        <small>Desde</small>
+                        {formatDate(startDate, 'dd-MM-yyyy')}
+                      </span>
+                      <span>
+                        <small>Hasta</small>
+                        {formatDate(endDate, 'dd-MM-yyyy')}
+                      </span>
+                    </span>
                   </span>
                   <span>
                     <FaUsers aria-hidden="true" />
@@ -233,9 +226,15 @@ const Booking = () => {
                     </a>
                   </li>
                   <li>
-                    <strong>Disponibilidad:</strong> Desde{' '}
-                    <strong>{formatDate(startDate, 'dd-MM-yyyy')}</strong> hasta{' '}
-                    <strong>{formatDate(endDate, 'dd-MM-yyyy')}</strong>
+                    <strong>Disponibilidad:</strong>
+                    <span className="availability-dates">
+                      <span>
+                        Desde <strong>{formatDate(startDate, 'dd-MM-yyyy')}</strong>
+                      </span>
+                      <span>
+                        Hasta <strong>{formatDate(endDate, 'dd-MM-yyyy')}</strong>
+                      </span>
+                    </span>
                   </li>
 
                   <li>

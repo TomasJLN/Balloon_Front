@@ -514,6 +514,12 @@
   box-shadow: none;
 }
 
+.booking-page .exp-pic-placeholder {
+  object-fit: contain;
+  padding: 48px;
+  background: white;
+}
+
 .booking-page .title-description {
   align-items: flex-start;
   justify-content: center;
@@ -563,7 +569,7 @@
   min-height: 76px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 12px;
@@ -574,6 +580,27 @@
   font-size: var(--text-sm);
   font-weight: 700;
   line-height: 1.25;
+  text-align: center;
+}
+
+.booking-page .date-range {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+.booking-page .date-range span,
+.booking-page .availability-dates span {
+  display: block;
+}
+
+.booking-page .date-range small {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .booking-page .experience-highlights svg {
@@ -594,6 +621,12 @@
   padding: 12px;
   border: 1px solid #edf2f7;
   background: white;
+}
+
+.booking-page .availability-dates {
+  display: grid;
+  gap: 4px;
+  margin-top: 4px;
 }
 
 .booking-page .precio-unidad {
@@ -692,6 +725,10 @@
     max-height: 420px;
   }
 
+  .booking-page .exp-pic-placeholder {
+    padding: 36px;
+  }
+
   .booking-page .booking-form {
     grid-template-columns: 1fr 1fr;
   }
@@ -721,6 +758,10 @@
 
   .booking-page .title-description h2 {
     font-size: 2rem;
+  }
+
+  .booking-page .exp-pic-placeholder {
+    padding: 28px;
   }
 
   .booking-page #select-date,
