@@ -5,7 +5,7 @@ import { Rating } from "react-simple-star-rating";
 import { MdLocationPin } from "react-icons/md";
 import "./experience-card.css";
 
-export const ExperienceCard = ({ exp, priority = false }) => {
+export const ExperienceCard = ({ exp, priority = false, aboveFold = false }) => {
 	const coords = exp.coords.replace(/\s+/g, "");
 	const url = `https://www.google.es/maps/@${coords},19z`;
 	const photo = exp.photo || "NA.png";
@@ -40,7 +40,7 @@ export const ExperienceCard = ({ exp, priority = false }) => {
 				className="card-thumbnail"
 				width="340"
 				height="200"
-				loading={priority ? "eager" : "lazy"}
+				loading={priority || aboveFold ? "eager" : "lazy"}
 				fetchpriority={priority ? "high" : "auto"}
 				decoding={priority ? "sync" : "async"}
 				onError={() => {
