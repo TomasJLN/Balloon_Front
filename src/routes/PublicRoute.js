@@ -21,7 +21,7 @@ const Register = lazy(() => import("../components/register/Register"));
 
 export const PublicRoute = () => {
 	return (
-		<div>
+		<main>
 			<Suspense fallback={<div className="loading"><h1>Cargando...</h1></div>}>
 				<Routes>
 					<Route
@@ -130,6 +130,6 @@ export const PublicRoute = () => {
 					<Route path="*" element={<UserRoute />} />
 				</Routes>
 			</Suspense>
-		</div>
+		</main>
 	);
 };
