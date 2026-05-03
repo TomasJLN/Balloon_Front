@@ -9,6 +9,34 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Proyecto Experiencias Diferentes - JSB05RT" />
     <title>Balloon App</title>
+    <script>
+      (function () {
+        try {
+          var base = '%VITE_BACKEND_URL%';
+          fetch(base + '/allFilter?experience=&active=1&featured=1')
+            .then(function (r) { return r.json(); })
+            .then(function (json) {
+              var list = json && json.data;
+              if (!Array.isArray(list) || !list.length) return;
+              var photo = list[0].photo;
+              if (!photo || photo === 'NA.png') return;
+              var p = encodeURIComponent(photo);
+              var link = document.createElement('link');
+              link.rel = 'preload';
+              link.as = 'image';
+              link.href = base + '/uploads/thumbs/' + p;
+              link.setAttribute('imagesrcset',
+                base + '/uploads/thumbs/sm/' + p + ' 340w, ' +
+                base + '/uploads/thumbs/' + p + ' 420w'
+              );
+              link.setAttribute('imagesizes', '(max-width: 767px) 340px, 420px');
+              link.setAttribute('fetchpriority', 'high');
+              document.head.appendChild(link);
+            })
+            .catch(function () {});
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
