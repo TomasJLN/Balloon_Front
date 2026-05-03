@@ -1,28 +1,3 @@
-@font-face {
-  font-family: 'balloon';
-  src:
-    local('balloon'),
-    url(./fonts/balloon.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'babyballoon';
-  src:
-    local('babyballoon'),
-    url(./fonts/babyballoon.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'balloonparty';
-  src:
-    local('balloonparty'),
-    url(./fonts/balloonparty.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: 'buffalo';
-  src:
-    local('buffalo'),
-    url(./fonts/buffalo.otf) format('opentype');
-}
 /* VARIABLES */
 :root {
   --primary-color-soft: 246, 246, 248;
@@ -32,7 +7,6 @@
   --primary-font-color: 255, 255, 255;
   --secondary-font-color: 0, 0, 0;
   --error-font-color: 255, 217, 0;
-  --primary-font: 'babyballoon';
   --main-color: 63, 176, 172;
   --second-color: 71, 139, 214, 1;
   --hover-color: 23, 62, 67;
@@ -44,7 +18,6 @@
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
   --font-heading: 'Montserrat', var(--font-body);
-  --font-display: 'babyballoon', var(--font-heading);
   --text-xs: 0.75rem; /* 12px */
   --text-sm: 0.875rem; /* 14px */
   --text-base: 1rem; /* 16px - base */
