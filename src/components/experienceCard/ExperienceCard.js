@@ -10,6 +10,7 @@ export const ExperienceCard = ({ exp, priority = false }) => {
 	const url = `https://www.google.es/maps/@${coords},19z`;
 	const photo = exp.photo || "NA.png";
 	const thumbnailUrl = `${process.env.REACT_APP_BACKEND_URL}/uploads/thumbs/${encodeURIComponent(photo)}`;
+	const thumbnailSmUrl = `${process.env.REACT_APP_BACKEND_URL}/uploads/thumbs/sm/${encodeURIComponent(photo)}`;
 	const originalUrl = `${process.env.REACT_APP_BACKEND_URL}/uploads/${encodeURIComponent(photo)}`;
 	const navigate = useNavigate();
 	const { reviews, error, loading } = useGetReviews(exp.id);
@@ -33,6 +34,8 @@ export const ExperienceCard = ({ exp, priority = false }) => {
 		>
 			<img
 				src={imageUrl}
+				srcSet={`${thumbnailSmUrl} 340w, ${thumbnailUrl} 420w`}
+				sizes="(max-width: 767px) 340px, 420px"
 				alt={exp.title}
 				className="card-thumbnail"
 				width="340"
