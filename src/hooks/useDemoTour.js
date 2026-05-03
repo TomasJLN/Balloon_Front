@@ -22,6 +22,7 @@ export const useDemoTour = () => {
   }, [location.pathname]);
 
   return useCallback(async () => {
+    await import('driver.js/dist/driver.css');
     const { driver } = await import('driver.js');
 
     const loginAndNavigate = async () => {
