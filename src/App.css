@@ -624,17 +624,6 @@ header {
   }
 }
 
-/* MUI Slider colors */
-.MuiSlider-thumb {
-  color: rgb(var(--secondary-color-hard));
-}
-.MuiSlider-rail {
-  color: rgb(var(--secondary-color-hard));
-}
-.MuiSlider-track {
-  color: rgb(var(--secondary-color-hard));
-}
-
 input[type='checkbox'] {
   accent-color: rgb(var(--main-color));
   color: white;
