@@ -15,8 +15,8 @@ const SearchBar = ({ toSearch, setToSearch }) => {
 				autoComplete="off"
 				placeholder="Buscar...."
 			/>
-			<button className="button-search">
-				<FaSearch />
+			<button className="button-search" aria-label="Buscar">
+				<FaSearch aria-hidden="true" />
 			</button>
 		</div>
 	);
