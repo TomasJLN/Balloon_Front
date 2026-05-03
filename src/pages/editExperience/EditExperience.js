@@ -75,7 +75,7 @@ export const EditExperience = () => {
       });
       setPhotoExp(
         experience?.photo &&
-          `${process.env.REACT_APP_BACKEND_URL}/uploads/${experience.photo}`
+          `${import.meta.env.VITE_BACKEND_URL}/uploads/${experience.photo}`
           ? experience.photo
           : null
       );
@@ -112,7 +112,7 @@ export const EditExperience = () => {
     setLoading(true);
     setError(null);
     const file = e.target.files[0];
-    const url = `${process.env.REACT_APP_BACKEND_URL}/experience/${id}/photo`;
+    const url = `${import.meta.env.VITE_BACKEND_URL}/experience/${id}/photo`;
     const key = "photo";
     if (file) {
       const resp = await fileUpload(url, key, setError, file, token);
@@ -167,12 +167,12 @@ export const EditExperience = () => {
             <figure className="edit-experience-photo" onClick={isViewer ? undefined : handlePictureClick}>
               {photoExp ? (
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${photoExp}`}
                   alt={expData.title}
                 />
               ) : (
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/NA.png`}
                   alt={expData.title}
                 />
               )}

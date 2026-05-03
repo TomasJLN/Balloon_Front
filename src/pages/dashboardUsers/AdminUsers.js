@@ -119,7 +119,7 @@ export const AdminUsers = () => {
                       {u.avatar ? (
                         <img
                           className="user-avatar"
-                          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${u.avatar}`}
+                          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${u.avatar}`}
                           alt={u.name}
                         />
                       ) : (

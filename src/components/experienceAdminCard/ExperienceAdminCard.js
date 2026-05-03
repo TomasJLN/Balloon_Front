@@ -54,7 +54,7 @@ export const ExperienceAdminCard = ({ exp, setToSearch }) => {
 		>
 			<figure className="admin-experience-media">
 				<img
-					src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo || "NA.png"}`}
+					src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${exp.photo || "NA.png"}`}
 					alt={exp.title}
 					className="admin-experience-image"
 				/>

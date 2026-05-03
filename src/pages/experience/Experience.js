@@ -58,13 +58,13 @@ const Experience = () => {
 					<figure>
 						{photo ? (
 							<img
-								src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
+								src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${photo}`}
 								alt={title}
 								className="exp-pic"
 							/>
 						) : (
 							<img
-								src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+								src={`${import.meta.env.VITE_BACKEND_URL}/uploads/NA.png`}
 								alt={title}
 								className="exp-pic"
 							/>

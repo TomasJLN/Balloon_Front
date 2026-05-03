@@ -50,13 +50,13 @@ function LocationMarker({ splittedCoords, url, title, photo }) {
 				</a>
 				{photo ? (
 					<img
-						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photo}`}
+						src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${photo}`}
 						alt={title}
 						className="card-thumbnail-map"
 					/>
 				) : (
 					<img
-						src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+						src={`${import.meta.env.VITE_BACKEND_URL}/uploads/NA.png`}
 						alt={title}
 						className="card-thumbnail-map"
 					/>

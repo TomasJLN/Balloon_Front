@@ -46,7 +46,7 @@ export const CategoryAdminCard = ({ cat, setToSearch }) => {
 		>
 			<figure className="admin-category-media">
 				<img
-					src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo || "NA.png"}`}
+					src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${cat.photo || "NA.png"}`}
 					alt={cat.title}
 					className="admin-category-image"
 				/>

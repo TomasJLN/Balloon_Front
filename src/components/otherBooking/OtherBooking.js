@@ -18,7 +18,7 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
     <article className="booking-card fade_in">
       <figure className="booking-card-media" onClick={() => navigate(bookingDetailPath)}>
         <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${oq.photo || "NA.png"}`}
+          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${oq.photo || "NA.png"}`}
           alt={oq?.title}
           className="booking-card-image"
         />

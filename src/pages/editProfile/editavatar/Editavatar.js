@@ -24,7 +24,7 @@ const Editavatar = () => {
     setError(null);
     e.preventDefault();
     const file = e.target.files[0];
-    const url = `${process.env.REACT_APP_BACKEND_URL}/user/avatar`;
+    const url = `${import.meta.env.VITE_BACKEND_URL}/user/avatar`;
     const key = "avatar";
     if (file) {
       const resp = await fileUpload(url, key, setError, file, token);
@@ -56,7 +56,7 @@ const Editavatar = () => {
           <>
             <button type="button" className="profile-avatar-button" onClick={handlePictureClick}>
               <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${imagenAvatar}`}
                 alt={usuario.avatar || usuario.name}
               />
               <span>

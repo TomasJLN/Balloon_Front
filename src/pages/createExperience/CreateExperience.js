@@ -79,7 +79,7 @@ export const CreateExperience = () => {
     setError(null);
     if (getID) {
       const file = e.target.files[0];
-      const url = `${process.env.REACT_APP_BACKEND_URL}/experience/${getID}/photo`;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/experience/${getID}/photo`;
       const key = "photo";
       if (file) {
         const resp = await fileUpload(url, key, setError, file, token);
@@ -136,7 +136,7 @@ export const CreateExperience = () => {
               onClick={handlePictureClick}
             >
               <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoExp || "NA.png"}`}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${photoExp || "NA.png"}`}
                 alt={expData.title || "Nueva experiencia"}
               />
               <figcaption>

@@ -9,9 +9,9 @@ export const ExperienceCard = ({ exp, priority = false }) => {
 	const coords = exp.coords.replace(/\s+/g, "");
 	const url = `https://www.google.es/maps/@${coords},19z`;
 	const photo = exp.photo || "NA.png";
-	const thumbnailUrl = `${process.env.REACT_APP_BACKEND_URL}/uploads/thumbs/${encodeURIComponent(photo)}`;
-	const thumbnailSmUrl = `${process.env.REACT_APP_BACKEND_URL}/uploads/thumbs/sm/${encodeURIComponent(photo)}`;
-	const originalUrl = `${process.env.REACT_APP_BACKEND_URL}/uploads/${encodeURIComponent(photo)}`;
+	const thumbnailUrl = `${import.meta.env.VITE_BACKEND_URL}/uploads/thumbs/${encodeURIComponent(photo)}`;
+	const thumbnailSmUrl = `${import.meta.env.VITE_BACKEND_URL}/uploads/thumbs/sm/${encodeURIComponent(photo)}`;
+	const originalUrl = `${import.meta.env.VITE_BACKEND_URL}/uploads/${encodeURIComponent(photo)}`;
 	const navigate = useNavigate();
 	const { reviews, error, loading } = useGetReviews(exp.id);
 	const [avgRatin, setAvgRatin] = useState(0);

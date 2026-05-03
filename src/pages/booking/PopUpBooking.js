@@ -12,7 +12,7 @@ const PopUpBooking = ({ bookingInfo, setPopUp, handleNewBooking }) => {
           {bookingInfo.title}, {bookingInfo.location}.
         </h3>
         <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${bookingInfo.photo}`}
+          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${bookingInfo.photo}`}
           alt={bookingInfo.title}
           className="exp-pic-pop"
         />

@@ -35,7 +35,7 @@ const NavUser = ({ setUserMenu, usuario }) => {
         <div className="nav-user-profile">
           {avatar ? (
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${avatar}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${avatar}`}
               alt={name}
               className="nav-user-avatar"
             />

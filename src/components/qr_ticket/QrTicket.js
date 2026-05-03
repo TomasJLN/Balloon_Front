@@ -5,13 +5,13 @@ export const QrTicket = ({ q }) => {
 	return q.qrPicture ? (
 		<figure className="qrFigure">
 			<img
-				src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${q.qrPicture}`}
+				src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${q.qrPicture}`}
 				alt={q.qrPicture}
 				className="qr-picture"
 				onClick={async (e) => {
 					const a = document.createElement("a");
 					a.href = await downloadImage(
-						`${process.env.REACT_APP_BACKEND_URL}/uploads/${q.qrPicture}`
+						`${import.meta.env.VITE_BACKEND_URL}/uploads/${q.qrPicture}`
 					);
 					a.download = `${q.qrPicture}`;
 					document.body.appendChild(a);
@@ -29,7 +29,7 @@ export const QrTicket = ({ q }) => {
 	) : (
 		<figure className="qrFigure">
 			<img
-				src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+				src={`${import.meta.env.VITE_BACKEND_URL}/uploads/NA.png`}
 				alt={q?.qrPicture}
 				className="qr-picture"
 			/>

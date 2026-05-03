@@ -51,7 +51,7 @@ export const CreateCategory = () => {
     setError(null);
     if (getID) {
       const file = e.target.files[0];
-      const url = `${process.env.REACT_APP_BACKEND_URL}/category/${getID}/photo`;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/category/${getID}/photo`;
       const key = "photo";
       if (file) {
         const resp = await fileUpload(url, key, setError, file, token);
@@ -113,7 +113,7 @@ export const CreateCategory = () => {
                 onClick={getID ? handlePictureClick : undefined}
               >
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoCat || "NA.png"}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${photoCat || "NA.png"}`}
                   alt={catData.title || "Nueva categoría"}
                 />
                 <figcaption>

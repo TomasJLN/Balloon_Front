@@ -47,7 +47,7 @@ export const BookingDetails = () => {
         <header className="booking-details-hero">
           <figure>
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo || "NA.png"}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${exDetails?.photo || "NA.png"}`}
               alt={exDetails?.title || "Reserva"}
             />
           </figure>

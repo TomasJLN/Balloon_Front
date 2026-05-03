@@ -90,7 +90,7 @@ export const RateExperience = () => {
         <section id="rate-exp" className="rate-experience-card">
           <figure className="rate-experience-media">
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exDetails?.photo || "NA.png"}`}
+              src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${exDetails?.photo || "NA.png"}`}
               alt={exDetails?.title}
             />
           </figure>

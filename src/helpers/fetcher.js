@@ -8,7 +8,7 @@ const fetcher = async (setState, setError, setLoading, path, args) => {
   try {
     setLoading(true);
     const resp = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/${path}`,
+      `${import.meta.env.VITE_BACKEND_URL}/${path}`,
       normalizeAuth(args)
     );
     const { status, message, data } = await resp.json();
@@ -38,7 +38,7 @@ export const miniFetcher = async (path, args) => {
   let res = [];
   try {
     const resp = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/${path}`,
+      `${import.meta.env.VITE_BACKEND_URL}/${path}`,
       normalizeAuth(args)
     );
     const { status, message, data } = await resp.json();

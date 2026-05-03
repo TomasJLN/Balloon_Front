@@ -31,7 +31,7 @@ export const EditCategory = () => {
       setDescriptionCategory(cat.description);
       setActiveCat(cat.active === 1 ? true : false);
       setPhotoCat(
-        cat.photo && `${process.env.REACT_APP_BACKEND_URL}/uploads/${cat.photo}`
+        cat.photo && `${import.meta.env.VITE_BACKEND_URL}/uploads/${cat.photo}`
           ? cat.photo
           : null
       );
@@ -62,7 +62,7 @@ export const EditCategory = () => {
     setLoading(true);
     setError(null);
     const file = e.target.files[0];
-    const url = `${process.env.REACT_APP_BACKEND_URL}/category/${id}/photo`;
+    const url = `${import.meta.env.VITE_BACKEND_URL}/category/${id}/photo`;
     const key = "photo";
     if (file) {
       const resp = await fileUpload(url, key, setError, file, token);
@@ -119,7 +119,7 @@ export const EditCategory = () => {
             <aside className="edit-category-side">
               <figure className="edit-category-photo" onClick={isViewer ? undefined : handlePictureClick}>
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${photoCat || "NA.png"}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${photoCat || "NA.png"}`}
                   alt={cat.title}
                 />
                 {!isViewer && (

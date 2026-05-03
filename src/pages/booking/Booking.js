@@ -179,7 +179,7 @@ const Booking = () => {
             <div className="initial-wrap experience-overview">
               <div className="photo-thumbnail">
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${experiencePhoto}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${experiencePhoto}`}
                   alt={title}
                   className={`exp-pic${isPlaceholderPhoto ? ' exp-pic-placeholder' : ''}`}
                 />

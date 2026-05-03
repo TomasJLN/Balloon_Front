@@ -14,7 +14,7 @@ export const Avatar = ({ usuario, setUserMenu }) => {
     <div onClick={handleClick}>
       {usuario.email ? (
         <img
-          src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${imagenAvatar}`}
+          src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${imagenAvatar}`}
           alt={usuario.name}
           className="user-avatar"
         />

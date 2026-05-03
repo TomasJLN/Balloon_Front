@@ -75,13 +75,13 @@ export const CarouselSimilar = ({ id, reviews, avgRatin, idCategory = 1 }) => {
 						>
 							{exp.photo ? (
 								<img
-									src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${exp.photo}`}
+									src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${exp.photo}`}
 									alt={exp.title}
 									className="card-thumbnail"
 								/>
 							) : (
 								<img
-									src={`${process.env.REACT_APP_BACKEND_URL}/uploads/NA.png`}
+									src={`${import.meta.env.VITE_BACKEND_URL}/uploads/NA.png`}
 									alt={exp.title}
 									className="card-thumbnail"
 								/>
