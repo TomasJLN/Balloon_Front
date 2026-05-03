@@ -31,17 +31,19 @@ El resultado es una reconstrucción completa del frontend donde el trabajo human
 
 | Área | Tecnología |
 | --- | --- |
-| Frontend | React 18, Create React App |
+| Frontend | React 18 |
 | Routing | React Router 7 |
 | Estado global | React Context |
 | Formularios | Formik, Yup |
-| UI | CSS plano, MUI, React Icons |
+| UI | CSS con design tokens, MUI, React Icons |
 | Fechas | date-fns, react-multi-date-picker |
 | Mapas | Leaflet, React Leaflet |
 | Carruseles | Swiper |
+| Gráficas | Recharts |
+| Tablas | react-table |
 | Notificaciones | React Toastify |
 | Tours guiados | driver.js |
-| Build tooling | react-scripts |
+| Build tooling | Vite 5 |
 
 ## Arquitectura
 
@@ -58,7 +60,9 @@ El estado compartido vive en tres contextos:
 - `UserContext`: obtiene el usuario actual desde `GET /user`.
 - `FilterContext`: coordina búsquedas, filtros y estado de navegación entre header, menús, filtro y resultados.
 
-Todas las peticiones al backend pasan por helpers centralizados en `src/helpers/fetcher.js`, construyendo las URLs con `REACT_APP_BACKEND_URL`.
+Todas las peticiones al backend pasan por helpers centralizados en `src/helpers/fetcher.js`, construyendo las URLs con `VITE_BACKEND_URL`.
+
+Las páginas se cargan de forma diferida con `React.lazy` y `Suspense`, lo que reduce el bundle inicial y mejora los tiempos de carga.
 
 ## Estructura principal
 
@@ -93,7 +97,7 @@ cp .env_example .env
 Configura la URL del backend:
 
 ```env
-REACT_APP_BACKEND_URL=http://localhost:4000
+VITE_BACKEND_URL=http://localhost:4000
 ```
 
 Arranca el servidor de desarrollo:
@@ -114,32 +118,32 @@ http://localhost:3000
 npm start
 ```
 
-Arranca la aplicación en modo desarrollo.
+Arranca la aplicación en modo desarrollo con Vite (alias de `npm run dev`).
+
+```bash
+npm run dev
+```
+
+Idéntico a `npm start`. Útil para diferenciar el arranque de desarrollo en proyectos con múltiples scripts.
 
 ```bash
 npm run build
 ```
 
-Genera una build de producción en `build/`.
+Genera una build de producción optimizada en `build/`.
 
 ```bash
-npm test
+npm run preview
 ```
 
-Ejecuta Jest y React Testing Library mediante `react-scripts`.
-
-```bash
-npm run test:ci
-```
-
-Ejecuta la suite de tests en modo no interactivo y secuencial, útil para CI o para evitar problemas de workers en Windows.
+Sirve localmente la última build de producción para verificarla antes de desplegar.
 
 ## Backend
 
 Balloon App necesita una API externa para funcionar correctamente. La URL se define con:
 
 ```env
-REACT_APP_BACKEND_URL=http://localhost:4000
+VITE_BACKEND_URL=http://localhost:4000
 ```
 
 El frontend espera respuestas con esta forma general:
@@ -155,7 +159,7 @@ El frontend espera respuestas con esta forma general:
 Los recursos multimedia se cargan desde:
 
 ```txt
-{REACT_APP_BACKEND_URL}/uploads/{archivo}
+{VITE_BACKEND_URL}/uploads/{archivo}
 ```
 
 ## Demo guiada
@@ -180,12 +184,21 @@ Si el backend tiene ese usuario disponible, redirige automáticamente al dashboa
 | `/booking/:id` | Detalle y reserva de una experiencia |
 | `/account` | Login |
 | `/register` | Registro |
+| `/recovery` | Recuperación de contraseña |
+| `/contact` | Formulario de contacto |
+| `/about` | Sobre el proyecto |
+| `/conditions` | Condiciones generales |
+| `/privacity` | Política de privacidad |
 | `/profile` | Perfil del usuario |
 | `/bookingDetail/:ticket` | Detalle del ticket/reserva |
 | `/review/:ticket` | Valoración de experiencia |
-| `/dashboard` | Panel de administración/visor |
+| `/dashboard` | Panel de administración/visor (KPIs y gráficas) |
 | `/dashboard/adminCategory` | Gestión de categorías |
+| `/dashboard/adminCategory/createCategory` | Nueva categoría |
+| `/dashboard/adminCategory/editCategory/:id` | Editar categoría |
 | `/dashboard/adminExperience` | Gestión de experiencias |
+| `/dashboard/adminExperience/createExperience` | Nueva experiencia |
+| `/dashboard/adminExperience/editExperience/:id` | Editar experiencia |
 | `/dashboard/adminUsers` | Gestión de usuarios |
 
 ## Lo interesante del proyecto
@@ -202,7 +215,7 @@ No es solo "una app". Es una prueba de cómo un proyecto antiguo puede volver a 
 
 ## Estado
 
-Proyecto frontend funcional, preparado para trabajar contra un backend compatible. La build de producción se genera con Create React App y el repositorio conserva una estructura sencilla para que pueda ser leído, explicado y ampliado con facilidad.
+Proyecto frontend funcional, preparado para trabajar contra un backend compatible. La build de producción se genera con Vite 5 y el repositorio conserva una estructura sencilla para que pueda ser leído, explicado y ampliado con facilidad.
 
 ---
 
