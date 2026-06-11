@@ -2,6 +2,7 @@ import { formatDate } from "../../helpers/formatDate";
 import { es } from "date-fns/locale";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { TokenContext } from "../../contexts/TokenContext";
 import { useGetCategories } from "../../hooks/useGetCategories";
 import { useFiltered } from "../../hooks/useFiltered.js";
 import { useNavigate } from "react-router";
@@ -25,6 +26,7 @@ export const Dashboard = () => {
   ];
 
   const [usuario] = useContext(UserContext);
+  const [token] = useContext(TokenContext);
   const { categories } = useGetCategories();
   const { filtered } = useFiltered(`?`);
   const [charged, setCharged] = useState({});
@@ -36,12 +38,15 @@ export const Dashboard = () => {
 
   useEffect(() => {
     const fetchAll = async () => {
-      setCharged(await miniFetcher("dashboard", {}));
-      setBestExp(await miniFetcher("dashboard/bestExp", {}));
-      setTotalUsers(await miniFetcher("dashboard/totalUsers", {}));
-      setMonthlyRevenue(await miniFetcher("dashboard/monthlyRevenue", {}));
-      setCategoryBookings(await miniFetcher("dashboard/bookingsByCategory", {}));
+      const authOptions = { headers: { Authorization: token } };
+
+      setCharged(await miniFetcher("dashboard", authOptions));
+      setBestExp(await miniFetcher("dashboard/bestExp", authOptions));
+      setTotalUsers(await miniFetcher("dashboard/totalUsers", authOptions));
+      setMonthlyRevenue(await miniFetcher("dashboard/monthlyRevenue", authOptions));
+      setCategoryBookings(await miniFetcher("dashboard/bookingsByCategory", authOptions));
     };
+    if (!token) return;
     fetchAll();
     return () => {
       setCharged({});
@@ -50,7 +55,7 @@ export const Dashboard = () => {
       setMonthlyRevenue([]);
       setCategoryBookings([]);
     };
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
