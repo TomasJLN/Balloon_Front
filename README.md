@@ -138,6 +138,12 @@ npm run preview
 
 Sirve localmente la última build de producción para verificarla antes de desplegar.
 
+```bash
+npm test
+```
+
+Ejecuta las pruebas Vitest del acceso demo y de la gestión de sesiones inválidas.
+
 ## Backend
 
 Balloon App necesita una API externa para funcionar correctamente. La URL se define con:

@@ -1,44 +1,35 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { TokenContext } from "../../contexts/TokenContext";
 import { UserContext } from "../../contexts/UserContext";
 import fetcher from "../../helpers/fetcher";
-import { Popup } from "../../components/popup/Popup";
 import "../../components/register/register.css";
 import "./login.css";
-import { PopupRegisterOk } from "../../components/popupRegisterOk/PopupRegisterOk";
-import { FaLock, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import { FaFlask, FaSignInAlt, FaUserShield } from "react-icons/fa";
+
+const DEMO_ACCOUNT = {
+  email: "maria.lopez@demo.com",
+  password: "Demo1234!",
+};
 
 const Login = () => {
   const [token, setToken] = useContext(TokenContext);
   const [usuario] = useContext(UserContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-  const [registerOk, setRegisterOk] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  const q = location.search;
-
-  useEffect(() => {
-    q.includes("register=ok") ? setRegisterOk(true) : setRegisterOk(false);
-    return () => {
-      setRegisterOk(false);
-    };
-  }, [q]);
+  const destination = location.state?.from || "/";
 
   useEffect(() => {
     token && !error && (usuario.role === "admin" || usuario.role === "viewer") && navigate("/dashboard");
-    token && !error && usuario.role === "user" && navigate(-1);
+    token && !error && usuario.role === "user" && navigate(destination, { replace: true });
     return () => {
       setError(null);
     };
-  }, [token, error, navigate, usuario.role]);
+  }, [token, error, navigate, usuario.role, destination]);
 
   useEffect(() => {
     error && toast.error(error);
@@ -53,7 +44,7 @@ const Login = () => {
     await fetcher(setToken, setError, setLoading, "user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(DEMO_ACCOUNT),
     });
   };
 
@@ -69,65 +60,27 @@ const Login = () => {
         </section>
       ) : (
         <section className="auth-page">
-          {registerOk && <PopupRegisterOk setRegisterOk={setRegisterOk} />}
           <form onSubmit={handleLogin} className="auth-card">
-            <p className="auth-kicker">Acceso privado</p>
-            <h1>Log in</h1>
+            <p className="auth-kicker">Acceso de demostración</p>
+            <div className="demo-login-icon" aria-hidden="true">
+              <FaUserShield />
+            </div>
+            <h1>Explora con una cuenta ficticia</h1>
+            <p className="demo-login-copy">
+              No tienes que registrarte ni introducir datos. Accederás con un
+              perfil preparado exclusivamente para probar Balloon.
+            </p>
 
-            <label className="auth-field" htmlFor="email-login">
-              <span>Email</span>
-              <input
-                type="text"
-                id="email-login"
-                value={email}
-                name="email-login"
-                size="40"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                onFocus={() => setEmail("")}
-              />
-            </label>
-
-            <label className="auth-field" htmlFor="contrasena-login">
-              <span>
-                <FaLock /> Contraseña
-              </span>
-              <input
-                type="password"
-                id="contrasena-login"
-                value={password}
-                name="password-login"
-                size="40"
-                autoComplete="off"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-                onFocus={() => {
-                  setPassword("");
-                }}
-              />
-            </label>
+            <div className="demo-login-note">
+              <FaFlask aria-hidden="true" />
+              Los cambios y reservas son simulados.
+            </div>
 
             <button type="submit" value="Login" className="auth-submit">
               <FaSignInAlt />
-              Login
+              Entrar como usuario demo
             </button>
-
-            <div className="auth-links">
-              <Link to="/register" className="login-links">
-                <FaUserPlus /> Crear una cuenta
-              </Link>
-              <button
-                type="button"
-                className="password-recovery-link"
-                onClick={() => setShowPopup(true)}
-              >
-                Recuperar contraseña
-              </button>
-            </div>
           </form>
-          {showPopup && <Popup setShowPopup={setShowPopup} />}
         </section>
       )}
     </>

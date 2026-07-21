@@ -1,18 +1,12 @@
 import { formatDate } from "../../helpers/formatDate";
 import { useNavigate } from "react-router";
-import { FaCalendarAlt, FaInfoCircle, FaStar, FaTicketAlt, FaTimes } from "react-icons/fa";
+import { FaCalendarAlt, FaInfoCircle, FaTicketAlt } from "react-icons/fa";
 import "./other-booking.css";
-import React, { useEffect } from "react";
 
-export const OtherBooking = ({ oq, handleCancelBooking }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [oq]);
-
+export const OtherBooking = ({ oq }) => {
   const navigate = useNavigate();
   const isPastExperience = new Date(oq.dateExperience) < new Date();
   const bookingDetailPath = `/bookingDetail/${oq.ticket}`;
-  const reviewPath = `/review/${oq.ticket}`;
 
   return (
     <article className="booking-card fade_in">
@@ -27,7 +21,7 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
             isPastExperience ? "booking-card-badge-review" : "booking-card-badge-upcoming"
           }`}
         >
-          {isPastExperience ? "Experiencia por valorar" : "Reserva próxima"}
+          {isPastExperience ? "Histórico demo" : "Próxima demo"}
         </figcaption>
       </figure>
 
@@ -55,24 +49,6 @@ export const OtherBooking = ({ oq, handleCancelBooking }) => {
         >
           <FaInfoCircle aria-hidden="true" />
           Detalles
-        </button>
-        <button
-          id={new Date().toISOString() > oq.dateExperience ? "vota" : "no-vota"}
-          className="booking-card-button booking-card-button-primary"
-          onClick={() => navigate(reviewPath)}
-        >
-          <FaStar aria-hidden="true" />
-          Valorar
-        </button>
-        <button
-          className="booking-card-button booking-card-button-danger"
-          onClick={(e) => {
-            handleCancelBooking(e, oq.ticket);
-            navigate(`/profile#reservas`);
-          }}
-        >
-          <FaTimes aria-hidden="true" />
-          Cancelar
         </button>
       </div>
     </article>

@@ -1,45 +1,27 @@
 import { formatDate } from "../../helpers/formatDate";
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useContext } from "react";
+import { Link, Navigate, useParams } from "react-router";
 import { OtherBooking } from "../../components/otherBooking/OtherBooking";
 import { QrTicket } from "../../components/qr_ticket/QrTicket";
 import { TokenContext } from "../../contexts/TokenContext";
-import { miniFetcher } from "../../helpers/fetcher";
 import { useBookingDetails } from "../../hooks/useBookingDetails";
 import { useBookingQRs } from "../../hooks/useBookingQRs";
 import { useUserBookings } from "../../hooks/useUserBookings";
-import { toast } from "react-toastify";
-import { Link } from "react-router";
-import { FaArrowLeft, FaCalendarAlt, FaMapMarkerAlt, FaQrcode, FaReceipt } from "react-icons/fa";
+import { FaArrowLeft, FaCalendarAlt, FaFlask, FaMapMarkerAlt, FaQrcode, FaReceipt } from "react-icons/fa";
 
 import "./booking-details.css";
 
 export const BookingDetails = () => {
   const { ticket } = useParams();
   const [token] = useContext(TokenContext);
-  const [cancelStatus, setCancelStatus] = useState(null);
 
   const exDetails = useBookingDetails(ticket, token);
   const QRs = useBookingQRs(ticket, token);
   const othersBookings = useUserBookings(ticket, token);
 
-  const handleCancelBooking = (e, ticket) => {
-    e.preventDefault();
-    const cancelBooking = async () => {
-      setCancelStatus(
-        await miniFetcher(`booking/${ticket}`, {
-          method: "DELETE",
-          headers: { Authorization: token },
-        })
-      );
-    };
-    cancelBooking();
-  };
-
-  useEffect(() => {
-    cancelStatus && toast.success(cancelStatus);
-    setCancelStatus(null);
-  }, [cancelStatus]);
+  if (!token) {
+    return <Navigate to="/account" state={{ from: `/bookingDetail/${ticket}` }} replace />;
+  }
 
   return (
     <section className="booking-details-page">
@@ -53,7 +35,7 @@ export const BookingDetails = () => {
           </figure>
 
           <div className="booking-details-summary">
-            <p className="booking-details-kicker">Resumen de tu pedido</p>
+            <p className="booking-details-kicker">Detalle de reserva ficticia</p>
             <h1>{exDetails?.title}</h1>
             <div className="booking-details-chips">
               <span>
@@ -92,9 +74,17 @@ export const BookingDetails = () => {
           <div className="booking-details-section-heading">
             <div className="booking-details-section-title">
               <FaQrcode />
-              <h2>Códigos QR de participantes</h2>
+              <h2>Códigos QR simulados</h2>
             </div>
-            <p>Descarga cada QR y conserva la referencia para el día de la experiencia.</p>
+            <p>Se muestran únicamente para demostrar la generación de entradas digitales.</p>
+          </div>
+
+          <div className="booking-details-demo-notice">
+            <FaFlask aria-hidden="true" />
+            <p>
+              Estos QR son ficticios, no permiten acceder a ninguna actividad y
+              no tienen validez comercial ni contractual.
+            </p>
           </div>
 
           <div className="qr-booking">
@@ -107,17 +97,8 @@ export const BookingDetails = () => {
         </section>
 
         <div className="back-to-profile">
-          <Link
-            to="/profile#reservas"
-            onClick={() => {
-              setTimeout(() => {
-                document.getElementById("reservas")?.scrollIntoView({ behavior: "smooth" });
-              }, 100);
-            }}
-          >
-            <button className="booking-details-secondary">
-              <FaArrowLeft /> Mis reservas
-            </button>
+          <Link to="/profile" className="booking-details-secondary">
+            <FaArrowLeft /> Volver a mis reservas demo
           </Link>
         </div>
 
@@ -129,11 +110,7 @@ export const BookingDetails = () => {
           <div className="other-bookings-wrap">
             {othersBookings.length > 0 ? (
               othersBookings.map((oq) => (
-                <OtherBooking
-                  oq={oq}
-                  key={oq.id}
-                  handleCancelBooking={handleCancelBooking}
-                />
+                <OtherBooking oq={oq} key={oq.id} />
               ))
             ) : (
               <p className="booking-details-empty">No hay otras reservas disponibles.</p>

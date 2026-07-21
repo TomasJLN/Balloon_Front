@@ -6,6 +6,7 @@ import { Header } from "../components/header/Header";
 import { PublicRoute } from "./PublicRoute";
 import { ToastContainer } from "react-toastify";
 import { ToTop } from "../components/toTop/ToTop";
+import { DemoSiteBanner } from "../components/demoSiteBanner/DemoSiteBanner";
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,6 +19,7 @@ export const AppRoute = () => {
 				<UserContextProvider>
 					<FilterContextProvider>
 						<Header />
+						<DemoSiteBanner />
 						<ToTop isVisible={isVisible} setIsVisible={setIsVisible} />
 						<Routes>
 							<Route

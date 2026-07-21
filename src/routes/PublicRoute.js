@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import ShowResults from "../components/showResults/ShowResults";
 import { UserRoute } from "./UserRoute";
 import Footer from "../components/footer/Footer";
 import Filter from "../components/filter/Filter";
+import { StudentProjectNotice } from "../components/studentProjectNotice/StudentProjectNotice";
 
 const About = lazy(() => import("../pages/About/About.js"));
 const Booking = lazy(() => import("../pages/booking/Booking"));
-const Conditions = lazy(() => import("../pages/conditions/Conditions"));
 const ContactForm = lazy(() => import("../forms/Contact_form/ContactForm"));
 const ErrorPage = lazy(() =>
 	import("../components/errorPage/ErrorPage").then((module) => ({
@@ -15,33 +15,15 @@ const ErrorPage = lazy(() =>
 	}))
 );
 const Login = lazy(() => import("../pages/login/Login"));
-const Privacity = lazy(() => import("../pages/privacity/Privacity"));
-const RecoveryPassword = lazy(() => import("../components/recoveryPassword/RecoveryPassword"));
-const Register = lazy(() => import("../components/register/Register"));
+const LegalNotice = lazy(() => import("../pages/legalNotice/LegalNotice"));
 
 export const PublicRoute = () => {
 	return (
 		<main>
 			<Suspense fallback={<div className="loading"><h1>Cargando...</h1></div>}>
 				<Routes>
-					<Route
-						path="privacity"
-						element={
-							<>
-								<Privacity />
-								<Footer />
-							</>
-						}
-					/>
-					<Route
-						path="conditions"
-						element={
-							<>
-								<Conditions />
-								<Footer />
-							</>
-						}
-					/>
+					<Route path="privacity" element={<Navigate to="/aviso-legal" replace />} />
+					<Route path="conditions" element={<Navigate to="/aviso-legal" replace />} />
 					<Route
 						path="contact"
 						element={
@@ -53,6 +35,15 @@ export const PublicRoute = () => {
 					/>
 
 					<Route
+						path="aviso-legal"
+						element={
+							<>
+								<LegalNotice />
+								<Footer />
+							</>
+						}
+					/>
+					<Route
 						path="account"
 						element={
 							<>
@@ -63,12 +54,7 @@ export const PublicRoute = () => {
 					/>
 					<Route
 						path="register"
-						element={
-							<>
-								<Register />
-								<Footer />
-							</>
-						}
+						element={<Navigate to="/account" replace />}
 					/>
 
 					<Route
@@ -101,17 +87,13 @@ export const PublicRoute = () => {
 					/>
 					<Route
 						path="recovery"
-						element={
-							<>
-								<RecoveryPassword />
-								<Footer />
-							</>
-						}
+						element={<Navigate to="/account" replace />}
 					/>
 					<Route
 						path=""
 						element={
 							<>
+								<StudentProjectNotice />
 								<Filter />
 								<ShowResults />
 								<Footer />

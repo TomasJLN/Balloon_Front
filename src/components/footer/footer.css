@@ -1,167 +1,37 @@
-/* ========== NEWSLETTER SECTION ========== */
-.footer .newsletter {
-	width: 100%;
-	background: linear-gradient(135deg, #0f4c5c 0%, #1a6b7a 40%, #3fb0ac 100%);
-	padding: 3rem 1.5rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.newsletter .sendEmail {
-	width: 100%;
-	max-width: 500px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1rem;
-}
-
-.footer .news-letter-tit {
-	text-align: center;
-	font-size: var(--text-xl);
-	font-weight: 600;
-	color: white;
-	margin-bottom: 0.25rem;
-	font-family: var(--font-heading);
-}
-
-.newsletter .sendEmail > div:first-of-type {
-	display: flex;
-	width: 100%;
-	max-width: 440px;
-}
-
-.footer #email {
-	flex: 1;
-	height: 48px;
-	padding: 0 16px;
-	border: 2px solid rgba(255, 255, 255, 0.25);
-	border-right: none;
-	border-radius: var(--radius-full) 0 0 var(--radius-full);
-	background: rgba(255, 255, 255, 0.15);
-	color: white;
-	font-family: var(--font-body);
-	font-size: var(--text-base);
-	transition: all var(--transition-fast);
-}
-
-.footer #email::placeholder {
-	color: rgba(255, 255, 255, 0.55);
-}
-
-.footer #email:focus {
-	outline: none;
-	background: rgba(255, 255, 255, 0.2);
-	border-color: rgba(255, 255, 255, 0.5);
-}
-
-.footer .enviar {
-	height: 48px;
-	padding: 0 24px;
-	background: white;
-	color: #1a6b7a;
-	font-family: var(--font-body);
-	font-size: var(--text-sm);
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	border: none;
-	border-radius: 0 var(--radius-full) var(--radius-full) 0;
-	cursor: pointer;
-	transition: all var(--transition-base);
-}
-
-.footer .enviar:hover {
-	background: #e8f4f3;
-	color: #0e6b7a;
-}
-
-.footer .terminosConditions {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	color: rgba(255, 255, 255, 0.8);
-	font-size: var(--text-xs);
-}
-
-.footer .terminosConditions label {
-	font-family: var(--font-body);
-	color: rgba(255, 255, 255, 0.8);
-	cursor: pointer;
-}
-
-.footer .terminosConditions .checkboxBox {
-	width: 16px;
-	height: 16px;
-	accent-color: white;
-}
-
-/* ========== LINKS SECTION ========== */
 .footer .links {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 1.25rem 1rem;
-	background-color: #f5f7fa;
-	border-top: 1px solid #e8edf2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  border-top: 1px solid #e8edf2;
+  background-color: #f5f7fa;
 }
 
 .footer .links ul {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-	list-style: none;
-	padding: 0;
-	margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .footer .links li {
-	font-size: var(--text-sm);
-	text-align: center;
+  font-size: var(--text-sm);
+  text-align: center;
 }
 
-.footer .links a:visited,
-.footer .links a:link {
-	color: var(--color-text-secondary);
-	text-decoration: none;
-	font-weight: 500;
-	transition: color var(--transition-fast);
+.footer .links a,
+.footer .links a:visited {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 .footer .links a:hover {
-	color: var(--color-accent);
-	font-weight: 500;
-}
-
-/* ========== MOBILE ========== */
-@media screen and (max-width: 767px) {
-	.footer .newsletter {
-		padding: 2rem 1rem;
-	}
-
-	.newsletter .sendEmail > div:first-of-type {
-		flex-direction: column;
-		gap: 8px;
-	}
-
-	.footer #email {
-		border-radius: var(--radius-full);
-		border-right: 2px solid rgba(255, 255, 255, 0.25);
-	}
-
-	.footer .enviar {
-		border-radius: var(--radius-full);
-		width: 100%;
-	}
-
-	.footer .links ul {
-		gap: 1rem;
-		flex-wrap: wrap;
-	}
+  color: var(--color-accent);
 }

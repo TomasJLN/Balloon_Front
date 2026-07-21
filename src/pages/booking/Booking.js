@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useContext, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
 import { toast } from 'react-toastify';
 import { formatDate } from '../../helpers/formatDate';
 import { TokenContext } from '../../contexts/TokenContext';
 import { UserContext } from '../../contexts/UserContext';
+import { addDemoBooking } from '../../helpers/demoBookings';
 import { useExperience } from '../../hooks/useExperience';
 import fetcher from '../../helpers/fetcher';
 import { useGetReviews } from '../../hooks/useGetReviews';
@@ -21,6 +21,8 @@ import '../experience/experience.css';
 
 const Booking = () => {
   const { id } = useParams();
+  const [, setToken] = useContext(TokenContext);
+  const [user] = useContext(UserContext);
   const { reviews } = useGetReviews(id);
 
   const {
@@ -41,11 +43,8 @@ const Booking = () => {
   const url = `https://www.google.es/maps/@${coords},19z`.replace(/ +/g, '');
 
   const [places, setPlaces] = useState([]);
-  const [result, setResult] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [token, setToken] = useContext(TokenContext);
-  const [usuario, setUsuario] = useContext(UserContext);
   const [pay, setPay] = useState(null);
   const [avgRatin, setAvgRatin] = useState(0);
   const [popUp, setPopUp] = useState(false);
@@ -60,6 +59,7 @@ const Booking = () => {
   const [bookingDate, setBookingDate] = useState(storage.selectDate);
   const [soldOut, setSoldOut] = useState(false);
   const navigate = useNavigate();
+  const routeLocation = useLocation();
 
   const occupied = places[0]?.occupied ?? 0;
   const maxFreePlaces = occupied > 0 ? totalPlaces - occupied : totalPlaces;
@@ -119,36 +119,39 @@ const Booking = () => {
     }
   };
 
-  const handleNewBooking = (e) => {
-    setResult('');
-    if (pay) {
-      const createBooking = async () => {
-        await fetcher(setResult, setError, setLoading, 'booking', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-          body: JSON.stringify({
-            dateExperience: new DateObject(bookingDate).format(),
-            quantity: numTickets,
-            idExperience: id,
-          }),
-        });
-      };
-      createBooking();
-    }
-  };
-  const handlePopUp = () => {
-    !usuario.role && navigate('/account');
-    usuario.role === 'user' && setPopUp(true);
-    usuario.role === 'admin' &&
-      toast.error('Un administrador no puede\nhacer reservas...');
+  const handleNewBooking = () => {
+    const payMethodLabels = {
+      paypal: 'Paypal simulado',
+      creditCard: 'Tarjeta simulada',
+      bizum: 'Bizum simulado',
+    };
+
+    addDemoBooking({
+      idExperience: id,
+      title,
+      location,
+      photo: experiencePhoto,
+      dateExperience: new DateObject(bookingDate).format(),
+      quantity: Number(numTickets),
+      totalPrice: Number(price) * Number(numTickets),
+      payMethod: payMethodLabels[pay] || 'Método simulado',
+    });
+
+    setPopUp(false);
+    setDisable(true);
+    toast.success('Reserva demo creada para esta sesión. No se ha realizado ningún cargo.');
+    navigate('/profile');
   };
 
-  useEffect(() => {
-    result.length > 1 && navigate(`/bookingDetail/${result}`);
-  }, [result, setResult, navigate]);
+  const handlePopUp = () => {
+    if (user.role !== 'user') {
+      setToken('');
+      navigate('/account', { state: { from: routeLocation.pathname } });
+      return;
+    }
+
+    setPopUp(true);
+  };
 
   useEffect(() => {
     if (error !== null) toast.error('algo salió mal... ', error);
@@ -308,7 +311,7 @@ const Booking = () => {
                   {}
                 </div>
                 <div className="pay-method">
-                  <p>Forma de pago</p>
+                  <p>Método de pago simulado</p>
                   <div
                     className="pay-option"
                     onChange={(e) => {
@@ -321,20 +324,23 @@ const Booking = () => {
                     <select className="booking-select">
                       <option value=""> Seleccionar</option>
                       <option id="paypal" name="payMethod" value="paypal">
-                        Paypal
+                        Simulación de Paypal
                       </option>
                       <option
                         id="creditCard"
                         name="payMethod"
                         value="creditCard"
                       >
-                        Tarjeta de crédito
+                        Simulación de tarjeta
                       </option>
                       <option id="bizum" name="payMethod" value="bizum">
-                        Bizum
+                        Simulación de Bizum
                       </option>
                     </select>
                   </div>
+                  <small className="booking-demo-hint">
+                    No introduzcas datos de pago. Esta selección es únicamente visual.
+                  </small>
                 </div>
                 <div className="check-out">
                   <div style={{ display: 'flex' }}>
@@ -350,7 +356,7 @@ const Booking = () => {
                       handlePopUp();
                     }}
                   >
-                    Reservar
+                    Simular reserva
                   </button>
                 </div>
               </form>

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import Footer from "../components/footer/Footer";
 
 const BookingDetails = lazy(() =>
@@ -10,13 +10,7 @@ const BookingDetails = lazy(() =>
 const DashboardRoute = lazy(() =>
   import("./DashboardRoute").then((module) => ({ default: module.DashboardRoute }))
 );
-const Editprofile = lazy(() => import("../pages/editProfile/Editprofile"));
-const RateExperience = lazy(() =>
-  import("../pages/rateExperience/RateExperience").then((module) => ({
-    default: module.RateExperience,
-  }))
-);
-
+const DemoBookings = lazy(() => import("../pages/demoBookings/DemoBookings"));
 export const UserRoute = () => {
   return (
     <Suspense fallback={<div className="loading"><h1>Cargando...</h1></div>}>
@@ -32,18 +26,13 @@ export const UserRoute = () => {
         />
         <Route
           path="/review/:ticket"
-          element={
-            <>
-              <RateExperience />
-              <Footer />
-            </>
-          }
+          element={<Navigate to="/" replace />}
         />
         <Route
           path="/profile"
           element={
             <>
-              <Editprofile />
+              <DemoBookings />
               <Footer />
             </>
           }

@@ -5,7 +5,6 @@ import { FilterContext } from '../../contexts/FilterContext';
 import mainLogo from '../../mainlogo/logo_balloon_v2_80.webp';
 import { useNavigate } from 'react-router';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import fetcher from '../../helpers/fetcher';
 import { Avatar } from '../avatar/Avatar';
 import NavBar from '../navBar/navBar';
 import NavUser from '../navUser/NavUser';
@@ -18,20 +17,11 @@ export const Header = () => {
   const [showNavBar, setShowNavBar] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [token, setToken] = useContext(TokenContext);
-  const [usuario, setUsuario] = useContext(UserContext);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [token] = useContext(TokenContext);
+  const [usuario] = useContext(UserContext);
 
   const navigate = useNavigate();
   const startTour = useDemoTour();
-
-  useEffect(() => {
-    if (token && token !== '')
-      fetcher(setUsuario, setError, setLoading, 'user', {
-        headers: { Authorization: token },
-      });
-  }, [token, setUsuario]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -48,11 +38,7 @@ export const Header = () => {
   };
 
   return (
-    <>
-      {loading ? (
-        <h1>Cargando...</h1>
-      ) : (
-        <header id="main_header" className={scrolled ? 'scrolled' : ''}>
+    <header id="main_header" className={scrolled ? 'scrolled' : ''}>
           <div className="header-inner">
             <nav>
               {showNavBar && <NavBar setShowNavBar={setShowNavBar} />}
@@ -96,8 +82,6 @@ export const Header = () => {
               <Avatar usuario={usuario} setUserMenu={setUserMenu} />
             </div>
           </div>
-        </header>
-      )}
-    </>
+    </header>
   );
 };

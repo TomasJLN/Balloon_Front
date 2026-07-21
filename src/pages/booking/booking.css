@@ -337,6 +337,38 @@
 }
 
 /* === Popup === */
+
+.booking-demo-hint {
+  display: block;
+  max-width: 250px;
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.45;
+}
+
+.booking-demo-badge {
+  margin: 0.75rem 0 0;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  color: #0e6472;
+  background: #e7f6f6;
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.booking-demo-message {
+  max-width: 430px;
+  padding: 12px 16px;
+  border-left: 3px solid rgb(var(--main-color));
+  color: #355a61;
+  background: #effafa;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: left;
+}
 #popup-booking {
   display: flex;
   flex-direction: column;

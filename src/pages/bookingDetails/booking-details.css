@@ -111,6 +111,28 @@
   line-height: 1.5;
 }
 
+.booking-details-demo-notice {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  margin: 1rem 0 1.5rem;
+  padding: 1rem 1.15rem;
+  color: #18515b;
+  background: #eaf8f7;
+  border: 1px solid rgba(63, 176, 172, 0.35);
+  border-radius: 14px;
+}
+
+.booking-details-demo-notice svg {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+}
+
+.booking-details-demo-notice p {
+  margin: 0;
+  line-height: 1.55;
+}
+
 .booking-details-section-title {
   display: flex;
   align-items: center;
@@ -196,6 +218,10 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
     border-color var(--transition-fast);
+}
+
+a.booking-details-secondary {
+  text-decoration: none;
 }
 
 .booking-details-secondary:hover {

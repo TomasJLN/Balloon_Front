@@ -80,7 +80,7 @@ export const useDemoTour = () => {
           popover: {
             title: '🎈 Experiencias destacadas',
             description:
-              'Cada tarjeta muestra precio, plazas y valoración media. Haz clic en una para ver los detalles y reservar.',
+              'Cada tarjeta muestra precio, plazas y valoración media. Haz clic en una para ver los detalles y simular una reserva.',
             side: 'top',
             align: 'start',
           },
@@ -90,7 +90,7 @@ export const useDemoTour = () => {
           popover: {
             title: '🔐 Panel de administración',
             description:
-              'Pulsa "Ir al panel →" para acceder al dashboard con datos reales. Iniciaremos sesión automáticamente con una cuenta de demostración.',
+              'Pulsa "Ir al panel →" para acceder al dashboard con datos ficticios. Iniciaremos sesión automáticamente con una cuenta de demostración.',
             side: 'bottom',
             align: 'end',
           },

@@ -151,7 +151,7 @@ a:hover {
   top: 1rem;
 }
 
-header {
+#main_header {
   width: 100%;
   background: linear-gradient(
     135deg,

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router";
 import { TokenContext } from "../../contexts/TokenContext";
-import { FaUser, FaChartBar, FaSignOutAlt, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import { FaUser, FaChartBar, FaSignOutAlt, FaSignInAlt, FaTicketAlt } from "react-icons/fa";
 import "./navUser.css";
 
 const NavUser = ({ setUserMenu, usuario }) => {
@@ -59,19 +59,14 @@ const NavUser = ({ setUserMenu, usuario }) => {
             <Link to="/dashboard"><FaChartBar /> Dashboard</Link>
           </li>
         )}
-        {token && (
+        {token && role === "user" && (
           <li className="dropdown-btn" onClick={() => setUserMenu(false)}>
-            <Link to="/profile"><FaUser /> Perfil</Link>
+            <Link to="/profile"><FaTicketAlt /> Mis reservas demo</Link>
           </li>
         )}
         {!token && (
           <li className="dropdown-btn" onClick={() => setUserMenu(false)}>
-            <Link to="/account"><FaSignInAlt /> Iniciar sesión</Link>
-          </li>
-        )}
-        {!token && (
-          <li className="dropdown-btn" onClick={() => setUserMenu(false)}>
-            <Link to="/register"><FaUserPlus /> Registrarse</Link>
+            <Link to="/account"><FaSignInAlt /> Acceso demo</Link>
           </li>
         )}
         {token && (

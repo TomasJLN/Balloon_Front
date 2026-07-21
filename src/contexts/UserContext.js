@@ -9,15 +9,42 @@ export const UserContextProvider = ({ children }) => {
   const [usuario, setUsuario] = useState({});
 
   useEffect(() => {
-    if (token && token !== '') {
-      const getUser = async () => {
-        setUsuario(
-          await miniFetcher('user', { headers: { Authorization: token } })
-        );
+    let active = true;
+
+    if (!token) {
+      setUsuario({});
+      return () => {
+        active = false;
       };
-      getUser();
     }
-  }, [token]);
+
+    const getUser = async () => {
+      const user = await miniFetcher('user', {
+        headers: { Authorization: token },
+      });
+
+      if (!active) return;
+
+      const isValidUser =
+        user &&
+        typeof user === 'object' &&
+        ['admin', 'user', 'viewer'].includes(user.role);
+
+      if (isValidUser) {
+        setUsuario(user);
+        return;
+      }
+
+      setUsuario({});
+      setToken('');
+    };
+
+    getUser();
+
+    return () => {
+      active = false;
+    };
+  }, [token, setToken]);
 
   return (
     <UserContext.Provider value={[usuario, setUsuario]}>
